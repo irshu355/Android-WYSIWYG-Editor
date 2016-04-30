@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3b5999</color>
+    <color name="colorPrimaryDark">#424242</color>
+    <color name="colorAccent">#3b5999</color>
+    <item name="blue" type="color">#2b6dad</item>
+    <item name="purple" type="color">#FFAA66CC</item>
+    <item name="green" type="color">#99CC00</item>
+    <item name="orange" type="color">#FFFF8800</item>
+    <item name="red" type="color">#FFFF4444</item>
+    <item name="darkblue" type="color">#005099 </item>
+    <item name="darkpurple" type="color">#FF9933CC</item>
+    <item name="darkgreen" type="color">#2DA44B</item>
+    <item name="darkorange" type="color">#f3761c</item>
+    <item name="darkred" type="color">#FFCC0000</item>
+    <item name="darktext" type="color">#5E5E5E</item>
+    <item name="darkertext" type="color">#333</item>
+    <item name="lighttext" type="color">#999</item>
+    <item name="lightBackground" type="color">#eee</item>
+    <item name="pink" type="color">#B81365</item>
+    <item name="f5f5f5" type="color">#f5f5f5</item>
+    <item type="color" name="android_default_primary">#009688</item>
+    <color type="color" name="white">#ffffff</color>
+    <color type="color" name="yellow">#FFD72D</color>
+    <color name="petron_primary" type="color">#202b68</color>
+    <color name="petron_secondary" type="color">#218EDD</color>
+    <color name="petron_tertiary" type="color">#EE3124</color>
+    <color name="overlay_light" type="color">#80ffffff</color>
+    <color name="overlay" type="color">#80EE3124</color>
+    <color name="green_overlay" type="color">#802DA44B</color>
+</resources>

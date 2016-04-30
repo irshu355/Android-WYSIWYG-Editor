@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="circularimageview-1.1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.pkmmte.view/circularimageview/1.1/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.pkmmte.view/circularimageview/1.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.pkmmte.view/circularimageview/1.1/1be65c7d12d228a2f1aa58cff53f1417db476753/circularimageview-1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
