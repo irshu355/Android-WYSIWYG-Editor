@@ -8,7 +8,7 @@
         android:id="@+id/lblOrder"
         android:textStyle="bold"
         android:text="•"></TextView>
-    <com.irshu.editor.CustomEditText
+    <com.irshu.editor.Components.CustomEditText
         android:layout_column="2"
         android:id="@+id/txtText"
         android:textSize="14sp"
@@ -16,5 +16,5 @@
         android:layout_marginBottom="8dp"
         android:layout_width="wrap_content"
         android:background="@drawable/invisible_edit_text"
-        android:textColor="@color/darkertext"></com.irshu.editor.CustomEditText>
+        android:textColor="@color/darkertext"></com.irshu.editor.Components.CustomEditText>
 </TableRow>

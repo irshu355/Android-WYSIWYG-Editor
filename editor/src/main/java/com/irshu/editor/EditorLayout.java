@@ -16,12 +16,9 @@ public class EditorLayout extends LinearLayout {
         super(_Context);
         initialize(_Context, _ParentView, _RenderType, _PlaceHolderText);
     }
-    public EditorLayout(Context context, AttributeSet attrs,LinearLayout _ParentView, RenderType _RenderType, String _PlaceHolderText) {
-        super(context, attrs);
-        initialize(context,_ParentView,_RenderType,_PlaceHolderText);
-    }
-    public void startEditor(){
+    public EditorLayout startEditor(){
         _Editor.StartEditor();
+        return this;
     }
     private void initialize(Context context,LinearLayout _ParentView, RenderType _RenderType, String _PlaceHolderText) {
         _Editor=new Editor(context,_ParentView,_RenderType,_PlaceHolderText);
