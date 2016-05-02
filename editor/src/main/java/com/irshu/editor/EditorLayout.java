@@ -1,5 +1,6 @@
 package com.irshu.editor;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -23,8 +24,8 @@ public class EditorLayout extends LinearLayout {
     private void initialize(Context context,LinearLayout _ParentView, RenderType _RenderType, String _PlaceHolderText) {
         _Editor=new Editor(context,_ParentView,_RenderType,_PlaceHolderText);
     }
-    public void InsertImage(){
-        _Editor.OpenImageGallery();
+    public void InsertImage(Bitmap bitmap){
+        _Editor.InsertImage(bitmap);
     }
     public void InsertUnorderedList(){
         _Editor.InsertUnorderedList();
@@ -37,5 +38,13 @@ public class EditorLayout extends LinearLayout {
     }
     public void InsertLink() {
         _Editor.InsertLink();
+    }
+
+    public void OpenImagePicker() {
+        _Editor.OpenImageGallery();
+    }
+
+    public void RestoreState(){
+        _Editor.RestoreState();
     }
 }

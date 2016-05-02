@@ -11,21 +11,17 @@
         android:scaleType="centerCrop"
         android:layout_height="wrap_content"
         />
-    <mehdi.sakout.fancybuttons.FancyButton
+    <Button
+        android:layout_width="wrap_content"
         android:id="@+id/btn_remove"
         android:visibility="invisible"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
+        android:textColor="@color/f5f5f5"
+        android:background="@color/red"
         android:padding="10dp"
-        fancy:fb_defaultColor="@color/darkred"
+        android:text="Delete"
         android:layout_alignParentRight="true"
-        fancy:fb_iconPaddingLeft="0dp"
-        fancy:fb_iconPaddingRight="0dp"
-        fancy:fb_focusColor="#313131"
-        fancy:fb_iconResource="@drawable/ic_close_white_18dp"
-        fancy:fb_radius="64dp">
-    </mehdi.sakout.fancybuttons.FancyButton>
+        android:layout_height="wrap_content" />
 </RelativeLayout>
