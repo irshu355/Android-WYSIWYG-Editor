@@ -213,10 +213,21 @@ public class DataEngine {
         return directory.getAbsolutePath();
     }
 
+    public boolean RemoveImageFromStorage(String path,String fileName){
+        ContextWrapper cw = new ContextWrapper(this._Context);
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        // Create imageDir
+        File file=new File(directory,path+fileName);
+        try{
+            return file.delete();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 
     public Bitmap LoadImageFromInternalStorage(String path, String UUID)
     {
-        Bitmap b;
         try {
             File f=new File(path, UUID+".png");
            // b = BitmapFactory.decodeStream(new FileInputStream(f));

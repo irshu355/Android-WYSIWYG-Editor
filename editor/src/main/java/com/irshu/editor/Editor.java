@@ -31,7 +31,12 @@ public class Editor extends BaseClass {
         inputExtensions.InsertEditText(0, this.PlaceHolder, "");
     }
     public void OpenImageGallery(){
+       imageExtensions.OpenImageGallery();
     }
+    public void InsertImage(Bitmap bitmap){
+        imageExtensions.InsertImage(bitmap);
+    }
+
     public void UpdateTextStyle(ControlStyles style){
         inputExtensions.UpdateTextStyle(style);
     }
@@ -45,6 +50,7 @@ public class Editor extends BaseClass {
     public void InsertDivider(){
         dividerExtensions.InsertDivider();
     }
+
 
     public void RenderEditor(EditorState _state) {
         this._ParentView.removeAllViews();

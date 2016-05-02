@@ -2,7 +2,9 @@ package com.irshu.editor.Components;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.irshu.editor.BaseClass;
@@ -45,7 +47,7 @@ public class MapExtensions {
         ImageView _ImageView = (ImageView) childLayout.findViewById(R.id.imageView);
         Picasso.with(this._Context).load(builder.toString()).into(_ImageView);
 
-        final FancyButton btn = (FancyButton) childLayout.findViewById(R.id.btn_remove);
+        final Button btn = (Button) childLayout.findViewById(R.id.btn_remove);
         _ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
