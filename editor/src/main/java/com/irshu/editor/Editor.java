@@ -37,6 +37,14 @@ public class Editor extends BaseClass {
         imageExtensions.InsertImage(bitmap);
     }
 
+    public void InsertMap(){
+        mapExtensions.loadMapActivity();
+    }
+
+    public void InsertMap(String cords, boolean insertEditText){
+        mapExtensions.insertMap(cords, insertEditText);
+    }
+
     public void UpdateTextStyle(ControlStyles style){
         inputExtensions.UpdateTextStyle(style);
     }

@@ -1,4 +1,4 @@
-package com.example.mkallingal.qapp;
+package com.irshu.editor;
 
 import android.Manifest;
 import android.app.Activity;

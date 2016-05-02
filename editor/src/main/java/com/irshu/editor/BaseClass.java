@@ -7,6 +7,7 @@
         import android.text.TextUtils;
         import android.view.Display;
         import android.view.View;
+        import android.view.ViewGroup;
         import android.widget.EditText;
         import android.widget.LinearLayout;
         import android.widget.TableLayout;
@@ -65,6 +66,15 @@
                 dividerExtensions =new DividerExtensions(this);
                 mapExtensions= new MapExtensions(this);
             }
+
+            public int GetChildCount(){
+                int Count= _ParentView.getChildCount();
+                return  Count;
+            }
+            public int GetChildCountforView(View view){
+              return ((ViewGroup)view).getChildCount();
+            }
+
 
             public int determineIndex(EditorType type){
                 int size= this._ParentView.getChildCount();
@@ -204,6 +214,11 @@
                 return Deserialized;
             }
 
+            public String GetStateAsSerialized(){
+                EditorState state= GetState();
+                return  serializeState(state);
+            }
+
             public String serializeState(EditorState _state){
                 String serialized= gson.toJson(_state);
                 return serialized;
@@ -225,9 +240,9 @@
                             _list.add(_state);
                             break;
                         case img:
-                            EditorControl _control = (EditorControl) _view.getTag();
-                            _state.content.add(_control.Path);
-                            _state.content.add(_control.UUID);
+                            EditorControl imgTag = (EditorControl) _view.getTag();
+                            _state.content.add(imgTag.Path);
+                            _state.content.add(imgTag.UUID);
                             _list.add(_state);
                             //field type, content[]
                             break;
@@ -245,6 +260,10 @@
                             }
                             _list.add(_state);
                             break;
+                        case map:
+                            EditorControl mapTag = (EditorControl) _view.getTag();
+                            _state.content.add(mapTag.Cords);
+                            _list.add(_state);
                     }
                 }
                 _editorState.stateList=_list;

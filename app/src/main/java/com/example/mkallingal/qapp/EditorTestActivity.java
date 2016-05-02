@@ -85,6 +85,12 @@ public class EditorTestActivity extends AppCompatActivity {
                 _layout.InsertLink();
             }
         });
+        findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _layout.InsertMap();
+            }
+        });
         _layout.startEditor();
     }
 
@@ -112,7 +118,7 @@ public class EditorTestActivity extends AppCompatActivity {
             _layout.RestoreState();
         }
         else if(requestCode==20){
-          //  _layout.insertMap(data.getStringExtra("result"),true);
+            _layout.InsertMap(data.getStringExtra("result"),true);
         }
     }
 }
