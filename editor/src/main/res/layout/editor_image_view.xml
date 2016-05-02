@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:scaleType="centerCrop"
         android:layout_height="wrap_content"
         />
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:id="@+id/btn_remove"
+        android:textAllCaps="false"
+        android:textStyle="bold"
         android:visibility="invisible"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:textColor="@color/f5f5f5"
-        android:background="@color/red"
-        android:padding="10dp"
-        android:text="Delete"
+        android:background="@color/overlay"
+        android:text="Remove"
         android:layout_alignParentRight="true"
         android:layout_height="wrap_content" />
 </RelativeLayout>

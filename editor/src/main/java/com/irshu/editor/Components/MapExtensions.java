@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.irshu.editor.BaseClass;
+import com.irshu.editor.MapsActivity;
 import com.irshu.editor.R;
 import com.irshu.editor.models.EditorControl;
 import com.irshu.editor.models.EditorType;
@@ -47,7 +48,7 @@ public class MapExtensions {
         ImageView _ImageView = (ImageView) childLayout.findViewById(R.id.imageView);
         Picasso.with(this._Context).load(builder.toString()).into(_ImageView);
 
-        final Button btn = (Button) childLayout.findViewById(R.id.btn_remove);
+        final View btn =  childLayout.findViewById(R.id.btn_remove);
         _ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,12 +68,23 @@ public class MapExtensions {
             }
         });
         EditorControl _control = _Base.CreateTag(EditorType.map);
+        _control.Cords= cords;
         childLayout.setTag(_control);
         int Index= _Base.determineIndex(EditorType.map);
         _Base._ParentView.addView(childLayout, Index);
         if(insertEditText){
+            if(_Base.GetChildCount()==2){
+                insertEditText=false;
+            }
+        }
+        if(insertEditText){
           _Base.inputExtensions.InsertEditText(Index + 1, "", "");
         }
+    }
+
+    public void loadMapActivity(){
+                Intent intent=new Intent(_Context, MapsActivity.class);
+                ((Activity) _Context).startActivityForResult(intent, 20);
     }
 
 }

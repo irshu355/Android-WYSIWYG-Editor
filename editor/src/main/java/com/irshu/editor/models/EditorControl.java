@@ -9,5 +9,6 @@ public class EditorControl {
     public EditorType Type;
     public String UUID;
     public String Path;
+    public String Cords;
     public List<ControlStyles> _ControlStyles;
 }

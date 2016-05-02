@@ -27,6 +27,12 @@ public class EditorLayout extends LinearLayout {
     public void InsertImage(Bitmap bitmap){
         _Editor.InsertImage(bitmap);
     }
+    public void InsertMap(){
+        _Editor.InsertMap();
+    }
+    public void InsertMap(String Cords, boolean InsertEditText){
+        _Editor.InsertMap(Cords,InsertEditText);
+    }
     public void InsertUnorderedList(){
         _Editor.InsertUnorderedList();
     }

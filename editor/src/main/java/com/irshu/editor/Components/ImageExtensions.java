@@ -125,7 +125,7 @@ public class ImageExtensions {
         _ImageView.setImageBitmap(_image);
         int count=_Base._ParentView.getChildCount();
 
-        final Button btn = (Button) childLayout.findViewById(R.id.btn_remove);
+        final View btn =  childLayout.findViewById(R.id.btn_remove);
         _ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
