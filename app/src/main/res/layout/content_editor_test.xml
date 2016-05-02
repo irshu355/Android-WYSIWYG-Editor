@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context="com.example.mkallingal.qapp.NewQuestionActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:background="@color/white"
-        android:scrollbars="vertical"
-        android:scrollbarStyle="insideOverlay"
-        android:id="@+id/rootLayout"
-        android:layout_height="match_parent"
-        >
+
         <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="60dp"
             android:layout_height="match_parent">
             <ScrollView
                 android:layout_width="match_parent"
@@ -26,92 +20,18 @@
                 android:scrollbarStyle="insideOverlay"
                 android:layout_height="match_parent">
 
-                <RelativeLayout
+
+                <com.irshu.editor.Editor
                     android:layout_width="match_parent"
+                    android:id="@+id/editor"
+                    android:layout_marginBottom="20dp"
+                    app:render_type="Editor"
+                    app:placeholder="Start typing..."
+                    android:orientation="vertical"
                     android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:id="@+id/formHolder"
-                        android:layout_marginBottom="20dp"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="vertical"
-                            android:layout_height="wrap_content">
 
-                            <RelativeLayout
-                                android:paddingTop="6dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:paddingBottom="6dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                </com.irshu.editor.Editor>
 
-                                <!--<com.joanzapata.iconify.widget.IconTextView-->
-                                <!--android:text="{md-help-outline}"-->
-                                <!--android:shadowColor="#fff"-->
-                                <!--android:shadowDx="1"-->
-                                <!--android:id="@+id/lblIcon2"-->
-                                <!--android:shadowDy="1"-->
-                                <!--android:shadowRadius="1"-->
-                                <!--android:textColor="@color/lighttext"-->
-                                <!--android:layout_width="20dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:textSize="@dimen/extra_large_text"-->
-                                <!--android:gravity="center_vertical"-->
-                                <!--android:layout_centerVertical ="true" />-->
-
-                                <!--android:layout_toRightOf="@+id/lblIcon2"-->
-                                <!--android:layout_toEndOf="@+id/lblIcon2"-->
-
-                                <LinearLayout
-                                    android:layout_alignParentTop="true"
-                                    android:layout_width="match_parent"
-                                    android:orientation="vertical"
-                                    android:layout_height="wrap_content">
-
-                                    <!--<android.support.design.widget.TextInputLayout-->
-                                    <!--android:layout_width="match_parent"-->
-                                    <!--android:layout_height="wrap_content"-->
-                                    <!--android:layout_marginTop="8dp"-->
-                                    <!--android:layout_marginBottom="8dp">-->
-                                    <!--<EditText android:id="@+id/email"-->
-                                    <!--android:layout_width="match_parent"-->
-                                    <!--android:textColor="@color/darkblue"-->
-                                    <!--android:textSize="18dp"-->
-                                    <!--android:singleLine="false"-->
-                                    <!--android:layout_height="wrap_content"-->
-                                    <!--android:inputType="text"-->
-                                    <!--android:hint="What's your question?" />-->
-                                    <!--</android.support.design.widget.TextInputLayout>-->
-
-                                    <EditText
-                                        android:layout_width="match_parent"
-                                        android:hint="Type your question here (make it short)"
-                                        android:paddingTop="10dp"
-                                        android:paddingBottom="10dp"
-                                        android:textStyle="bold"
-                                        android:paddingRight="6dp"
-                                        android:paddingLeft="6dp"
-                                        android:id="@+id/txtTitle"
-                                        android:background="@drawable/edittext_border"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-                            </RelativeLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_below="@+id/formHolder"
-                        android:layout_marginBottom="30dp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:id="@+id/parentHolder"
-                        android:layout_height="wrap_content">
-                    </LinearLayout>
-                </RelativeLayout>
             </ScrollView>
 
             <HorizontalScrollView
@@ -351,9 +271,5 @@
         <!--android:layout_marginBottom="24dp"-->
         <!--android:padding="12dp"-->
         <!--android:text="Submit Now"/>-->
-
-
-    </LinearLayout>
-
 
 </RelativeLayout>

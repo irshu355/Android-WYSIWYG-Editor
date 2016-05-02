@@ -6,8 +6,8 @@
     <item android:state_focused="true" >
         <shape android:shape="rectangle">
             <gradient
-                android:startColor="#FFFFFF"
-                android:endColor="#FFFFFF"
+                android:startColor="@android:color/transparent"
+                android:endColor="@android:color/transparent"
                 android:angle="270" />
             <!--<stroke-->
                 <!--android:width="3dp"-->
@@ -17,8 +17,8 @@
     <item>
         <shape android:shape="rectangle">
             <gradient
-                android:startColor="#FFFFFF"
-                android:endColor="#FFFFFF"
+                android:startColor="@android:color/transparent"
+                android:endColor="@android:color/transparent"
                 android:angle="270" />
             <stroke
                 android:width="0dp"

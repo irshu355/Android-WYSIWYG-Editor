@@ -11,46 +11,48 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.irshu.editor.EditorLayout;
+import com.irshu.editor.Editor;
 import com.irshu.editor.models.ControlStyles;
 import com.irshu.editor.models.RenderType;
 
 import java.io.IOException;
 
 public class EditorTestActivity extends AppCompatActivity {
-    EditorLayout _layout;
+    Editor _editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_test);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        LinearLayout _LinearLayout= (LinearLayout)findViewById(R.id.parentHolder);
-        _layout=new EditorLayout(EditorTestActivity.this,_LinearLayout, RenderType.Editor, "Editor Placeholder goes here...");
+     //   Edit _LinearLayout= (LinearLayout)findViewById(R.id.formHolder);
+     //   _editor =new Editor(EditorTestActivity.this,_LinearLayout, RenderType.Editor, "Editor Placeholder goes here...");
+        _editor= (Editor) findViewById(R.id.editor);
+        
         findViewById(R.id.action_header_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.UpdateTextStyle(ControlStyles.H1);
+                _editor.UpdateTextStyle(ControlStyles.H1);
             }
         });
         findViewById(R.id.action_header_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.UpdateTextStyle(ControlStyles.H2);
+                _editor.UpdateTextStyle(ControlStyles.H2);
             }
         });
 
         findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.UpdateTextStyle(ControlStyles.BOLD);
+                _editor.UpdateTextStyle(ControlStyles.BOLD);
             }
         });
 
         findViewById(R.id.action_Italic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.UpdateTextStyle(ControlStyles.ITALIC);
+                _editor.UpdateTextStyle(ControlStyles.ITALIC);
             }
         });
 
@@ -58,55 +60,53 @@ public class EditorTestActivity extends AppCompatActivity {
         findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.InsertUnorderedList();
+                _editor.InsertUnorderedList();
             }
         });
         findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.InsertUnorderedList();
+                _editor.InsertUnorderedList();
             }
         });
         findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.InsertDivider();
+                _editor.InsertDivider();
             }
         });
         findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.OpenImagePicker();
+                _editor.OpenImagePicker();
             }
         });
         findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.InsertLink();
+                _editor.InsertLink();
             }
         });
         findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _layout.InsertMap();
+                _editor.InsertMap();
             }
         });
-        _layout.startEditor();
+        _editor.StartEditor();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        int PICK_IMAGE_REQUEST = 1;
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK&& data != null && data.getData() != null) {
+        if (requestCode == _editor.PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK&& data != null && data.getData() != null) {
 
             Uri uri = data.getData();
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 // Log.d(TAG, String.valueOf(bitmap));
-                _layout.InsertImage(bitmap);
+                _editor.InsertImage(bitmap);
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -115,10 +115,10 @@ public class EditorTestActivity extends AppCompatActivity {
         else if (resultCode == Activity.RESULT_CANCELED) {
             //Write your code if there's no result
             Toast.makeText(getApplicationContext(), "It was canccelled", Toast.LENGTH_SHORT).show();
-            _layout.RestoreState();
+            _editor.RestoreState();
         }
-        else if(requestCode==20){
-            _layout.InsertMap(data.getStringExtra("result"),true);
+        else if(requestCode== _editor.MAP_MARKER_REQUEST){
+            _editor.InsertMap(data.getStringExtra("cords"), true);
         }
     }
 }

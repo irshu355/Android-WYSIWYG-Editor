@@ -2,9 +2,11 @@
         import android.app.Activity;
         import android.content.Context;
         import android.content.res.Resources;
+        import android.content.res.TypedArray;
         import android.graphics.Point;
         import android.text.Html;
         import android.text.TextUtils;
+        import android.util.AttributeSet;
         import android.view.Display;
         import android.view.View;
         import android.view.ViewGroup;
@@ -32,7 +34,7 @@
         /**
          * Created by mkallingal on 4/30/2016.
          */
-        public class BaseClass {
+        public class BaseClass extends LinearLayout {
             public Context _Context;
             public LinearLayout _ParentView;
             public RenderType _RenderType;
@@ -45,34 +47,52 @@
             public int H1TEXTSIZE =20;
             public int H2TEXTSIZE =16;
             public int NORMALTEXTSIZE =14;
+            public final int MAP_MARKER_REQUEST =20;
+            public final int PICK_IMAGE_REQUEST =1;
             public InputExtensions inputExtensions;
             public ImageExtensions imageExtensions;
             public ListItemExtensions listItemExtensions;
             public DividerExtensions dividerExtensions;
             public MapExtensions mapExtensions;
-            public BaseClass(){}
-                public BaseClass(Context _context, LinearLayout parentView, RenderType renderType, String placeholder){
-                this._Context= _context;
+
+                public BaseClass(Context _context, AttributeSet attrs){
+                    super(_context,attrs);
+                    this._Context= _context;
+
+                    loadStateFromAttrs(attrs);
                 utilitiles=new Utilitiles();
-                this._ParentView = parentView;
                 this._Resources = _Context.getResources();
                 objEngine=new DataEngine(_context);
-                this._RenderType= renderType;
-                this.PlaceHolder=placeholder;
                 gson=new Gson();
                 inputExtensions=new InputExtensions(this);
                 imageExtensions=new ImageExtensions(this);
                 listItemExtensions=new ListItemExtensions(this);
                 dividerExtensions =new DividerExtensions(this);
                 mapExtensions= new MapExtensions(this);
+                this._ParentView = this;
             }
 
-            public int GetChildCount(){
-                int Count= _ParentView.getChildCount();
-                return  Count;
-            }
-            public int GetChildCountforView(View view){
-              return ((ViewGroup)view).getChildCount();
+            private void loadStateFromAttrs(AttributeSet attributeSet) {
+                if (attributeSet == null) {
+                    return; // quick exit
+                }
+
+                TypedArray a = null;
+                try {
+                    a = getContext().obtainStyledAttributes(attributeSet, R.styleable.editor);
+                    this.PlaceHolder = a.getString(R.styleable.editor_placeholder);
+                    String renderType= a.getString(R.styleable.editor_render_type);
+                    if(TextUtils.isEmpty(renderType)) {
+                        this._RenderType = com.irshu.editor.models.RenderType.Editor;
+                    }else{
+                        this._RenderType= renderType.toLowerCase().equals("readonly")?RenderType.ReadOnly:RenderType.Editor;
+                    }
+
+                } finally {
+                    if (a != null) {
+                        a.recycle(); // ensure this is always called
+                    }
+                }
             }
 
 
@@ -274,6 +294,14 @@
                 int length= this._ParentView.getChildCount();
                 return length-1==index;
             }
+            public int GetChildCount(){
+                int Count= _ParentView.getChildCount();
+                return  Count;
+            }
+            public int GetChildCountforView(View view){
+                return ((ViewGroup)view).getChildCount();
+            }
+
 
             public class Utilitiles{
                 public float PxtoSp(float px){

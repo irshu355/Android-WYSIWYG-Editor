@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="editor">
+        <attr name="render_type" format="string"/>
+        <attr name="placeholder" format="string"/>
+    </declare-styleable>
+</resources>

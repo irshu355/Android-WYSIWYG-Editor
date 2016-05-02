@@ -64,7 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(SelectedLatLng!=null) {
             Intent returnIntent = new Intent();
             String result= String.valueOf(SelectedLatLng.latitude)+","+String.valueOf(SelectedLatLng.longitude);
-            returnIntent.putExtra("result",  result);
+            returnIntent.putExtra("cords",  result);
             setResult(Activity.RESULT_OK, returnIntent);
             finish();
         }

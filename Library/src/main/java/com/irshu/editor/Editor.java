@@ -16,47 +16,54 @@
 package com.irshu.editor;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.widget.LinearLayout;
+import android.util.AttributeSet;
 import android.widget.TableLayout;
 import com.irshu.editor.models.ControlStyles;
 import com.irshu.editor.models.EditorState;
-import com.irshu.editor.models.RenderType;
 import com.irshu.editor.models.state;
 import java.util.List;
 public class Editor extends BaseClass {
-    public Editor(Context _context, LinearLayout parentView, RenderType renderType, String placeholder) {
-      super(_context, parentView, renderType, placeholder);
-    }
+//    public Editor(Context _context,  RenderType renderType, String placeholder) {
+//        super(_context,  renderType, placeholder);
+//    }
+
+    public Editor(Context context, AttributeSet attrs) {
+               super(context, attrs);
+              //  initialize(context,_ParentView,_RenderType,_PlaceHolderText);
+            }
+
     public void StartEditor(){
         inputExtensions.InsertEditText(0, this.PlaceHolder, "");
     }
-    public void OpenImageGallery(){
-       imageExtensions.OpenImageGallery();
-    }
+
     public void InsertImage(Bitmap bitmap){
         imageExtensions.InsertImage(bitmap);
     }
-
     public void InsertMap(){
         mapExtensions.loadMapActivity();
     }
-
-    public void InsertMap(String cords, boolean insertEditText){
-        mapExtensions.insertMap(cords, insertEditText);
-    }
-
-    public void UpdateTextStyle(ControlStyles style){
-        inputExtensions.UpdateTextStyle(style);
-    }
-    public void InsertLink(){
-        inputExtensions.InsertLink();
+    public void InsertMap(String Cords, boolean InsertEditText){
+        mapExtensions.insertMap(Cords, InsertEditText);
     }
     public void InsertUnorderedList(){
         listItemExtensions.InsertUnorderedList();
     }
-
     public void InsertDivider(){
         dividerExtensions.InsertDivider();
+    }
+    public void UpdateTextStyle(ControlStyles style){
+        inputExtensions.UpdateTextStyle(style);
+    }
+    public void InsertLink() {
+        inputExtensions.InsertLink();
+    }
+
+    public void OpenImagePicker() {
+        imageExtensions.OpenImageGallery();
+    }
+    public void RestoreState(){
+        EditorState state=GetStateFromStorage();
+        RenderEditor(state);
     }
 
 
@@ -75,11 +82,9 @@ public class Editor extends BaseClass {
                 case img:
                     String path= item.content.get(0);
                     String UUID= item.content.get(1);
-                    Bitmap _bitmap=objEngine.LoadImageFromInternalStorage(path,UUID);
                   //  loadImage(_bitmap,path,UUID,false);
                     break;
                 case ul:
-
                    TableLayout _layout=null;
                     for(int i=0;i<item.content.size();i++){
                         if(i==0){
@@ -95,13 +100,13 @@ public class Editor extends BaseClass {
                         listItemExtensions.AddListItem(_layout2, true, item.content.get(i));
                     }
                     break;
+                case map:
+                    mapExtensions.insertMap(item.content.get(0),true);
+                    break;
             }
         }
     }
-    public void RestoreState(){
-        EditorState state=GetStateFromStorage();
-        RenderEditor(state);
-    }
+
 
 
 

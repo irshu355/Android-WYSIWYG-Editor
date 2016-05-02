@@ -112,6 +112,6 @@
     <orderEntry type="library" exported="" name="support-annotations-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-basement-8.4.0" level="project" />
-    <orderEntry type="module" module-name="editor" exported="" />
+    <orderEntry type="module" module-name="Library" exported="" />
   </component>
 </module>

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.irshu.editor.BaseClass;
@@ -13,8 +12,6 @@ import com.irshu.editor.R;
 import com.irshu.editor.models.EditorControl;
 import com.irshu.editor.models.EditorType;
 import com.squareup.picasso.Picasso;
-
-import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
  * Created by mkallingal on 5/1/2016.
@@ -84,7 +81,7 @@ public class MapExtensions {
 
     public void loadMapActivity(){
                 Intent intent=new Intent(_Context, MapsActivity.class);
-                ((Activity) _Context).startActivityForResult(intent, 20);
+                ((Activity) _Context).startActivityForResult(intent, _Base.MAP_MARKER_REQUEST);
     }
 
 }

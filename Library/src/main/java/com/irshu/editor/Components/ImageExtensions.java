@@ -41,13 +41,12 @@ public class ImageExtensions {
         String serialized=this._Base.serializeState(state);
   //      this._Base.SaveState(serialized);
 
-        int PICK_IMAGE_REQUEST = 1;
         Intent intent = new Intent();
 // Show only images, no videos or anything else
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
 // Always show the chooser (if there are multiple options available)
-        ((Activity)_Context).startActivityForResult(Intent.createChooser(intent, "Select an image"), PICK_IMAGE_REQUEST);
+        ((Activity)_Context).startActivityForResult(Intent.createChooser(intent, "Select an image"), _Base.PICK_IMAGE_REQUEST);
     }
 
     public void InsertImage(Bitmap _image) {
