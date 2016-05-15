@@ -1,4 +1,4 @@
-package com.irshu.editor.models;
+package com.irshu.libs.models;
 
 public enum Op{
     Insert,

@@ -8,6 +8,7 @@ android:layout_height="match_parent">
 <HorizontalScrollView android:id="@+id/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#e6e6e6"
     android:layout_alignParentBottom="true"
     android:scrollbars="none">
 
@@ -20,13 +21,13 @@ android:layout_height="match_parent">
         <Button
             android:text="H1"
             android:width="40dp"
-            android:height="50dp"
+            android:height="40dp"
             android:textSize="16sp"
             android:textStyle="bold"
             android:background="@android:color/transparent"
             android:textColor="#444444"
             android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:id="@+id/action_header_1"
             />
         <Button
@@ -37,15 +38,15 @@ android:layout_height="match_parent">
             android:background="@android:color/transparent"
             android:width="40dp"
             android:textSize="16sp"
-            android:height="50dp"
+            android:height="40dp"
             android:layout_width="40dp"
-            android:layout_height="50dp"/>
+            android:layout_height="40dp"/>
 
         <ImageButton
             android:maxHeight="20dp"
             android:maxWidth="20dp"
             android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@android:color/transparent"
             android:src="@drawable/icon_bold"
             android:id="@+id/action_bold" />
@@ -54,7 +55,7 @@ android:layout_height="match_parent">
             android:maxHeight="20dp"
             android:maxWidth="20dp"
             android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@android:color/transparent"
             android:src="@drawable/icon_italic"
             android:id="@+id/action_Italic" />
@@ -66,7 +67,7 @@ android:layout_height="match_parent">
             android:maxWidth="20dp"
             android:layout_width="40dp"
             android:background="@android:color/transparent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:src="@drawable/icon_bullet_list"
             android:id="@+id/action_bulleted" />
 
@@ -75,7 +76,7 @@ android:layout_height="match_parent">
             android:maxWidth="20dp"
             android:background="@android:color/transparent"
             android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:src="@drawable/icon_numbered_list"
             android:id="@+id/action_unordered_numbered" />
 
@@ -84,7 +85,7 @@ android:layout_height="match_parent">
             android:maxWidth="20dp"
             android:background="@android:color/transparent"
             android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:src="@drawable/icon_hr"
             android:id="@+id/action_hr" />
 
@@ -93,7 +94,7 @@ android:layout_height="match_parent">
             android:maxWidth="20dp"
             android:background="@android:color/transparent"
             android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:src="@drawable/icon_image"
             android:id="@+id/action_insert_image" />
 
@@ -102,7 +103,7 @@ android:layout_height="match_parent">
             android:maxHeight="20dp"
             android:maxWidth="20dp"
             android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@android:color/transparent"
             android:src="@drawable/icon_link"
             android:id="@+id/action_insert_link" />
@@ -112,9 +113,18 @@ android:layout_height="match_parent">
             android:maxWidth="20dp"
             android:layout_width="40dp"
             android:background="@android:color/transparent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:src="@drawable/icon_marker"
             android:id="@+id/action_map" />
+
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:layout_width="40dp"
+            android:background="@android:color/transparent"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_erase"
+            android:id="@+id/action_erase" />
     </LinearLayout>
 
 </HorizontalScrollView>
@@ -122,24 +132,22 @@ android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:scrollbars="vertical"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="40dp"
         android:layout_alignParentTop="true"
         android:layout_height="match_parent"
         >
-<com.irshu.editor.Editor
+<com.irshu.libs.Editor
     android:layout_width="match_parent"
     android:id="@+id/editor"
     app:render_type="Editor"
     app:placeholder="Start writing here..."
-    android:orientation="vertical"
-    android:paddingTop="16dp"
-    android:paddingLeft="16dp"
-    android:paddingStart="16dp"
-    android:paddingRight="16dp"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:layout_height="wrap_content"
-    android:paddingEnd="16dp"
+    android:paddingBottom="100dp"
 >
 
-</com.irshu.editor.Editor>
+</com.irshu.libs.Editor>
     </ScrollView>
 </RelativeLayout>

@@ -1,4 +1,20 @@
-package com.irshu.editor.Components;
+/*
+ * Copyright (C) 2016 Muhammed Irshad
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.irshu.libs.Components;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,13 +35,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.irshu.editor.BaseClass;
+import com.irshu.libs.BaseClass;
 import com.irshu.editor.R;
-import com.irshu.editor.models.ControlStyles;
-import com.irshu.editor.models.EditorControl;
-import com.irshu.editor.models.EditorType;
-import com.irshu.editor.models.Op;
-import com.irshu.editor.models.RenderType;
+import com.irshu.libs.models.ControlStyles;
+import com.irshu.libs.models.EditorControl;
+import com.irshu.libs.models.EditorType;
+import com.irshu.libs.models.Op;
+import com.irshu.libs.models.RenderType;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -62,6 +78,8 @@ public class InputExtensions{
         return textView;
     }
 
+
+
     public CustomEditText GetNewEditText(String hint, String text) {
         final CustomEditText editText = new CustomEditText(context);
         editText.setGravity(Gravity.BOTTOM);
@@ -69,6 +87,8 @@ public class InputExtensions{
         editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, _Base._Resources.getDisplayMetrics()), 1.0f);
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.NORMALTEXTSIZE);
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+
         if(hint.length()!=0){
             editText.setHint(hint);
         }
@@ -265,10 +285,10 @@ public class InputExtensions{
 
     public void InsertLink() {
         final AlertDialog.Builder inputAlert = new AlertDialog.Builder(this.context);
-        inputAlert.setTitle("Add a link");
+        inputAlert.setTitle("Add a Link");
         final EditText userInput = new EditText(this.context);
         //dont forget to add some margins on the left and right to match the title
-        userInput.setHint("http://");
+        userInput.setHint("type the URL here");
         userInput.setInputType(InputType.TYPE_TEXT_VARIATION_WEB_EDIT_TEXT);
         inputAlert.setView(userInput);
         inputAlert.setPositiveButton("Insert", new DialogInterface.OnClickListener() {

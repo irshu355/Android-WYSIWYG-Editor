@@ -1,4 +1,4 @@
-package com.irshu.editor.Components;
+package com.irshu.libs.Components;
 
 /**
  * Created by mkallingal on 4/25/2016.

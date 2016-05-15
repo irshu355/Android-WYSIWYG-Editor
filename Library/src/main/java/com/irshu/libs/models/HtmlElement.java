@@ -1,4 +1,4 @@
-package com.irshu.editor.models;
+package com.irshu.libs.models;
 
 
 import org.jsoup.nodes.Element;

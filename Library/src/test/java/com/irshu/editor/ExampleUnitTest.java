@@ -1,4 +1,4 @@
-package com.irshu.editor;
+package com.irshu.libs;
 
 import org.junit.Test;
 

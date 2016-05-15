@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    tools:context="com.irshu.editor.MapsActivity"
+    tools:context="com.irshu.libs.MapsActivity"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >

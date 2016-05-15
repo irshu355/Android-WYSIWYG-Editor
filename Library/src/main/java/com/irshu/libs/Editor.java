@@ -13,16 +13,14 @@
      * See the License for the specific language governing permissions and
      * limitations under the License.
      */
-    package com.irshu.editor;
+    package com.irshu.libs;
     import android.content.Context;
     import android.graphics.Bitmap;
-    import android.text.Editable;
     import android.util.AttributeSet;
-    import android.widget.EditText;
     import android.widget.TableLayout;
-    import com.irshu.editor.models.ControlStyles;
-    import com.irshu.editor.models.EditorState;
-    import com.irshu.editor.models.state;
+    import com.irshu.libs.models.ControlStyles;
+    import com.irshu.libs.models.EditorState;
+    import com.irshu.libs.models.state;
     import java.util.List;
     public class Editor extends BaseClass {
         public Editor(Context context, AttributeSet attrs) {
