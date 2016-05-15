@@ -14,9 +14,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.irshu.editor.BaseClass;
-import com.irshu.editor.Editor;
-import com.irshu.editor.models.ControlStyles;
+import com.irshu.libs.BaseClass;
+import com.irshu.libs.Editor;
+import com.irshu.libs.models.ControlStyles;
 
 import java.io.IOException;
 

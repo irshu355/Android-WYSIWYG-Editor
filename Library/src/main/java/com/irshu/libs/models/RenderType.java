@@ -1,4 +1,4 @@
-package com.irshu.editor.models;
+package com.irshu.libs.models;
 
 /**
  * Created by mkallingal on 1/14/2016.

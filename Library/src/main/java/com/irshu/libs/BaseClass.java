@@ -1,4 +1,4 @@
-        package com.irshu.editor;
+        package com.irshu.libs;
         import android.app.Activity;
         import android.content.Context;
         import android.content.res.Resources;
@@ -16,19 +16,20 @@
         import android.widget.TableLayout;
         import android.widget.TableRow;
         import com.google.gson.Gson;
-        import com.irshu.editor.Components.DividerExtensions;
-        import com.irshu.editor.Components.ImageExtensions;
-        import com.irshu.editor.Components.InputExtensions;
-        import com.irshu.editor.Components.ListItemExtensions;
-        import com.irshu.editor.Components.MapExtensions;
-        import com.irshu.editor.models.ControlStyles;
-        import com.irshu.editor.models.DataEngine;
-        import com.irshu.editor.models.EditorControl;
-        import com.irshu.editor.models.EditorState;
-        import com.irshu.editor.models.EditorType;
-        import com.irshu.editor.models.Op;
-        import com.irshu.editor.models.RenderType;
-        import com.irshu.editor.models.state;
+        import com.irshu.editor.R;
+        import com.irshu.libs.Components.DividerExtensions;
+        import com.irshu.libs.Components.ImageExtensions;
+        import com.irshu.libs.Components.InputExtensions;
+        import com.irshu.libs.Components.ListItemExtensions;
+        import com.irshu.libs.Components.MapExtensions;
+        import com.irshu.libs.models.ControlStyles;
+        import com.irshu.libs.models.DataEngine;
+        import com.irshu.libs.models.EditorControl;
+        import com.irshu.libs.models.EditorState;
+        import com.irshu.libs.models.EditorType;
+        import com.irshu.libs.models.Op;
+        import com.irshu.libs.models.RenderType;
+        import com.irshu.libs.models.state;
         import java.util.ArrayList;
         import java.util.List;
 
@@ -69,7 +70,7 @@
                 public BaseClass(Context _context, AttributeSet attrs){
                     super(_context,attrs);
                     this._Context= _context;
-
+                    this.setOrientation(VERTICAL);
                     loadStateFromAttrs(attrs);
                 utilitiles=new Utilitiles();
                 this._Resources = _Context.getResources();
@@ -97,7 +98,7 @@
                     this.PlaceHolder = a.getString(R.styleable.editor_placeholder);
                     String renderType= a.getString(R.styleable.editor_render_type);
                     if(TextUtils.isEmpty(renderType)) {
-                        this._RenderType = com.irshu.editor.models.RenderType.Editor;
+                        this._RenderType = com.irshu.libs.models.RenderType.Editor;
                     }else{
                         this._RenderType= renderType.toLowerCase().equals("readonly")?RenderType.ReadOnly:RenderType.Editor;
                     }
