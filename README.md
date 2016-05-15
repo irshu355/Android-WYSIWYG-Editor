@@ -1,13 +1,6 @@
 Tetra-Native-Editor
 ===================
 
-### Table of contents
-
-
-[TOC]
-
-
-
 
 
 
@@ -17,15 +10,13 @@ About
 
 *Tetra-Native-Editor** is a WYSIWYG editor completely written in Android using the native components in the controls tree.
 
-----------
+
 
 
 Demo
 -------------
 
-| &nbsp;     | &nbsp; |
-| :------- | ----: |
-|![enter image description here](https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13177590_269373686746424_5403783987187365823_n.jpg?oh=8dd3f69d6af877764b6a05cf85eb1074&oe=57A0FCEA) | ![enter image description here](https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13179375_269373683413091_2011876689266048381_n.jpg?oh=2a87feeb922277bef5911cf753f11e34&oe=579B4789) | 
+|![enter image description here](https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13227131_269378336745959_2148199802033818838_n.jpg?oh=651d9609d865e6859aed7b004c37f52c&oe=57D5B674) | ![enter image description here](https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13177608_269378333412626_5132176638126761392_n.jpg?oh=0ae1ea5dfcf2c6aa01347aa529609804&oe=57A4AF0D) | 
 
 
 Features
@@ -181,11 +172,13 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
                 }
             });
 
-###Future Improvements
+##Future Improvements
 
- - Add Quotes into editor
+
+ - Insert quotes into editor
  - HTML Parser
  - Indent and Outdent selections
+ - Add more Callbacks for the controls
 
 Thank you for your support,
 I will keep the library updated, contributions are much appreciated, feel free to fork and customize for your needs.
