@@ -4,6 +4,7 @@
         import android.content.res.Resources;
         import android.content.res.TypedArray;
         import android.graphics.Point;
+        import android.text.Editable;
         import android.text.Html;
         import android.text.TextUtils;
         import android.util.AttributeSet;
@@ -35,6 +36,19 @@
          * Created by mkallingal on 4/30/2016.
          */
         public class BaseClass extends LinearLayout {
+
+
+            /*
+            * EditText initializors
+            */
+            public String PlaceHolder=null;
+            public int H1TEXTSIZE =20;
+            public int H2TEXTSIZE =16;
+            public int NORMALTEXTSIZE =14;
+                        /*
+            * Divider initializors
+            */
+            public int dividerBackground=R.drawable.divider_background_light;
             public Context _Context;
             public LinearLayout _ParentView;
             public RenderType _RenderType;
@@ -43,10 +57,7 @@
             public DataEngine objEngine;
             public Gson gson;
             public Utilitiles utilitiles;
-            public String PlaceHolder=null;
-            public int H1TEXTSIZE =20;
-            public int H2TEXTSIZE =16;
-            public int NORMALTEXTSIZE =14;
+            public EditorListener listener;
             public final int MAP_MARKER_REQUEST =20;
             public final int PICK_IMAGE_REQUEST =1;
             public InputExtensions inputExtensions;
@@ -70,6 +81,9 @@
                 dividerExtensions =new DividerExtensions(this);
                 mapExtensions= new MapExtensions(this);
                 this._ParentView = this;
+            }
+            public interface EditorListener{
+                public void onTextChanged(EditText editText, Editable text);
             }
 
             private void loadStateFromAttrs(AttributeSet attributeSet) {
@@ -108,11 +122,11 @@
                 if(tag==EditorType.INPUT){
                     int length=((EditText)this.activeView).getText().length();
                     if(length>0){
-                        return type==EditorType.LI?currentIndex: currentIndex+1;
+                        return type==EditorType.UL_LI ||type==EditorType.OL_LI?currentIndex: currentIndex+1;
                     }else{
                         return currentIndex;
                     }
-                }else if (tag==EditorType.LI){
+                }else if (tag==EditorType.UL_LI||tag==EditorType.OL_LI){
                     EditText _text= (EditText) _view.findViewById(R.id.txtText);
                     if(_text.getText().length()>0){
 
@@ -168,7 +182,7 @@
                     case img:
                     case INPUT:
                     case ul:
-                    case LI:
+                    case UL_LI:
                 }
                 return _control;
             }

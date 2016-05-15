@@ -4,17 +4,20 @@
         android:layout_column="1"
         android:textColor="@color/darkertext"
         android:textSize="20sp"
-        android:layout_marginRight="5dp"
         android:id="@+id/lblOrder"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="7dp"
         android:textStyle="bold"
         android:text="•"></TextView>
     <com.irshu.editor.Components.CustomEditText
         android:layout_column="2"
         android:id="@+id/txtText"
         android:textSize="14sp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:layout_weight="1"
         android:layout_width="wrap_content"
         android:background="@drawable/invisible_edit_text"
-        android:textColor="@color/darkertext"></com.irshu.editor.Components.CustomEditText>
+        android:textColor="@color/darkertext">
+
+    </com.irshu.editor.Components.CustomEditText>
 </TableRow>

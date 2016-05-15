@@ -27,5 +27,5 @@
     <color name="petron_tertiary" type="color">#EE3124</color>
     <color name="overlay_light" type="color">#80ffffff</color>
     <color name="overlay" type="color">#80EE3124</color>
-    <color name="green_overlay" type="color">#802DA44B</color>
+    <color name="blue_overlay" type="color">#803b5999</color>
 </resources>

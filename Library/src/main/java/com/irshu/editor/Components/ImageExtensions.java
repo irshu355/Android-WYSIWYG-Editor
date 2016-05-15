@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,7 +48,7 @@ public class ImageExtensions {
 // Show only images, no videos or anything else
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-// Always show the chooser (if there are multiple options available)
+    // Always show the chooser (if there are multiple options available)
         ((Activity)_Context).startActivityForResult(Intent.createChooser(intent, "Select an image"), _Base.PICK_IMAGE_REQUEST);
     }
 
@@ -56,26 +59,8 @@ public class ImageExtensions {
         _ImageView.setImageBitmap(_image);
         final String uuid= this._Base.objEngine.GenerateUUID();
         final String _path= this._Base.objEngine.SaveImageToInternalStorage(_image, uuid);
-        final Button btn = (Button) childLayout.findViewById(R.id.btn_remove);
-        _ImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btn.setVisibility(View.VISIBLE);
-            }
-        });
-        _ImageView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                btn.setVisibility(hasFocus ? View.VISIBLE : View.INVISIBLE);
-            }
-        });
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                _Base._ParentView.removeView(childLayout);
-               _Base.objEngine.RemoveImageFromStorage(_path,uuid+".png");
-            }
-        });
+
+        BindEvents(childLayout,uuid,_path);
         EditorControl _control = new EditorControl();
         _control.Type = EditorType.img;
         _control.UUID= uuid;
@@ -152,6 +137,91 @@ public class ImageExtensions {
         if(insertEditText){
             _Base.inputExtensions.InsertEditText(Index + 1, "", "");
         }
+    }
+
+    private void BindEvents(final View layout, final String uuid, final String _path){
+        final ImageView imageView= (ImageView) layout.findViewById(R.id.imageView);
+
+        final View btnFitWidth=layout.findViewById(R.id.btnFitWidth);
+        final View btnCenterCrop=layout.findViewById(R.id.btnCenterCrop);
+        final View btn_remove=layout.findViewById(R.id.btn_remove);
+        final View btnStretch=layout.findViewById(R.id.btnStretch);
+
+        btnFitWidth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView.setScaleType(ImageView.ScaleType.FIT_END);
+            }
+        });
+
+
+
+        btnCenterCrop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            }
+        });
+
+        btn_remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _Base._ParentView.removeView(layout);
+                _Base.objEngine.RemoveImageFromStorage(_path, uuid + ".png");
+            }
+        });
+
+        btnStretch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            }
+        });
+
+
+
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            private Rect rect;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    imageView.setColorFilter(Color.argb(50, 0, 0, 0));
+                    rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    imageView.setColorFilter(Color.argb(0, 0, 0, 0));
+                }
+                if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                    if (!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())) {
+                        imageView.setColorFilter(Color.argb(0, 0, 0, 0));
+                    }
+                }
+                return false;
+            }
+        });
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_remove.setVisibility(View.VISIBLE);
+                btnCenterCrop.setVisibility(View.VISIBLE);
+                btnFitWidth.setVisibility(View.VISIBLE);
+                btnStretch.setVisibility(View.VISIBLE);
+            }
+        });
+        imageView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                btn_remove.setVisibility(hasFocus ? View.VISIBLE : View.INVISIBLE);
+                btnCenterCrop.setVisibility(hasFocus ? View.VISIBLE : View.INVISIBLE);
+                btnFitWidth.setVisibility(hasFocus ? View.VISIBLE : View.INVISIBLE);
+                btnStretch.setVisibility(hasFocus ? View.VISIBLE : View.INVISIBLE);
+            }
+        });
+
+
+
     }
 
 }

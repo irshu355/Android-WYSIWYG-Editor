@@ -26,7 +26,7 @@ public class DividerExtensions {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 3);
         params.setMargins(10, 10, 10, 10);
         view.setLayoutParams(params);
-        view.setBackgroundDrawable(_Context.getResources().getDrawable(R.drawable.border_bottom));
+        view.setBackgroundDrawable(_Context.getResources().getDrawable(_Base.dividerBackground));
         view.setTag(_Base.CreateTag(EditorType.hr));
         int Index=_Base.determineIndex(EditorType.hr);
         _Base._ParentView.addView(view, Index);

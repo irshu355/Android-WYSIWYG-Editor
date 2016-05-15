@@ -2,15 +2,64 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_marginBottom="10dp"
+    android:background="@color/darkertext"
     android:layout_marginTop="10dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:scaleType="centerCrop"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_height="wrap_content"
         />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:text="Fit width"
+            android:textAllCaps="false"
+            android:textColor="@color/f5f5f5"
+            android:background="@color/blue_overlay"
+            android:visibility="invisible"
+            android:textStyle="bold"
+            android:id="@+id/btnFitWidth"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="false"
+            android:visibility="invisible"
+            android:background="@color/blue_overlay"
+            android:textStyle="bold"
+            android:textColor="@color/f5f5f5"
+            android:text="Center Crop"
+            android:id="@+id/btnCenterCrop"
+            android:layout_height="wrap_content" />
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:text="Stretch"
+            android:background="@color/blue_overlay"
+            android:textAllCaps="false"
+            android:textColor="@color/f5f5f5"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:id="@+id/btnStretch"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
     <android.support.v7.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:id="@+id/btn_remove"
@@ -19,7 +68,6 @@
         android:visibility="invisible"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
         android:textColor="@color/f5f5f5"
         android:background="@color/overlay"
         android:text="Remove"

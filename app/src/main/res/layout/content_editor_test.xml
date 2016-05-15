@@ -1,275 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+    android:layout_marginTop="55dp"
+android:layout_height="match_parent">
+
+<HorizontalScrollView android:id="@+id/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    tools:context="com.example.mkallingal.qapp.NewQuestionActivity">
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="60dp"
-            android:layout_height="match_parent">
-            <ScrollView
-                android:layout_width="match_parent"
-                android:scrollbars="vertical"
-                android:layout_marginBottom="30dp"
-                android:scrollbarFadeDuration="0"
-                android:scrollbarStyle="insideOverlay"
-                android:layout_height="match_parent">
+        <Button
+            android:text="H1"
+            android:width="40dp"
+            android:height="50dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"
+            android:textColor="#444444"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/action_header_1"
+            />
+        <Button
+            android:text="H2"
+            android:id="@+id/action_header_2"
+            android:textStyle="bold"
+            android:textColor="#444444"
+            android:background="@android:color/transparent"
+            android:width="40dp"
+            android:textSize="16sp"
+            android:height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="50dp"/>
 
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_bold"
+            android:id="@+id/action_bold" />
 
-                <com.irshu.editor.Editor
-                    android:layout_width="match_parent"
-                    android:id="@+id/editor"
-                    android:layout_marginBottom="20dp"
-                    app:render_type="Editor"
-                    app:placeholder="Start typing..."
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-
-                </com.irshu.editor.Editor>
-
-            </ScrollView>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:paddingTop="4dp"
-                android:layout_alignParentBottom="true"
-                android:paddingBottom="4dp"
-                android:id="@+id/control_panel"
-                android:layout_height="wrap_content"
-                android:background="#e6e6e6"
-                >
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="H1"
-                        android:id="@+id/action_header_1"
-                        android:layout_height="wrap_content" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="H2"
-                        android:id="@+id/action_header_2"
-                        android:layout_height="wrap_content" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="B"
-                        android:id="@+id/action_bold"
-                        android:layout_height="wrap_content" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="I"
-                        android:id="@+id/action_Italic"
-                        android:layout_height="wrap_content" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="UL"
-                        android:id="@+id/action_bulleted"
-                        android:layout_height="wrap_content" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="OL"
-                        android:id="@+id/action_unordered_numbered"
-                        android:layout_height="wrap_content" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="HR"
-                        android:id="@+id/action_hr"
-                        android:layout_height="wrap_content" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="IMG"
-                        android:id="@+id/action_insert_image"
-                        android:layout_height="wrap_content" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="LINK"
-                        android:id="@+id/action_insert_link"
-                        android:layout_height="wrap_content" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:text="MAP"
-                        android:id="@+id/action_map"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </HorizontalScrollView>
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_italic"
+            android:id="@+id/action_Italic" />
 
 
 
-            <!--<HorizontalScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:paddingTop="15dp"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:paddingBottom="15dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@color/colorPrimaryDark"-->
-            <!-->-->
-            <!--<LinearLayout-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:layout_height="wrap_content"-->
-            <!-->-->
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:layout_width="40dp"
+            android:background="@android:color/transparent"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_bullet_list"
+            android:id="@+id/action_bulleted" />
+
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:background="@android:color/transparent"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_numbered_list"
+            android:id="@+id/action_unordered_numbered" />
+
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:background="@android:color/transparent"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_hr"
+            android:id="@+id/action_hr" />
+
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:background="@android:color/transparent"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_image"
+            android:id="@+id/action_insert_image" />
 
 
-            <!--<mehdi.sakout.fancybuttons.FancyButton-->
-            <!--android:id="@+id/btn_bold"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:padding="10dp"-->
-            <!--fancy:fb_defaultColor="#007ee5"-->
-            <!--fancy:fb_iconPaddingLeft="0dp"-->
-            <!--fancy:fb_iconPaddingRight="0dp"-->
-            <!--fancy:fb_focusColor="#313131"-->
-            <!--fancy:fb_iconResource="@drawable/ic_format_bold_white_18dp"-->
-            <!--fancy:fb_radius="64dp">-->
-            <!--</mehdi.sakout.fancybuttons.FancyButton>-->
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_link"
+            android:id="@+id/action_insert_link" />
 
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:layout_width="40dp"
+            android:background="@android:color/transparent"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_marker"
+            android:id="@+id/action_map" />
+    </LinearLayout>
 
+</HorizontalScrollView>
 
-            <!--<mehdi.sakout.fancybuttons.FancyButton-->
-            <!--android:id="@+id/btn_italic"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:padding="10dp"-->
-            <!--fancy:fb_defaultColor="#007ee5"-->
-            <!--fancy:fb_iconPaddingLeft="0dp"-->
-            <!--fancy:fb_iconPaddingRight="0dp"-->
-            <!--fancy:fb_focusColor="#313131"-->
-            <!--fancy:fb_iconResource="@drawable/ic_format_italic_white_18dp"-->
-            <!--fancy:fb_radius="64dp">-->
-            <!--</mehdi.sakout.fancybuttons.FancyButton>-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="vertical"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_height="match_parent"
+        >
+<com.irshu.editor.Editor
+    android:layout_width="match_parent"
+    android:id="@+id/editor"
+    app:render_type="Editor"
+    app:placeholder="Start writing here..."
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingStart="16dp"
+    android:paddingRight="16dp"
+    android:layout_height="wrap_content"
+    android:paddingEnd="16dp"
+>
 
-
-
-
-            <!--<mehdi.sakout.fancybuttons.FancyButton-->
-            <!--android:id="@+id/btn_strike_through"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:padding="10dp"-->
-            <!--fancy:fb_defaultColor="#007ee5"-->
-            <!--fancy:fb_iconPaddingLeft="0dp"-->
-            <!--fancy:fb_iconPaddingRight="0dp"-->
-            <!--fancy:fb_focusColor="#313131"-->
-            <!--fancy:fb_iconResource="@drawable/ic_strikethrough_s_white_18dp"-->
-            <!--fancy:fb_radius="64dp">-->
-            <!--</mehdi.sakout.fancybuttons.FancyButton>-->
-
-
-
-            <!--<mehdi.sakout.fancybuttons.FancyButton-->
-            <!--android:id="@+id/btn_underlined"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:padding="10dp"-->
-            <!--fancy:fb_defaultColor="#007ee5"-->
-            <!--fancy:fb_iconPaddingLeft="0dp"-->
-            <!--fancy:fb_iconPaddingRight="0dp"-->
-            <!--fancy:fb_focusColor="#313131"-->
-            <!--fancy:fb_iconResource="@drawable/ic_format_underlined_white_18dp"-->
-            <!--fancy:fb_radius="64dp">-->
-            <!--</mehdi.sakout.fancybuttons.FancyButton>-->
-
-
-            <!--<mehdi.sakout.fancybuttons.FancyButton-->
-            <!--android:id="@+id/btn_format_size"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:padding="10dp"-->
-            <!--fancy:fb_defaultColor="#007ee5"-->
-            <!--fancy:fb_iconPaddingLeft="0dp"-->
-            <!--fancy:fb_iconPaddingRight="0dp"-->
-            <!--fancy:fb_focusColor="#313131"-->
-            <!--fancy:fb_iconResource="@drawable/ic_format_size_white_18dp"-->
-            <!--fancy:fb_radius="64dp">-->
-            <!--</mehdi.sakout.fancybuttons.FancyButton>-->
-
-
-            <!--<mehdi.sakout.fancybuttons.FancyButton-->
-            <!--android:id="@+id/btn_image"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:padding="10dp"-->
-            <!--fancy:fb_defaultColor="#007ee5"-->
-            <!--fancy:fb_iconPaddingLeft="0dp"-->
-            <!--fancy:fb_iconPaddingRight="0dp"-->
-            <!--fancy:fb_focusColor="#313131"-->
-            <!--fancy:fb_iconResource="@drawable/ic_image_white_18dp"-->
-            <!--fancy:fb_radius="64dp">-->
-            <!--</mehdi.sakout.fancybuttons.FancyButton>-->
-
-
-            <!--<mehdi.sakout.fancybuttons.FancyButton-->
-            <!--android:id="@+id/btn_link"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:padding="10dp"-->
-            <!--fancy:fb_defaultColor="#007ee5"-->
-            <!--fancy:fb_iconPaddingLeft="0dp"-->
-            <!--fancy:fb_iconPaddingRight="0dp"-->
-            <!--fancy:fb_focusColor="#313131"-->
-            <!--fancy:fb_iconResource="@drawable/ic_insert_link_white_18dp"-->
-            <!--fancy:fb_radius="64dp">-->
-            <!--</mehdi.sakout.fancybuttons.FancyButton>-->
-
-
-            <!--<mehdi.sakout.fancybuttons.FancyButton-->
-            <!--android:id="@+id/btn_marker"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:padding="10dp"-->
-            <!--fancy:fb_defaultColor="#007ee5"-->
-            <!--fancy:fb_iconPaddingLeft="0dp"-->
-            <!--fancy:fb_iconPaddingRight="0dp"-->
-            <!--fancy:fb_focusColor="#313131"-->
-            <!--fancy:fb_iconResource="@drawable/ic_pin_drop_white_18dp"-->
-            <!--fancy:fb_radius="64dp">-->
-            <!--</mehdi.sakout.fancybuttons.FancyButton>-->
-
-            <!--</LinearLayout>-->
-            <!--</HorizontalScrollView>-->
-
-
-
-
-
-
-        </RelativeLayout>
-
-
-
-
-
-
-        <!--<android.support.v7.widget.AppCompatButton-->
-        <!--android:id="@+id/btn_login"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="24dp"-->
-        <!--android:layout_marginLeft="30dp"-->
-        <!--android:textColor="@color/f5f5f5"-->
-        <!--android:layout_marginRight="30dp"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--android:layout_marginBottom="24dp"-->
-        <!--android:padding="12dp"-->
-        <!--android:text="Submit Now"/>-->
-
+</com.irshu.editor.Editor>
+    </ScrollView>
 </RelativeLayout>

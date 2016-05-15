@@ -1,5 +1,7 @@
 package com.example.mkallingal.qapp;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -7,13 +9,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.irshu.editor.BaseClass;
 import com.irshu.editor.Editor;
 import com.irshu.editor.models.ControlStyles;
-import com.irshu.editor.models.RenderType;
 
 import java.io.IOException;
 
@@ -55,18 +58,16 @@ public class EditorTestActivity extends AppCompatActivity {
                 _editor.UpdateTextStyle(ControlStyles.ITALIC);
             }
         });
-
-
         findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.InsertUnorderedList();
+                _editor.InsertList(false);
             }
         });
         findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.InsertUnorderedList();
+                _editor.InsertList(true);
             }
         });
         findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
@@ -93,16 +94,19 @@ public class EditorTestActivity extends AppCompatActivity {
                 _editor.InsertMap();
             }
         });
+      //  _editor.dividerBackground=R.drawable.divider_background_dark;
         _editor.StartEditor();
+        _editor.setEditorListener(new BaseClass.EditorListener() {
+            @Override
+            public void onTextChanged(EditText editText, Editable text) {
+               // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         if (requestCode == _editor.PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK&& data != null && data.getData() != null) {
-
             Uri uri = data.getData();
-
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 // Log.d(TAG, String.valueOf(bitmap));
@@ -114,11 +118,28 @@ public class EditorTestActivity extends AppCompatActivity {
         }
         else if (resultCode == Activity.RESULT_CANCELED) {
             //Write your code if there's no result
-            Toast.makeText(getApplicationContext(), "It was canccelled", Toast.LENGTH_SHORT).show();
-            _editor.RestoreState();
+            Toast.makeText(getApplicationContext(), "It was cancelled", Toast.LENGTH_SHORT).show();
+           // _editor.RestoreState();
         }
         else if(requestCode== _editor.MAP_MARKER_REQUEST){
             _editor.InsertMap(data.getStringExtra("cords"), true);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Exit Editor?")
+                .setMessage("Are you sure you want to exit the editor?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

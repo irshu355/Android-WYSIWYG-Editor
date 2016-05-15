@@ -5,7 +5,8 @@ public enum EditorType{
     hr,
     ul,
     ol,
-    LI,
+    UL_LI,
+    OL_LI,
     img,
     INPUT,
     map

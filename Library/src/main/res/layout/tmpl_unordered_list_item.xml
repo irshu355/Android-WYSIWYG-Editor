@@ -3,9 +3,11 @@
     <TextView
         android:layout_column="1"
         android:textColor="@color/darkertext"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="4dp"
         android:id="@+id/lblOrder"
+        android:tag="order"
         android:textStyle="bold"
         android:text="•"></TextView>
     <com.irshu.editor.Components.CustomEditText
