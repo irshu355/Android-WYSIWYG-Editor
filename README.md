@@ -1,16 +1,7 @@
-Tetra-Native-Editor
+Laser-Native-Editor
 ===================
 
-
-
-
-About
--------------
-
-
 *Laser-Native-Editor** is a WYSIWYG editor completely written in Android using the native components in the controls tree.
-
-
 
 
 Demo
