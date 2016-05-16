@@ -1,7 +1,7 @@
 Laser-Native-Editor
 ===================
 
-*Laser-Native-Editor** is a WYSIWYG editor completely written in Android using the native components in the controls tree.
+*Laser-Native-Editor** is a WYSIWYG editor completely written in Android using the native components in the editor tree.
 
 
 Demo
