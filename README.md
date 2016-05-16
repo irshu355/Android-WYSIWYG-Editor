@@ -55,7 +55,7 @@ Usage
 	 
 
  
-
+     @Override
      protected void onCreate(Bundle savedInstanceState) {
 
         _editor= (Editor) findViewById(R.id.editor);
@@ -128,21 +128,15 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == _editor.PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK&& data != null && data.getData() != null) {
-
-            Uri uri = data.getData();
-
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                // Log.d(TAG, String.valueOf(bitmap));
                 _editor.InsertImage(bitmap);
             } catch (IOException e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }
         else if (resultCode == Activity.RESULT_CANCELED) {
             //Write your code if there's no result
-            Toast.makeText(getApplicationContext(), "It was canccelled", Toast.LENGTH_SHORT).show();
             _editor.RestoreState();
         }
         else if(requestCode== _editor.MAP_MARKER_REQUEST){
@@ -159,7 +153,7 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
      _editor.setEditorListener(new BaseClass.EditorListener() {
                 @Override
                 public void onTextChanged(EditText editText, Editable text) {
-                   // Toast.makeText(EditorTestActivity.this, text,        Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(EditorTestActivity.this, text,Toast.LENGTH_SHORT).show();
                 }
             });
 
