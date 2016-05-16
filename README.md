@@ -27,7 +27,7 @@ The editor is built, so that every part of the design have been exposed and is a
 **Available Controls:**
 
 | Control     | Usage |
-| :------- | ----: |
+| :------- | :-----: |
 | `H1`,  `H2` and `H3` | Insert Headings | 
 | `Bold`, `Italic`, `Underline` & `Overline`    | Format the text   | 
 | `Image Picker`| Insert Images to the editor from storage or a URL    | 
