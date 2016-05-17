@@ -33,7 +33,7 @@ The editor is built, so that every part of the design have been exposed and is a
 Usage
 -------------------
 
-**content_editor_test.xml:**
+**Layout XML**
 
   
 
@@ -49,7 +49,7 @@ Usage
         android:paddingBottom="100dp"
     >
 
-**EditorTestActivity.java:**
+**Activity**
 
 
 	 
@@ -121,7 +121,7 @@ Usage
     
         
 
-If you are using **Image Pickers** or **Map Marker Pickers**, Add the following too in **LayoutActivity.java**:
+If you are using **Image Pickers** or **Map Marker Pickers**, Add the following into your **Activity**:
 
     
      @Override
