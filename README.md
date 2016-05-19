@@ -15,7 +15,6 @@ Features
 
  - **Renderer or Editor**: You can use Laser as a **Renderer** to Render the content in your views. Or use it as an **Editor** to create the content.
  - **No Webviews used** to render the content. Laser uses Native EditText, ImageView and as such to render the contents.
- - **HTML Parser:** Convert the content you created into HTML and Vice versa.
  - **Image Uploader Api:** Use the Built-in API to upload the images to the server.
  - Flexibility to create your own Toolbar layout. Just hookup the API methods on the click events.
  - Image Orientation: Fit width, Center Crop or Stretch.
@@ -54,7 +53,7 @@ Usage
         android:paddingRight="10dp"
         android:layout_height="wrap_content"
         android:paddingBottom="100dp"
-    >
+    />
 
 **Activity**
 
@@ -167,10 +166,11 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
 ##Future Improvements
 
 
- - Insert quotes into editor
- - HTML Parser
- - Indent and Outdent selections
- - Add more Callbacks for the controls
+ - Insert quotes into editor.
+ - HTML Parser.
+ - Indent and Outdent selections.
+ - Underline and Overline selections.
+ - Imrove and add more callbacks.
 
 Thank you for your support,
 I will keep the library updated, contributions are much appreciated, feel free to fork and customize for your needs.

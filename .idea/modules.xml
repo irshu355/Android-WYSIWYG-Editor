@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Library/Library.iml" filepath="$PROJECT_DIR$/Library/Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tetra-native-editor.iml" filepath="$PROJECT_DIR$/tetra-native-editor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/laser-native-editor.iml" filepath="$PROJECT_DIR$/laser-native-editor.iml" />
     </modules>
   </component>
 </project>

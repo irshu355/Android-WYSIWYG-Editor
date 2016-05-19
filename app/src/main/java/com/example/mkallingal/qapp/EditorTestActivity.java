@@ -26,12 +26,9 @@ public class EditorTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_test);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
      //   Edit _LinearLayout= (LinearLayout)findViewById(R.id.formHolder);
      //   _editor =new Editor(EditorTestActivity.this,_LinearLayout, RenderType.Editor, "Editor Placeholder goes here...");
         _editor= (Editor) findViewById(R.id.editor);
-        
         findViewById(R.id.action_header_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +96,18 @@ public class EditorTestActivity extends AppCompatActivity {
         _editor.setEditorListener(new BaseClass.EditorListener() {
             @Override
             public void onTextChanged(EditText editText, Editable text) {
-               // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text= _editor.GetStateAsSerialized();
+                Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getApplicationContext(), RenderTestActivity.class);
+                intent.putExtra("content", text);
+                startActivity(intent);
             }
         });
     }

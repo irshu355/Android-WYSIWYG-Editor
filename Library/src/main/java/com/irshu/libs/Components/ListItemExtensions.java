@@ -69,25 +69,25 @@ public class ListItemExtensions {
     public View AddListItem(TableLayout layout, boolean isOrdered, String text){
         final View childLayout = ((Activity) _Context).getLayoutInflater().inflate(R.layout.tmpl_unordered_list_item, null);
         final CustomEditText editText= (CustomEditText) childLayout.findViewById(R.id.txtText);
-        editText.setTextColor(_Base._Resources.getColor(R.color.darkertext));
-        editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, _Base._Resources.getDisplayMetrics()), 1.0f);
-        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        editText.setTag(_Base.CreateTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI));
-        childLayout.setTag(_Base.CreateTag(isOrdered?EditorType.OL_LI : EditorType.UL_LI));
-        _Base.activeView= editText;
+        final TextView textView= (TextView) childLayout.findViewById(R.id.lblText);
         if(isOrdered){
             final TextView _order= (TextView) childLayout.findViewById(R.id.lblOrder);
             int count= layout.getChildCount();
             _order.setText(String.valueOf(count+1)+".");
         }
-
-        if(!TextUtils.isEmpty(text)){
-            _Base.inputExtensions.setText(editText, text);
-        }
-
-
-
         if(_Base._RenderType==RenderType.Editor) {
+            editText.setTextColor(_Base._Resources.getColor(R.color.darkertext));
+            editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, _Base._Resources.getDisplayMetrics()), 1.0f);
+            editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            editText.setTag(_Base.CreateTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI));
+            childLayout.setTag(_Base.CreateTag(isOrdered?EditorType.OL_LI : EditorType.UL_LI));
+            _Base.activeView= editText;
+
+            if(!TextUtils.isEmpty(text)){
+                _Base.inputExtensions.setText(editText, text);
+            }
+
+
             editText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -148,17 +148,26 @@ public class ListItemExtensions {
                     }
                 }
             });
+
+            if (editText.requestFocus()) {
+                editText.setSelection(editText.getText().length());
+            }
+
         }
         else{
-            editText.setClickable(false);
-            editText.setCursorVisible(false);
-            editText.setEnabled(false);
+            /*
+            It's a renderer, so instead of EditText,render TextView
+             */
+            if(!TextUtils.isEmpty(text)){
+              _Base.inputExtensions.setText(textView, text);
+            }
+            textView.setTextColor(_Base._Resources.getColor(R.color.darkertext));
+            textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, _Base._Resources.getDisplayMetrics()), 1.0f);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            textView.setVisibility(View.VISIBLE);
+            editText.setVisibility(View.GONE);
         }
-
         layout.addView(childLayout);
-        if (editText.requestFocus()) {
-            editText.setSelection(editText.getText().length());
-        }
         return childLayout;
     }
 

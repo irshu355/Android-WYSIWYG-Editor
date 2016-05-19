@@ -52,7 +52,7 @@
             dividerExtensions.InsertDivider();
         }
         public void UpdateTextStyle(ControlStyles style){
-            inputExtensions.UpdateTextStyle(style);
+            inputExtensions.UpdateTextStyle(style,null);
         }
         public void InsertLink() {
             inputExtensions.InsertLink();
@@ -66,43 +66,7 @@
             RenderEditor(state);
         }
         public void RenderEditor(EditorState _state) {
-            this._ParentView.removeAllViews();
-            List<state> _list = _state.stateList;
-            for (state item:_list){
-                switch (item.type){
-                    case INPUT:
-                        String text= item.content.get(0);
-                        inputExtensions.InsertEditText(0, "", text);
-                        break;
-                    case hr:
-                        InsertDivider();
-                        break;
-                    case img:
-                        String path= item.content.get(0);
-                        String UUID= item.content.get(1);
-                      //  loadImage(_bitmap,path,UUID,false);
-                        break;
-                    case ul:
-                       TableLayout _layout=null;
-                        for(int i=0;i<item.content.size();i++){
-                            if(i==0){
-                               _layout= listItemExtensions.insertList(_list.indexOf(item),false,item.content.get(i));
-                            }else {
-                               listItemExtensions.AddListItem(_layout, false, item.content.get(i));
-                            }
-                        }
-                        break;
-                    case ol:
-                        TableLayout _layout2= listItemExtensions.CreateTable();
-                        for(int i=0;i<item.content.size();i++){
-                            listItemExtensions.AddListItem(_layout2, true, item.content.get(i));
-                        }
-                        break;
-                    case map:
-                        mapExtensions.insertMap(item.content.get(0),true);
-                        break;
-                }
-            }
+            super.RenderEditor(_state);
         }
 
 

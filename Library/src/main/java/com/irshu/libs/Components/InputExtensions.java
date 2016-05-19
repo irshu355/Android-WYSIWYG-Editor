@@ -16,6 +16,7 @@
 
 package com.irshu.libs.Components;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
@@ -58,18 +59,31 @@ public class InputExtensions{
         this.context = baseClass._Context;
     }
 
-    public void setText(EditText editText, String text){
+    CharSequence GetSanitizedHtml(String text){
         Spanned __ = Html.fromHtml(text);
         CharSequence toReplace = noTrailingwhiteLines(__);
+        return toReplace;
+    }
+
+    public void setText(EditText editText, String text){
+        CharSequence toReplace = GetSanitizedHtml(text);
         editText.setText(toReplace);
     }
+
+    public void setText(TextView textView, String text){
+        CharSequence toReplace = GetSanitizedHtml(text);
+        textView.setText(toReplace);
+    }
+
     private TextView GetNewTextView(String text){
         final TextView textView = new TextView(context);
+        textView.setGravity(Gravity.BOTTOM);
         textView.setTextColor(_Base._Resources.getColor(R.color.darkertext));
         textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, _Base._Resources.getDisplayMetrics()), 1.0f);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.NORMALTEXTSIZE);
-        textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 0, 0, 30);
+        textView.setLayoutParams(params);
         if(!TextUtils.isEmpty(text)){
             Spanned __ = Html.fromHtml(text);
             CharSequence toReplace = noTrailingwhiteLines(__);
@@ -87,8 +101,6 @@ public class InputExtensions{
         editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, _Base._Resources.getDisplayMetrics()), 1.0f);
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.NORMALTEXTSIZE);
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-
         if(hint.length()!=0){
             editText.setHint(hint);
         }
@@ -160,7 +172,7 @@ public class InputExtensions{
         });
         return editText;
     }
-    public CustomEditText InsertEditText(int position, String hint, String text) {
+    public TextView InsertEditText(int position, String hint, String text) {
         if(_Base._RenderType== RenderType.Editor) {
             final CustomEditText _view = GetNewEditText(hint, text);
             if (position == 0) {
@@ -176,8 +188,9 @@ public class InputExtensions{
             return _view;
         }else{
             final TextView _view = GetNewTextView(text);
+            _view.setTag(_Base.CreateTag(EditorType.INPUT));
             _Base._ParentView.addView(_view);
-            return  new CustomEditText(this.context);
+            return _view;
         }
     }
 
@@ -197,12 +210,12 @@ public class InputExtensions{
 
 
 
-
-    public void UpdateTextStyle(ControlStyles style) {
+    public void UpdateTextStyle(ControlStyles style,TextView editText) {
         /// String type = GetControlType(activeView);
-        EditText editText;
         try {
-            editText = (EditText) _Base.activeView;
+            if(editText==null) {
+                editText = (EditText) _Base.activeView;
+            }
             EditorControl tag= _Base.GetControlTag(editText);
             if(style==ControlStyles.H1){
                 if(_Base.ContainsStyle(tag._ControlStyles, ControlStyles.H1)) {

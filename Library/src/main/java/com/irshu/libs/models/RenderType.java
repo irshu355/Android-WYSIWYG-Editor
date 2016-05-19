@@ -6,6 +6,6 @@ package com.irshu.libs.models;
 
 
 public enum RenderType {
-    ReadOnly,
+    Renderer,
     Editor
 }

@@ -3,8 +3,6 @@ package com.irshu.libs.Components;
 /**
  * Created by mkallingal on 4/25/2016.
  */
-import java.util.Random;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -16,8 +14,6 @@ import android.widget.EditText;
  * Created by mkallingal on 4/25/2016.
  */
 public class CustomEditText extends EditText {
-
-    private Random r = new Random();
 
     public CustomEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -31,19 +27,17 @@ public class CustomEditText extends EditText {
         super(context);
     }
 
-    public void setRandomBackgroundColor() {
 
-    }
 
     @Override
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-        return new ZanyInputConnection(super.onCreateInputConnection(outAttrs),
+        return new CustomInputConnection(super.onCreateInputConnection(outAttrs),
                 true);
     }
 
-    private class ZanyInputConnection extends InputConnectionWrapper {
+    private class CustomInputConnection extends InputConnectionWrapper {
 
-        public ZanyInputConnection(InputConnection target, boolean mutable) {
+        public CustomInputConnection(InputConnection target, boolean mutable) {
             super(target, mutable);
         }
 
@@ -51,9 +45,6 @@ public class CustomEditText extends EditText {
         public boolean sendKeyEvent(KeyEvent event) {
             if (event.getAction() == KeyEvent.ACTION_DOWN
                     && event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
-                CustomEditText.this.setRandomBackgroundColor();
-                // Un-comment if you wish to cancel the backspace:
-                // return false;
             }
             return super.sendKeyEvent(event);
         }
