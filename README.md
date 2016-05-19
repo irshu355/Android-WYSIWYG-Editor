@@ -150,9 +150,6 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
         }
     }
 
-> **Note:**
-
-> - You should create the **Editor Toolbar by yourself**, or you could use the  **Embedded Toolbar** inside the library.
 
 ###Adding Callbacks
 
