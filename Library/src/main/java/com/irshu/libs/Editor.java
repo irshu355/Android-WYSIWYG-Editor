@@ -17,16 +17,15 @@
     import android.content.Context;
     import android.graphics.Bitmap;
     import android.util.AttributeSet;
-    import android.widget.TableLayout;
+
     import com.irshu.libs.models.ControlStyles;
     import com.irshu.libs.models.EditorState;
-    import com.irshu.libs.models.state;
-    import java.util.List;
+
     public class Editor extends BaseClass {
         public Editor(Context context, AttributeSet attrs) {
                    super(context, attrs);
                    this.listener=null;
-                  //  initialize(context,_ParentView,_RenderType,_PlaceHolderText);
+                  //  initialize(context,parentView,renderType,_PlaceHolderText);
                 }
 
         public void setEditorListener(EditorListener _listener){
@@ -52,7 +51,7 @@
             dividerExtensions.InsertDivider();
         }
         public void UpdateTextStyle(ControlStyles style){
-            inputExtensions.UpdateTextStyle(style,null);
+            inputExtensions.UpdateTextStyle(style, null);
         }
         public void InsertLink() {
             inputExtensions.InsertLink();
@@ -61,29 +60,16 @@
         public void OpenImagePicker() {
             imageExtensions.OpenImageGallery();
         }
-        public void RestoreState(){
-            EditorState state=GetStateFromStorage();
-            RenderEditor(state);
-        }
         public void RenderEditor(EditorState _state) {
             super.RenderEditor(_state);
         }
+        public void RestoreState(){
+            EditorState state= getStateFromString(null);
+            RenderEditor(state);
+        }
 
-
-
-
-
-    //    public void AttachHandlers() {
-    //        Activity _activity = (Activity) _Context;
-    //        _activity.findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
-    //            @Override
-    //            public void onClick(View v) {
-    //           //     Intent intent=new Intent(_Context, MapsActivity.class);
-    //            //    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    //            //    ((Activity) _Context).startActivityForResult(intent,20);
-    //                //insertMap("");
-    //            }
-    //        });
-    //    }
-
+        public void RenderEditorFromString(String content){
+            EditorState state= getStateFromString(content);
+            RenderEditor(state);
+        }
     }

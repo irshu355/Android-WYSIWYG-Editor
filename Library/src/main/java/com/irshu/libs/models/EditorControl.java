@@ -1,5 +1,8 @@
 package com.irshu.libs.models;
 
+
+import android.widget.ImageView;
+
 import java.util.List;
 
 /**
@@ -7,7 +10,7 @@ import java.util.List;
  */
 public class EditorControl {
     public EditorType Type;
-    public String UUID;
+    public ImageView.ScaleType scaleType;
     public String Path;
     public String Cords;
     public List<ControlStyles> _ControlStyles;

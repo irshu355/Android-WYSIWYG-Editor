@@ -28,10 +28,10 @@ import com.irshu.libs.models.EditorType;
  */
 public class DividerExtensions {
     private Context _Context;
-    BaseClass _Base;
+    BaseClass base;
     public DividerExtensions(BaseClass baseClass){
-        this._Base= baseClass;
-        this._Context= baseClass._Context;
+        this.base = baseClass;
+        this._Context= baseClass.context;
     }
 
     public void InsertDivider(){
@@ -40,19 +40,19 @@ public class DividerExtensions {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 3);
         params.setMargins(10, 10, 10, 10);
         view.setLayoutParams(params);
-        view.setBackgroundDrawable(_Context.getResources().getDrawable(_Base.dividerBackground));
-        view.setTag(_Base.CreateTag(EditorType.hr));
-        int Index=_Base.determineIndex(EditorType.hr);
-        _Base._ParentView.addView(view, Index);
-        if(_Base.isLastRow(view)) {
+        view.setBackgroundDrawable(_Context.getResources().getDrawable(base.dividerBackground));
+        view.setTag(base.CreateTag(EditorType.hr));
+        int Index= base.determineIndex(EditorType.hr);
+        base.parentView.addView(view, Index);
+        if(base.isLastRow(view)) {
             //check if ul is active
-           _Base.inputExtensions.InsertEditText(Index + 1, "", "");
+           base.inputExtensions.InsertEditText(Index + 1, "", "");
         }
     }
     public void deleteHr(int indexOfDeleteItem) {
-        View view= _Base._ParentView.getChildAt(indexOfDeleteItem);
-        if(_Base.GetControlType(view)==EditorType.hr){
-            _Base._ParentView.removeView(view);
+        View view= base.parentView.getChildAt(indexOfDeleteItem);
+        if(base.GetControlType(view)==EditorType.hr){
+            base.parentView.removeView(view);
         }
     }
 

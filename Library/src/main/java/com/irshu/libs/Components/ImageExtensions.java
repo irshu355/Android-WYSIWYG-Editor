@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.irshu.libs.Components;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,18 +23,19 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.irshu.libs.BaseClass;
 import com.irshu.editor.R;
 import com.irshu.libs.models.EditorControl;
 import com.irshu.libs.models.EditorState;
 import com.irshu.libs.models.EditorType;
 import com.irshu.libs.models.IEditorRetrofitApi;
-import com.irshu.libs.models.RenderType;
-import com.irshu.libs.models.Response;
-
+import com.irshu.libs.models.ImageResponse;
+import com.irshu.libs.models.ServiceGenerator;
+import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -44,69 +43,63 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.mime.TypedFile;
+import java.util.TimerTask;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 /**
  * Created by mkallingal on 5/1/2016.
  */
 public class ImageExtensions {
     private Context _Context;
-    private BaseClass _Base;
+    private BaseClass base;
     public ImageExtensions(BaseClass baseClass){
-        this._Context= baseClass._Context;
-        this._Base= baseClass;
+        this._Context= baseClass.context;
+        this.base = baseClass;
     }
 
     public void OpenImageGallery() {
-        int Index=this._Base.determineIndex(EditorType.none);
-        EditorState state= _Base.GetState();
+        int Index=this.base.determineIndex(EditorType.none);
+        EditorState state= base.GetState();
         state.PendingIndex= Index;
-        String serialized=this._Base.serializeState(state);
-  //      this._Base.SaveState(serialized);
-
         Intent intent = new Intent();
 // Show only images, no videos or anything else
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
     // Always show the chooser (if there are multiple options available)
-        ((Activity)_Context).startActivityForResult(Intent.createChooser(intent, "Select an image"), _Base.PICK_IMAGE_REQUEST);
+        ((Activity)_Context).startActivityForResult(Intent.createChooser(intent, "Select an image"), base.PICK_IMAGE_REQUEST);
     }
 
     public void InsertImage(Bitmap _image) {
-       // RenderEditor(GetStateFromStorage());
+       // RenderEditor(getStateFromString());
         final View childLayout = ((Activity) _Context).getLayoutInflater().inflate(R.layout.editor_image_view, null);
-        ImageView _ImageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        _ImageView.setImageBitmap(_image);
-        final String uuid= this._Base.objEngine.GenerateUUID();
+        ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
+        imageView.setImageBitmap(_image);
+        final String uuid= this.base.objEngine.GenerateUUID();
         BindEvents(childLayout);
-        EditorControl _control = new EditorControl();
-        _control.Type = EditorType.img;
-        _control.UUID= uuid;
-        childLayout.setTag(_control);
-        int Index= _Base.determineIndex(EditorType.img);
-        _Base._ParentView.addView(childLayout, Index);
+        int Index= base.determineIndex(EditorType.img);
+        base.parentView.addView(childLayout, Index);
         //      _Views.add(childLayout);
-        if(_Base.isLastRow(childLayout)) {
-            _Base.inputExtensions.InsertEditText(Index + 1, "", "");
+        if(base.isLastRow(childLayout)) {
+            base.inputExtensions.InsertEditText(Index + 1, "", "");
         }
-        UploadImageToServer(_image,childLayout);
+        UploadImageToServer(_image, childLayout, uuid);
     }
 
     /*
       /used by the renderer to render the image from the state
     */
-    public  void loadImage(Bitmap _image, String _path, String fileName, boolean insertEditText){
-        if(this._Base._RenderType== RenderType.Editor){
-            SetImageBitmap(_image, _path, fileName, insertEditText);
-        }else{
-
-        }
+    public  void loadImage(String _path, ImageView.ScaleType scaleType){
+        ImageView imageView = new ImageView(base.context);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        imageView.setLayoutParams(params);
+        imageView.setScaleType(scaleType);
+        Picasso.with(base.context).load(_path).into(imageView);
+        base.parentView.addView(imageView);
     }
-
     /*
       /used to fetch an image from internet and return a Bitmap equivalent
     */
@@ -125,48 +118,11 @@ public class ImageExtensions {
         }
     }
 
-
     /*
-    called from loadImage
-     */
-    private void SetImageBitmap(Bitmap _image, String _path, String fileName, boolean insertEditText) {
-         /*
-         / this function only used by Editor
-         */
-        final View childLayout = ((Activity) _Context).getLayoutInflater().inflate(R.layout.editor_image_view, null);
-        ImageView _ImageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        _ImageView.setImageBitmap(_image);
-        final View btn =  childLayout.findViewById(R.id.btn_remove);
-        _ImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btn.setVisibility(View.VISIBLE);
-            }
-        });
-        _ImageView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                btn.setVisibility(hasFocus ? View.VISIBLE : View.INVISIBLE);
-            }
-        });
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                _Base._ParentView.removeView(childLayout);
-            }
-        });
-        EditorControl _control = _Base.CreateTag(EditorType.img);
-        _control.UUID= fileName;
-        _control.Path=_path;
-        childLayout.setTag(_control);
-        int Index=_Base. determineIndex(EditorType.img);
-        _Base._ParentView.addView(childLayout, Index);
-        if(insertEditText){
-            _Base.inputExtensions.InsertEditText(Index + 1, "", "");
-        }
-    }
-    private  void UploadImageToServer(Bitmap bitmap, final View view){
-        File f = new File(_Context.getCacheDir(), "xxx");
+         /used to upload the image to remote
+       */
+    private  void UploadImageToServer(Bitmap bitmap, final View view, String uuid){
+        File f = new File(_Context.getCacheDir(), uuid+".png");
         try {
             f.createNewFile();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -176,30 +132,49 @@ public class ImageExtensions {
             fos.write(bitmapdata);
             fos.flush();
             fos.close();
-            TypedFile typedImage = new TypedFile("application/octet-stream", f);
-            RestAdapter _Adapter = _Base.objEngine.InitRestAdapter();
-            IEditorRetrofitApi _Api = _Adapter.create(IEditorRetrofitApi.class);
-            _Api.uploadImage(typedImage, new Callback<Response>() {
+
+
+            IEditorRetrofitApi service =
+                    ServiceGenerator.createService(IEditorRetrofitApi.class);
+            RequestBody requestFile =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), f);
+
+            // MultipartBody.Part is used to send also the actual file name
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("picture", f.getName(), requestFile);
+
+            // add another part within the multipart request
+            RequestBody description =
+                    RequestBody.create(
+                            MediaType.parse("multipart/form-data"), "");
+            // finally, execute the request
+            Call<ImageResponse> call = service.upload(base.ImageUploaderUri, description, body);
+            call.enqueue(new Callback<ImageResponse>() {
                 @Override
-                public void success(Response response, retrofit.client.Response response2) {
-                    EditorControl _control = (EditorControl) view.getTag();
-                    _control.Path = response.Url;
-                    ((TextView)view.findViewById(R.id.lblStatus)).setText("Uploaded");
-                    new java.util.Timer().schedule(
-                            new java.util.TimerTask() {
+                public void onResponse(Call<ImageResponse> call, final retrofit2.Response<ImageResponse> response) {
+                    ((TextView) view.findViewById(R.id.lblStatus)).setText("Uploaded");
+                    EditorControl control= base.CreateTag(EditorType.img);
+                    control.Path= response.body().Uri;
+                    control.scaleType= ImageView.ScaleType.CENTER_CROP;
+                    view.setTag(control);
+                    new java.util.Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            ((Activity)base.context).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    // your code here
+                                    // This code will always run on the UI thread, therefore is safe to modify UI elements.
                                     view.findViewById(R.id.lblStatus).setVisibility(View.GONE);
                                 }
-                            },
-                            2000
-                    );
+                            });
+                        }
+                    },3000);
                     view.findViewById(R.id.progress).setVisibility(View.GONE);
                 }
+
                 @Override
-                public void failure(RetrofitError error) {
-                    ((TextView)view.findViewById(R.id.lblStatus)).setText(error.getMessage());
+                public void onFailure(Call<ImageResponse> call, Throwable t) {
+                    ((TextView) view.findViewById(R.id.lblStatus)).setText(t.getMessage());
                     view.findViewById(R.id.progress).setVisibility(View.GONE);
                 }
             });
@@ -207,6 +182,15 @@ public class ImageExtensions {
             e.printStackTrace();
         }
     }
+
+    private void SetImageScaleType(View view, ImageView.ScaleType scaleType){
+        final ImageView imageView= (ImageView) view.findViewById(R.id.imageView);
+        imageView.setScaleType(scaleType);
+        EditorControl tag= base.GetControlTag(view);
+        tag.scaleType= scaleType;
+        view.setTag(tag);
+    }
+
     private void BindEvents(final View layout){
         final ImageView imageView= (ImageView) layout.findViewById(R.id.imageView);
         final View btnFitWidth=layout.findViewById(R.id.btnFitWidth);
@@ -216,25 +200,25 @@ public class ImageExtensions {
         btnFitWidth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageView.setScaleType(ImageView.ScaleType.FIT_END);
+                SetImageScaleType(layout,ImageView.ScaleType.FIT_END);
             }
         });
         btnCenterCrop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                SetImageScaleType(layout, ImageView.ScaleType.CENTER_CROP);
             }
         });
         btn_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _Base._ParentView.removeView(layout);
+                base.parentView.removeView(layout);
             }
         });
         btnStretch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                SetImageScaleType(layout, ImageView.ScaleType.FIT_XY);
             }
         });
         imageView.setOnTouchListener(new View.OnTouchListener() {

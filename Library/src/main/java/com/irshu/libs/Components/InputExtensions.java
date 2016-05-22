@@ -13,10 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.irshu.libs.Components;
-
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
@@ -35,7 +32,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.irshu.libs.BaseClass;
 import com.irshu.editor.R;
 import com.irshu.libs.models.ControlStyles;
@@ -43,44 +39,38 @@ import com.irshu.libs.models.EditorControl;
 import com.irshu.libs.models.EditorType;
 import com.irshu.libs.models.Op;
 import com.irshu.libs.models.RenderType;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
 /**
  * Created by mkallingal on 4/30/2016.
  */
 public class InputExtensions{
     private Context context;
-    BaseClass _Base;
+    BaseClass base;
     public InputExtensions(BaseClass baseClass){
-        this._Base= baseClass;
-        this.context = baseClass._Context;
+        this.base = baseClass;
+        this.context = baseClass.context;
     }
-
     CharSequence GetSanitizedHtml(String text){
         Spanned __ = Html.fromHtml(text);
         CharSequence toReplace = noTrailingwhiteLines(__);
         return toReplace;
     }
-
     public void setText(EditText editText, String text){
         CharSequence toReplace = GetSanitizedHtml(text);
         editText.setText(toReplace);
     }
-
     public void setText(TextView textView, String text){
         CharSequence toReplace = GetSanitizedHtml(text);
         textView.setText(toReplace);
     }
-
     private TextView GetNewTextView(String text){
         final TextView textView = new TextView(context);
         textView.setGravity(Gravity.BOTTOM);
-        textView.setTextColor(_Base._Resources.getColor(R.color.darkertext));
-        textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, _Base._Resources.getDisplayMetrics()), 1.0f);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.NORMALTEXTSIZE);
+        textView.setTextColor(base.resources.getColor(R.color.darkertext));
+        textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.resources.getDisplayMetrics()), 1.0f);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, 0, 30);
         textView.setLayoutParams(params);
@@ -91,15 +81,12 @@ public class InputExtensions{
         }
         return textView;
     }
-
-
-
     public CustomEditText GetNewEditText(String hint, String text) {
         final CustomEditText editText = new CustomEditText(context);
         editText.setGravity(Gravity.BOTTOM);
-        editText.setTextColor(_Base._Resources.getColor(R.color.darkertext));
-        editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, _Base._Resources.getDisplayMetrics()), 1.0f);
-        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.NORMALTEXTSIZE);
+        editText.setTextColor(base.resources.getColor(R.color.darkertext));
+        editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.resources.getDisplayMetrics()), 1.0f);
+        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         if(hint.length()!=0){
             editText.setHint(hint);
@@ -107,43 +94,37 @@ public class InputExtensions{
         if(text.length()!=0){
             setText(editText, text);
         }
-        editText.setTag(_Base.CreateTag(EditorType.INPUT));
+        editText.setTag(base.CreateTag(EditorType.INPUT));
         editText.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.invisible_edit_text));
-
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _Base.activeView = v;
+                base.activeView = v;
                 //  toggleToolbarProperties(v,null);
             }
         });
-
         editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_DEL) {
                     if (IsEditTextNull(editText)) {
-                        _Base.deleteFocusedPrevious(editText);
+                        base.deleteFocusedPrevious(editText);
                     }
                 }
                 return false;
             }
         });
-
         editText.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 //                if (s.length() == 0) {
 //                    deleteFocusedPrevious(editText);
 //                }
             }
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 String text = Html.toHtml(editText.getText());
@@ -154,7 +135,7 @@ public class InputExtensions{
                     if (s.charAt(s.length() - 1) == '\n') {
                         text = text.replaceAll("<br>", "");
                         setText(editText, text);
-                        int index = _Base._ParentView.indexOfChild(editText);
+                        int index = base.parentView.indexOfChild(editText);
 
                         /*
                         * if user has configured the listener, fire the onTextChanged event
@@ -165,45 +146,45 @@ public class InputExtensions{
                         InsertEditText(index + 1, "", "");
                     }
                 }
-                if (_Base.listener != null) {
-                    _Base.listener.onTextChanged(editText, s);
+                if (base.listener != null) {
+                    base.listener.onTextChanged(editText, s);
                 }
             }
         });
         return editText;
     }
     public TextView InsertEditText(int position, String hint, String text) {
-        if(_Base._RenderType== RenderType.Editor) {
-            final CustomEditText _view = GetNewEditText(hint, text);
+        if(base.renderType == RenderType.Editor) {
+            final CustomEditText view = GetNewEditText(hint, text);
             if (position == 0) {
-                _Base._ParentView.addView(_view);
+                base.parentView.addView(view);
             } else {
-                _Base._ParentView.addView(_view, position);
+                base.parentView.addView(view, position);
             }
-            _Base.activeView = _view;
-            if (_view.requestFocus()) {
+            base.activeView = view;
+            if (view.requestFocus()) {
                 //   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-                _Base.activeView = _view;
+                base.activeView = view;
             }
-            return _view;
+            return view;
         }else{
-            final TextView _view = GetNewTextView(text);
-            _view.setTag(_Base.CreateTag(EditorType.INPUT));
-            _Base._ParentView.addView(_view);
-            return _view;
+            final TextView view = GetNewTextView(text);
+            view.setTag(base.CreateTag(EditorType.INPUT));
+            base.parentView.addView(view);
+            return view;
         }
     }
 
 
     public CustomEditText InsertEditText(int position, CustomEditText editText) {
             if (position == 0) {
-                _Base._ParentView.addView(editText);
+                base.parentView.addView(editText);
             } else {
-                _Base._ParentView.addView(editText, position);
+                base.parentView.addView(editText, position);
             }
             if (editText.requestFocus()) {
                 //   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-                _Base.activeView = editText;
+                base.activeView = editText;
             }
             return editText;
     }
@@ -214,77 +195,77 @@ public class InputExtensions{
         /// String type = GetControlType(activeView);
         try {
             if(editText==null) {
-                editText = (EditText) _Base.activeView;
+                editText = (EditText) base.activeView;
             }
-            EditorControl tag= _Base.GetControlTag(editText);
+            EditorControl tag= base.GetControlTag(editText);
             if(style==ControlStyles.H1){
-                if(_Base.ContainsStyle(tag._ControlStyles, ControlStyles.H1)) {
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.NORMALTEXTSIZE);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
+                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.H1)) {
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
                 }else{
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.H1TEXTSIZE);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.H1, Op.Insert);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.H1TEXTSIZE);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Insert);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
                 }
 
             }
             else if(style==ControlStyles.H2){
-                if(_Base.ContainsStyle(tag._ControlStyles, ControlStyles.H2)) {
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.NORMALTEXTSIZE);
-                    tag=  _Base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
+                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.H2)) {
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
+                    tag=  base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
                 }else{
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.H2TEXTSIZE);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.H2, Op.Insert);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.H2TEXTSIZE);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Insert);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
                 }
             }
             else if(style==ControlStyles.NORMAL){
-                editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, _Base.NORMALTEXTSIZE);
-                tag= _Base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                tag= _Base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                if(!_Base.ContainsStyle(tag._ControlStyles, ControlStyles.NORMAL)) {
-                    tag=   _Base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
+                editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
+                tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
+                tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
+                if(!base.ContainsStyle(tag._ControlStyles, ControlStyles.NORMAL)) {
+                    tag=   base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
                 }
             }
             else if(style==ControlStyles.BOLD){
-                if(_Base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLD)) {
-                    tag=   _Base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Delete);
+                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLD)) {
+                    tag=   base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Delete);
                     editText.setTypeface(null, Typeface.NORMAL);
-                }else if(_Base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLDITALIC)){
-                    tag=  _Base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Delete);
-                    tag=  _Base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Insert);
+                }else if(base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLDITALIC)){
+                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Delete);
+                    tag=  base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Insert);
                     editText.setTypeface(null, Typeface.ITALIC);
                 }
-                else if(_Base.ContainsStyle(tag._ControlStyles, ControlStyles.ITALIC)){
-                    tag=  _Base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Insert);
-                    tag=  _Base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Delete);
+                else if(base.ContainsStyle(tag._ControlStyles, ControlStyles.ITALIC)){
+                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Insert);
+                    tag=  base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Delete);
                     editText.setTypeface(null, Typeface.BOLD_ITALIC);
                 }else{
-                    tag=   _Base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Insert);
+                    tag=   base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Insert);
                     editText.setTypeface(null, Typeface.BOLD);
                 }
             }
             else if(style==ControlStyles.ITALIC){
-                if(_Base.ContainsStyle(tag._ControlStyles, ControlStyles.ITALIC)) {
-                    tag=   _Base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Delete);
+                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.ITALIC)) {
+                    tag=   base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Delete);
                     editText.setTypeface(null, Typeface.NORMAL);
-                }else if(_Base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLDITALIC)){
-                    tag=  _Base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Delete);
-                    tag= _Base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Insert);
+                }else if(base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLDITALIC)){
+                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Insert);
                     editText.setTypeface(null, Typeface.BOLD);
                 }
-                else if(_Base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLD)){
-                    tag=  _Base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Insert);
-                    tag=  _Base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Delete);
+                else if(base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLD)){
+                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Insert);
+                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Delete);
                     editText.setTypeface(null, Typeface.BOLD_ITALIC);
                 }else{
-                    tag=   _Base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Insert);
+                    tag=   base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Insert);
                     editText.setTypeface(null, Typeface.ITALIC);
                 }
             }
@@ -322,8 +303,8 @@ public class InputExtensions{
     }
 
     private void InsertLink(String uri) {
-        EditorType editorType =_Base. GetControlType(_Base.activeView);
-        EditText editText = (EditText) _Base.activeView;
+        EditorType editorType = base. GetControlType(base.activeView);
+        EditText editText = (EditText) base.activeView;
         if (editorType == EditorType.INPUT ||editorType==EditorType.UL_LI) {
             String text = Html.toHtml(editText.getText());
             text=trimLineEnding(text);
