@@ -33,11 +33,11 @@ import com.squareup.picasso.Picasso;
  * Created by mkallingal on 5/1/2016.
  */
 public class MapExtensions {
-    private Context _Context;
-    BaseClass _Base;
+    private Context context;
+    BaseClass base;
     public MapExtensions(BaseClass baseClass){
-        this._Base= baseClass;
-        this._Context= baseClass._Context;
+        this.base = baseClass;
+        this.context = baseClass.context;
     }
 
     public void insertMap(String cords,boolean insertEditText) {
@@ -45,30 +45,30 @@ public class MapExtensions {
         String[] x= cords.split(",");
         String lat = x[0];
         String lng = x[1];
-        int[]size= _Base.utilitiles.GetScreenDimension();
+        int[]size= base.utilitiles.GetScreenDimension();
         int width=size[0];
         StringBuilder builder = new StringBuilder();
         builder.append("http://maps.google.com/maps/api/staticmap?");
         builder.append("size="+String.valueOf(width)+"x400&zoom=15&sensor=true&markers="+ lat + "," + lng);
-//        ImageView imageView = new ImageView(_Context);
+//        ImageView imageView = new ImageView(context);
 //        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 400);
 //        params.bottomMargin=12;
 //        imageView.setLayoutParams(params);
-//        _ParentView.addView(imageView);
-//        Picasso.with(this._Context).load(builder.toString()).into(imageView);
+//        parentView.addView(imageView);
+//        Picasso.with(this.context).load(builder.toString()).into(imageView);
 
-        final View childLayout = ((Activity) _Context).getLayoutInflater().inflate(R.layout.editor_image_view, null);
-        ImageView _ImageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        Picasso.with(this._Context).load(builder.toString()).into(_ImageView);
+        final View childLayout = ((Activity) context).getLayoutInflater().inflate(R.layout.editor_image_view, null);
+        ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
+        Picasso.with(this.context).load(builder.toString()).into(imageView);
 
         final View btn =  childLayout.findViewById(R.id.btn_remove);
-        _ImageView.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btn.setVisibility(View.VISIBLE);
             }
         });
-        _ImageView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        imageView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 btn.setVisibility(hasFocus ? View.VISIBLE : View.INVISIBLE);
@@ -77,27 +77,27 @@ public class MapExtensions {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _Base._ParentView.removeView(childLayout);
+                base.parentView.removeView(childLayout);
             }
         });
-        EditorControl _control = _Base.CreateTag(EditorType.map);
-        _control.Cords= cords;
-        childLayout.setTag(_control);
-        int Index= _Base.determineIndex(EditorType.map);
-        _Base._ParentView.addView(childLayout, Index);
+        EditorControl control = base.CreateTag(EditorType.map);
+        control.Cords= cords;
+        childLayout.setTag(control);
+        int Index= base.determineIndex(EditorType.map);
+        base.parentView.addView(childLayout, Index);
         if(insertEditText){
-            if(_Base.GetChildCount()==2){
+            if(base.GetChildCount()==2){
                 insertEditText=false;
             }
         }
         if(insertEditText){
-          _Base.inputExtensions.InsertEditText(Index + 1, "", "");
+          base.inputExtensions.InsertEditText(Index + 1, "", "");
         }
     }
 
     public void loadMapActivity(){
-                Intent intent=new Intent(_Context, MapsActivity.class);
-                ((Activity) _Context).startActivityForResult(intent, _Base.MAP_MARKER_REQUEST);
+                Intent intent=new Intent(context, MapsActivity.class);
+                ((Activity) context).startActivityForResult(intent, base.MAP_MARKER_REQUEST);
     }
 
 }

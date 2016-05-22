@@ -3,8 +3,6 @@
         import android.content.Context;
         import android.content.res.Resources;
         import android.content.res.TypedArray;
-        import android.graphics.Bitmap;
-        import android.graphics.BitmapFactory;
         import android.graphics.Point;
         import android.text.Editable;
         import android.text.Html;
@@ -14,6 +12,7 @@
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.EditText;
+        import android.widget.ImageView;
         import android.widget.LinearLayout;
         import android.widget.TableLayout;
         import android.widget.TableRow;
@@ -21,7 +20,6 @@
 
         import com.google.gson.Gson;
         import com.irshu.editor.R;
-        import com.irshu.libs.Components.CustomEditText;
         import com.irshu.libs.Components.DividerExtensions;
         import com.irshu.libs.Components.ImageExtensions;
         import com.irshu.libs.Components.InputExtensions;
@@ -55,10 +53,10 @@
             * Divider initializors
             */
             public int dividerBackground=R.drawable.divider_background_light;
-            public Context _Context;
-            public LinearLayout _ParentView;
-            public RenderType _RenderType;
-            public Resources _Resources;
+            public Context context;
+            public LinearLayout parentView;
+            public RenderType renderType;
+            public Resources resources;
             public View activeView;
             public DataEngine objEngine;
             public Gson gson;
@@ -66,6 +64,7 @@
             public EditorListener listener;
             public final int MAP_MARKER_REQUEST =20;
             public final int PICK_IMAGE_REQUEST =1;
+            public String ImageUploaderUri;
             public InputExtensions inputExtensions;
             public ImageExtensions imageExtensions;
             public ListItemExtensions listItemExtensions;
@@ -74,11 +73,11 @@
 
                 public BaseClass(Context _context, AttributeSet attrs){
                     super(_context,attrs);
-                    this._Context= _context;
+                    this.context = _context;
                     this.setOrientation(VERTICAL);
                     loadStateFromAttrs(attrs);
                 utilitiles=new Utilitiles();
-                this._Resources = _Context.getResources();
+                this.resources = context.getResources();
                 objEngine=new DataEngine(_context);
                 gson=new Gson();
                 inputExtensions=new InputExtensions(this);
@@ -86,7 +85,7 @@
                 listItemExtensions=new ListItemExtensions(this);
                 dividerExtensions =new DividerExtensions(this);
                 mapExtensions= new MapExtensions(this);
-                this._ParentView = this;
+                this.parentView = this;
             }
             public interface EditorListener{
                 public void onTextChanged(EditText editText, Editable text);
@@ -103,9 +102,9 @@
                     this.PlaceHolder = a.getString(R.styleable.editor_placeholder);
                     String renderType= a.getString(R.styleable.editor_render_type);
                     if(TextUtils.isEmpty(renderType)) {
-                        this._RenderType = com.irshu.libs.models.RenderType.Editor;
+                        this.renderType = com.irshu.libs.models.RenderType.Editor;
                     }else{
-                        this._RenderType= renderType.toLowerCase().equals("renderer")?RenderType.Renderer :RenderType.Editor;
+                        this.renderType = renderType.toLowerCase().equals("renderer")?RenderType.Renderer :RenderType.Editor;
                     }
 
                 } finally {
@@ -117,13 +116,13 @@
 
 
             public int determineIndex(EditorType type){
-                int size= this._ParentView.getChildCount();
-                if(this._RenderType==RenderType.Renderer)
+                int size= this.parentView.getChildCount();
+                if(this.renderType ==RenderType.Renderer)
                     return size;
                 View _view= this.activeView;
                 if(_view==null)
                     return size;
-                int currentIndex= this._ParentView.indexOfChild(_view);
+                int currentIndex= this.parentView.indexOfChild(_view);
                 EditorType tag = GetControlType(_view);
                 if(tag==EditorType.INPUT){
                     int length=((EditText)this.activeView).getText().length();
@@ -152,21 +151,21 @@
                 }
                 return  false;
             }
-            public EditorControl UpdateTagStyle(EditorControl _controlTag, ControlStyles style,Op _op){
-                List<ControlStyles> _Styles= _controlTag._ControlStyles;
+            public EditorControl UpdateTagStyle(EditorControl controlTag, ControlStyles style,Op _op){
+                List<ControlStyles> styles= controlTag._ControlStyles;
                 if(_op==Op.Delete){
-                    int index= _Styles.indexOf(style);
+                    int index= styles.indexOf(style);
                     if(index!=-1) {
-                        _Styles.remove(index);
-                        _controlTag._ControlStyles = _Styles;
+                        styles.remove(index);
+                        controlTag._ControlStyles = styles;
                     }
                 }else{
-                    int index= _Styles.indexOf(style);
+                    int index= styles.indexOf(style);
                     if(index==-1){
-                        _Styles.add(style);
+                        styles.add(style);
                     }
                 }
-                return _controlTag;
+                return controlTag;
             }
 
             public EditorType GetControlType(View _view) {
@@ -174,14 +173,14 @@
                 return _control.Type;
             }
 
-            public EditorControl GetControlTag(View _view) {
-                EditorControl _control = (EditorControl) _view.getTag();
-                return _control;
+            public EditorControl GetControlTag(View view) {
+                EditorControl control = (EditorControl) view.getTag();
+                return control;
             }
             public EditorControl CreateTag(EditorType type){
-                EditorControl _control = new EditorControl();
-                _control.Type=type;
-                _control._ControlStyles=new ArrayList<>();
+                EditorControl control = new EditorControl();
+                control.Type=type;
+                control._ControlStyles=new ArrayList<>();
                 switch (type)
                 {
                     case hr:
@@ -190,21 +189,21 @@
                     case ul:
                     case UL_LI:
                 }
-                return _control;
+                return control;
             }
 
             public void deleteFocusedPrevious(EditText view) {
-                String _ParentTagName= view.getParent().getClass().getName();
-                if(_ParentTagName.toLowerCase().equals("android.widget.tablerow")){
+                String parentTagName= view.getParent().getClass().getName();
+                if(parentTagName.toLowerCase().equals("android.widget.tablerow")){
                     TableRow _row = (TableRow) view.getParent();
                     TableLayout _table = (TableLayout) _row.getParent();
                     int index = _table.indexOfChild(_row);
                     _table.removeView(_row);
                     if (index > 0) {
-                        TableRow _Focusrow = (TableRow) _table.getChildAt(index - 1);
-                        EditText _Text = (EditText) _Focusrow.findViewById(R.id.txtText);
-                        if (_Text.requestFocus()) {
-                            _Text.setSelection(_Text.getText().length());
+                        TableRow focusrow = (TableRow) _table.getChildAt(index - 1);
+                        EditText text = (EditText) focusrow.findViewById(R.id.txtText);
+                        if (text.requestFocus()) {
+                            text.setSelection(text.getText().length());
                         }
                     }else{
                         RemoveParent(_table);
@@ -215,26 +214,26 @@
             }
 
             public void RemoveParent(View view){
-                int IndexOfDeleteItem=_ParentView.indexOfChild(view);
-                View _nextItem=null;
-                if(IndexOfDeleteItem==0)
+                int indexOfDeleteItem= parentView.indexOfChild(view);
+                View nextItem=null;
+                if(indexOfDeleteItem==0)
                     return;
                 //remove hr if its on top of the delete field
-              dividerExtensions.deleteHr(IndexOfDeleteItem - 1);
-                for (int i=0;i<_ParentView.getChildCount();i++){
-                    if(i<IndexOfDeleteItem&&GetControlType(_ParentView.getChildAt(i))==EditorType.INPUT){
-                        _nextItem=_ParentView.getChildAt(i);
+              dividerExtensions.deleteHr(indexOfDeleteItem - 1);
+                for (int i=0;i< parentView.getChildCount();i++){
+                    if(i<indexOfDeleteItem&&GetControlType(parentView.getChildAt(i))==EditorType.INPUT){
+                        nextItem= parentView.getChildAt(i);
                     }
                 }
-                this._ParentView.removeView(view);
-                if(_nextItem!=null) {
-                    EditText _Text = (EditText) _nextItem;
-                    String x=_Text.getText().toString();
+                this.parentView.removeView(view);
+                if(nextItem!=null) {
+                    EditText text = (EditText) nextItem;
+                    String x=text.getText().toString();
                     //   _Text.setSelection(_Text.getText().length());
-                    if(_Text.requestFocus()){
-                        _Text.setSelection(_Text.getText().length());
+                    if(text.requestFocus()){
+                        text.setSelection(text.getText().length());
                     }
-                    this.activeView=_nextItem;
+                    this.activeView=nextItem;
                 }
             }
 
@@ -248,10 +247,12 @@
             }
 
 
-            public EditorState GetStateFromStorage(){
-                String serialized= objEngine.GetValue("editorState", "");
-                EditorState Deserialized= gson.fromJson(serialized, EditorState.class);
-                return Deserialized;
+            public EditorState getStateFromString(String content){
+                if(content==null) {
+                    content = objEngine.GetValue("editorState", "");
+                }
+                EditorState deserialized= gson.fromJson(content, EditorState.class);
+                return deserialized;
             }
 
             public String GetStateAsSerialized(){
@@ -264,58 +265,58 @@
                 return serialized;
             }
             public EditorState GetState(){
-                int _count= this._ParentView.getChildCount();
-                EditorState _editorState=new EditorState();
-                List<state> _list=new ArrayList<>();
-                for(int i=0;i<_count;i++){
-                    state _state=new state();
-                    View _view= _ParentView.getChildAt(i);
-                    EditorType type= GetControlType(_view);
-                    _state.type=type;
-                    _state.content=new ArrayList<>();
+                int childCount= this.parentView.getChildCount();
+                EditorState editorState=new EditorState();
+                List<state> list=new ArrayList<>();
+                for(int i=0;i<childCount;i++){
+                    state state=new state();
+                    View view= parentView.getChildAt(i);
+                    EditorType type= GetControlType(view);
+                    state.type=type;
+                    state.content=new ArrayList<>();
                     switch (type){
                         case INPUT:
-                            EditText _text=(EditText)_view;
-                            EditorControl tag = (EditorControl) _view.getTag();
-                            _state._ControlStyles=tag._ControlStyles;
-                            _state.content.add(Html.toHtml(_text.getText()));
-                            _list.add(_state);
+                            EditText _text=(EditText)view;
+                            EditorControl tag = (EditorControl) view.getTag();
+                            state._ControlStyles=tag._ControlStyles;
+                            state.content.add(Html.toHtml(_text.getText()));
+                            list.add(state);
                             break;
                         case img:
-                            EditorControl imgTag = (EditorControl) _view.getTag();
-                            _state.content.add(imgTag.Path);
-                            _state.content.add(imgTag.UUID);
-                            _list.add(_state);
+                            EditorControl imgTag = (EditorControl) view.getTag();
+                            state.content.add(imgTag.Path);
+                            state.content.add(imgTag.scaleType.toString());
+                            list.add(state);
                             //field type, content[]
                             break;
                         case hr:
-                            _list.add(_state);
+                            list.add(state);
                             break;
                         case ul:
                         case ol:
-                            TableLayout _table=(TableLayout)_view;
-                            int _rowCount= _table.getChildCount();
+                            TableLayout table=(TableLayout)view;
+                            int _rowCount= table.getChildCount();
                             for (int j=0;j<_rowCount;j++){
-                                View row= _table.getChildAt(j);
-                                EditText _li= (EditText) row.findViewById(R.id.txtText);
-                                _state.content.add(Html.toHtml(_li.getText()));
+                                View row= table.getChildAt(j);
+                                EditText li= (EditText) row.findViewById(R.id.txtText);
+                                state.content.add(Html.toHtml(li.getText()));
                             }
-                            _list.add(_state);
+                            list.add(state);
                             break;
                         case map:
-                            EditorControl mapTag = (EditorControl) _view.getTag();
-                            _state.content.add(mapTag.Cords);
-                            _list.add(_state);
+                            EditorControl mapTag = (EditorControl) view.getTag();
+                            state.content.add(mapTag.Cords);
+                            list.add(state);
                     }
                 }
-                _editorState.stateList=_list;
-                return _editorState;
+                editorState.stateList=list;
+                return editorState;
             }
 
             public void RenderEditor(EditorState _state) {
-                this._ParentView.removeAllViews();
-                List<state> _list = _state.stateList;
-                for (state item:_list){
+                this.parentView.removeAllViews();
+                List<state> list = _state.stateList;
+                for (state item:list){
                     switch (item.type){
                         case INPUT:
                             String text= item.content.get(0);
@@ -331,15 +332,15 @@
                             break;
                         case img:
                             String path= item.content.get(0);
-                            String UUID= item.content.get(1);
-                           imageExtensions.loadImage(null, path, UUID, false);
+                            ImageView.ScaleType scaleType= ImageView.ScaleType.valueOf(item.content.get(1));
+                           imageExtensions.loadImage(path,scaleType);
                             break;
                         case ul:
                         case ol:
                             TableLayout _layout=null;
                             for(int i=0;i<item.content.size();i++){
                                 if(i==0){
-                                    _layout= listItemExtensions.insertList(_list.indexOf(item),item.type==EditorType.ol,item.content.get(i));
+                                    _layout= listItemExtensions.insertList(list.indexOf(item),item.type==EditorType.ol,item.content.get(i));
                                 }else {
                                     listItemExtensions.AddListItem(_layout, item.type==EditorType.ol, item.content.get(i));
                                 }
@@ -354,12 +355,12 @@
 
 
             public boolean isLastRow(View view){
-                int index=this._ParentView.indexOfChild(view);
-                int length= this._ParentView.getChildCount();
+                int index=this.parentView.indexOfChild(view);
+                int length= this.parentView.getChildCount();
                 return length-1==index;
             }
             public int GetChildCount(){
-                int Count= _ParentView.getChildCount();
+                int Count= parentView.getChildCount();
                 return  Count;
             }
             public int GetChildCountforView(View view){
@@ -369,12 +370,12 @@
 
             public class Utilitiles{
                 public float PxtoSp(float px){
-                    float scaledDensity = _Context.getResources().getDisplayMetrics().scaledDensity;
+                    float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
                     float sp = px / scaledDensity;
                     return sp;
                 }
                 public int[] GetScreenDimension(){
-                    Display display =((Activity)_Context).getWindowManager().getDefaultDisplay();
+                    Display display =((Activity) context).getWindowManager().getDefaultDisplay();
                     Point size = new Point();
                     display.getSize(size);
                     int width = size.x;

@@ -34,9 +34,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
-import retrofit.client.OkClient;
 
 /**
  * Created by mkallingal on 12/18/2015.
@@ -146,7 +143,7 @@ public class DataEngine {
 
            return  bitmap;
 
-            // ImageView IMG=(ImageView)_Context.(R.id.imgPicker);
+            // ImageView IMG=(ImageView)context.(R.id.imgPicker);
             // IMG.setImageBitmap(b);
         }
         catch (FileNotFoundException e)
