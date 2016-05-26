@@ -1,4 +1,4 @@
-package com.irshu.libs.models;
+package com.irshu.libs.Utilities;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

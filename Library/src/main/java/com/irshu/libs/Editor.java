@@ -17,48 +17,54 @@
     import android.content.Context;
     import android.graphics.Bitmap;
     import android.util.AttributeSet;
+    import android.view.View;
 
     import com.irshu.libs.models.ControlStyles;
     import com.irshu.libs.models.EditorState;
+    import com.irshu.libs.models.HtmlTag;
+
+    import org.jsoup.Jsoup;
+    import org.jsoup.nodes.Document;
+    import org.jsoup.nodes.Element;
 
     public class Editor extends BaseClass {
         public Editor(Context context, AttributeSet attrs) {
                    super(context, attrs);
-                   this.listener=null;
+                   super.setEditorListener(null);
                   //  initialize(context,parentView,renderType,_PlaceHolderText);
                 }
 
         public void setEditorListener(EditorListener _listener){
-            this.listener=_listener;
+            super.setEditorListener(_listener);
         }
         public void StartEditor(){
-            inputExtensions.InsertEditText(0, this.PlaceHolder, "");
+            getInputExtensions().InsertEditText(0, this.PlaceHolder, "");
         }
 
         public void InsertImage(Bitmap bitmap){
-            imageExtensions.InsertImage(bitmap);
+            getImageExtensions().InsertImage(bitmap);
         }
         public void InsertMap(){
-            mapExtensions.loadMapActivity();
+            getMapExtensions().loadMapActivity();
         }
         public void InsertMap(String Cords, boolean InsertEditText){
-            mapExtensions.insertMap(Cords, InsertEditText);
+            getMapExtensions().insertMap(Cords, InsertEditText);
         }
         public void InsertList(boolean isOrdered){
-            listItemExtensions.Insertlist(isOrdered);
+            getListItemExtensions().Insertlist(isOrdered);
         }
         public void InsertDivider(){
-            dividerExtensions.InsertDivider();
+            getDividerExtensions().InsertDivider();
         }
         public void UpdateTextStyle(ControlStyles style){
-            inputExtensions.UpdateTextStyle(style, null);
+            getInputExtensions().UpdateTextStyle(style, null);
         }
         public void InsertLink() {
-            inputExtensions.InsertLink();
+            getInputExtensions().InsertLink();
         }
 
         public void OpenImagePicker() {
-            imageExtensions.OpenImageGallery();
+            getImageExtensions().OpenImageGallery();
         }
         public void RenderEditor(EditorState _state) {
             super.RenderEditor(_state);
@@ -68,8 +74,7 @@
             RenderEditor(state);
         }
 
-        public void RenderEditorFromString(String content){
-            EditorState state= getStateFromString(content);
-            RenderEditor(state);
+        public void RenderEditor(String HtmlString){
+            RenderEditorFromHtml(HtmlString);
         }
     }

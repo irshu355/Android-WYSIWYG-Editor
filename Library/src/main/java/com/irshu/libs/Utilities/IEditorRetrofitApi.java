@@ -1,4 +1,6 @@
-package com.irshu.libs.models;
+package com.irshu.libs.Utilities;
+import com.irshu.libs.models.ImageResponse;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;

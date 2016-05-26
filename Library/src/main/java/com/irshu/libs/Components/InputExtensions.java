@@ -47,10 +47,13 @@ import org.jsoup.select.Elements;
  */
 public class InputExtensions{
     private Context context;
+    private int H1TEXTSIZE =20;
+    private int H2TEXTSIZE =16;
+    private int NORMALTEXTSIZE =14;
     BaseClass base;
-    public InputExtensions(BaseClass baseClass){
+    public InputExtensions(BaseClass baseClass,Context context){
         this.base = baseClass;
-        this.context = baseClass.context;
+        this.context = context;
     }
     CharSequence GetSanitizedHtml(String text){
         Spanned __ = Html.fromHtml(text);
@@ -68,9 +71,9 @@ public class InputExtensions{
     private TextView GetNewTextView(String text){
         final TextView textView = new TextView(context);
         textView.setGravity(Gravity.BOTTOM);
-        textView.setTextColor(base.resources.getColor(R.color.darkertext));
-        textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.resources.getDisplayMetrics()), 1.0f);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
+        textView.setTextColor(base.getResources().getColor(R.color.darkertext));
+        textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.getResources().getDisplayMetrics()), 1.0f);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, 0, 30);
         textView.setLayoutParams(params);
@@ -84,9 +87,9 @@ public class InputExtensions{
     public CustomEditText GetNewEditText(String hint, String text) {
         final CustomEditText editText = new CustomEditText(context);
         editText.setGravity(Gravity.BOTTOM);
-        editText.setTextColor(base.resources.getColor(R.color.darkertext));
-        editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.resources.getDisplayMetrics()), 1.0f);
-        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
+        editText.setTextColor(base.getResources().getColor(R.color.darkertext));
+        editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.getResources().getDisplayMetrics()), 1.0f);
+        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         if(hint.length()!=0){
             editText.setHint(hint);
@@ -99,7 +102,7 @@ public class InputExtensions{
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                base.activeView = v;
+                base.setActiveView(v);
                 //  toggleToolbarProperties(v,null);
             }
         });
@@ -135,7 +138,7 @@ public class InputExtensions{
                     if (s.charAt(s.length() - 1) == '\n') {
                         text = text.replaceAll("<br>", "");
                         setText(editText, text);
-                        int index = base.parentView.indexOfChild(editText);
+                        int index = base.getParentView().indexOfChild(editText);
 
                         /*
                         * if user has configured the listener, fire the onTextChanged event
@@ -146,31 +149,27 @@ public class InputExtensions{
                         InsertEditText(index + 1, "", "");
                     }
                 }
-                if (base.listener != null) {
-                    base.listener.onTextChanged(editText, s);
+                if (base.getEditorListener() != null) {
+                    base.getEditorListener().onTextChanged(editText, s);
                 }
             }
         });
         return editText;
     }
     public TextView InsertEditText(int position, String hint, String text) {
-        if(base.renderType == RenderType.Editor) {
+        if(base.getRenderType() == RenderType.Editor) {
             final CustomEditText view = GetNewEditText(hint, text);
-            if (position == 0) {
-                base.parentView.addView(view);
-            } else {
-                base.parentView.addView(view, position);
-            }
-            base.activeView = view;
+                base.getParentView().addView(view, position);
+            base.setActiveView(view);
             if (view.requestFocus()) {
                 //   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-                base.activeView = view;
+                base.setActiveView(view);
             }
             return view;
         }else{
             final TextView view = GetNewTextView(text);
             view.setTag(base.CreateTag(EditorType.INPUT));
-            base.parentView.addView(view);
+            base.getParentView().addView(view);
             return view;
         }
     }
@@ -178,13 +177,13 @@ public class InputExtensions{
 
     public CustomEditText InsertEditText(int position, CustomEditText editText) {
             if (position == 0) {
-                base.parentView.addView(editText);
+                base.getParentView().addView(editText);
             } else {
-                base.parentView.addView(editText, position);
+                base.getParentView().addView(editText, position);
             }
             if (editText.requestFocus()) {
                 //   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-                base.activeView = editText;
+                base.setActiveView(editText);
             }
             return editText;
     }
@@ -192,20 +191,20 @@ public class InputExtensions{
 
 
     public void UpdateTextStyle(ControlStyles style,TextView editText) {
-        /// String type = GetControlType(activeView);
+        /// String type = GetControlType(getActiveView());
         try {
             if(editText==null) {
-                editText = (EditText) base.activeView;
+                editText = (EditText) base.getActiveView();
             }
             EditorControl tag= base.GetControlTag(editText);
             if(style==ControlStyles.H1){
                 if(base.ContainsStyle(tag._ControlStyles, ControlStyles.H1)) {
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
                 }else{
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.H1TEXTSIZE);
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H1TEXTSIZE);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Insert);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
@@ -214,19 +213,19 @@ public class InputExtensions{
             }
             else if(style==ControlStyles.H2){
                 if(base.ContainsStyle(tag._ControlStyles, ControlStyles.H2)) {
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
                     tag=  base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
                 }else{
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.H2TEXTSIZE);
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H2TEXTSIZE);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Insert);
                     tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
                 }
             }
             else if(style==ControlStyles.NORMAL){
-                editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.NORMALTEXTSIZE);
+                editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
                 tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
                 tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
                 if(!base.ContainsStyle(tag._ControlStyles, ControlStyles.NORMAL)) {
@@ -303,8 +302,8 @@ public class InputExtensions{
     }
 
     private void InsertLink(String uri) {
-        EditorType editorType = base. GetControlType(base.activeView);
-        EditText editText = (EditText) base.activeView;
+        EditorType editorType = base. GetControlType(base.getActiveView());
+        EditText editText = (EditText) base.getActiveView();
         if (editorType == EditorType.INPUT ||editorType==EditorType.UL_LI) {
             String text = Html.toHtml(editText.getText());
             text=trimLineEnding(text);

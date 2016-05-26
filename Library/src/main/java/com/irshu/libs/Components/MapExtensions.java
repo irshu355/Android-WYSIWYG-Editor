@@ -35,9 +35,9 @@ import com.squareup.picasso.Picasso;
 public class MapExtensions {
     private Context context;
     BaseClass base;
-    public MapExtensions(BaseClass baseClass){
+    public MapExtensions(BaseClass baseClass, Context context){
         this.base = baseClass;
-        this.context = baseClass.context;
+        this.context = context;
     }
 
     public void insertMap(String cords,boolean insertEditText) {
@@ -45,7 +45,7 @@ public class MapExtensions {
         String[] x= cords.split(",");
         String lat = x[0];
         String lng = x[1];
-        int[]size= base.utilitiles.GetScreenDimension();
+        int[]size= base.getUtilitiles().GetScreenDimension();
         int width=size[0];
         StringBuilder builder = new StringBuilder();
         builder.append("http://maps.google.com/maps/api/staticmap?");
@@ -77,21 +77,21 @@ public class MapExtensions {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                base.parentView.removeView(childLayout);
+                base.getParentView().removeView(childLayout);
             }
         });
         EditorControl control = base.CreateTag(EditorType.map);
         control.Cords= cords;
         childLayout.setTag(control);
         int Index= base.determineIndex(EditorType.map);
-        base.parentView.addView(childLayout, Index);
+        base.getParentView().addView(childLayout, Index);
         if(insertEditText){
             if(base.GetChildCount()==2){
                 insertEditText=false;
             }
         }
         if(insertEditText){
-          base.inputExtensions.InsertEditText(Index + 1, "", "");
+          base.getInputExtensions().InsertEditText(Index + 1, "", "");
         }
     }
 

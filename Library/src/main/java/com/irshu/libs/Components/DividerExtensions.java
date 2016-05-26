@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.irshu.editor.R;
 import com.irshu.libs.BaseClass;
 import com.irshu.libs.models.EditorType;
 
@@ -27,32 +28,33 @@ import com.irshu.libs.models.EditorType;
  * Created by mkallingal on 5/1/2016.
  */
 public class DividerExtensions {
-    private Context _Context;
+    private Context context;
+    private int dividerBackground= R.drawable.divider_background_light;
     BaseClass base;
-    public DividerExtensions(BaseClass baseClass){
+    public DividerExtensions(BaseClass baseClass, Context context){
         this.base = baseClass;
-        this._Context= baseClass.context;
+        this.context = context;
     }
 
     public void InsertDivider(){
 
-        View view=new View(_Context);
+        View view=new View(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 3);
         params.setMargins(10, 10, 10, 10);
         view.setLayoutParams(params);
-        view.setBackgroundDrawable(_Context.getResources().getDrawable(base.dividerBackground));
+        view.setBackgroundDrawable(context.getResources().getDrawable(dividerBackground));
         view.setTag(base.CreateTag(EditorType.hr));
         int Index= base.determineIndex(EditorType.hr);
-        base.parentView.addView(view, Index);
+        base.getParentView().addView(view, Index);
         if(base.isLastRow(view)) {
             //check if ul is active
-           base.inputExtensions.InsertEditText(Index + 1, "", "");
+           base.getInputExtensions().InsertEditText(Index + 1, "", "");
         }
     }
     public void deleteHr(int indexOfDeleteItem) {
-        View view= base.parentView.getChildAt(indexOfDeleteItem);
+        View view= base.getParentView().getChildAt(indexOfDeleteItem);
         if(base.GetControlType(view)==EditorType.hr){
-            base.parentView.removeView(view);
+            base.getParentView().removeView(view);
         }
     }
 

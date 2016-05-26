@@ -32,9 +32,9 @@ import com.irshu.editor.R;
 import com.irshu.libs.models.EditorControl;
 import com.irshu.libs.models.EditorState;
 import com.irshu.libs.models.EditorType;
-import com.irshu.libs.models.IEditorRetrofitApi;
+import com.irshu.libs.Utilities.IEditorRetrofitApi;
 import com.irshu.libs.models.ImageResponse;
-import com.irshu.libs.models.ServiceGenerator;
+import com.irshu.libs.Utilities.ServiceGenerator;
 import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -43,7 +43,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.TimerTask;
+import java.util.UUID;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -54,11 +59,16 @@ import retrofit2.Callback;
  * Created by mkallingal on 5/1/2016.
  */
 public class ImageExtensions {
-    private Context _Context;
+    private Context context;
     private BaseClass base;
-    public ImageExtensions(BaseClass baseClass){
-        this._Context= baseClass.context;
+    private String imageUploadUri;
+    public ImageExtensions(BaseClass baseClass, Context context){
+        this.context = context;
         this.base = baseClass;
+    }
+
+    public void setImageUploadUri(String uri){
+        this.imageUploadUri= uri;
     }
 
     public void OpenImageGallery() {
@@ -70,35 +80,43 @@ public class ImageExtensions {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
     // Always show the chooser (if there are multiple options available)
-        ((Activity)_Context).startActivityForResult(Intent.createChooser(intent, "Select an image"), base.PICK_IMAGE_REQUEST);
+        ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select an image"), base.PICK_IMAGE_REQUEST);
     }
 
     public void InsertImage(Bitmap _image) {
        // RenderEditor(getStateFromString());
-        final View childLayout = ((Activity) _Context).getLayoutInflater().inflate(R.layout.editor_image_view, null);
+        final View childLayout = ((Activity) context).getLayoutInflater().inflate(R.layout.editor_image_view, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
         imageView.setImageBitmap(_image);
-        final String uuid= this.base.objEngine.GenerateUUID();
+        final String uuid= GenerateUUID();
         BindEvents(childLayout);
         int Index= base.determineIndex(EditorType.img);
-        base.parentView.addView(childLayout, Index);
+        base.getParentView().addView(childLayout, Index);
         //      _Views.add(childLayout);
         if(base.isLastRow(childLayout)) {
-            base.inputExtensions.InsertEditText(Index + 1, "", "");
+            base.getInputExtensions().InsertEditText(Index + 1, "", "");
         }
         UploadImageToServer(_image, childLayout, uuid);
+    }
+
+    public String GenerateUUID(){
+        DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+        String sdt = df.format(new Date(System.currentTimeMillis()));
+        UUID x= UUID.randomUUID();
+        String[] y= x.toString().split("-");
+        return y[y.length-1]+sdt;
     }
 
     /*
       /used by the renderer to render the image from the state
     */
     public  void loadImage(String _path, ImageView.ScaleType scaleType){
-        ImageView imageView = new ImageView(base.context);
+        ImageView imageView = new ImageView(this.context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         imageView.setLayoutParams(params);
         imageView.setScaleType(scaleType);
-        Picasso.with(base.context).load(_path).into(imageView);
-        base.parentView.addView(imageView);
+        Picasso.with(this.context).load(_path).into(imageView);
+        base.getParentView().addView(imageView);
     }
     /*
       /used to fetch an image from internet and return a Bitmap equivalent
@@ -122,7 +140,7 @@ public class ImageExtensions {
          /used to upload the image to remote
        */
     private  void UploadImageToServer(Bitmap bitmap, final View view, String uuid){
-        File f = new File(_Context.getCacheDir(), uuid+".png");
+        File f = new File(context.getCacheDir(), uuid+".png");
         try {
             f.createNewFile();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -148,7 +166,7 @@ public class ImageExtensions {
                     RequestBody.create(
                             MediaType.parse("multipart/form-data"), "");
             // finally, execute the request
-            Call<ImageResponse> call = service.upload(base.ImageUploaderUri, description, body);
+            Call<ImageResponse> call = service.upload(base.getImageUploaderUri(), description, body);
             call.enqueue(new Callback<ImageResponse>() {
                 @Override
                 public void onResponse(Call<ImageResponse> call, final retrofit2.Response<ImageResponse> response) {
@@ -160,7 +178,7 @@ public class ImageExtensions {
                     new java.util.Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            ((Activity)base.context).runOnUiThread(new Runnable() {
+                            ((Activity) context).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     // This code will always run on the UI thread, therefore is safe to modify UI elements.
@@ -212,7 +230,7 @@ public class ImageExtensions {
         btn_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                base.parentView.removeView(layout);
+                base.getParentView().removeView(layout);
             }
         });
         btnStretch.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,7 @@
         package com.irshu.libs;
         import android.app.Activity;
         import android.content.Context;
+        import android.content.SharedPreferences;
         import android.content.res.Resources;
         import android.content.res.TypedArray;
         import android.graphics.Point;
@@ -21,12 +22,12 @@
         import com.google.gson.Gson;
         import com.irshu.editor.R;
         import com.irshu.libs.Components.DividerExtensions;
+        import com.irshu.libs.Components.HTMLExtensions;
         import com.irshu.libs.Components.ImageExtensions;
         import com.irshu.libs.Components.InputExtensions;
         import com.irshu.libs.Components.ListItemExtensions;
         import com.irshu.libs.Components.MapExtensions;
         import com.irshu.libs.models.ControlStyles;
-        import com.irshu.libs.models.DataEngine;
         import com.irshu.libs.models.EditorControl;
         import com.irshu.libs.models.EditorState;
         import com.irshu.libs.models.EditorType;
@@ -40,53 +41,106 @@
          * Created by mkallingal on 4/30/2016.
          */
         public class BaseClass extends LinearLayout {
-
-
             /*
             * EditText initializors
             */
             public String PlaceHolder=null;
-            public int H1TEXTSIZE =20;
-            public int H2TEXTSIZE =16;
-            public int NORMALTEXTSIZE =14;
-                        /*
+            /*
             * Divider initializors
             */
-            public int dividerBackground=R.drawable.divider_background_light;
-            public Context context;
-            public LinearLayout parentView;
-            public RenderType renderType;
-            public Resources resources;
-            public View activeView;
-            public DataEngine objEngine;
-            public Gson gson;
-            public Utilitiles utilitiles;
-            public EditorListener listener;
+            private final String SHAREDPREFERENCE="QA";
+            private Context __context;
+            private LinearLayout __parentView;
+            private RenderType __renderType;
+            private Resources __resources;
+            private View __activeView;
+            private Gson __gson;
+            private Utilitiles __utilitiles;
+            private EditorListener __listener;
             public final int MAP_MARKER_REQUEST =20;
             public final int PICK_IMAGE_REQUEST =1;
-            public String ImageUploaderUri;
-            public InputExtensions inputExtensions;
-            public ImageExtensions imageExtensions;
-            public ListItemExtensions listItemExtensions;
-            public DividerExtensions dividerExtensions;
-            public MapExtensions mapExtensions;
-
+            private String __imageUploaderUri;
+            private InputExtensions __inputExtensions;
+            private ImageExtensions __imageExtensions;
+            private ListItemExtensions __listItemExtensions;
+            private DividerExtensions __dividerExtensions;
+            private HTMLExtensions __htmlExtensions;
+            private MapExtensions __mapExtensions;
                 public BaseClass(Context _context, AttributeSet attrs){
                     super(_context,attrs);
-                    this.context = _context;
+                    this.__context = _context;
                     this.setOrientation(VERTICAL);
-                    loadStateFromAttrs(attrs);
-                utilitiles=new Utilitiles();
-                this.resources = context.getResources();
-                objEngine=new DataEngine(_context);
-                gson=new Gson();
-                inputExtensions=new InputExtensions(this);
-                imageExtensions=new ImageExtensions(this);
-                listItemExtensions=new ListItemExtensions(this);
-                dividerExtensions =new DividerExtensions(this);
-                mapExtensions= new MapExtensions(this);
-                this.parentView = this;
+                    __initialize(_context,attrs);
             }
+            private void __initialize(Context context, AttributeSet attrs) {
+                loadStateFromAttrs(attrs);
+                __utilitiles =new Utilitiles();
+                this.__resources = context.getResources();
+                __gson =new Gson();
+                __inputExtensions =new InputExtensions(this,context);
+                __imageExtensions =new ImageExtensions(this,context);
+                __imageExtensions.setImageUploadUri(this.__imageUploaderUri);
+                __listItemExtensions =new ListItemExtensions(this,context);
+                __dividerExtensions =new DividerExtensions(this,context);
+                __mapExtensions = new MapExtensions(this,context);
+                __htmlExtensions = new HTMLExtensions(this,context);
+                this.__parentView = this;
+            }
+
+            //region Getters_and_Setters
+            public LinearLayout getParentView(){
+                return this.__parentView;
+            }
+            public RenderType getRenderType(){
+                return this.__renderType;
+            }
+
+            public Resources getResources(){
+                return this.__resources;
+            }
+
+            public View getActiveView(){
+                return this.__activeView;
+            }
+            public void setActiveView(View view){
+                this.__activeView =view;
+            }
+            public Utilitiles getUtilitiles(){
+                return this.__utilitiles;
+            }
+            public EditorListener getEditorListener(){
+                return this.__listener;
+            }
+            public void setEditorListener(EditorListener _listener){
+                this.__listener = _listener;
+            }
+            public InputExtensions getInputExtensions(){
+                return this.__inputExtensions;
+            }
+            public ImageExtensions getImageExtensions(){
+                return this.__imageExtensions;
+            }
+            public MapExtensions getMapExtensions(){
+                return this.__mapExtensions;
+            }
+            public HTMLExtensions getHtmlExtensions(){
+                return this.__htmlExtensions;
+            }
+            public ListItemExtensions getListItemExtensions(){
+                return this.__listItemExtensions;
+            }
+            public DividerExtensions getDividerExtensions(){
+                return this.__dividerExtensions;
+            }
+            public String getImageUploaderUri() {
+                return this.__imageUploaderUri;
+            }
+
+            public void setImageUploaderUri(String imageUploaderUri) {
+                this.__imageUploaderUri = imageUploaderUri;
+            }
+
+            //endregion
             public interface EditorListener{
                 public void onTextChanged(EditText editText, Editable text);
             }
@@ -102,9 +156,9 @@
                     this.PlaceHolder = a.getString(R.styleable.editor_placeholder);
                     String renderType= a.getString(R.styleable.editor_render_type);
                     if(TextUtils.isEmpty(renderType)) {
-                        this.renderType = com.irshu.libs.models.RenderType.Editor;
+                        this.__renderType = com.irshu.libs.models.RenderType.Editor;
                     }else{
-                        this.renderType = renderType.toLowerCase().equals("renderer")?RenderType.Renderer :RenderType.Editor;
+                        this.__renderType = renderType.toLowerCase().equals("renderer")?RenderType.Renderer :RenderType.Editor;
                     }
 
                 } finally {
@@ -113,19 +167,17 @@
                     }
                 }
             }
-
-
             public int determineIndex(EditorType type){
-                int size= this.parentView.getChildCount();
-                if(this.renderType ==RenderType.Renderer)
+                int size= this.__parentView.getChildCount();
+                if(this.__renderType ==RenderType.Renderer)
                     return size;
-                View _view= this.activeView;
+                View _view= this.__activeView;
                 if(_view==null)
                     return size;
-                int currentIndex= this.parentView.indexOfChild(_view);
+                int currentIndex= this.__parentView.indexOfChild(_view);
                 EditorType tag = GetControlType(_view);
                 if(tag==EditorType.INPUT){
-                    int length=((EditText)this.activeView).getText().length();
+                    int length=((EditText)this.__activeView).getText().length();
                     if(length>0){
                         return type==EditorType.UL_LI ||type==EditorType.OL_LI?currentIndex: currentIndex+1;
                     }else{
@@ -214,18 +266,18 @@
             }
 
             public void RemoveParent(View view){
-                int indexOfDeleteItem= parentView.indexOfChild(view);
+                int indexOfDeleteItem= __parentView.indexOfChild(view);
                 View nextItem=null;
                 if(indexOfDeleteItem==0)
                     return;
                 //remove hr if its on top of the delete field
-              dividerExtensions.deleteHr(indexOfDeleteItem - 1);
-                for (int i=0;i< parentView.getChildCount();i++){
-                    if(i<indexOfDeleteItem&&GetControlType(parentView.getChildAt(i))==EditorType.INPUT){
-                        nextItem= parentView.getChildAt(i);
+              __dividerExtensions.deleteHr(indexOfDeleteItem - 1);
+                for (int i=0;i< __parentView.getChildCount();i++){
+                    if(i<indexOfDeleteItem&&GetControlType(__parentView.getChildAt(i))==EditorType.INPUT){
+                        nextItem= __parentView.getChildAt(i);
                     }
                 }
-                this.parentView.removeView(view);
+                this.__parentView.removeView(view);
                 if(nextItem!=null) {
                     EditText text = (EditText) nextItem;
                     String x=text.getText().toString();
@@ -233,7 +285,7 @@
                     if(text.requestFocus()){
                         text.setSelection(text.getText().length());
                     }
-                    this.activeView=nextItem;
+                    this.__activeView =nextItem;
                 }
             }
 
@@ -242,17 +294,29 @@
                 if(TextUtils.isEmpty(serialized)){
                     serialized=serializeState(GetState());
                 }
-                objEngine.putValue("editorState", serialized);
+                putValue("editorState", serialized);
                 return true;
             }
 
 
             public EditorState getStateFromString(String content){
                 if(content==null) {
-                    content = objEngine.GetValue("editorState", "");
+                    content = GetValue("editorState", "");
                 }
-                EditorState deserialized= gson.fromJson(content, EditorState.class);
+                EditorState deserialized= __gson.fromJson(content, EditorState.class);
                 return deserialized;
+            }
+
+            public String GetValue(String Key, String defaultVal){
+                SharedPreferences _Preferences= __context.getSharedPreferences(SHAREDPREFERENCE, 0);
+                return   _Preferences.getString(Key, defaultVal);
+
+            }
+            public void putValue(String Key, String Value){
+                SharedPreferences _Preferences = __context.getSharedPreferences(SHAREDPREFERENCE, 0);
+                SharedPreferences.Editor editor = _Preferences.edit();
+                editor.putString(Key, Value);
+                editor.apply();
             }
 
             public String GetStateAsSerialized(){
@@ -261,16 +325,16 @@
             }
 
             public String serializeState(EditorState _state){
-                String serialized= gson.toJson(_state);
+                String serialized= __gson.toJson(_state);
                 return serialized;
             }
             public EditorState GetState(){
-                int childCount= this.parentView.getChildCount();
+                int childCount= this.__parentView.getChildCount();
                 EditorState editorState=new EditorState();
                 List<state> list=new ArrayList<>();
                 for(int i=0;i<childCount;i++){
                     state state=new state();
-                    View view= parentView.getChildAt(i);
+                    View view= __parentView.getChildAt(i);
                     EditorType type= GetControlType(view);
                     state.type=type;
                     state.content=new ArrayList<>();
@@ -314,40 +378,40 @@
             }
 
             public void RenderEditor(EditorState _state) {
-                this.parentView.removeAllViews();
+                this.__parentView.removeAllViews();
                 List<state> list = _state.stateList;
                 for (state item:list){
                     switch (item.type){
                         case INPUT:
                             String text= item.content.get(0);
-                           TextView view= inputExtensions.InsertEditText(0, "", text);
+                           TextView view= __inputExtensions.InsertEditText(0, "", text);
                             if(item._ControlStyles!=null){
                                 for (ControlStyles style:item._ControlStyles){
-                                    inputExtensions.UpdateTextStyle(style,view);
+                                    __inputExtensions.UpdateTextStyle(style, view);
                                 }
                             }
                             break;
                         case hr:
-                          dividerExtensions.InsertDivider();
+                          __dividerExtensions.InsertDivider();
                             break;
                         case img:
                             String path= item.content.get(0);
                             ImageView.ScaleType scaleType= ImageView.ScaleType.valueOf(item.content.get(1));
-                           imageExtensions.loadImage(path,scaleType);
+                           __imageExtensions.loadImage(path, scaleType);
                             break;
                         case ul:
                         case ol:
                             TableLayout _layout=null;
                             for(int i=0;i<item.content.size();i++){
                                 if(i==0){
-                                    _layout= listItemExtensions.insertList(list.indexOf(item),item.type==EditorType.ol,item.content.get(i));
+                                    _layout= __listItemExtensions.insertList(list.indexOf(item),item.type==EditorType.ol,item.content.get(i));
                                 }else {
-                                    listItemExtensions.AddListItem(_layout, item.type==EditorType.ol, item.content.get(i));
+                                    __listItemExtensions.AddListItem(_layout, item.type == EditorType.ol, item.content.get(i));
                                 }
                             }
                             break;
                         case map:
-                            mapExtensions.insertMap(item.content.get(0),true);
+                            __mapExtensions.insertMap(item.content.get(0), true);
                             break;
                     }
                 }
@@ -355,27 +419,30 @@
 
 
             public boolean isLastRow(View view){
-                int index=this.parentView.indexOfChild(view);
-                int length= this.parentView.getChildCount();
+                int index=this.__parentView.indexOfChild(view);
+                int length= this.__parentView.getChildCount();
                 return length-1==index;
             }
             public int GetChildCount(){
-                int Count= parentView.getChildCount();
+                int Count= __parentView.getChildCount();
                 return  Count;
             }
             public int GetChildCountforView(View view){
                 return ((ViewGroup)view).getChildCount();
             }
 
+            public void RenderEditorFromHtml(String content){
+                __htmlExtensions.parseHtml(content);
+            }
 
             public class Utilitiles{
                 public float PxtoSp(float px){
-                    float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
+                    float scaledDensity = __context.getResources().getDisplayMetrics().scaledDensity;
                     float sp = px / scaledDensity;
                     return sp;
                 }
                 public int[] GetScreenDimension(){
-                    Display display =((Activity) context).getWindowManager().getDefaultDisplay();
+                    Display display =((Activity) __context).getWindowManager().getDefaultDisplay();
                     Point size = new Point();
                     display.getSize(size);
                     int width = size.x;
