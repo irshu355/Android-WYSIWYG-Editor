@@ -21,12 +21,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.irshu.libs.BaseClass;
 import com.irshu.editor.R;
 import com.irshu.libs.models.EditorControl;
@@ -96,9 +99,20 @@ public class ImageExtensions {
         if(base.isLastRow(childLayout)) {
             base.getInputExtensions().InsertEditText(Index + 1, "", "");
         }
+        if(TextUtils.isEmpty(base.getImageUploaderUri())) {
+            String error="You must configure a valid remote URI to be able to upload the image.This image is not persisted";
+            Toast.makeText(context,error , Toast.LENGTH_SHORT).show();
+            TextView sts=(TextView) childLayout.findViewById(R.id.lblStatus);
+            sts.setBackgroundDrawable(base.getResources().getDrawable(R.drawable.error_background));
+            sts.setVisibility(View.VISIBLE);
+            sts.setText(error);
+            EditorControl control= base.CreateTag(EditorType.img);
+            control.scaleType= ImageView.ScaleType.CENTER_CROP;
+            childLayout.setTag(control);
+            return;
+        }
         UploadImageToServer(_image, childLayout, uuid);
     }
-
     public String GenerateUUID(){
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         String sdt = df.format(new Date(System.currentTimeMillis()));
@@ -141,6 +155,7 @@ public class ImageExtensions {
        */
     private  void UploadImageToServer(Bitmap bitmap, final View view, String uuid){
         File f = new File(context.getCacheDir(), uuid+".png");
+        final TextView lblStatus= (TextView) view.findViewById(R.id.lblStatus);
         try {
             f.createNewFile();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -150,27 +165,26 @@ public class ImageExtensions {
             fos.write(bitmapdata);
             fos.flush();
             fos.close();
-
-
             IEditorRetrofitApi service =
                     ServiceGenerator.createService(IEditorRetrofitApi.class);
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), f);
-
             // MultipartBody.Part is used to send also the actual file name
             MultipartBody.Part body =
                     MultipartBody.Part.createFormData("picture", f.getName(), requestFile);
-
             // add another part within the multipart request
             RequestBody description =
                     RequestBody.create(
                             MediaType.parse("multipart/form-data"), "");
             // finally, execute the request
+            view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
+            lblStatus.setVisibility(View.VISIBLE);
             Call<ImageResponse> call = service.upload(base.getImageUploaderUri(), description, body);
             call.enqueue(new Callback<ImageResponse>() {
                 @Override
                 public void onResponse(Call<ImageResponse> call, final retrofit2.Response<ImageResponse> response) {
                     ((TextView) view.findViewById(R.id.lblStatus)).setText("Uploaded");
+                    lblStatus.setBackgroundDrawable(base.getResources().getDrawable(R.drawable.success_background));
                     EditorControl control= base.CreateTag(EditorType.img);
                     control.Path= response.body().Uri;
                     control.scaleType= ImageView.ScaleType.CENTER_CROP;
@@ -182,7 +196,7 @@ public class ImageExtensions {
                                 @Override
                                 public void run() {
                                     // This code will always run on the UI thread, therefore is safe to modify UI elements.
-                                    view.findViewById(R.id.lblStatus).setVisibility(View.GONE);
+                                    lblStatus.setVisibility(View.GONE);
                                 }
                             });
                         }
@@ -192,7 +206,8 @@ public class ImageExtensions {
 
                 @Override
                 public void onFailure(Call<ImageResponse> call, Throwable t) {
-                    ((TextView) view.findViewById(R.id.lblStatus)).setText(t.getMessage());
+                    lblStatus.setText(t.getMessage());
+                    lblStatus.setBackgroundDrawable(base.getResources().getDrawable(R.drawable.error_background));
                     view.findViewById(R.id.progress).setVisibility(View.GONE);
                 }
             });

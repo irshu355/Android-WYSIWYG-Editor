@@ -39,18 +39,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ImageExtensions.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ImageExtensions.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/ImageExtensions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.042321645">
+              <caret line="174" column="56" selection-start-line="174" selection-start-column="56" selection-end-line="174" selection-end-column="56" />
               <folding>
-                <element signature="e#2252#2253#0" expanded="true" />
-                <element signature="e#2292#2293#0" expanded="true" />
-                <element signature="e#7225#7619#0" expanded="true" />
-                <element signature="e#7618#7619#0" expanded="true" />
+                <element signature="e#2313#2314#0" expanded="true" />
+                <element signature="e#2353#2354#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editor_image_view.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Library/src/main/res/layout/editor_image_view.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="12.911765">
+              <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -58,10 +69,11 @@
         <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Editor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+              <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
               <folding>
                 <element signature="e#1526#1527#0" expanded="true" />
                 <element signature="e#1610#1611#0" expanded="true" />
+                <element signature="e#1756#1757#0" expanded="true" />
                 <element signature="e#1816#1817#0" expanded="true" />
                 <element signature="e#2011#2012#0" expanded="true" />
                 <element signature="e#2080#2081#0" expanded="true" />
@@ -92,7 +104,7 @@
         <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/BaseClass.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
+              <caret line="294" column="34" selection-start-line="294" selection-start-column="34" selection-end-line="294" selection-end-column="34" />
               <folding>
                 <element signature="e#3999#4000#0" expanded="true" />
                 <element signature="e#4055#4056#0" expanded="true" />
@@ -101,11 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListItemExtensions.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ListItemExtensions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/ListItemExtensions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31922612">
-              <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="53" column="54" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -130,12 +142,12 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="102" column="25" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="25" />
+              <caret line="100" column="48" selection-start-line="100" selection-start-column="48" selection-end-line="100" selection-end-column="48" />
               <folding>
                 <element signature="e#3350#3503#0" expanded="true" />
                 <element signature="e#3502#3503#0" expanded="true" />
-                <element signature="e#3758#4003#0" expanded="true" />
-                <element signature="e#4002#4003#0" expanded="true" />
+                <element signature="e#3760#4005#0" expanded="true" />
+                <element signature="e#4004#4005#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,32 +166,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DividerExtensions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/DividerExtensions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InputExtensions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/InputExtensions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -2676,7 +2669,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_render_test.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_render_test.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/Library/src/main/res/layout/editor_image_view.xml" />
         <option value="$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/CustomEditText.java" />
         <option value="$PROJECT_DIR$/Library/build.gradle" />
         <option value="$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/models/ServiceGenerator.java" />
@@ -2694,10 +2686,13 @@
         <option value="$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/DividerExtensions.java" />
         <option value="$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/HTMLExtensions.java" />
         <option value="$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/MapExtensions.java" />
-        <option value="$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/ImageExtensions.java" />
         <option value="$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/BaseClass.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java" />
         <option value="$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Editor.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/res/drawable/success_background.xml" />
+        <option value="$PROJECT_DIR$/Library/src/main/res/drawable/error_background.xml" />
+        <option value="$PROJECT_DIR$/Library/src/main/res/layout/editor_image_view.xml" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/ImageExtensions.java" />
       </list>
     </option>
   </component>
@@ -2833,62 +2828,8 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
+              <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laser-native-editor" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laser-native-editor" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laser-native-editor" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Utilities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -2905,7 +2846,7 @@
     <property name="FullScreen" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="FBAZCY145360" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_23_x86" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/BaseClass.java&#10;Editor&#9;PSI&#9;JAVA://com.irshu.libs.Editor&#10;Input&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/Components/InputExtensions.java&#10;BaseClass&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/BaseClass.java&#10;Ima&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/Components/ImageExtensions.java&#10;InputEx&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/Components/InputExtensions.java&#10;EditorTest&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java&#10;BaseCl&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/BaseClass.java&#10;DataE&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/models/DataEngine.java&#10;content&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/app/src/main/res/layout/content_editor_test.xml&#10;editor_image_view&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/res/layout/editor_image_view.xml&#10;ImageExtens&#9;PSI&#9;JAVA://com.irshu.libs.Components.ImageExtensions&#10;CustomEd&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/Components/CustomEditText.java&#10;invisible_edit_text&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/res/drawable/invisible_edit_text.xml" />
+    <property name="SearchEverywhereHistoryKey" value="editor_image_view&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/res/layout/editor_image_view.xml&#10;Editor&#9;PSI&#9;JAVA://com.irshu.libs.Editor&#10;Input&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/Components/InputExtensions.java&#10;BaseClass&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/BaseClass.java&#10;Ima&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/Components/ImageExtensions.java&#10;InputEx&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/Components/InputExtensions.java&#10;EditorTest&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java&#10;BaseCl&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/BaseClass.java&#10;DataE&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/models/DataEngine.java&#10;content&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/app/src/main/res/layout/content_editor_test.xml&#10;ImageExtens&#9;PSI&#9;JAVA://com.irshu.libs.Components.ImageExtensions&#10;CustomEd&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/java/com/irshu/libs/Components/CustomEditText.java&#10;invisible_edit_text&#9;FILE&#9;file://D:/Stuff/Mine alone/native-editor/laser-native-editor/Library/src/main/res/drawable/invisible_edit_text.xml" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
@@ -3092,7 +3033,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32906976" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33604652" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3112,7 +3053,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19614148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19614148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -3159,16 +3100,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/toolbar_editor.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_render_test.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3204,6 +3135,7 @@
           <folding>
             <element signature="e#1526#1527#0" expanded="true" />
             <element signature="e#1610#1611#0" expanded="true" />
+            <element signature="e#1756#1757#0" expanded="true" />
             <element signature="e#1816#1817#0" expanded="true" />
             <element signature="e#2011#2012#0" expanded="true" />
             <element signature="e#2080#2081#0" expanded="true" />
@@ -3311,6 +3243,7 @@
           <folding>
             <element signature="e#1526#1527#0" expanded="true" />
             <element signature="e#1610#1611#0" expanded="true" />
+            <element signature="e#1756#1757#0" expanded="true" />
             <element signature="e#1816#1817#0" expanded="true" />
             <element signature="e#2011#2012#0" expanded="true" />
             <element signature="e#2080#2081#0" expanded="true" />
@@ -3451,16 +3384,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Library/src/main/res/layout/editor_image_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="38" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="38" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/models/ImageResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18621524">
@@ -3554,19 +3477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/ImageExtensions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
-          <folding>
-            <element signature="e#2252#2253#0" expanded="true" />
-            <element signature="e#2292#2293#0" expanded="true" />
-            <element signature="e#7225#7619#0" expanded="true" />
-            <element signature="e#7618#7619#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_editor_test.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.264706">
@@ -3578,23 +3488,18 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java">
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/ListItemExtensions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="25" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="25" />
-          <folding>
-            <element signature="e#3350#3503#0" expanded="true" />
-            <element signature="e#3502#3503#0" expanded="true" />
-            <element signature="e#3758#4003#0" expanded="true" />
-            <element signature="e#4002#4003#0" expanded="true" />
-          </folding>
+          <caret line="53" column="54" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/BaseClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
+          <caret line="294" column="34" selection-start-line="294" selection-start-column="34" selection-end-line="294" selection-end-column="34" />
           <folding>
             <element signature="e#3999#4000#0" expanded="true" />
             <element signature="e#4055#4056#0" expanded="true" />
@@ -3605,10 +3510,11 @@
     <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+          <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
           <folding>
             <element signature="e#1526#1527#0" expanded="true" />
             <element signature="e#1610#1611#0" expanded="true" />
+            <element signature="e#1756#1757#0" expanded="true" />
             <element signature="e#1816#1817#0" expanded="true" />
             <element signature="e#2011#2012#0" expanded="true" />
             <element signature="e#2080#2081#0" expanded="true" />
@@ -3622,11 +3528,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/ListItemExtensions.java">
+    <entry file="file://$PROJECT_DIR$/Library/src/main/res/drawable/success_background.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31922612">
-          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.026602177">
+          <caret line="1" column="52" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/res/drawable/error_background.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.026602177">
+          <caret line="1" column="47" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="100" column="48" selection-start-line="100" selection-start-column="48" selection-end-line="100" selection-end-column="48" />
+          <folding>
+            <element signature="e#3350#3503#0" expanded="true" />
+            <element signature="e#3502#3503#0" expanded="true" />
+            <element signature="e#3760#4005#0" expanded="true" />
+            <element signature="e#4004#4005#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/res/layout/editor_image_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="12.911765">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/com/irshu/libs/Components/ImageExtensions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.042321645">
+          <caret line="174" column="56" selection-start-line="174" selection-start-column="56" selection-end-line="174" selection-end-column="56" />
+          <folding>
+            <element signature="e#2313#2314#0" expanded="true" />
+            <element signature="e#2353#2354#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
