@@ -8,5 +8,5 @@ public enum HtmlTag{
     br,
     img,
     hr,
-
+    p
 }

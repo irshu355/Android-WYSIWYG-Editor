@@ -70,9 +70,9 @@
                     super(_context,attrs);
                     this.__context = _context;
                     this.setOrientation(VERTICAL);
-                    __initialize(_context,attrs);
+                    initialize(_context,attrs);
             }
-            private void __initialize(Context context, AttributeSet attrs) {
+            private void initialize(Context context, AttributeSet attrs) {
                 loadStateFromAttrs(attrs);
                 __utilitiles =new Utilitiles();
                 this.__resources = context.getResources();

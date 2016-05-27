@@ -99,6 +99,9 @@ public class ImageExtensions {
         if(base.isLastRow(childLayout)) {
             base.getInputExtensions().InsertEditText(Index + 1, "", "");
         }
+        EditorControl control= base.CreateTag(EditorType.img);
+        control.scaleType= ImageView.ScaleType.CENTER_CROP;
+        childLayout.setTag(control);
         if(TextUtils.isEmpty(base.getImageUploaderUri())) {
             String error="You must configure a valid remote URI to be able to upload the image.This image is not persisted";
             Toast.makeText(context,error , Toast.LENGTH_SHORT).show();
@@ -106,9 +109,6 @@ public class ImageExtensions {
             sts.setBackgroundDrawable(base.getResources().getDrawable(R.drawable.error_background));
             sts.setVisibility(View.VISIBLE);
             sts.setText(error);
-            EditorControl control= base.CreateTag(EditorType.img);
-            control.scaleType= ImageView.ScaleType.CENTER_CROP;
-            childLayout.setTag(control);
             return;
         }
         UploadImageToServer(_image, childLayout, uuid);
