@@ -9,5 +9,7 @@ public enum ControlStyles{
     H2,
     H3,
     NORMAL,
-    BOLDITALIC
+    BOLDITALIC,
+    INDENT,
+    OUTDENT
 }

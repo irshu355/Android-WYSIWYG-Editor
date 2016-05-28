@@ -72,7 +72,7 @@ public class InputExtensions{
     private TextView GetNewTextView(String text){
         final TextView textView = new TextView(context);
         textView.setGravity(Gravity.BOTTOM);
-        textView.setTextColor(base.getResources().getColor(R.color.darkertext));
+    //    textView.setTextColor(base.getResources().getColor(R.color.darkertext));
         textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.getResources().getDisplayMetrics()), 1.0f);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -88,7 +88,7 @@ public class InputExtensions{
     public CustomEditText GetNewEditText(String hint, String text) {
         final CustomEditText editText = new CustomEditText(context);
         editText.setGravity(Gravity.BOTTOM);
-        editText.setTextColor(base.getResources().getColor(R.color.darkertext));
+      //  editText.setTextColor(base.getResources().getColor(R.color.darkertext));
         editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.getResources().getDisplayMetrics()), 1.0f);
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -125,10 +125,12 @@ public class InputExtensions{
 //                    deleteFocusedPrevious(editText);
 //                }
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 String text = Html.toHtml(editText.getText());
@@ -286,6 +288,21 @@ public class InputExtensions{
                 }else{
                     tag=   base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Insert);
                     editText.setTypeface(null, Typeface.ITALIC);
+                }
+            }
+            else if(style==ControlStyles.INDENT){
+                if(base.ContainsStyle(tag._ControlStyles,ControlStyles.INDENT)){
+                    tag=   base.UpdateTagStyle(tag, ControlStyles.INDENT, Op.Delete);
+                    editText.setPadding(0,0,0,0);
+                }else{
+                    tag=   base.UpdateTagStyle(tag, ControlStyles.INDENT, Op.Insert);
+                    editText.setPadding(15,0,0,0);
+                }
+            }
+            else if(style==ControlStyles.OUTDENT){
+                if(base.ContainsStyle(tag._ControlStyles,ControlStyles.INDENT)){
+                    tag=   base.UpdateTagStyle(tag, ControlStyles.INDENT, Op.Delete);
+                    editText.setPadding(0,0,0,0);
                 }
             }
             editText.setTag(tag);

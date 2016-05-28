@@ -72,6 +72,24 @@ android:layout_height="match_parent">
             android:src="@drawable/icon_italic"
             android:id="@+id/action_Italic" />
 
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_indent"
+            android:id="@+id/action_indent" />
+
+        <ImageButton
+            android:maxHeight="20dp"
+            android:maxWidth="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_outdent"
+            android:id="@+id/action_outdent" />
+
 
 
         <ImageButton
@@ -151,7 +169,7 @@ android:layout_height="match_parent">
 <com.irshu.libs.Editor
     android:layout_width="match_parent"
     android:id="@+id/editor"
-    app:render_type="renderer"
+    app:render_type="Editor"
     app:placeholder="Start writing here..."
     android:paddingTop="10dp"
     android:paddingLeft="10dp"

@@ -54,7 +54,6 @@ public class EditorTestActivity extends AppCompatActivity {
             }
         });
 
-
         findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +65,18 @@ public class EditorTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(ControlStyles.ITALIC);
+            }
+        });
+        findViewById(R.id.action_indent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _editor.UpdateTextStyle(ControlStyles.INDENT);
+            }
+        });
+        findViewById(R.id.action_outdent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _editor.UpdateTextStyle(ControlStyles.OUTDENT);
             }
         });
         findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
@@ -129,7 +140,7 @@ public class EditorTestActivity extends AppCompatActivity {
     }
 
     private void RenderHtml() {
-        String x="<h2 id=\"installation\" style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-top: -80px !important;\">Installation</h2>"+
+        String x="<h2 id=\"installation\" style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;color:#c00; margin-top: -80px !important;\">Installation</h2>"+
                 "<h3 id=\"requires-html5-doctype\" style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-bottom: 8px; margin-right: 0px; margin-left: 0px;\">Requires HTML5 doctype</h3>"+
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\">Bootstrap uses certain HTML elements and CSS properties which require HTML5 doctype. Include&nbsp;<code style=\"font-size: 12.6px;\">&lt;!DOCTYPE html&gt;</code>&nbsp;in the beginning of all your projects.</p>"+
                 "<h2 id=\"integration\" style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-top: -80px !important;\">Integration</h2>"+

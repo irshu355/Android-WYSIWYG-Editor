@@ -92,6 +92,9 @@
             public LinearLayout getParentView(){
                 return this.__parentView;
             }
+            public int getParentChildCount(){
+                return this.__parentView.getChildCount();
+            }
             public RenderType getRenderType(){
                 return this.__renderType;
             }
