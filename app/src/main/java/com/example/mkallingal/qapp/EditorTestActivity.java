@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
@@ -47,6 +46,14 @@ public class EditorTestActivity extends AppCompatActivity {
                 _editor.UpdateTextStyle(ControlStyles.H2);
             }
         });
+
+        findViewById(R.id.action_header_3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _editor.UpdateTextStyle(ControlStyles.H3);
+            }
+        });
+
 
         findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +106,7 @@ public class EditorTestActivity extends AppCompatActivity {
         });
         //  _editor.dividerBackground=R.drawable.divider_background_dark;
         _editor.setImageUploaderUri("http://192.168.43.239/Laser-Editor-WebApi/api/ImageUploaderApi/PostImage");
-        _editor.StartEditor();
+        //_editor.StartEditor();
         _editor.setEditorListener(new BaseClass.EditorListener() {
             @Override
             public void onTextChanged(EditText editText, Editable text) {
@@ -112,7 +119,7 @@ public class EditorTestActivity extends AppCompatActivity {
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text= _editor.GetStateAsSerialized();
+                String text= _editor.getContentAsSerialized();
                 Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getApplicationContext(), RenderTestActivity.class);
                 intent.putExtra("content", text);

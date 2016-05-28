@@ -17,28 +17,37 @@
     import android.content.Context;
     import android.graphics.Bitmap;
     import android.util.AttributeSet;
-    import android.view.View;
 
     import com.irshu.libs.models.ControlStyles;
     import com.irshu.libs.models.EditorState;
-    import com.irshu.libs.models.HtmlTag;
-
-    import org.jsoup.Jsoup;
-    import org.jsoup.nodes.Document;
-    import org.jsoup.nodes.Element;
+    import com.irshu.libs.models.RenderType;
 
     public class Editor extends BaseClass {
         public Editor(Context context, AttributeSet attrs) {
-                   super(context, attrs);
-                   super.setEditorListener(null);
-                  //  initialize(context,parentView,renderType,_PlaceHolderText);
-                }
+            super(context, attrs);
+            super.setEditorListener(null);
+            //  initialize(context,parentView,renderType,_PlaceHolderText);
+            if (getRenderType() == RenderType.Editor) {
+                getInputExtensions().InsertEditText(0, this.PlaceHolder, "");
+            }
+        }
 
         public void setEditorListener(EditorListener _listener){
             super.setEditorListener(_listener);
         }
         public void StartEditor(){
-            getInputExtensions().InsertEditText(0, this.PlaceHolder, "");
+        }
+
+        public EditorState getContent(){
+            return super.getContent();
+        }
+
+        public String getContentAsSerialized(){
+            return super.getContentAsSerialized();
+        }
+
+        public String getContentAsSerialized(EditorState state){
+            return super.getContentAsSerialized(state);
         }
 
         public void InsertImage(Bitmap bitmap){

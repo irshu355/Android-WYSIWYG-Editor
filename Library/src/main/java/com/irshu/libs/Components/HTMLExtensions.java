@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.irshu.libs.BaseClass;
 import com.irshu.libs.models.ControlStyles;
+import com.irshu.libs.models.EditorControl;
 import com.irshu.libs.models.HtmlTag;
 
 import org.jsoup.Jsoup;
@@ -42,20 +43,22 @@ public class HTMLExtensions {
         }
         switch (tag){
             case h1:
-                text= element.html();
-                 editText= base.getInputExtensions().InsertEditText(count, "", text);
-                base.getInputExtensions().UpdateTextStyle(ControlStyles.H1,editText);
-                break;
             case h2:
-                text= element.html();
-                 editText= base.getInputExtensions().InsertEditText(count, "", text);
-                base.getInputExtensions().UpdateTextStyle(ControlStyles.H2,editText);
+                RenderHeader(tag,element);
                 break;
             case p:
                 text= element.html();
                 editText= base.getInputExtensions().InsertEditText(count, "", text);
                 break;
         }
+    }
+
+   private void RenderHeader(HtmlTag tag, Element element){
+       String text= element.html();
+       int count= base.getParentView().getChildCount();
+       TextView  editText= base.getInputExtensions().InsertEditText(count, "", text);
+       ControlStyles style= tag==HtmlTag.h1?ControlStyles.H1:tag==HtmlTag.h2?ControlStyles.H2:ControlStyles.H3;
+       base.getInputExtensions().UpdateTextStyle(style,editText);
     }
     public static boolean matchesTag(String test) {
         for (HtmlTag tag : HtmlTag.values()) {

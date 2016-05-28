@@ -18,6 +18,7 @@
         import android.widget.TableLayout;
         import android.widget.TableRow;
         import android.widget.TextView;
+        import android.widget.Toast;
 
         import com.google.gson.Gson;
         import com.irshu.editor.R;
@@ -290,15 +291,6 @@
             }
 
 
-            public  boolean SaveState(String serialized){
-                if(TextUtils.isEmpty(serialized)){
-                    serialized=serializeState(GetState());
-                }
-                putValue("editorState", serialized);
-                return true;
-            }
-
-
             public EditorState getStateFromString(String content){
                 if(content==null) {
                     content = GetValue("editorState", "");
@@ -319,16 +311,26 @@
                 editor.apply();
             }
 
-            public String GetStateAsSerialized(){
-                EditorState state= GetState();
-                return  serializeState(state);
+            public String getContentAsSerialized(){
+                EditorState state= getContent();
+                return  serializeContent(state);
             }
 
-            public String serializeState(EditorState _state){
+            public String getContentAsSerialized(EditorState state){
+                return  serializeContent(state);
+            }
+
+            public String serializeContent(EditorState _state){
                 String serialized= __gson.toJson(_state);
                 return serialized;
             }
-            public EditorState GetState(){
+            public EditorState getContent(){
+
+                if(this.__renderType==RenderType.Renderer){
+                    __utilitiles.toastItOut("This option only available in editor mode");
+                    return null;
+                }
+
                 int childCount= this.__parentView.getChildCount();
                 EditorState editorState=new EditorState();
                 List<state> list=new ArrayList<>();
@@ -449,6 +451,9 @@
                     int height = size.y;
                     int[] dimen={width,height};
                     return dimen;
+                }
+                public void toastItOut(String message){
+                    Toast.makeText(__context, message, Toast.LENGTH_SHORT).show();
                 }
             }
 

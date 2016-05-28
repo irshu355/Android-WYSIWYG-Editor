@@ -28,7 +28,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.irshu.libs.BaseClass;
 import com.irshu.editor.R;
@@ -76,7 +75,7 @@ public class ImageExtensions {
 
     public void OpenImageGallery() {
         int Index=this.base.determineIndex(EditorType.none);
-        EditorState state= base.GetState();
+        EditorState state= base.getContent();
         state.PendingIndex= Index;
         Intent intent = new Intent();
 // Show only images, no videos or anything else
@@ -104,7 +103,7 @@ public class ImageExtensions {
         childLayout.setTag(control);
         if(TextUtils.isEmpty(base.getImageUploaderUri())) {
             String error="You must configure a valid remote URI to be able to upload the image.This image is not persisted";
-            Toast.makeText(context,error , Toast.LENGTH_SHORT).show();
+            base.getUtilitiles().toastItOut(error);
             TextView sts=(TextView) childLayout.findViewById(R.id.lblStatus);
             sts.setBackgroundDrawable(base.getResources().getDrawable(R.drawable.error_background));
             sts.setVisibility(View.VISIBLE);

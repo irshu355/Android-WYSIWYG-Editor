@@ -47,8 +47,9 @@ import org.jsoup.select.Elements;
  */
 public class InputExtensions{
     private Context context;
-    private int H1TEXTSIZE =20;
-    private int H2TEXTSIZE =16;
+    private int H1TEXTSIZE =22;
+    private int H2TEXTSIZE =18;
+    private int H3TEXTSIZE =16;
     private int NORMALTEXTSIZE =14;
     BaseClass base;
     public InputExtensions(BaseClass baseClass,Context context){
@@ -202,11 +203,13 @@ public class InputExtensions{
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
                 }else{
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H1TEXTSIZE);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Insert);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
                 }
 
@@ -216,11 +219,28 @@ public class InputExtensions{
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
                     tag=  base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
                 }else{
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H2TEXTSIZE);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Insert);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
+                }
+            }
+            else if(style==ControlStyles.H3){
+                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.H3)) {
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
+                    tag=  base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
+                }else{
+                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H3TEXTSIZE);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Insert);
+                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
                     tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
                 }
             }

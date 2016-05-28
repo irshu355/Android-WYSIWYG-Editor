@@ -42,6 +42,18 @@ android:layout_height="match_parent">
             android:layout_width="40dp"
             android:layout_height="40dp"/>
 
+        <Button
+            android:text="H3"
+            android:id="@+id/action_header_3"
+            android:textStyle="bold"
+            android:textColor="#444444"
+            android:background="@android:color/transparent"
+            android:width="40dp"
+            android:textSize="16sp"
+            android:height="40dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
         <ImageButton
             android:maxHeight="20dp"
             android:maxWidth="20dp"
@@ -139,7 +151,7 @@ android:layout_height="match_parent">
 <com.irshu.libs.Editor
     android:layout_width="match_parent"
     android:id="@+id/editor"
-    app:render_type="Editor"
+    app:render_type="renderer"
     app:placeholder="Start writing here..."
     android:paddingTop="10dp"
     android:paddingLeft="10dp"
