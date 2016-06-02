@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.irshu.libs.BaseClass;
 import com.irshu.libs.Editor;
-import com.irshu.libs.models.ControlStyles;
+import com.irshu.libs.models.EditorTextStyle;
 
 import java.io.IOException;
 
@@ -37,46 +37,46 @@ public class EditorTestActivity extends AppCompatActivity {
         findViewById(R.id.action_header_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(ControlStyles.H1);
+                _editor.UpdateTextStyle(EditorTextStyle.H1);
             }
         });
         findViewById(R.id.action_header_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(ControlStyles.H2);
+                _editor.UpdateTextStyle(EditorTextStyle.H2);
             }
         });
 
         findViewById(R.id.action_header_3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(ControlStyles.H3);
+                _editor.UpdateTextStyle(EditorTextStyle.H3);
             }
         });
 
         findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(ControlStyles.BOLD);
+                _editor.UpdateTextStyle(EditorTextStyle.BOLD);
             }
         });
 
         findViewById(R.id.action_Italic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(ControlStyles.ITALIC);
+                _editor.UpdateTextStyle(EditorTextStyle.ITALIC);
             }
         });
         findViewById(R.id.action_indent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(ControlStyles.INDENT);
+                _editor.UpdateTextStyle(EditorTextStyle.INDENT);
             }
         });
         findViewById(R.id.action_outdent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(ControlStyles.OUTDENT);
+                _editor.UpdateTextStyle(EditorTextStyle.OUTDENT);
             }
         });
         findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {

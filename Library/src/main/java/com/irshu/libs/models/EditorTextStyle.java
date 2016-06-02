@@ -1,6 +1,6 @@
 package com.irshu.libs.models;
 
-public enum ControlStyles{
+public enum EditorTextStyle {
     BOLD,
     ITALIC,
     UnderLined,

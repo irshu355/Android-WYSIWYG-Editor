@@ -28,7 +28,7 @@
         import com.irshu.libs.Components.InputExtensions;
         import com.irshu.libs.Components.ListItemExtensions;
         import com.irshu.libs.Components.MapExtensions;
-        import com.irshu.libs.models.ControlStyles;
+        import com.irshu.libs.models.EditorTextStyle;
         import com.irshu.libs.models.EditorControl;
         import com.irshu.libs.models.EditorState;
         import com.irshu.libs.models.EditorType;
@@ -198,8 +198,8 @@
                     return size;
                 }
             }
-            public boolean ContainsStyle(List<ControlStyles> _Styles, ControlStyles style){
-                for (ControlStyles item:_Styles){
+            public boolean ContainsStyle(List<EditorTextStyle> _Styles, EditorTextStyle style){
+                for (EditorTextStyle item:_Styles){
                     if(item==style){
                         return true;
                     }
@@ -207,8 +207,8 @@
                 }
                 return  false;
             }
-            public EditorControl UpdateTagStyle(EditorControl controlTag, ControlStyles style,Op _op){
-                List<ControlStyles> styles= controlTag._ControlStyles;
+            public EditorControl UpdateTagStyle(EditorControl controlTag, EditorTextStyle style,Op _op){
+                List<EditorTextStyle> styles= controlTag._ControlStyles;
                 if(_op==Op.Delete){
                     int index= styles.indexOf(style);
                     if(index!=-1) {
@@ -384,14 +384,13 @@
 
             public void RenderEditor(EditorState _state) {
                 this.__parentView.removeAllViews();
-                List<state> list = _state.stateList;
-                for (state item:list){
+                for (state item:_state.stateList){
                     switch (item.type){
                         case INPUT:
                             String text= item.content.get(0);
                            TextView view= __inputExtensions.InsertEditText(0, "", text);
                             if(item._ControlStyles!=null){
-                                for (ControlStyles style:item._ControlStyles){
+                                for (EditorTextStyle style:item._ControlStyles){
                                     __inputExtensions.UpdateTextStyle(style, view);
                                 }
                             }
@@ -409,7 +408,7 @@
                             TableLayout _layout=null;
                             for(int i=0;i<item.content.size();i++){
                                 if(i==0){
-                                    _layout= __listItemExtensions.insertList(list.indexOf(item),item.type==EditorType.ol,item.content.get(i));
+                                    _layout= __listItemExtensions.insertList(_state.stateList.indexOf(item),item.type==EditorType.ol,item.content.get(i));
                                 }else {
                                     __listItemExtensions.AddListItem(_layout, item.type == EditorType.ol, item.content.get(i));
                                 }
