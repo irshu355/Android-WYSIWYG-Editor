@@ -13,5 +13,5 @@ public class EditorControl {
     public ImageView.ScaleType scaleType;
     public String Path;
     public String Cords;
-    public List<ControlStyles> _ControlStyles;
+    public List<EditorTextStyle> _ControlStyles;
 }

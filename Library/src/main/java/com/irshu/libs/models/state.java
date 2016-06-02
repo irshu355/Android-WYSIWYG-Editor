@@ -6,5 +6,5 @@ import java.util.List;
 public class state{
     public EditorType type;
     public ArrayList<String> content;
-    public List<ControlStyles> _ControlStyles;
+    public List<EditorTextStyle> _ControlStyles;
 }

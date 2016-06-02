@@ -18,7 +18,7 @@
     import android.graphics.Bitmap;
     import android.util.AttributeSet;
 
-    import com.irshu.libs.models.ControlStyles;
+    import com.irshu.libs.models.EditorTextStyle;
     import com.irshu.libs.models.EditorState;
     import com.irshu.libs.models.RenderType;
 
@@ -49,6 +49,9 @@
         public String getContentAsSerialized(EditorState state){
             return super.getContentAsSerialized(state);
         }
+        public String getContentAsHTML(){
+            return getHtmlExtensions().getContentAsHTML();
+        }
 
         public void InsertImage(Bitmap bitmap){
             getImageExtensions().InsertImage(bitmap);
@@ -65,7 +68,7 @@
         public void InsertDivider(){
             getDividerExtensions().InsertDivider();
         }
-        public void UpdateTextStyle(ControlStyles style){
+        public void UpdateTextStyle(EditorTextStyle style){
             getInputExtensions().UpdateTextStyle(style, null);
         }
         public void InsertLink() {

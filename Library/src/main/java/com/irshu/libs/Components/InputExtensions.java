@@ -34,7 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.irshu.libs.BaseClass;
 import com.irshu.editor.R;
-import com.irshu.libs.models.ControlStyles;
+import com.irshu.libs.models.EditorTextStyle;
 import com.irshu.libs.models.EditorControl;
 import com.irshu.libs.models.EditorType;
 import com.irshu.libs.models.Op;
@@ -193,116 +193,122 @@ public class InputExtensions{
 
 
 
-    public void UpdateTextStyle(ControlStyles style,TextView editText) {
+    public void UpdateTextStyle(EditorTextStyle style,TextView editText) {
         /// String type = GetControlType(getActiveView());
         try {
             if(editText==null) {
                 editText = (EditText) base.getActiveView();
             }
             EditorControl tag= base.GetControlTag(editText);
-            if(style==ControlStyles.H1){
-                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.H1)) {
+            if(style== EditorTextStyle.H1){
+                if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.H1)) {
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Insert);
                 }else{
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H1TEXTSIZE);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Insert);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Insert);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Delete);
                 }
 
             }
-            else if(style==ControlStyles.H2){
-                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.H2)) {
+            else if(style== EditorTextStyle.H2){
+                if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.H2)) {
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-                    tag=  base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
+                    tag=  base.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Insert);
                 }else{
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H2TEXTSIZE);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Insert);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Insert);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Delete);
                 }
             }
-            else if(style==ControlStyles.H3){
-                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.H3)) {
+            else if(style== EditorTextStyle.H3){
+                if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.H3)) {
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-                    tag=  base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
+                    tag=  base.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Insert);
                 }else{
                     editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H3TEXTSIZE);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H3, Op.Insert);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Insert);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Delete);
                 }
             }
-            else if(style==ControlStyles.NORMAL){
+            else if(style== EditorTextStyle.NORMAL){
                 editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-                tag= base.UpdateTagStyle(tag, ControlStyles.H1, Op.Delete);
-                tag= base.UpdateTagStyle(tag, ControlStyles.H2, Op.Delete);
-                if(!base.ContainsStyle(tag._ControlStyles, ControlStyles.NORMAL)) {
-                    tag=   base.UpdateTagStyle(tag, ControlStyles.NORMAL, Op.Insert);
+                tag= base.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
+                tag= base.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
+                if(!base.ContainsStyle(tag._ControlStyles, EditorTextStyle.NORMAL)) {
+                    tag=   base.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Insert);
                 }
             }
-            else if(style==ControlStyles.BOLD){
-                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLD)) {
-                    tag=   base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Delete);
+            else if(style== EditorTextStyle.BOLD){
+                if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLD)) {
+                    tag=   base.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Delete);
                     editText.setTypeface(null, Typeface.NORMAL);
-                }else if(base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLDITALIC)){
-                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Delete);
-                    tag=  base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Insert);
+                }else if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLDITALIC)){
+                    tag=  base.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Delete);
+                    tag=  base.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Insert);
                     editText.setTypeface(null, Typeface.ITALIC);
                 }
-                else if(base.ContainsStyle(tag._ControlStyles, ControlStyles.ITALIC)){
-                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Insert);
-                    tag=  base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Delete);
+                else if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.ITALIC)){
+                    tag=  base.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Insert);
+                    tag=  base.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Delete);
                     editText.setTypeface(null, Typeface.BOLD_ITALIC);
                 }else{
-                    tag=   base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Insert);
+                    tag=   base.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Insert);
                     editText.setTypeface(null, Typeface.BOLD);
                 }
             }
-            else if(style==ControlStyles.ITALIC){
-                if(base.ContainsStyle(tag._ControlStyles, ControlStyles.ITALIC)) {
-                    tag=   base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Delete);
+            else if(style== EditorTextStyle.ITALIC){
+                if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.ITALIC)) {
+                    tag=   base.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Delete);
                     editText.setTypeface(null, Typeface.NORMAL);
-                }else if(base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLDITALIC)){
-                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Delete);
-                    tag= base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Insert);
+                }else if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLDITALIC)){
+                    tag=  base.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Delete);
+                    tag= base.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Insert);
                     editText.setTypeface(null, Typeface.BOLD);
                 }
-                else if(base.ContainsStyle(tag._ControlStyles, ControlStyles.BOLD)){
-                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLDITALIC, Op.Insert);
-                    tag=  base.UpdateTagStyle(tag, ControlStyles.BOLD, Op.Delete);
+                else if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLD)){
+                    tag=  base.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Insert);
+                    tag=  base.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Delete);
                     editText.setTypeface(null, Typeface.BOLD_ITALIC);
                 }else{
-                    tag=   base.UpdateTagStyle(tag, ControlStyles.ITALIC, Op.Insert);
+                    tag=   base.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Insert);
                     editText.setTypeface(null, Typeface.ITALIC);
                 }
             }
-            else if(style==ControlStyles.INDENT){
-                if(base.ContainsStyle(tag._ControlStyles,ControlStyles.INDENT)){
-                    tag=   base.UpdateTagStyle(tag, ControlStyles.INDENT, Op.Delete);
-                    editText.setPadding(0,0,0,0);
+            else if(style== EditorTextStyle.INDENT){
+                int pBottom= editText.getPaddingBottom();
+                int pRight= editText.getPaddingRight();
+                int pTop= editText.getPaddingTop();
+                if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.INDENT)){
+                    tag=   base.UpdateTagStyle(tag, EditorTextStyle.INDENT, Op.Delete);
+                    editText.setPadding(0,pTop,pRight,pBottom);
                 }else{
-                    tag=   base.UpdateTagStyle(tag, ControlStyles.INDENT, Op.Insert);
-                    editText.setPadding(15,0,0,0);
+                    tag=   base.UpdateTagStyle(tag, EditorTextStyle.INDENT, Op.Insert);
+                    editText.setPadding(30,pTop,pRight,pBottom);
                 }
             }
-            else if(style==ControlStyles.OUTDENT){
-                if(base.ContainsStyle(tag._ControlStyles,ControlStyles.INDENT)){
-                    tag=   base.UpdateTagStyle(tag, ControlStyles.INDENT, Op.Delete);
-                    editText.setPadding(0,0,0,0);
+            else if(style== EditorTextStyle.OUTDENT){
+                int pBottom= editText.getPaddingBottom();
+                int pRight= editText.getPaddingRight();
+                int pTop= editText.getPaddingTop();
+                if(base.ContainsStyle(tag._ControlStyles, EditorTextStyle.INDENT)){
+                    tag=   base.UpdateTagStyle(tag, EditorTextStyle.INDENT, Op.Delete);
+                    editText.setPadding(0,pTop,pRight,pBottom);
                 }
             }
             editText.setTag(tag);
