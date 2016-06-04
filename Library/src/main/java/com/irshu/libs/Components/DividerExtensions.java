@@ -36,6 +36,10 @@ public class DividerExtensions {
         this.context = context;
     }
 
+    public void setDividerBackground(int drawable){
+        this.dividerBackground=drawable;
+    }
+
     public void InsertDivider(){
 
         View view=new View(context);
@@ -48,7 +52,7 @@ public class DividerExtensions {
         base.getParentView().addView(view, Index);
         if(base.isLastRow(view)) {
             //check if ul is active
-           base.getInputExtensions().InsertEditText(Index + 1, "", "");
+           base.getInputExtensions().InsertEditText(Index + 1, null, null);
         }
     }
     public void deleteHr(int indexOfDeleteItem) {

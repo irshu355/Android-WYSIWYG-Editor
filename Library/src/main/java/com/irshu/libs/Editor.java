@@ -27,17 +27,11 @@
             super(context, attrs);
             super.setEditorListener(null);
             //  initialize(context,parentView,renderType,_PlaceHolderText);
-            if (getRenderType() == RenderType.Editor) {
-                getInputExtensions().InsertEditText(0, this.PlaceHolder, "");
-            }
         }
 
         public void setEditorListener(EditorListener _listener){
             super.setEditorListener(_listener);
         }
-        public void StartEditor(){
-        }
-
         public EditorState getContent(){
             return super.getContent();
         }
@@ -53,20 +47,50 @@
             return getHtmlExtensions().getContentAsHTML();
         }
 
-        public void InsertImage(Bitmap bitmap){
-            getImageExtensions().InsertImage(bitmap);
+        public void Render(EditorState _state) {
+            super.RenderEditor(_state);
         }
-        public void InsertMap(){
-            getMapExtensions().loadMapActivity();
+        public void Render(String HtmlString){
+            RenderEditorFromHtml(HtmlString);
         }
-        public void InsertMap(String Cords, boolean InsertEditText){
-            getMapExtensions().insertMap(Cords, InsertEditText);
+        public void Render(){
+            if (getRenderType() == RenderType.Editor) {
+                getInputExtensions().InsertEditText(0, this.PlaceHolder, null);
+            }
         }
-        public void InsertList(boolean isOrdered){
-            getListItemExtensions().Insertlist(isOrdered);
+
+        private void RestoreState(){
+            EditorState state= getStateFromString(null);
+            Render(state);
         }
-        public void InsertDivider(){
-            getDividerExtensions().InsertDivider();
+
+        public void clearAllContents(){
+             super.clearAllContents();
+        }
+
+        //region Miscellanious getters and setters
+
+        /*input extensions
+         */
+        public int getH1TextSize(){
+            return getInputExtensions().getH1TextSize();
+        }
+        public void setH1TextSize(int size){
+            getInputExtensions().setH1TextSize(size);
+        }
+
+        public int getH2TextSize(){
+            return getInputExtensions().getH2TextSize();
+        }
+        public void setH2TextSize(int size){
+            getInputExtensions().setH2TextSize(size);
+        }
+
+        public int getH3TextSize(){
+            return getInputExtensions().getH3TextSize();
+        }
+        public void setH3TextSize(int size){
+            getInputExtensions().setH3TextSize(size);
         }
         public void UpdateTextStyle(EditorTextStyle style){
             getInputExtensions().UpdateTextStyle(style, null);
@@ -75,18 +99,53 @@
             getInputExtensions().InsertLink();
         }
 
+        /*divider extensions
+         */
+
+        public void setDividerLayout(int layout){
+            this.getDividerExtensions().setDividerBackground(layout);
+        }
+        public void InsertDivider() {
+            getDividerExtensions().InsertDivider();
+        }
+
+        /*image Extensions
+         */
+
+        public void setEditorImageLayout(int layout){
+            this.getImageExtensions().setEditorImageLayout(layout);
+        }
         public void OpenImagePicker() {
             getImageExtensions().OpenImageGallery();
         }
-        public void RenderEditor(EditorState _state) {
-            super.RenderEditor(_state);
-        }
-        public void RestoreState(){
-            EditorState state= getStateFromString(null);
-            RenderEditor(state);
+        public void InsertImage(Bitmap bitmap){
+            getImageExtensions().InsertImage(bitmap, -1);
         }
 
-        public void RenderEditor(String HtmlString){
-            RenderEditorFromHtml(HtmlString);
+        /*List Item extensions
+         */
+        public void setListItemLayout(int layout){
+            this.getListItemExtensions().setListItemTemplate(layout);
         }
+        public void InsertList(boolean isOrdered){
+            getListItemExtensions().Insertlist(isOrdered);
+        }
+
+        /*Map extensions
+        */
+
+        public void setMapViewLayout(int layout){
+            this.getMapExtensions().setMapViewTemplate(layout);
+        }
+
+        public void InsertMap(){
+            getMapExtensions().loadMapActivity();
+        }
+        public void InsertMap(String Cords){
+            getMapExtensions().insertMap(Cords, true);
+        }
+
+        //endregion
+
+
     }

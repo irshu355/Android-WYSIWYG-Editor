@@ -42,7 +42,7 @@ public class HTMLExtensions {
         HtmlTag tag= HtmlTag.valueOf(element.tagName().toLowerCase());
         int count= base.getParentView().getChildCount();
         if("<br>".equals(element.html().replaceAll("\\s+", ""))||"<br/>".equals(element.html().replaceAll("\\s+", ""))){
-            base.getInputExtensions().InsertEditText(count, "", "");
+            base.getInputExtensions().InsertEditText(count, null, null);
             return;
         }
         else if("<hr>".equals(element.html().replaceAll("\\s+", ""))||"<hr/>".equals(element.html().replaceAll("\\s+", ""))){
@@ -57,7 +57,7 @@ public class HTMLExtensions {
                 break;
             case p:
                 text= element.html();
-                editText= base.getInputExtensions().InsertEditText(count, "", text);
+                editText= base.getInputExtensions().InsertEditText(count, null, text);
                 break;
             case ul:
             case ol:
@@ -71,10 +71,9 @@ public class HTMLExtensions {
 
     private void RenderImage(Element element) {
         String src= element.attr("src");
-        Bitmap bitmap= base.getImageExtensions().getBitmapFromURL(src);
-        base.getImageExtensions().InsertImage(bitmap);
+        int Index= base.getParentChildCount();
+        base.getImageExtensions().executeDownloadImageTask(src,Index);
     }
-
     private void RenderList(boolean isOrdered, Element element) {
         if(element.children().size()>0){
             Element li=element.child(0);
@@ -90,7 +89,7 @@ public class HTMLExtensions {
     private void RenderHeader(HtmlTag tag, Element element){
        int count= base.getParentView().getChildCount();
        String text=getHtmlSpan(element);
-       TextView  editText= base.getInputExtensions().InsertEditText(count, "", text);
+       TextView  editText= base.getInputExtensions().InsertEditText(count, null, text);
        EditorTextStyle style= tag==HtmlTag.h1? EditorTextStyle.H1:tag==HtmlTag.h2? EditorTextStyle.H2: EditorTextStyle.H3;
        base.getInputExtensions().UpdateTextStyle(style,editText);
     }

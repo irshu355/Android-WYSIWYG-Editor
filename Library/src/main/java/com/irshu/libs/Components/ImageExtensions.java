@@ -21,7 +21,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,9 +66,18 @@ public class ImageExtensions {
     private Context context;
     private BaseClass base;
     private String imageUploadUri;
+    private int editorImageLayout=R.layout.editor_image_view;
     public ImageExtensions(BaseClass baseClass, Context context){
         this.context = context;
         this.base = baseClass;
+    }
+
+    public void setEditorImageLayout(int drawable){
+        this.editorImageLayout= drawable;
+    }
+
+    public void executeDownloadImageTask(String url, int index){
+        new DownloadImageTask(index).execute(url);
     }
 
     public void setImageUploadUri(String uri){
@@ -85,21 +96,22 @@ public class ImageExtensions {
         ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select an image"), base.PICK_IMAGE_REQUEST);
     }
 
-    public void InsertImage(Bitmap _image) {
-       // RenderEditor(getStateFromString());
-        final View childLayout = ((Activity) context).getLayoutInflater().inflate(R.layout.editor_image_view, null);
+    public void InsertImage(Bitmap _image,int Index) {
+       // Render(getStateFromString());
+        final View childLayout = ((Activity) context).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
         imageView.setImageBitmap(_image);
         final String uuid= GenerateUUID();
         BindEvents(childLayout);
-        int Index= base.determineIndex(EditorType.img);
+        if(Index==-1) {
+             Index = base.determineIndex(EditorType.img);
+        }
         base.getParentView().addView(childLayout, Index);
         //      _Views.add(childLayout);
         if(base.isLastRow(childLayout)) {
-            base.getInputExtensions().InsertEditText(Index + 1, "", "");
+            base.getInputExtensions().InsertEditText(Index + 1, null, null);
         }
         EditorControl control= base.CreateTag(EditorType.img);
-        control.scaleType= ImageView.ScaleType.CENTER_CROP;
         childLayout.setTag(control);
         if(TextUtils.isEmpty(base.getImageUploaderUri())) {
             String error="You must configure a valid remote URI to be able to upload the image.This image is not persisted";
@@ -134,21 +146,27 @@ public class ImageExtensions {
     /*
       /used to fetch an image from internet and return a Bitmap equivalent
     */
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (IOException e) {
-            // Log exception
-            return null;
+   private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        private int InsertIndex;
+        public DownloadImageTask(int index) {
+            this.InsertIndex=index;
+        }
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+        protected void onPostExecute(Bitmap result) {
+            InsertImage(result,this.InsertIndex);
         }
     }
-
     /*
          /used to upload the image to remote
        */
@@ -186,7 +204,6 @@ public class ImageExtensions {
                     lblStatus.setBackgroundDrawable(base.getResources().getDrawable(R.drawable.success_background));
                     EditorControl control= base.CreateTag(EditorType.img);
                     control.Path= response.body().Uri;
-                    control.scaleType= ImageView.ScaleType.CENTER_CROP;
                     view.setTag(control);
                     new java.util.Timer().schedule(new TimerTask() {
                         @Override
@@ -219,40 +236,20 @@ public class ImageExtensions {
         final ImageView imageView= (ImageView) view.findViewById(R.id.imageView);
         imageView.setScaleType(scaleType);
         EditorControl tag= base.GetControlTag(view);
-        tag.scaleType= scaleType;
         view.setTag(tag);
     }
 
     private void BindEvents(final View layout){
         final ImageView imageView= (ImageView) layout.findViewById(R.id.imageView);
-        final View btnFitWidth=layout.findViewById(R.id.btnFitWidth);
-        final View btnCenterCrop=layout.findViewById(R.id.btnCenterCrop);
         final View btn_remove=layout.findViewById(R.id.btn_remove);
-        final View btnStretch=layout.findViewById(R.id.btnStretch);
-        btnFitWidth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SetImageScaleType(layout,ImageView.ScaleType.FIT_END);
-            }
-        });
-        btnCenterCrop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SetImageScaleType(layout, ImageView.ScaleType.CENTER_CROP);
-            }
-        });
+
         btn_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 base.getParentView().removeView(layout);
             }
         });
-        btnStretch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SetImageScaleType(layout, ImageView.ScaleType.FIT_XY);
-            }
-        });
+
         imageView.setOnTouchListener(new View.OnTouchListener() {
             private Rect rect;
             @Override
@@ -276,18 +273,12 @@ public class ImageExtensions {
                 @Override
                 public void onClick(View v) {
                     btn_remove.setVisibility(View.VISIBLE);
-                    btnCenterCrop.setVisibility(View.VISIBLE);
-                    btnFitWidth.setVisibility(View.VISIBLE);
-                    btnStretch.setVisibility(View.VISIBLE);
                 }
             });
             imageView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     btn_remove.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
-                    btnCenterCrop.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
-                    btnFitWidth.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
-                    btnStretch.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
                 }
             });
     }

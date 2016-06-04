@@ -10,7 +10,6 @@ import java.util.List;
  */
 public class EditorControl {
     public EditorType Type;
-    public ImageView.ScaleType scaleType;
     public String Path;
     public String Cords;
     public List<EditorTextStyle> _ControlStyles;

@@ -52,6 +52,30 @@ public class InputExtensions{
     private int H3TEXTSIZE =16;
     private int NORMALTEXTSIZE =14;
     BaseClass base;
+
+    public int getH1TextSize(){
+        return this.H1TEXTSIZE;
+    }
+    public void setH1TextSize(int size)
+    {
+        this.H1TEXTSIZE=size;
+    }
+    public int getH2TextSize(){
+        return this.H2TEXTSIZE;
+    }
+    public void setH2TextSize(int size)
+    {
+        this.H2TEXTSIZE=size;
+    }
+
+    public int getH3TextSize(){
+        return this.H3TEXTSIZE;
+    }
+    public void setH3TextSize(int size)
+    {
+        this.H3TEXTSIZE=size;
+    }
+
     public InputExtensions(BaseClass baseClass,Context context){
         this.base = baseClass;
         this.context = context;
@@ -92,10 +116,10 @@ public class InputExtensions{
         editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.getResources().getDisplayMetrics()), 1.0f);
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        if(hint.length()!=0){
+        if(hint!=null){
             editText.setHint(hint);
         }
-        if(text.length()!=0){
+        if(text!=null){
             setText(editText, text);
         }
         editText.setTag(base.CreateTag(EditorType.INPUT));
@@ -142,6 +166,11 @@ public class InputExtensions{
                         text = text.replaceAll("<br>", "");
                         setText(editText, text);
                         int index = base.getParentView().indexOfChild(editText);
+                        /* if the index was 0, set the placeholder to empty
+                         */
+                        if(index==0){
+                            editText.setHint(null);
+                        }
 
                         /*
                         * if user has configured the listener, fire the onTextChanged event
@@ -149,7 +178,7 @@ public class InputExtensions{
                         /*
                         * since it was a return key, add a new editText below
                         */
-                        InsertEditText(index + 1, "", "");
+                        InsertEditText(index + 1, null, null);
                     }
                 }
                 if (base.getEditorListener() != null) {

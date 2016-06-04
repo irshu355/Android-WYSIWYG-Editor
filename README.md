@@ -66,8 +66,9 @@ Usage
      protected void onCreate(Bundle savedInstanceState) {
 
         _editor= (Editor) findViewById(R.id.editor);
+        _editor.Render();
         
-        findViewById(R.id.action_header_1).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.action_header_1).setOnClickListener(new View.OnClickListener()   {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(ControlStyles.H1);
@@ -122,6 +123,12 @@ Usage
                 _editor.InsertMap();
             }
         });
+         findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _editor.clearAllContents();
+            }
+        });
     }
         
     
@@ -146,7 +153,7 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
             _editor.RestoreState();
         }
         else if(requestCode== _editor.MAP_MARKER_REQUEST){
-            _editor.InsertMap(data.getStringExtra("cords"), true);
+            _editor.InsertMap(data.getStringExtra("cords"));
         }
     }
 
@@ -162,23 +169,38 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
 
 ##API
 
- - `UpdateTextStyle(EditorTextStyle style);` Update the text style for
-   the currently active block. Possible values are `H1,H2,H3,BOLD,ITALIC,INDENT and OUTDENT`
-   
- - `InsertList(boolean isOrdered);`Insert an Ordered or Unordered List. 
- - `InsertDivider();` Insert a line divider
+ - `Render();` Render the editor. This method must be called to render the editor.
  
- - `InsertLink():` Insert a link to the editor. Calling this method will open the dialog, where the user can type in the URL.
+ - `Render(String html)` Render the editor with HTML as parameter.
+ 
+ - `Render(EditorState state)` Render the editor with the state as parameter
+ 
+ - `UpdateTextStyle(EditorTextStyle style);` Update the text style for
+   the currently active block. Possible values are `H1,H2,H3,BOLD,ITALIC,INDENT and OUTDENT`  
+   
+
+ - `setH1TextSize(int size), setH2TextSize(int size) and setH3TextSize(int size)` Override the existing text sizes. There are getter methods as well to retrieve the existing text sizes for each.
  
  - `OpenImagePicker();` Opens up the image picker. Once the user has selected the image, it's automatically inserted to the editor. But you must configure a remote URL ,where you want the image to be uploaded. If the Remote URL is not specifed, the image is not persisted.
 
  - `InsertImage(Bitmap bitmap);` Insert a bitmap image into the editor.
 
  - `setImageUploaderUri(String Url);`used to configure the remote URL ,where you want the image to be uploaded. This is compulsory if you are using the Image Picker.
+ 
+ - `setEditorImageLayout(int layout);` Override the default layout for images in the editor.
+
+ - `InsertList(boolean isOrdered);`Insert an Ordered or Unordered List.
+  
+ - `setListItemLayout(int layout);` Override the default layout for list items.
+
+ - `InsertDivider();` Insert a line divider
+ 
+ - `setDividerLayout(int layout);` Override the default layout for dividers
 
  - `InsertMap():` Fires up the google map location picker activity. Once the user has selected the location, the library will automatically insert the marker with the location into editor.
 
- - `InsertMap(data.getStringExtra("cords"), true);` Insert the marker into the editor. This method is intented to use inside `onActivityResult():`
+ - `InsertMap(String Cords);` Insert the marker into the editor. The cordinates must be of string form,  `"LAT,LNG"`
+ - `setMapViewLayout(int layout)` Override the default layout for maps in the editor
  
  - `RenderEditor(String html);` Used to render the content into the editor from an HTML string
  

@@ -354,7 +354,6 @@
                         case img:
                             EditorControl imgTag = (EditorControl) view.getTag();
                             state.content.add(imgTag.Path);
-                            state.content.add(imgTag.scaleType.toString());
                             list.add(state);
                             //field type, content[]
                             break;
@@ -437,6 +436,10 @@
 
             public void RenderEditorFromHtml(String content){
                 __htmlExtensions.parseHtml(content);
+            }
+
+            public void clearAllContents(){
+                this.__parentView.removeAllViews();
             }
 
             public class Utilitiles{

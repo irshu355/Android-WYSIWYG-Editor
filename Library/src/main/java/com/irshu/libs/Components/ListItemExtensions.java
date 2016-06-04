@@ -43,9 +43,15 @@ import com.irshu.libs.models.RenderType;
 public class ListItemExtensions {
     private Context context;
     BaseClass base;
+    private int listItemTemplate=R.layout.tmpl_unordered_list_item;
+
     public ListItemExtensions(BaseClass baseClass, Context context){
         this.base = baseClass;
         this.context =context;
+    }
+
+    public void setListItemTemplate(int drawable){
+        this.listItemTemplate=drawable;
     }
 
     public TableLayout insertList(int Index, boolean isOrdered, String text){
@@ -67,7 +73,7 @@ public class ListItemExtensions {
     }
 
     public View AddListItem(TableLayout layout, boolean isOrdered, String text){
-        final View childLayout = ((Activity) context).getLayoutInflater().inflate(R.layout.tmpl_unordered_list_item, null);
+        final View childLayout = ((Activity) context).getLayoutInflater().inflate(this.listItemTemplate, null);
         final CustomEditText editText= (CustomEditText) childLayout.findViewById(R.id.txtText);
         final TextView textView= (TextView) childLayout.findViewById(R.id.lblText);
         if(isOrdered){
@@ -134,7 +140,7 @@ public class ListItemExtensions {
                             if (s.length() == 0 || s.toString().equals("\n")) {
                                 int index = base.getParentView().indexOfChild(_table);
                                 _table.removeView(_row);
-                                base.getInputExtensions().InsertEditText(index + 1, "", "");
+                                base.getInputExtensions().InsertEditText(index + 1, null, null);
                             } else {
                                 Spanned __ = Html.fromHtml(text);
                                 CharSequence toReplace = base.getInputExtensions().noTrailingwhiteLines(__);

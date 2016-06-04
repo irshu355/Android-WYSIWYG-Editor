@@ -35,9 +35,16 @@ import com.squareup.picasso.Picasso;
 public class MapExtensions {
     private Context context;
     BaseClass base;
+    private int mapExtensionTemplate=R.layout.editor_image_view;
+
     public MapExtensions(BaseClass baseClass, Context context){
         this.base = baseClass;
         this.context = context;
+    }
+
+    public void setMapViewTemplate(int drawable)
+    {
+        this.mapExtensionTemplate= drawable;
     }
 
     public void insertMap(String cords,boolean insertEditText) {
@@ -57,7 +64,7 @@ public class MapExtensions {
 //        parentView.addView(imageView);
 //        Picasso.with(this.context).load(builder.toString()).into(imageView);
 
-        final View childLayout = ((Activity) context).getLayoutInflater().inflate(R.layout.editor_image_view, null);
+        final View childLayout = ((Activity) context).getLayoutInflater().inflate(this.mapExtensionTemplate, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
         Picasso.with(this.context).load(builder.toString()).into(imageView);
 
@@ -91,7 +98,7 @@ public class MapExtensions {
             }
         }
         if(insertEditText){
-          base.getInputExtensions().InsertEditText(Index + 1, "", "");
+          base.getInputExtensions().InsertEditText(Index + 1, null, null);
         }
     }
 

@@ -44,6 +44,7 @@ public class EditorTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(EditorTextStyle.H2);
+
             }
         });
 
@@ -115,6 +116,13 @@ public class EditorTestActivity extends AppCompatActivity {
                 _editor.InsertMap();
             }
         });
+        findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _editor.clearAllContents();
+            }
+        });
+
         //  _editor.dividerBackground=R.drawable.divider_background_dark;
         _editor.setImageUploaderUri("http://192.168.43.239/Laser-Editor-WebApi/api/ImageUploaderApi/PostImage");
         //_editor.StartEditor();
@@ -125,7 +133,7 @@ public class EditorTestActivity extends AppCompatActivity {
             }
         });
 
-        RenderHtml();
+        Render();
 
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,10 +147,11 @@ public class EditorTestActivity extends AppCompatActivity {
         });
     }
 
-    private void RenderHtml() {
+    private void Render() {
         String x="<h2 id=\"installation\" style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;color:#c00; margin-top: -80px !important;\">Installation</h2>"+
                 "<h3 id=\"requires-html5-doctype\" style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-bottom: 8px; margin-right: 0px; margin-left: 0px;\">Requires HTML5 doctype</h3>"+
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\">Bootstrap uses certain HTML elements and CSS properties which require HTML5 doctype. Include&nbsp;<code style=\"font-size: 12.6px;\">&lt;!DOCTYPE html&gt;</code>&nbsp;in the beginning of all your projects.</p>"+
+                "<img src=\"http://www.scifibloggers.com/wp-content/uploads/TOR_2.jpg\" />"+
                 "<h2 id=\"integration\" style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-top: -80px !important;\">Integration</h2>"+
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\">3rd parties available in django, rails, angular and so on.</p>"+
                 "<h3 id=\"django\" style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-bottom: 8px; margin-right: 0px; margin-left: 0px;\">Django</h3>"+
@@ -164,7 +173,7 @@ public class EditorTestActivity extends AppCompatActivity {
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\">Example about using summernote with meteor.</p>"+
                 "<ul style=\"color: rgb(51, 51, 51);\"><li style=\"font-size: 14px; color: rgb(104, 116, 127);\"><a href=\"https://github.com/hackerwins/summernote-meteor-example\" target=\"_blank\">summernote-meteor-example</a></li></ul>"+
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\"><br></p>";
-        _editor.RenderEditor(x);
+        _editor.Render();
 
     }
 
@@ -187,7 +196,7 @@ public class EditorTestActivity extends AppCompatActivity {
            // _editor.RestoreState();
         }
         else if(requestCode== _editor.MAP_MARKER_REQUEST){
-            _editor.InsertMap(data.getStringExtra("cords"), true);
+            _editor.InsertMap(data.getStringExtra("cords"));
         }
     }
 

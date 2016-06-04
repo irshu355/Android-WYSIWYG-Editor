@@ -32,6 +32,6 @@ public class RenderTestActivity extends AppCompatActivity {
         Editor renderer= (Editor) findViewById(R.id.renderer);
         String content= getIntent().getStringExtra("content");
         EditorState Deserialized= gson.fromJson(content, EditorState.class);
-        renderer.RenderEditor(Deserialized);
+        renderer.Render(Deserialized);
     }
 }
