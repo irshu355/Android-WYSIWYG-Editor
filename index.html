@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Laser-native-editor by irshuLx</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Laser-native-editor</h1>
+      <h2 class="project-tagline">Laser-Native-Editor is a WYSIWYG editor written in Android using the native components in the content tree. The library can be used as both Editor and Renderer. The HTML parser helps it easier to integrate with specific web WYSIWY</h2>
+      <a href="https://github.com/irshuLx/laser-native-editor" class="btn">View on GitHub</a>
+      <a href="https://github.com/irshuLx/laser-native-editor/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/irshuLx/laser-native-editor/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="laser-native-editor" class="anchor" href="#laser-native-editor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laser-Native-Editor</h1>
+
+<p><em>Laser-Native-Editor</em>* is a WYSIWYG editor completely written in Android using the native components in the editor tree.</p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h2>
+
+<p><img src="/screens/gif-1.gif" alt="enter image description here">    <img src="/screens/gif-2.gif" alt="enter image description here">    <img src="/screens/gif-3.gif" alt="enter image description here">    <img src="https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13227159_269389593411500_6219375228375154304_n.jpg?oh=f6b5fe0ab000d0eb89915d0147ff24ef&amp;oe=579B3038" alt="enter image description here">    <img src="https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13177651_269390020078124_2120913121972781573_n.jpg?oh=4a94f50c352330007063dc7dd092da0d&amp;oe=57E6CE25" alt="enter image description here">  </p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>
+<strong>Renderer or Editor</strong>: You can use Laser as a <strong>Renderer</strong> to Render the content in your views. Or use it as an <strong>Editor</strong> to create the content.</li>
+<li>
+<strong>No Webviews used</strong> to render the content. Laser uses Native EditText, ImageView and as such to render the contents.</li>
+<li>
+<strong>HTML Parser:</strong> Render your HTML Code into the editor and vice versa.</li>
+<li>
+<strong>Image Uploader Api:</strong> Use the Built-in API to upload the images to the server.</li>
+<li>Flexibility to create your own Toolbar layout. Just hookup the API methods on the click events.</li>
+<li>Image Orientation: Fit width, Center Crop or Stretch.</li>
+</ul>
+
+<p>The editor is built, so that every part of the design have been exposed and is available for customization. You can define, how the editor should look like, and what are the controls, that should be available (the controls toolbar layout can also be created by yourself, just call the API methods on the click event).</p>
+
+<p><strong>Available Controls:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Control</th>
+<th align="center">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">
+<code>H1</code>,  <code>H2</code> and <code>H3</code>
+</td>
+<td align="center">Insert Headings</td>
+</tr>
+<tr>
+<td align="left">
+<code>Bold</code>, <code>Italic</code>, <code>Intent</code> &amp; <code>Outdent</code>
+</td>
+<td align="center">Format the text</td>
+</tr>
+<tr>
+<td align="left"><code>Image Picker</code></td>
+<td align="center">Insert Images to the editor from storage or a URL</td>
+</tr>
+<tr>
+<td align="left"><code>Hyperlinks</code></td>
+<td align="center">Add Links to the editor</td>
+</tr>
+<tr>
+<td align="left"><code>Location Selector</code></td>
+<td align="center">Use the embedded map editor to tag and insert locations to the editor</td>
+</tr>
+<tr>
+<td align="left">
+<code>Numbered</code> and <code>Bulleted</code> Lists</td>
+<td align="center">Let's you created Unorderd and Ordered lists</td>
+</tr>
+<tr>
+<td align="left"><code>Line Divider</code></td>
+<td align="center">Add a divider among paragraphs or Headings</td>
+</tr>
+<tr>
+<td align="left"><code>Clear Content</code></td>
+<td align="center">Remove all contents from the editor</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p><strong>Layout XML</strong></p>
+
+<pre><code>&lt;com.irshu.libs.Editor
+    android:layout_width="match_parent"
+    android:id="@+id/editor"
+    app:render_type="Editor"
+    app:placeholder="Start writing here..."
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="100dp"
+/&gt;
+</code></pre>
+
+<p><strong>Activity</strong></p>
+
+<pre><code> @Override
+ protected void onCreate(Bundle savedInstanceState) {
+
+    _editor= (Editor) findViewById(R.id.editor);
+    _editor.Render();
+
+    findViewById(R.id.action_header_1).setOnClickListener(new View.OnClickListener()   {
+        @Override
+        public void onClick(View v) {
+            _editor.UpdateTextStyle(ControlStyles.H1);
+        }
+    });
+    findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            _editor.UpdateTextStyle(ControlStyles.BOLD);
+        }
+    });
+
+    findViewById(R.id.action_Italic).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            _editor.UpdateTextStyle(ControlStyles.ITALIC);
+        }
+    });
+    findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            _editor.InsertList(false);
+        }
+    });
+    findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            _editor.InsertList(true);
+        }
+    });
+    findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            _editor.InsertDivider();
+        }
+    });
+    findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            _editor.OpenImagePicker();
+        }
+    });
+    findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            _editor.InsertLink();
+        }
+    });
+    findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            _editor.InsertMap();
+        }
+    });
+     findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            _editor.clearAllContents();
+        }
+    });
+}
+</code></pre>
+
+<p>If you are using <strong>Image Pickers</strong> or <strong>Map Marker Pickers</strong>, Add the following into your <strong>Activity</strong>:</p>
+
+<pre><code> @Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    if (requestCode == _editor.PICK_IMAGE_REQUEST &amp;&amp; resultCode == Activity.RESULT_OK&amp;&amp; data != null &amp;&amp; data.getData() != null) {
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+            _editor.InsertImage(bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    else if (resultCode == Activity.RESULT_CANCELED) {
+        //Write your code if there's no result
+        _editor.RestoreState();
+    }
+    else if(requestCode== _editor.MAP_MARKER_REQUEST){
+        _editor.InsertMap(data.getStringExtra("cords"));
+    }
+}
+</code></pre>
+
+<h3>
+<a id="adding-callbacks" class="anchor" href="#adding-callbacks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding Callbacks</h3>
+
+<pre><code> _editor.setEditorListener(new BaseClass.EditorListener() {
+            @Override
+            public void onTextChanged(EditText editText, Editable text) {
+               // Toast.makeText(EditorTestActivity.this, text,Toast.LENGTH_SHORT).show();
+            }
+        });
+</code></pre>
+
+<h2>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
+
+<ul>
+<li><p><code>Render();</code> Render the editor. This method must be called to render the editor.</p></li>
+<li><p><code>Render(String html)</code> Render the editor with HTML as parameter.</p></li>
+<li><p><code>Render(EditorState state)</code> Render the editor with the state as parameter</p></li>
+<li><p><code>UpdateTextStyle(EditorTextStyle style);</code> Update the text style for
+the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDENT and OUTDENT</code>  </p></li>
+<li><p><code>setH1TextSize(int size), setH2TextSize(int size) and setH3TextSize(int size)</code> Override the existing text sizes. There are getter methods as well to retrieve the existing text sizes for each.</p></li>
+<li><p><code>OpenImagePicker();</code> Opens up the image picker. Once the user has selected the image, it's automatically inserted to the editor. But you must configure a remote URL ,where you want the image to be uploaded. If the Remote URL is not specifed, the image is not persisted.</p></li>
+<li><p><code>InsertImage(Bitmap bitmap);</code> Insert a bitmap image into the editor.</p></li>
+<li><p><code>setImageUploaderUri(String Url);</code>used to configure the remote URL ,where you want the image to be uploaded. This is compulsory if you are using the Image Picker.</p></li>
+<li><p><code>setEditorImageLayout(int layout);</code> Override the default layout for images in the editor.</p></li>
+<li><p><code>InsertList(boolean isOrdered);</code>Insert an Ordered or Unordered List.</p></li>
+<li><p><code>setListItemLayout(int layout);</code> Override the default layout for list items.</p></li>
+<li><p><code>InsertDivider();</code> Insert a line divider</p></li>
+<li><p><code>setDividerLayout(int layout);</code> Override the default layout for dividers</p></li>
+<li><p><code>InsertMap():</code> Fires up the google map location picker activity. Once the user has selected the location, the library will automatically insert the marker with the location into editor.</p></li>
+<li><p><code>InsertMap(String Cords);</code> Insert the marker into the editor. The cordinates must be of string form,  <code>"LAT,LNG"</code></p></li>
+<li><p><code>setMapViewLayout(int layout)</code> Override the default layout for maps in the editor</p></li>
+<li><p><code>RenderEditor(String html);</code> Used to render the content into the editor from an HTML string</p></li>
+<li><p><code>getContent();</code>  returns the content in the editor as <code>EditorState</code></p></li>
+<li><p><code>getContentAsSerialized();</code> returns the content as serialized form of EditorState</p></li>
+<li><p><code>getContentAsSerialized(EditorState state);</code> returns the provided parameter as serialized.</p></li>
+<li>
+<code>getContentAsHTML();</code> returns the editor content in HTML format. </li>
+</ul>
+
+<h2>
+<a id="future-improvements" class="anchor" href="#future-improvements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Future Improvements</h2>
+
+<ul>
+<li>Insert quotes.</li>
+<li>Underline and Overline selections.</li>
+<li>Imrove and add more callbacks.</li>
+</ul>
+
+<p>Contributions are much appreciated, feel free to fork and customize for your needs.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/irshuLx/laser-native-editor">Laser-native-editor</a> is maintained by <a href="https://github.com/irshuLx">irshuLx</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
