@@ -1,7 +1,7 @@
 Laser-Native-Editor
 ===================
 
-*Laser-Native-Editor** is a WYSIWYG editor completely written in Android using the native components in the editor tree.
+Laser-Native-Editor is an iFrame free WYSIWYG editor that uses the native components in the content tree.
 
 Download
 ------------
@@ -27,7 +27,7 @@ Demo
 Features
 -------------
 
- - **Renderer or Editor**: You can use Laser as a **Renderer** to Render the content in your views. Or use it as an **Editor** to create the content.
+ - **Renderer or Editor**: You can use Laser as a **Renderer** to Render the content or use it as an **Editor** to create the content.
  - **No Webviews used** to render the content. Laser uses Native EditText, ImageView and as such to render the contents.
  - **HTML Parser:** Render your HTML Code into the editor and vice versa.
  - **Image Uploader Api:** Use the Built-in API to upload the images to the server.
