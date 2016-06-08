@@ -1,7 +1,7 @@
 Laser-Native-Editor
 ===================
 
-Laser-Native-Editor is an iFrame free WYSIWYG editor that uses the native components in the content tree.
+**Laser-Native-Editor** is an iFrame free WYSIWYG editor that uses the native components in the content tree.
 
 Download
 ------------
