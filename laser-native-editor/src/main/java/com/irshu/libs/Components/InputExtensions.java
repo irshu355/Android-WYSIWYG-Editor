@@ -160,7 +160,7 @@ public class InputExtensions{
                 String text = Html.toHtml(editText.getText());
                 if (s.length() > 0) {
                         /*
-                        * if user had pressed enter, replace it with <br/>
+                        * if user had pressed enter, replace it with br
                         */
                     if (s.charAt(s.length() - 1) == '\n') {
                         text = text.replaceAll("<br>", "");
@@ -387,7 +387,7 @@ public class InputExtensions{
                 x.get(0).html(existing + " <a href='" + uri + "'>" + uri + "</a>");
                 Spanned toTrim=Html.fromHtml(x.toString());
                 CharSequence trimmed = noTrailingwhiteLines(toTrim);
-                editText.setText(trimmed);   //"<p><a href='#'>Hello</a> There, how are you?</p>"
+                editText.setText(trimmed);   //
                 editText.setSelection(editText.getText().length());
             }
         }

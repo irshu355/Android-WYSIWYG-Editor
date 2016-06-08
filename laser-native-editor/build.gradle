@@ -3,7 +3,7 @@ ext {
     bintrayRepo = 'maven'
     bintrayName = 'laser-native-editor'
 
-    publishedGroupId = 'com.irshu.libs'
+    publishedGroupId = 'com.github.irshulx'
     libraryName = 'laser-native-editor'
     artifact = 'laser-native-editor'
 

@@ -48,5 +48,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:8.4.0'
     compile 'com.google.android.gms:play-services-location:8.4.0'
     compile 'org.apmem.tools:layouts:1.10@aar'
-    compile project(':Library')
+    compile project(':laser-native-editor')
 }
