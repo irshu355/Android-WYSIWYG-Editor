@@ -166,7 +166,7 @@ android:layout_height="match_parent">
         android:layout_alignParentTop="true"
         android:layout_height="match_parent"
         >
-<com.irshu.libs.Editor
+<com.github.irshulx.Editor
     android:layout_width="match_parent"
     android:id="@+id/editor"
     app:render_type="Editor"
@@ -178,6 +178,6 @@ android:layout_height="match_parent">
     android:paddingBottom="100dp"
 >
 
-</com.irshu.libs.Editor>
+</com.github.irshulx.Editor>
     </ScrollView>
 </RelativeLayout>

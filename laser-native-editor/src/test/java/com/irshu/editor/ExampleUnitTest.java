@@ -1,4 +1,4 @@
-package com.irshu.libs;
+package com.github.irshulx;
 
 import org.junit.Test;
 

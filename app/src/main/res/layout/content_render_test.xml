@@ -10,7 +10,7 @@
     tools:context="com.example.mkallingal.qapp.RenderActivity"
     tools:showIn="@layout/activity_render_test">
 
-    <com.irshu.libs.Editor
+    <com.github.irshulx.Editor
         android:layout_width="match_parent"
         android:id="@+id/renderer"
         app:render_type="Renderer"

@@ -46,7 +46,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.irshu.libs.MapsActivity"
+            android:name="com.github.irshulx.MapsActivity"
             android:label="Map" />
         <activity
             android:name=".EditorTestActivity"
