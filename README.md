@@ -81,6 +81,8 @@ Usage
         _editor= (Editor) findViewById(R.id.editor);
         _editor.Render();
         
+        // below are the API's you can use to insert content into the editor
+        
         findViewById(R.id.action_header_1).setOnClickListener(new View.OnClickListener()   {
             @Override
             public void onClick(View v) {
