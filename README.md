@@ -57,7 +57,7 @@ Usage
 
   
 
-    <com.irshu.libs.Editor
+    <com.github.irshulx.Editor
         android:layout_width="match_parent"
         android:id="@+id/editor"
         app:render_type="Editor"
