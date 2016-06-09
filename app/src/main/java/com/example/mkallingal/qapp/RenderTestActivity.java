@@ -20,15 +20,6 @@ public class RenderTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_render_test);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         Editor renderer= (Editor) findViewById(R.id.renderer);
         String content= getIntent().getStringExtra("content");
         EditorState Deserialized= gson.fromJson(content, EditorState.class);

@@ -1,15 +1,20 @@
 package com.example.mkallingal.qapp;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +30,8 @@ public class EditorTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_test);
+        Button btnRender=(Button)findViewById(R.id.btnRender);
+        setGhost(btnRender);
         _editor= (Editor) findViewById(R.id.editor);
         CreateEditor();
 
@@ -138,13 +145,24 @@ public class EditorTestActivity extends AppCompatActivity {
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                Retrieve the content as serialized, you could also say getContentAsHTML();
+                */
                 String text= _editor.getContentAsSerialized();
-                Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getApplicationContext(), RenderTestActivity.class);
                 intent.putExtra("content", text);
                 startActivity(intent);
             }
         });
+    }
+
+    public static void setGhost(Button button) {
+        int radius = 4;
+        GradientDrawable background = new GradientDrawable();
+        background.setShape(GradientDrawable.RECTANGLE);
+        background.setStroke(4, Color.WHITE);
+        background.setCornerRadius(radius);
+        button.setBackgroundDrawable(background);
     }
 
     private void Render() {

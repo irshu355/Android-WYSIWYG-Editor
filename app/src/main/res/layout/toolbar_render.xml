@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/darkred"
+    android:background="@color/blue"
     android:minHeight="?attr/actionBarSize">
 
 
@@ -14,28 +14,13 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="EDITOR DEMO"
+            android:text="RENDERED VIEW"
             android:paddingTop="5dp"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textColor="@color/f5f5f5"
             android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btnRender"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:height="35dp"
-            android:layout_marginTop="3dp"
-            android:background="@android:color/transparent"
-            android:padding="4dp"
-            android:text="Render"
-            android:textColor="@color/f5f5f5"
-            android:textSize="@dimen/large_text"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp" />
     </RelativeLayout>
 
 
