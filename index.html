@@ -29,7 +29,7 @@
 
 <p>gradle:</p>
 
-<pre><code>compile 'com.github.irshulx:laser-native-editor:0.1.0'
+<pre><code>compile 'com.github.irshulx:laser-native-editor:0.2.0'
 </code></pre>
 
 <p>or maven:</p>
@@ -139,6 +139,8 @@
 
     _editor= (Editor) findViewById(R.id.editor);
     _editor.Render();
+
+    // below are the API's you can use to insert content into the editor
 
     findViewById(R.id.action_header_1).setOnClickListener(new View.OnClickListener()   {
         @Override
