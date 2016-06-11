@@ -34,7 +34,7 @@ import android.widget.TextView;
 import com.github.irshulx.BaseClass;
 import com.github.irshulx.R;
 import com.github.irshulx.models.EditorControl;
-import com.github.irshulx.models.EditorState;
+import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorType;
 import com.github.irshulx.Utilities.IEditorRetrofitApi;
 import com.github.irshulx.models.ImageResponse;
@@ -84,7 +84,7 @@ public class ImageExtensions {
 
     public void OpenImageGallery() {
         int Index=this.base.determineIndex(EditorType.none);
-        EditorState state= base.getContent();
+        EditorContent state= base.getContent();
         state.PendingIndex= Index;
         Intent intent = new Intent();
 // Show only images, no videos or anything else

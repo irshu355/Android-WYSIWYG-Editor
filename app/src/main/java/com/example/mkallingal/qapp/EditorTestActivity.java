@@ -28,38 +28,28 @@ public class EditorTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_test);
-        Button btnRender=(Button)findViewById(R.id.btnRender);
-        setGhost(btnRender);
         _editor= (Editor) findViewById(R.id.editor);
         CreateEditor();
-
     }
-
     private void CreateEditor() {
-        //   Edit _LinearLayout= (LinearLayout)findViewById(R.id.formHolder);
-        //   _editor =new Editor(EditorTestActivity.this,_LinearLayout, RenderType.Editor, "Editor Placeholder goes here...");
-
-        findViewById(R.id.action_header_1).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.action_h1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(EditorTextStyle.H1);
             }
         });
-        findViewById(R.id.action_header_2).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.action_h2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(EditorTextStyle.H2);
-
             }
         });
-
-        findViewById(R.id.action_header_3).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.action_h3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(EditorTextStyle.H3);
             }
         });
-
         findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +128,7 @@ public class EditorTestActivity extends AppCompatActivity {
             }
         });
 
-        Render();
+        _editor.Render();  // this method must be called to start the editor
 
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,7 +198,7 @@ public class EditorTestActivity extends AppCompatActivity {
         }
         else if (resultCode == Activity.RESULT_CANCELED) {
             //Write your code if there's no result
-            Toast.makeText(getApplicationContext(), "It was cancelled", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
            // _editor.RestoreState();
         }
         else if(requestCode== _editor.MAP_MARKER_REQUEST){
@@ -231,5 +221,11 @@ public class EditorTestActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        Button btnRender=(Button)findViewById(R.id.btnRender);
+        setGhost(btnRender);
     }
 }

@@ -19,7 +19,7 @@
     import android.util.AttributeSet;
 
     import com.github.irshulx.models.EditorTextStyle;
-    import com.github.irshulx.models.EditorState;
+    import com.github.irshulx.models.EditorContent;
     import com.github.irshulx.models.RenderType;
 
     public class Editor extends BaseClass {
@@ -28,26 +28,25 @@
             super.setEditorListener(null);
             //  initialize(context,parentView,renderType,_PlaceHolderText);
         }
-
         public void setEditorListener(EditorListener _listener){
             super.setEditorListener(_listener);
         }
-        public EditorState getContent(){
+        public EditorContent getContent(){
             return super.getContent();
         }
-
         public String getContentAsSerialized(){
             return super.getContentAsSerialized();
         }
-
-        public String getContentAsSerialized(EditorState state){
+        public String getContentAsSerialized(EditorContent state){
             return super.getContentAsSerialized(state);
+        }
+        public EditorContent getContentDeserialized(String EditorContentSerialized) {
+            return super.getContentDeserialized(EditorContentSerialized);
         }
         public String getContentAsHTML(){
             return getHtmlExtensions().getContentAsHTML();
         }
-
-        public void Render(EditorState _state) {
+        public void Render(EditorContent _state) {
             super.RenderEditor(_state);
         }
         public void Render(String HtmlString){
@@ -58,18 +57,14 @@
                 getInputExtensions().InsertEditText(0, this.PlaceHolder, null);
             }
         }
-
         private void RestoreState(){
-            EditorState state= getStateFromString(null);
+            EditorContent state= getStateFromString(null);
             Render(state);
         }
-
         public void clearAllContents(){
              super.clearAllContents();
         }
-
         //region Miscellanious getters and setters
-
         /*input extensions
          */
         public int getH1TextSize(){
@@ -78,14 +73,12 @@
         public void setH1TextSize(int size){
             getInputExtensions().setH1TextSize(size);
         }
-
         public int getH2TextSize(){
             return getInputExtensions().getH2TextSize();
         }
         public void setH2TextSize(int size){
             getInputExtensions().setH2TextSize(size);
         }
-
         public int getH3TextSize(){
             return getInputExtensions().getH3TextSize();
         }
@@ -145,6 +138,9 @@
             getMapExtensions().insertMap(Cords, true);
         }
 
+        public void ExpressSetup(){
+            super.ExpressSetup(this);
+        }
         //endregion
 
 

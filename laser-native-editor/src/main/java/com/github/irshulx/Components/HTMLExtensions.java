@@ -5,7 +5,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.github.irshulx.BaseClass;
-import com.github.irshulx.models.EditorState;
+import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorType;
 import com.github.irshulx.models.HtmlTag;
@@ -183,7 +183,7 @@ public class HTMLExtensions {
     public String getContentAsHTML() {
         StringBuilder htmlBlock = new StringBuilder();
         String html;
-        EditorState Content = base.getContent();
+        EditorContent Content = base.getContent();
         for (state item : Content.stateList) {
             switch (item.type) {
                 case INPUT:

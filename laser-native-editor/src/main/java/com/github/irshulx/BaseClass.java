@@ -1,6 +1,7 @@
         package com.github.irshulx;
         import android.app.Activity;
         import android.content.Context;
+        import android.content.Intent;
         import android.content.SharedPreferences;
         import android.content.res.Resources;
         import android.content.res.TypedArray;
@@ -21,7 +22,6 @@
         import android.widget.Toast;
 
         import com.google.gson.Gson;
-        import com.github.irshulx.R;
         import com.github.irshulx.Components.DividerExtensions;
         import com.github.irshulx.Components.HTMLExtensions;
         import com.github.irshulx.Components.ImageExtensions;
@@ -30,7 +30,7 @@
         import com.github.irshulx.Components.MapExtensions;
         import com.github.irshulx.models.EditorTextStyle;
         import com.github.irshulx.models.EditorControl;
-        import com.github.irshulx.models.EditorState;
+        import com.github.irshulx.models.EditorContent;
         import com.github.irshulx.models.EditorType;
         import com.github.irshulx.models.Op;
         import com.github.irshulx.models.RenderType;
@@ -294,11 +294,11 @@
             }
 
 
-            public EditorState getStateFromString(String content){
+            public EditorContent getStateFromString(String content){
                 if(content==null) {
                     content = GetValue("editorState", "");
                 }
-                EditorState deserialized= __gson.fromJson(content, EditorState.class);
+                EditorContent deserialized= __gson.fromJson(content, EditorContent.class);
                 return deserialized;
             }
 
@@ -315,19 +315,23 @@
             }
 
             public String getContentAsSerialized(){
-                EditorState state= getContent();
+                EditorContent state= getContent();
                 return  serializeContent(state);
             }
 
-            public String getContentAsSerialized(EditorState state){
+            public String getContentAsSerialized(EditorContent state){
                 return  serializeContent(state);
             }
 
-            public String serializeContent(EditorState _state){
+            public EditorContent getContentDeserialized(String EditorContentSerialized) {
+                EditorContent Deserialized = __gson.fromJson(EditorContentSerialized, EditorContent.class);
+                return Deserialized;
+            }
+            public String serializeContent(EditorContent _state){
                 String serialized= __gson.toJson(_state);
                 return serialized;
             }
-            public EditorState getContent(){
+            public EditorContent getContent(){
 
                 if(this.__renderType==RenderType.Renderer){
                     __utilitiles.toastItOut("This option only available in editor mode");
@@ -335,7 +339,7 @@
                 }
 
                 int childCount= this.__parentView.getChildCount();
-                EditorState editorState=new EditorState();
+                EditorContent editorState=new EditorContent();
                 List<state> list=new ArrayList<>();
                 for(int i=0;i<childCount;i++){
                     state state=new state();
@@ -381,7 +385,7 @@
                 return editorState;
             }
 
-            public void RenderEditor(EditorState _state) {
+            public void RenderEditor(EditorContent _state) {
                 this.__parentView.removeAllViews();
                 for (state item:_state.stateList){
                     switch (item.type){
@@ -460,6 +464,96 @@
                 public void toastItOut(String message){
                     Toast.makeText(__context, message, Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            public void ExpressSetup(final Editor editor) {
+                Activity activity= (Activity)__context;
+                activity.findViewById(R.id.action_h1).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.UpdateTextStyle(EditorTextStyle.H1);
+                    }
+                });
+                activity.findViewById(R.id.action_h2).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.UpdateTextStyle(EditorTextStyle.H2);
+                    }
+                });
+                activity.findViewById(R.id.action_h3).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.UpdateTextStyle(EditorTextStyle.H3);
+                    }
+                });
+                activity.findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.UpdateTextStyle(EditorTextStyle.BOLD);
+                    }
+                });
+
+                activity.findViewById(R.id.action_Italic).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.UpdateTextStyle(EditorTextStyle.ITALIC);
+                    }
+                });
+                activity.findViewById(R.id.action_indent).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.UpdateTextStyle(EditorTextStyle.INDENT);
+                    }
+                });
+                activity.findViewById(R.id.action_outdent).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.UpdateTextStyle(EditorTextStyle.OUTDENT);
+                    }
+                });
+                activity.findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.InsertList(false);
+                    }
+                });
+                activity.findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.InsertList(true);
+                    }
+                });
+                activity.findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.InsertDivider();
+                    }
+                });
+                activity.findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.OpenImagePicker();
+                    }
+                });
+                activity.findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.InsertLink();
+                    }
+                });
+                activity.findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.InsertMap();
+                    }
+                });
+                activity.findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.clearAllContents();
+                    }
+                });
+                editor.Render();  // this method must be called to start the editor
             }
 
         }

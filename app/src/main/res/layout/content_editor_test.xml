@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_marginTop="55dp"
-android:layout_height="match_parent">
+    android:layout_height="match_parent">
+
+
+    <!-- Begin Editor toolbar -->
 
 <HorizontalScrollView android:id="@+id/tools"
     android:layout_width="match_parent"
@@ -11,52 +14,42 @@ android:layout_height="match_parent">
     android:background="#e6e6e6"
     android:layout_alignParentBottom="true"
     android:scrollbars="none">
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-
         <Button
             android:text="H1"
-            android:width="40dp"
-            android:height="40dp"
             android:textSize="16sp"
             android:textStyle="bold"
             android:background="@android:color/transparent"
             android:textColor="#444444"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/action_header_1"
+            android:id="@+id/action_h1"
             />
         <Button
             android:text="H2"
-            android:id="@+id/action_header_2"
+            android:id="@+id/action_h2"
             android:textStyle="bold"
             android:textColor="#444444"
             android:background="@android:color/transparent"
-            android:width="40dp"
             android:textSize="16sp"
-            android:height="40dp"
             android:layout_width="40dp"
             android:layout_height="40dp"/>
 
         <Button
             android:text="H3"
-            android:id="@+id/action_header_3"
+            android:id="@+id/action_h3"
             android:textStyle="bold"
             android:textColor="#444444"
             android:background="@android:color/transparent"
-            android:width="40dp"
             android:textSize="16sp"
-            android:height="40dp"
             android:layout_width="40dp"
             android:layout_height="40dp"/>
 
         <ImageButton
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@android:color/transparent"
@@ -64,8 +57,7 @@ android:layout_height="match_parent">
             android:id="@+id/action_bold" />
 
         <ImageButton
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
+
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@android:color/transparent"
@@ -73,8 +65,6 @@ android:layout_height="match_parent">
             android:id="@+id/action_Italic" />
 
         <ImageButton
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@android:color/transparent"
@@ -82,8 +72,6 @@ android:layout_height="match_parent">
             android:id="@+id/action_indent" />
 
         <ImageButton
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@android:color/transparent"
@@ -93,8 +81,6 @@ android:layout_height="match_parent">
 
 
         <ImageButton
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
             android:layout_width="40dp"
             android:background="@android:color/transparent"
             android:layout_height="40dp"
@@ -102,8 +88,6 @@ android:layout_height="match_parent">
             android:id="@+id/action_bulleted" />
 
         <ImageButton
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
             android:background="@android:color/transparent"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -111,8 +95,6 @@ android:layout_height="match_parent">
             android:id="@+id/action_unordered_numbered" />
 
         <ImageButton
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
             android:background="@android:color/transparent"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -120,8 +102,6 @@ android:layout_height="match_parent">
             android:id="@+id/action_hr" />
 
         <ImageButton
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
             android:background="@android:color/transparent"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -157,8 +137,11 @@ android:layout_height="match_parent">
             android:id="@+id/action_erase" />
     </LinearLayout>
 
+
+
 </HorizontalScrollView>
 
+    <!--End of Editor toolbar -->
     <ScrollView
         android:layout_width="match_parent"
         android:scrollbars="vertical"

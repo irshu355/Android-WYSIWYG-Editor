@@ -93,11 +93,6 @@ public class MapExtensions {
         int Index= base.determineIndex(EditorType.map);
         base.getParentView().addView(childLayout, Index);
         if(insertEditText){
-            if(base.GetChildCount()==2){
-                insertEditText=false;
-            }
-        }
-        if(insertEditText){
           base.getInputExtensions().InsertEditText(Index + 1, null, null);
         }
     }
