@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3b5999</color>
-    <color name="colorPrimaryDark">#424242</color>
-    <color name="colorAccent">#3b5999</color>
+    <color name="colorPrimary">#C62828</color>
+    <color name="colorPrimaryDark">#B71C1C</color>
+    <color name="colorAccent">#FFCDD2</color>
     <item name="blue" type="color">#2b6dad</item>
     <item name="purple" type="color">#FFAA66CC</item>
     <item name="green" type="color">#99CC00</item>
@@ -12,7 +12,7 @@
     <item name="darkpurple" type="color">#FF9933CC</item>
     <item name="darkgreen" type="color">#2DA44B</item>
     <item name="darkorange" type="color">#f3761c</item>
-    <item name="darkred" type="color">#FFCC0000</item>
+    <item name="darkred" type="color">#B71C1C</item>
     <item name="darktext" type="color">#5E5E5E</item>
     <item name="darkertext" type="color">#333</item>
     <item name="lighttext" type="color">#999</item>

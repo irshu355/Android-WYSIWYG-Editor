@@ -91,4 +91,7 @@
     </string>
     <string name="title_activity_editor_test">Editor Demo</string>
     <string name="title_activity_render">RenderActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

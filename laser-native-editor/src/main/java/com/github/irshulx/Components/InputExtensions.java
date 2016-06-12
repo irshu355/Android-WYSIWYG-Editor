@@ -96,7 +96,7 @@ public class InputExtensions{
     private TextView GetNewTextView(String text){
         final TextView textView = new TextView(context);
         textView.setGravity(Gravity.BOTTOM);
-    //    textView.setTextColor(base.getResources().getColor(R.color.darkertext));
+        textView.setTextColor(base.getResources().getColor(R.color.darkertext));
         textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.getResources().getDisplayMetrics()), 1.0f);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

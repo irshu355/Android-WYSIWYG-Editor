@@ -85,7 +85,6 @@ public class ImageExtensions {
     public void OpenImageGallery() {
         int Index=this.base.determineIndex(EditorType.none);
         EditorContent state= base.getContent();
-        state.PendingIndex= Index;
         Intent intent = new Intent();
 // Show only images, no videos or anything else
         intent.setType("image/*");

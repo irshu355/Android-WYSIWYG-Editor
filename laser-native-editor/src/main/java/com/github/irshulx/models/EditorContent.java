@@ -7,6 +7,5 @@ import java.util.List;
  */
 public class EditorContent {
     public List<state> stateList;
-    public int PendingIndex;
 }
 

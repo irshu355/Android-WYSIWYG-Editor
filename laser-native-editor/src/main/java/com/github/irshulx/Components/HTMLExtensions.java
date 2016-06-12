@@ -105,7 +105,7 @@ public class HTMLExtensions {
     }
 
 
-    public static boolean matchesTag(String test) {
+    private static boolean matchesTag(String test) {
         for (HtmlTag tag : HtmlTag.values()) {
             if (tag.name().equals(test)) {
                 return true;
@@ -114,30 +114,40 @@ public class HTMLExtensions {
         return false;
     }
 
-    public String getTemplateHtml(EditorType child){
+    private String getTemplateHtml(EditorType child){
         String template=null;
         switch (child){
             case INPUT:
                 template= "<{{$tag}} {{$style}}>{{$content}}</{{$tag}}>";
+                break;
             case hr:
                 template="<hr/>";
+                break;
             case img:
                 template="<div><img src=\"{{$content}}\" /></div>";
+                break;
             case map:
                 template="<div><img src=\"{{$content}}\" /></div>";
+                break;
             case ol:
                 template="<ol>{{$content}}</ol>";
+                break;
             case ul:
                 template="<ul>{{$content}}</ul>";
+                break;
             case OL_LI:
             case UL_LI:
                 template="<li>{{$content}}</li>";
+                break;
         }
         return template;
     }
     private String getInputHtml(state item){
         boolean isParagraph=true;
         String tmpl= getTemplateHtml(EditorType.INPUT);
+      //  CharSequence content= android.text.Html.fromHtml(item.content.get(0)).toString();
+      //  CharSequence trimmed= base.getInputExtensions().noTrailingwhiteLines(content);
+        String trimmed= Jsoup.parse(item.content.get(0)).body().select("p").html();
         if(item._ControlStyles.size()>0) {
             for (EditorTextStyle style : item._ControlStyles) {
                 switch (style) {
@@ -174,17 +184,27 @@ public class HTMLExtensions {
             if (isParagraph) {
                 tmpl = tmpl.replace("{{$tag}}", "p");
             }
-            tmpl=tmpl.replace("{{$content}}",item.content.get(0));
+            tmpl=tmpl.replace("{{$content}}",trimmed);
+            tmpl=tmpl.replace("{{$style}}","");
             return tmpl;
         }
-        return tmpl.replace("{{tag}}","p").replace("{{$content}}", item.content.get(0));
+            tmpl = tmpl.replace("{{$tag}}", "p");
+        tmpl=tmpl.replace("{{$content}}",trimmed);
+        tmpl=tmpl.replace(" {{$style}}","");
+        return tmpl;
     }
 
     public String getContentAsHTML() {
         StringBuilder htmlBlock = new StringBuilder();
         String html;
-        EditorContent Content = base.getContent();
-        for (state item : Content.stateList) {
+        EditorContent content = base.getContent();
+       return getContentAsHTML(content);
+    }
+
+    public String getContentAsHTML(EditorContent content){
+        StringBuilder htmlBlock = new StringBuilder();
+        String html;
+        for (state item : content.stateList) {
             switch (item.type) {
                 case INPUT:
                     html = getInputHtml(item);
@@ -208,16 +228,23 @@ public class HTMLExtensions {
         return htmlBlock.toString();
     }
 
+    public String getContentAsHTML(String editorContentAsSerialized) {
+        EditorContent content = base.getContentDeserialized(editorContentAsSerialized);
+        return getContentAsHTML(content);
+    }
+
+
     private String getListAsHtml(state item) {
         int count= item.content.size();
         String tmpl_parent = getTemplateHtml(item.type);
         StringBuilder childBlock=new StringBuilder();
         for (int i=0 ; i<count; i++){
             String tmpl_li= getTemplateHtml(item.type == EditorType.ul ? EditorType.UL_LI : EditorType.OL_LI);
-            tmpl_li.replace("{{$content}}",item.content.get(i));
+            String trimmed= Jsoup.parse(item.content.get(i)).body().select("p").html();
+            tmpl_li= tmpl_li.replace("{{$content}}",trimmed);
             childBlock.append(tmpl_li);
         }
-        tmpl_parent.replace("{{$content}}",childBlock.toString());
+       tmpl_parent= tmpl_parent.replace("{{$content}}",childBlock.toString());
         return tmpl_parent;
     }
 }

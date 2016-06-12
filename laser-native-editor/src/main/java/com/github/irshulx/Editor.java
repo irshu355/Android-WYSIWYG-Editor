@@ -17,7 +17,6 @@
     import android.content.Context;
     import android.graphics.Bitmap;
     import android.util.AttributeSet;
-
     import com.github.irshulx.models.EditorTextStyle;
     import com.github.irshulx.models.EditorContent;
     import com.github.irshulx.models.RenderType;
@@ -45,6 +44,12 @@
         }
         public String getContentAsHTML(){
             return getHtmlExtensions().getContentAsHTML();
+        }
+        public String getContentAsHTML(EditorContent content){
+            return getHtmlExtensions().getContentAsHTML(content);
+        }
+        public String getContentAsHTML(String editorContentAsSerialized){
+            return getHtmlExtensions().getContentAsHTML(editorContentAsSerialized);
         }
         public void Render(EditorContent _state) {
             super.RenderEditor(_state);
