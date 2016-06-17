@@ -7,21 +7,21 @@ Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:0.2.2'
+    compile 'com.github.irshulx:laser-native-editor:0.3.0'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>0.1.0</version>
+      <version>0.3.0</version>
       <type>pom</type>
     </dependency>
 
 Demo
 --------------
 
-![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-1.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-2.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-3.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13227159_269389593411500_6219375228375154304_n.jpg?oh=f6b5fe0ab000d0eb89915d0147ff24ef&oe=579B3038)&nbsp;&nbsp;&nbsp; ![enter image description here](https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13177651_269390020078124_2120913121972781573_n.jpg?oh=4a94f50c352330007063dc7dd092da0d&oe=57E6CE25)  
+![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-1.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-2.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-3.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13227159_269389593411500_6219375228375154304_n.jpg?oh=f6b5fe0ab000d0eb89915d0147ff24ef&oe=579B3038)&nbsp;&nbsp;&nbsp;&nbsp; ![enter image description here](https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13177651_269390020078124_2120913121972781573_n.jpg?oh=4a94f50c352330007063dc7dd092da0d&oe=57E6CE25)&nbsp;&nbsp;&nbsp;&nbsp; ![enter image description here](https://scontent-kul1-1.xx.fbcdn.net/v/t1.0-9/13177651_269390020078124_2120913121972781573_n.jpg?oh=4a94f50c352330007063dc7dd092da0d&oe=57E6CE25)  
 
 
 Features
