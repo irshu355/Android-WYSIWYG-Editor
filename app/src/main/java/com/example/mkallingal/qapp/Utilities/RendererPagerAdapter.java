@@ -15,7 +15,7 @@ import com.example.mkallingal.qapp.SerializedFragment;
 public class RendererPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
     final String content;
-    private String tabTitles[] = new String[] { "Rendered", "Serialized", "Serialized to HTML" };
+    private String tabTitles[] = new String[] { "Rendered", "Serialized", "HTML" };
     private Context context;
     public RendererPagerAdapter(FragmentManager fm, Context context,String content) {
         super(fm);

@@ -126,7 +126,7 @@
             this.getListItemExtensions().setListItemTemplate(layout);
         }
         public void InsertList(boolean isOrdered){
-            getListItemExtensions().Insertlist(isOrdered);
+            this.getListItemExtensions().Insertlist(isOrdered);
         }
 
         /*Map extensions

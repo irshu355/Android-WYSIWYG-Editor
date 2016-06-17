@@ -14,7 +14,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
@@ -29,8 +29,10 @@
             android:id="@+id/sliding_tabs"
             style="@style/MyCustomTabLayout"
             android:layout_width="match_parent"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
             android:layout_height="wrap_content"
-            app:tabMode="scrollable" />
+            app:tabMode="fixed" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"

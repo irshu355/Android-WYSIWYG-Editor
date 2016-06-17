@@ -9,12 +9,12 @@
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_height="wrap_content"
         />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_centerInParent="true"
@@ -23,24 +23,25 @@
             android:layout_width="wrap_content"
             android:visibility="gone"
             android:layout_centerHorizontal="true"
-            android:background="@color/blue_overlay"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_in"
             android:layout_height="wrap_content"
             android:id="@+id/progress"
             android:indeterminate="true" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:textColor="@color/f5f5f5"
             android:id="@+id/lblStatus"
             android:paddingRight="8dp"
+            android:gravity="center_horizontal"
             android:layout_centerInParent="true"
-            android:textSize="@dimen/large_text"
+            android:textSize="@dimen/larger_text"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:visibility="gone"
             android:layout_marginTop="15dp"
             android:layout_below="@id/progress"
             android:paddingLeft="8dp"
-            android:background="@color/blue_overlay"
             android:text="Uploading..."
             android:layout_height="wrap_content" />
     </RelativeLayout>

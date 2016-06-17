@@ -17,6 +17,8 @@
 package com.github.irshulx.Components;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.Html;
 import android.text.Spanned;
@@ -26,6 +28,7 @@ import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -55,45 +58,40 @@ public class ListItemExtensions {
     }
 
     public TableLayout insertList(int Index, boolean isOrdered, String text){
+
         TableLayout table=CreateTable();
         base.getParentView().addView(table, Index);
         table.setTag(base.CreateTag(isOrdered ? EditorType.ol : EditorType.ul));
         AddListItem(table, isOrdered, text);
-        if(base.getRenderType() == RenderType.Editor) {
-
-        }
         return table;
     }
 
     public TableLayout CreateTable(){
-        TableLayout table = new TableLayout(context);
+        TableLayout table = new TableLayout(base.getContext());
         table.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         table.setPadding(30, 10, 10, 10);
         return table;
     }
 
+
+
     public View AddListItem(TableLayout layout, boolean isOrdered, String text){
-        final View childLayout = ((Activity) context).getLayoutInflater().inflate(this.listItemTemplate, null);
+        final View childLayout = ((Activity) base.getContext()).getLayoutInflater().inflate(this.listItemTemplate, null);
         final CustomEditText editText= (CustomEditText) childLayout.findViewById(R.id.txtText);
-        final TextView textView= (TextView) childLayout.findViewById(R.id.lblText);
-        if(isOrdered){
+        editText.setTypeface(Typeface.create(base.getInputExtensions().getFontFace(),Typeface.NORMAL));
+               if(isOrdered){
             final TextView _order= (TextView) childLayout.findViewById(R.id.lblOrder);
             int count= layout.getChildCount();
             _order.setText(String.valueOf(count+1)+".");
         }
-        if(base.getRenderType() ==RenderType.Editor) {
+         if(base.getRenderType() ==RenderType.Editor) {
             editText.setTextColor(base.getResources().getColor(R.color.darkertext));
-            editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.getResources().getDisplayMetrics()), 1.0f);
-            editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, base.getInputExtensions().getLineSpacing(), base.getResources().getDisplayMetrics()), 1.0f);
+            editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, base.getInputExtensions().getNormtalTextSize());
             editText.setTag(base.CreateTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI));
             childLayout.setTag(base.CreateTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI));
             base.setActiveView(editText);
-
-            if(!TextUtils.isEmpty(text)){
-                base.getInputExtensions().setText(editText, text);
-            }
-
-
+            base.getInputExtensions().setText(editText, text);
             editText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -101,7 +99,6 @@ public class ListItemExtensions {
                     //   toggleToolbarProperties(v,null);
                 }
             });
-
             editText.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -140,11 +137,18 @@ public class ListItemExtensions {
                             if (s.length() == 0 || s.toString().equals("\n")) {
                                 int index = base.getParentView().indexOfChild(_table);
                                 _table.removeView(_row);
-                                base.getInputExtensions().InsertEditText(index + 1, null, null);
+                                base.getInputExtensions().InsertEditText(index + 1, "", "");
                             } else {
                                 Spanned __ = Html.fromHtml(text);
                                 CharSequence toReplace = base.getInputExtensions().noTrailingwhiteLines(__);
-                                editText.setText(toReplace);
+
+                                if (toReplace.length() > 0) {
+                                    editText.setText(toReplace);
+                                } else {
+                                    editText.getText().clear();
+                                }
+
+
                                 int index = _table.indexOfChild(_row);
                                 //  InsertEditText(index + 1, "");
                                 AddListItem(_table, type == EditorType.ol, "");
@@ -155,23 +159,31 @@ public class ListItemExtensions {
                 }
             });
 
-            if (editText.requestFocus()) {
-                editText.setSelection(editText.getText().length());
-            }
-
+             final Handler handler = new Handler();
+             handler.postDelayed(new Runnable() {
+                 @Override
+                 public void run() {
+                     editText.requestFocus();
+                     InputMethodManager mgr = (InputMethodManager) base.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                     mgr.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+                     editText.setSelection(editText.getText().length());
+                 }
+             },0);
         }
         else{
+            final TextView textView= (TextView) childLayout.findViewById(R.id.lblText);
+             textView.setTypeface(Typeface.create(base.getInputExtensions().getFontFace(),Typeface.NORMAL));
             /*
             It's a renderer, so instead of EditText,render TextView
              */
             if(!TextUtils.isEmpty(text)){
               base.getInputExtensions().setText(textView, text);
             }
-            textView.setTextColor(base.getResources().getColor(R.color.darkertext));
-            textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6.0f, base.getResources().getDisplayMetrics()), 1.0f);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            textView.setVisibility(View.VISIBLE);
-            editText.setVisibility(View.GONE);
+             textView.setTextColor(base.getResources().getColor(R.color.darkertext));
+             textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, base.getInputExtensions().getLineSpacing(), base.getResources().getDisplayMetrics()), 1.0f);
+             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+             textView.setVisibility(View.VISIBLE);
+             editText.setVisibility(View.GONE);
         }
         layout.addView(childLayout);
         return childLayout;
@@ -182,9 +194,9 @@ public class ListItemExtensions {
         for(int i=startIndex;i<tableChildCount;i++) {
             View _childRow = _table.getChildAt(i);
             _table.removeView(_childRow);
-            CustomEditText _EditText = ConvertListItemToNormalText(_childRow);
+            String text = getTextFromListItem(_childRow);
             int Index= base.getParentView().indexOfChild(_table);
-            base.getInputExtensions().InsertEditText(Index, _EditText);
+            base.getInputExtensions().InsertEditText(Index+1,"",text);
             i -= 1;
             tableChildCount-=1;
         }
@@ -223,10 +235,9 @@ public class ListItemExtensions {
     }
 
 
-    public CustomEditText ConvertListItemToNormalText(View row){
+    public String getTextFromListItem(View row){
         CustomEditText _text= (CustomEditText) row.findViewById(R.id.txtText);
-       CustomEditText editText=  base.getInputExtensions().GetNewEditText("", _text.getText().toString());
-        return editText;
+       return _text.getText().toString();
     }
 
     public void Insertlist(boolean isOrdered){

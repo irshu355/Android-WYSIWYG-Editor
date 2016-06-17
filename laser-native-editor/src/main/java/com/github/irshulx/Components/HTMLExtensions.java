@@ -118,22 +118,22 @@ public class HTMLExtensions {
         String template=null;
         switch (child){
             case INPUT:
-                template= "<{{$tag}} {{$style}}>{{$content}}</{{$tag}}>";
+                template= "<{{$tag}} data-tag=\"input\" {{$style}}>{{$content}}</{{$tag}}>";
                 break;
             case hr:
-                template="<hr/>";
+                template="<hr data-tag=\"hr\"/>";
                 break;
             case img:
-                template="<div><img src=\"{{$content}}\" /></div>";
+                template="<div data-tag=\"img\"><img src=\"{{$content}}\" /><p style=\"padding-left:30px;padding-right:30px;font-size:12px;color:#666\">{{$caption}}</p><br/></div>";
                 break;
             case map:
-                template="<div><img src=\"{{$content}}\" /></div>";
+                template="<div data-tag=\"map\"><img src=\"{{$content}}\" /></div>";
                 break;
             case ol:
-                template="<ol>{{$content}}</ol>";
+                template="<ol data-tag=\"ol\">{{$content}}</ol>";
                 break;
             case ul:
-                template="<ul>{{$content}}</ul>";
+                template="<ul data-tag=\"ul\">{{$content}}</ul>";
                 break;
             case OL_LI:
             case UL_LI:

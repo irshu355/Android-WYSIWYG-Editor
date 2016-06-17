@@ -38,18 +38,21 @@ public class EditorTestActivity extends AppCompatActivity {
                 _editor.UpdateTextStyle(EditorTextStyle.H1);
             }
         });
+
         findViewById(R.id.action_h2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(EditorTextStyle.H2);
             }
         });
+
         findViewById(R.id.action_h3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(EditorTextStyle.H3);
             }
         });
+
         findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,54 +66,63 @@ public class EditorTestActivity extends AppCompatActivity {
                 _editor.UpdateTextStyle(EditorTextStyle.ITALIC);
             }
         });
+
         findViewById(R.id.action_indent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(EditorTextStyle.INDENT);
             }
         });
+
         findViewById(R.id.action_outdent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.UpdateTextStyle(EditorTextStyle.OUTDENT);
             }
         });
+
         findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.InsertList(false);
             }
         });
+
         findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.InsertList(true);
             }
         });
+
         findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.InsertDivider();
             }
         });
+
         findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.OpenImagePicker();
             }
         });
+
         findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.InsertLink();
             }
         });
+
         findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _editor.InsertMap();
             }
         });
+
         findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,7 +131,7 @@ public class EditorTestActivity extends AppCompatActivity {
         });
 
         //  _editor.dividerBackground=R.drawable.divider_background_dark;
-        _editor.setImageUploaderUri("http://192.168.43.239/Laser-Editor-WebApi/api/ImageUploaderApi/PostImage");
+        _editor.setImageUploaderUri("http://192.168.42.33/Laser-Editor-WebApi/api/ImageUploaderApi/PostImage");
         //_editor.StartEditor();
         _editor.setEditorListener(new BaseClass.EditorListener() {
             @Override

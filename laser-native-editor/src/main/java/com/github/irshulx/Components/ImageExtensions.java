@@ -132,11 +132,12 @@ public class ImageExtensions {
     /*
       /used by the renderer to render the image from the state
     */
-    public  void loadImage(String _path, ImageView.ScaleType scaleType){
+    public  void loadImage(String _path){
         ImageView imageView = new ImageView(this.context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0,25,0,30);
         imageView.setLayoutParams(params);
-        imageView.setScaleType(scaleType);
+
         Picasso.with(this.context).load(_path).into(imageView);
         base.getParentView().addView(imageView);
     }
@@ -164,6 +165,8 @@ public class ImageExtensions {
             InsertImage(result,this.InsertIndex);
         }
     }
+
+
     /*
          /used to upload the image to remote
        */
@@ -193,12 +196,13 @@ public class ImageExtensions {
             // finally, execute the request
             view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
             lblStatus.setVisibility(View.VISIBLE);
+            if(base.getEditorListener()!=null){
+            }
             Call<ImageResponse> call = service.upload(base.getImageUploaderUri(), description, body);
             call.enqueue(new Callback<ImageResponse>() {
                 @Override
                 public void onResponse(Call<ImageResponse> call, final retrofit2.Response<ImageResponse> response) {
-                    ((TextView) view.findViewById(R.id.lblStatus)).setText("Uploaded");
-                    lblStatus.setBackgroundDrawable(base.getResources().getDrawable(R.drawable.success_background));
+                    ((TextView) view.findViewById(R.id.lblStatus)).setText("Upload complete");
                     EditorControl control= base.CreateTag(EditorType.img);
                     control.Path= response.body().Uri;
                     view.setTag(control);

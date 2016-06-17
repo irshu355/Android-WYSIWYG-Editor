@@ -1,7 +1,6 @@
         package com.github.irshulx;
         import android.app.Activity;
         import android.content.Context;
-        import android.content.Intent;
         import android.content.SharedPreferences;
         import android.content.res.Resources;
         import android.content.res.TypedArray;
@@ -14,7 +13,6 @@
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.EditText;
-        import android.widget.ImageView;
         import android.widget.LinearLayout;
         import android.widget.TableLayout;
         import android.widget.TableRow;
@@ -35,6 +33,7 @@
         import com.github.irshulx.models.Op;
         import com.github.irshulx.models.RenderType;
         import com.github.irshulx.models.state;
+
         import java.util.ArrayList;
         import java.util.List;
 
@@ -51,12 +50,13 @@
             */
             private final String SHAREDPREFERENCE="QA";
             private Context __context;
+            private Activity __activity;
             private LinearLayout __parentView;
             private RenderType __renderType;
             private Resources __resources;
             private View __activeView;
             private Gson __gson;
-            private Utilitiles __utilitiles;
+            private Utilities __utilities;
             private EditorListener __listener;
             public final int MAP_MARKER_REQUEST =20;
             public final int PICK_IMAGE_REQUEST =1;
@@ -70,12 +70,13 @@
                 public BaseClass(Context _context, AttributeSet attrs){
                     super(_context,attrs);
                     this.__context = _context;
+                    this.__activity= (Activity)_context;
                     this.setOrientation(VERTICAL);
                     initialize(_context,attrs);
             }
             private void initialize(Context context, AttributeSet attrs) {
                 loadStateFromAttrs(attrs);
-                __utilitiles =new Utilitiles();
+                __utilities =new Utilities();
                 this.__resources = context.getResources();
                 __gson =new Gson();
                 __inputExtensions =new InputExtensions(this,context);
@@ -89,6 +90,9 @@
             }
 
             //region Getters_and_Setters
+            public Activity getActivity(){
+                return this.__activity;
+            }
             public LinearLayout getParentView(){
                 return this.__parentView;
             }
@@ -109,8 +113,8 @@
             public void setActiveView(View view){
                 this.__activeView =view;
             }
-            public Utilitiles getUtilitiles(){
-                return this.__utilitiles;
+            public Utilities getUtilitiles(){
+                return this.__utilities;
             }
             public EditorListener getEditorListener(){
                 return this.__listener;
@@ -146,7 +150,7 @@
 
             //endregion
             public interface EditorListener{
-                public void onTextChanged(EditText editText, Editable text);
+                 void onTextChanged(EditText editText, Editable text);
             }
 
             private void loadStateFromAttrs(AttributeSet attributeSet) {
@@ -334,7 +338,7 @@
             public EditorContent getContent(){
 
                 if(this.__renderType==RenderType.Renderer){
-                    __utilitiles.toastItOut("This option only available in editor mode");
+                    __utilities.toastItOut("This option only available in editor mode");
                     return null;
                 }
 
@@ -403,8 +407,7 @@
                             break;
                         case img:
                             String path= item.content.get(0);
-                            ImageView.ScaleType scaleType= ImageView.ScaleType.valueOf(item.content.get(1));
-                           __imageExtensions.loadImage(path, scaleType);
+                           __imageExtensions.loadImage(path);
                             break;
                         case ul:
                         case ol:
@@ -446,7 +449,7 @@
                 this.__parentView.removeAllViews();
             }
 
-            public class Utilitiles{
+            public class Utilities {
                 public float PxtoSp(float px){
                     float scaledDensity = __context.getResources().getDisplayMetrics().scaledDensity;
                     float sp = px / scaledDensity;

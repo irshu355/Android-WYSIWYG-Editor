@@ -1,15 +1,19 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
     tools:context="com.example.mkallingal.qapp.HTMLRenderedFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:textColor="@color/darkertext"
+        android:textColor="@color/f5f5f5"
         android:textSize="@dimen/large_text"
-        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:layout_height="wrap_content"
         android:id="@+id/lblHtmlRendered" />
 
 </FrameLayout>

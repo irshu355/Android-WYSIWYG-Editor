@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Editor</string>
+    <string name="fontFamily__serif">serif</string>
+    <string name="fontFamily__sans_serif">sans-serif</string>
+    <string name="fontFamily__sans_serif_light">sans-serif-light</string>
+    <string name="fontFamily__sans_serif_condensed">sans-serif-condensed</string>
+    <string name="fontFamily__sans_serif_thin">sans-serif-thin</string>
+    <string name="fontFamily__sans_serif_medium">sans-serif-medium</string>
+    <string name="fontFamily__serif_monospace">serif-monospace</string>
+    <string name="fontFamily__casual">casual</string>
+    <string name="fontFamily__cursive">cursive</string>
+    <string name="fontFamily__monospace">monospace</string>
 </resources>
