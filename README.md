@@ -28,9 +28,13 @@ Features
 -------------
 
  - **Renderer or Editor**: You can use Laser as a **Renderer** to Render the content or use it as an **Editor** to create the content.
+ 
  - **No Webviews used** to render the content. Laser uses Native EditText, ImageView and as such to render the contents.
+ 
  - **HTML Parser:** Render your HTML Code into the editor and vice versa.
+ 
  - **Image Uploader Api:** Use the Built-in API to upload the images to the server.
+ 
  - Flexibility to create your own Toolbar layout. Just hookup the API methods on the click events.
 
 The editor is built, so that every part of the design have been exposed and is available for customization. You can define, how the editor should look like, and what are the controls, that should be available (the controls toolbar layout can also be created by yourself, just call the API methods on the click event).
