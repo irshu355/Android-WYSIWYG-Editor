@@ -245,11 +245,17 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 <ul>
 <li><p><code>Render();</code> Render the editor. This method must be called to render the editor.</p></li>
-<li><p><code>Render(String html)</code> Render the editor with HTML as parameter.</p></li>
-<li><p><code>Render(EditorState state)</code> Render the editor with the state as parameter</p></li>
+<li><p><code>Render(String html);</code> Render the editor with HTML as parameter.</p></li>
+<li><p><code>Render(EditorState state);</code> Render the editor with the state as parameter</p></li>
+<li><p><code>getContent();</code>  returns the content in the editor as <code>EditorState</code></p></li>
+<li><p><code>getContentAsSerialized();</code> returns the content as serialized form of EditorState</p></li>
+<li><p><code>getContentAsSerialized(EditorState state);</code> returns the provided parameter as serialized.</p></li>
+<li><p><code>getContentAsHTML();</code> returns the editor content in HTML format. </p></li>
 <li><p><code>UpdateTextStyle(EditorTextStyle style);</code> Update the text style for
-the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDENT and OUTDENT</code>  </p></li>
-<li><p><code>setH1TextSize(int size), setH2TextSize(int size) and setH3TextSize(int size)</code> Override the existing text sizes. There are getter methods as well to retrieve the existing text sizes for each.</p></li>
+the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDENT and OUTDENT</code> .  </p></li>
+<li><p><code>setH1TextSize(int size), setH2TextSize(int size) and setH3TextSize(int size);</code> Override the existing text sizes. There are getter methods as well to retrieve the existing text sizes for each.</p></li>
+<li><p><code>getFontFace(int resource);</code> Sets the FontFace for the editor.</p></li>
+<li><p><code>setLineSpacing(float value);</code> Sets the linespace for the editor.</p></li>
 <li><p><code>OpenImagePicker();</code> Opens up the image picker. Once the user has selected the image, it's automatically inserted to the editor. But you must configure a remote URL ,where you want the image to be uploaded. If the Remote URL is not specifed, the image is not persisted.</p></li>
 <li><p><code>InsertImage(Bitmap bitmap);</code> Insert a bitmap image into the editor.</p></li>
 <li><p><code>setImageUploaderUri(String Url);</code>used to configure the remote URL ,where you want the image to be uploaded. This is compulsory if you are using the Image Picker.</p></li>
@@ -260,13 +266,8 @@ the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDEN
 <li><p><code>setDividerLayout(int layout);</code> Override the default layout for dividers</p></li>
 <li><p><code>InsertMap():</code> Fires up the google map location picker activity. Once the user has selected the location, the library will automatically insert the marker with the location into editor.</p></li>
 <li><p><code>InsertMap(String Cords);</code> Insert the marker into the editor. The cordinates must be of string form,  <code>"LAT,LNG"</code></p></li>
-<li><p><code>setMapViewLayout(int layout)</code> Override the default layout for maps in the editor</p></li>
-<li><p><code>RenderEditor(String html);</code> Used to render the content into the editor from an HTML string</p></li>
-<li><p><code>getContent();</code>  returns the content in the editor as <code>EditorState</code></p></li>
-<li><p><code>getContentAsSerialized();</code> returns the content as serialized form of EditorState</p></li>
-<li><p><code>getContentAsSerialized(EditorState state);</code> returns the provided parameter as serialized.</p></li>
 <li>
-<code>getContentAsHTML();</code> returns the editor content in HTML format. </li>
+<code>setMapViewLayout(int layout);</code> Override the default layout for maps in the editor</li>
 </ul>
 
 <h2>
