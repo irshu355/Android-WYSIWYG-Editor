@@ -35,7 +35,7 @@ Features
  
  - **Image Uploader Api:** Use the Built-in API to upload the images to the server.
  
- - Flexibility to create your own Toolbar layout. Just hookup the API methods on the click events.
+ - **Integration with web based WYSIWYG's:** HTMLParser helps the Editor to work seemlessly with the WYSIWYG editor on your web platform.
 
 The editor is built, so that every part of the design have been exposed and is available for customization. You can define, how the editor should look like, and what are the controls, that should be available (the controls toolbar layout can also be created by yourself, just call the API methods on the click event).
 
