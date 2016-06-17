@@ -186,15 +186,26 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
 
  - `Render();` Render the editor. This method must be called to render the editor.
  
- - `Render(String html)` Render the editor with HTML as parameter.
+ - `Render(String html);` Render the editor with HTML as parameter.
  
- - `Render(EditorState state)` Render the editor with the state as parameter
+ - `Render(EditorState state);` Render the editor with the state as parameter
+ 
+ - `getContent();`  returns the content in the editor as `EditorState`
+ 
+ - `getContentAsSerialized();` returns the content as serialized form of EditorState
+ 
+ - `getContentAsSerialized(EditorState state);` returns the provided parameter as serialized.
+ 
+ - `getContentAsHTML();` returns the editor content in HTML format. 
  
  - `UpdateTextStyle(EditorTextStyle style);` Update the text style for
-   the currently active block. Possible values are `H1,H2,H3,BOLD,ITALIC,INDENT and OUTDENT`  
-   
+   the currently active block. Possible values are `H1,H2,H3,BOLD,ITALIC,INDENT and OUTDENT` .  
 
- - `setH1TextSize(int size), setH2TextSize(int size) and setH3TextSize(int size)` Override the existing text sizes. There are getter methods as well to retrieve the existing text sizes for each.
+ - `setH1TextSize(int size), setH2TextSize(int size) and setH3TextSize(int size);` Override the existing text sizes. There are getter methods as well to retrieve the existing text sizes for each.
+ 
+ - `getFontFace(int resource);` Sets the FontFace for the editor.
+ 
+ - `setLineSpacing(float value);` Sets the linespace for the editor.
  
  - `OpenImagePicker();` Opens up the image picker. Once the user has selected the image, it's automatically inserted to the editor. But you must configure a remote URL ,where you want the image to be uploaded. If the Remote URL is not specifed, the image is not persisted.
 
@@ -215,16 +226,7 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
  - `InsertMap():` Fires up the google map location picker activity. Once the user has selected the location, the library will automatically insert the marker with the location into editor.
 
  - `InsertMap(String Cords);` Insert the marker into the editor. The cordinates must be of string form,  `"LAT,LNG"`
- - `setMapViewLayout(int layout)` Override the default layout for maps in the editor
- 
- - `RenderEditor(String html);` Used to render the content into the editor from an HTML string
- 
- - `getContent();`  returns the content in the editor as `EditorState`
- 
- - `getContentAsSerialized();` returns the content as serialized form of EditorState
- 
- - `getContentAsSerialized(EditorState state);` returns the provided parameter as serialized.
- - `getContentAsHTML();` returns the editor content in HTML format. 
+ - `setMapViewLayout(int layout);` Override the default layout for maps in the editor
 
 
 ##Future Improvements
