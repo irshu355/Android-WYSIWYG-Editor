@@ -68,6 +68,9 @@
         }
         public void clearAllContents(){
              super.clearAllContents();
+            if (getRenderType() == RenderType.Editor) {
+                getInputExtensions().InsertEditText(0, this.PlaceHolder, null);
+            }
         }
         //region Miscellanious getters and setters
         /*input extensions
@@ -143,9 +146,9 @@
             getMapExtensions().insertMap(Cords, true);
         }
 
-        public void ExpressSetup(){
-            super.ExpressSetup(this);
-        }
+      //  public void ExpressSetup(){
+        //    super.ExpressSetup(this);
+        // }
         //endregion
 
 

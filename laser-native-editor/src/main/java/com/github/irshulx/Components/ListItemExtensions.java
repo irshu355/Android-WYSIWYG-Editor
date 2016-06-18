@@ -99,6 +99,14 @@ public class ListItemExtensions {
                     //   toggleToolbarProperties(v,null);
                 }
             });
+             editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                 @Override
+                 public void onFocusChange(View v, boolean hasFocus) {
+                     if (hasFocus) {
+                         base.setActiveView(v);
+                     }
+                 }
+             });
             editText.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {

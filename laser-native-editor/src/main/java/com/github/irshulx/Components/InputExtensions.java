@@ -114,13 +114,13 @@ public class InputExtensions{
     }
     private TextView GetNewTextView(String text){
         final TextView textView = new TextView(context);
-        textView.setTypeface(Typeface.create( getFontFace() ,Typeface.NORMAL));
+        textView.setTypeface(Typeface.create(getFontFace(), Typeface.NORMAL));
         textView.setGravity(Gravity.BOTTOM);
         textView.setTextColor(base.getResources().getColor(R.color.darkertext));
         textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.getLineSpacing(), base.getResources().getDisplayMetrics()), 1.0f);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, 0, 0, 30);
+        textView.setPadding(textView.getPaddingLeft(),textView.getPaddingTop(),textView.getPaddingRight(),30);
         textView.setLayoutParams(params);
         if(!TextUtils.isEmpty(text)){
             Spanned __ = Html.fromHtml(text);
@@ -146,13 +146,6 @@ public class InputExtensions{
         }
         editText.setTag(base.CreateTag(EditorType.INPUT));
         editText.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.invisible_edit_text));
-        editText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                base.setActiveView(v);
-                //  toggleToolbarProperties(v,null);
-            }
-        });
         editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -169,6 +162,8 @@ public class InputExtensions{
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus){
                     editText.clearFocus();
+                }else{
+                    base.setActiveView(v);
                 }
             }
         });

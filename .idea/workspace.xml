@@ -11,14 +11,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b66f118-11b1-40a5-8a8d-9e062b825c30" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\screens\gif-1.old.gif" afterPath="" />
-      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\screens\gif-2.old.gif" afterPath="" />
-      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\screens\gif-3.old.gif" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/gif-1.gif" afterPath="$PROJECT_DIR$/screens/gif-1.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/gif-2.gif" afterPath="$PROJECT_DIR$/screens/gif-2.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/gif-3.gif" afterPath="$PROJECT_DIR$/screens/gif-3.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/build.gradle" afterPath="$PROJECT_DIR$/laser-native-editor/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/laser-native-editor.iml" afterPath="$PROJECT_DIR$/laser-native-editor/laser-native-editor.iml" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\animated_vector_drawable_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\appcompat_v7_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\appcompat_v7_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\cardview_v7_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\converter_gson_2_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\design_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\design_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\gson_2_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\jsoup_1_8_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\library_1_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\okhttp_3_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\okio_1_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\picasso_2_5_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\play_services_base_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\play_services_basement_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\play_services_location_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\play_services_maps_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\recyclerview_v7_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\recyclerview_v7_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\retrofit_2_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\support_annotations_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\support_v4_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Stuff\Mine alone\editor-demo\.idea\libraries\support_vector_drawable_23_4_0.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/editor_screen_1.jpg" afterPath="$PROJECT_DIR$/screens/editor_screen_1.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/editor_screen_2.jpg" afterPath="$PROJECT_DIR$/screens/editor_screen_2.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/editor_screen_3.jpg" afterPath="$PROJECT_DIR$/screens/editor_screen_3.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Editor.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Editor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/HTMLExtensions.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/HTMLExtensions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="2b2fd8e9-ab90-461d-a420-40dbdeef4716" name="Rejected commit: Default" comment="updates the demo layout" />
@@ -84,11 +112,10 @@
         <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="178" column="40" selection-start-line="178" selection-start-column="40" selection-end-line="178" selection-end-column="40" />
+              <caret line="319" column="29" selection-start-line="319" selection-start-column="29" selection-end-line="319" selection-end-column="29" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1843#1844#0" expanded="false" />
-                <element signature="e#1889#1890#0" expanded="false" />
+                <element signature="e#3934#4167#0" expanded="true" />
+                <element signature="e#4166#4167#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,8 +124,8 @@
       <file leaf-file-name="EditorTestActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="11" selection-start-line="67" selection-start-column="11" selection-end-line="67" selection-end-column="11" />
+            <state vertical-scroll-proportion="-7.3055553">
+              <caret line="204" column="29" selection-start-line="204" selection-start-column="29" selection-end-line="204" selection-end-column="29" />
               <folding>
                 <element signature="e#2096#2277#0" expanded="true" />
                 <element signature="e#2276#2277#0" expanded="true" />
@@ -110,33 +137,61 @@
       <file leaf-file-name="Editor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Editor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="94" column="9" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
+            <state vertical-scroll-proportion="-7.9166665">
+              <caret line="122" column="39" selection-start-line="122" selection-start-column="39" selection-end-line="122" selection-end-column="39" />
               <folding>
-                <element signature="e#1492#1493#0" expanded="true" />
-                <element signature="e#1553#1554#0" expanded="true" />
-                <element signature="e#1898#1899#0" expanded="true" />
-                <element signature="e#1967#1968#0" expanded="true" />
-                <element signature="e#2422#2423#0" expanded="true" />
-                <element signature="e#2478#2479#0" expanded="true" />
-                <element signature="e#3440#3441#0" expanded="true" />
-                <element signature="e#3507#3508#0" expanded="true" />
-                <element signature="e#3552#3553#0" expanded="true" />
-                <element signature="e#3616#3617#0" expanded="true" />
-                <element signature="e#3784#3785#0" expanded="true" />
-                <element signature="e#3841#3842#0" expanded="true" />
-                <element signature="e#4327#4328#0" expanded="true" />
-                <element signature="e#4390#4391#0" expanded="true" />
+                <element signature="e#4588#4589#0" expanded="true" />
+                <element signature="e#4656#4657#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImageExtensions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="107" column="41" selection-start-line="107" selection-start-column="41" selection-end-line="107" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HTMLExtensions.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/HTMLExtensions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4050786">
+              <caret line="133" column="22" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DividerExtensions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseClass.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="186" column="42" selection-start-line="186" selection-start-column="42" selection-end-line="186" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser-native-editor/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6875">
-              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -146,53 +201,12 @@
         <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="96" column="30" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="30" />
+              <caret line="168" column="11" selection-start-line="159" selection-start-column="6" selection-end-line="168" selection-end-column="11" />
               <folding>
                 <element signature="method#InsertLink#0;class#InputExtensions#0" expanded="false" />
                 <element signature="method#InsertLink#1;class#InputExtensions#0" expanded="false" />
                 <element signature="method#noTrailingwhiteLines#0;class#InputExtensions#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_editor_test.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_editor_test.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="content_editor_test.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_editor_test.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="155" column="28" selection-start-line="155" selection-start-column="28" selection-end-line="155" selection-end-column="28" />
-              <folding>
-                <element signature="e#363#4914#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_render_test.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_render_test.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -203,18 +217,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.0">
-              <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+            <state vertical-scroll-proportion="-13.323529">
+              <caret line="52" column="58" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -2907,7 +2911,6 @@
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/models/TextStyle.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Utilities/ServiceGenerator.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/MapsActivity.java" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Utilities/HtmlParser.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Utilities/IEditorRetrofitApi.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/build/generated/source/r/release/com/irshu/editor/R.java" />
@@ -2940,18 +2943,19 @@
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/res/layout/tmpl_unordered_list_item.xml" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/res/layout/editor_image_view.xml" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/HTMLExtensions.java" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_editor_test.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_editor_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Editor.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/build.gradle" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Editor.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/HTMLExtensions.java" />
       </list>
     </option>
   </component>
@@ -3003,44 +3007,56 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
+      <pane id="AndroidView">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="editor-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor-demo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="laser-native-editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="editor-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+              <option name="myItemId" value="laser-native-editor" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="editor-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3345,56 +3361,44 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="AndroidView">
+      <pane id="PackagesPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="editor-demo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor-demo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="laser-native-editor" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="editor-demo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laser-native-editor" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor-demo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor-demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3404,7 +3408,7 @@
     <property name="recentsLimit" value="5" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="FBAZCY145360" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_23_x86" />
-    <property name="SearchEverywhereHistoryKey" value="Editor&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Editor.java&#10;EditorAc&#9;PSI&#9;JAVA://com.example.mkallingal.qapp.EditorTestActivity&#10;BaseClass&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java&#10;BaseClas&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java&#10;HtmlEx&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/HTMLExtensions.java&#10;CustomEd&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java&#10;image&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/res/layout/editor_image_view.xml&#10;InputEx&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;Test&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java&#10;tmpl_unordered_list_item&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/res/layout/tmpl_unordered_list_item.xml&#10;BaseC&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java&#10;ImageExtens&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;Image&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;Input&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;Editor.ja&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Editor.java&#10;Lis&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java&#10;Ada&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/java/com/example/mkallingal/qapp/Utilities/RendererPagerAdapter.java&#10;styles.&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/values/styles.xml&#10;Listener&#9;PSI&#9;JAVA://com.github.irshulx.BaseClass.EditorListener&#10;fragment_&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/fragment_preview.xml&#10;activity&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/activity_render_test.xml&#10;fragment_ser&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/fragment_serialized.xml&#10;sty&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/values/styles.xml&#10;tool&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/toolbar_render.xml&#10;colors.xml&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/res/values/colors.xml&#10;Inp&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;style&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/values/styles.xml&#10;toolbar_edi&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/toolbar_editor.xml&#10;toolbar_render&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/toolbar_render.xml&#10;RenderTe&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/java/com/example/mkallingal/qapp/RenderTestActivity.java&#10;InputExte&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;content_render&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/content_render_test.xml&#10;Ed&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java&#10;editor_toolbar_linearlayout_horizontal&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/res/layout/editor_toolbar_linearlayout_horizontal.xml&#10;R.java&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/build/generated/source/r/debug/com/irshu/editor/R.java" />
+    <property name="SearchEverywhereHistoryKey" value="ima&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;divider&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;activi&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/activity_render_test.xml&#10;preview&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/fragment_preview.xml&#10;Listit&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java&#10;EditorTes&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java&#10;Ima&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;Pre&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/fragment_preview.xml&#10;divi&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;ImageE&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;Editor&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Editor.java&#10;EditorAc&#9;PSI&#9;JAVA://com.example.mkallingal.qapp.EditorTestActivity&#10;BaseClass&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java&#10;BaseClas&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java&#10;HtmlEx&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/HTMLExtensions.java&#10;CustomEd&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java&#10;image&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/res/layout/editor_image_view.xml&#10;InputEx&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;Test&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java&#10;tmpl_unordered_list_item&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/res/layout/tmpl_unordered_list_item.xml&#10;BaseC&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java&#10;ImageExtens&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;Image&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;Input&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;Editor.ja&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Editor.java&#10;Lis&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java&#10;Ada&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/java/com/example/mkallingal/qapp/Utilities/RendererPagerAdapter.java&#10;styles.&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/values/styles.xml&#10;Listener&#9;PSI&#9;JAVA://com.github.irshulx.BaseClass.EditorListener&#10;fragment_&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/fragment_preview.xml&#10;activity&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/activity_render_test.xml&#10;fragment_ser&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/fragment_serialized.xml&#10;sty&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/values/styles.xml&#10;tool&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/toolbar_render.xml&#10;colors.xml&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/res/values/colors.xml&#10;Inp&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;style&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/values/styles.xml&#10;toolbar_edi&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/toolbar_editor.xml&#10;toolbar_render&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/toolbar_render.xml&#10;RenderTe&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/java/com/example/mkallingal/qapp/RenderTestActivity.java&#10;InputExte&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;content_render&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/res/layout/content_render_test.xml&#10;Ed&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java&#10;editor_toolbar_linearlayout_horizontal&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/src/main/res/layout/editor_toolbar_linearlayout_horizontal.xml&#10;R.java&#9;FILE&#9;file://D:/Stuff/Mine alone/editor-demo/laser-native-editor/build/generated/source/r/debug/com/irshu/editor/R.java" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
@@ -3618,25 +3622,25 @@
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.68139535" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32906976" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32906976" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32906976" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32906976" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20953912" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20953912" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32906976" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8290698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8290698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32906976" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32906976" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3678,12 +3682,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java</url>
-          <line>243</line>
+          <line>251</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="16" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -3720,13 +3724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32352942">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -3972,10 +3969,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
           <folding>
-            <element signature="e#649#650#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
+            <element signature="e#649#650#0" expanded="false" />
+            <element signature="e#686#687#0" expanded="false" />
+            <element signature="e#732#733#0" expanded="false" />
+            <element signature="e#762#763#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3984,22 +3981,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.10640871">
           <caret line="5857" column="0" selection-start-line="5857" selection-start-column="0" selection-end-line="5857" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="134" column="41" selection-start-line="134" selection-start-column="41" selection-end-line="134" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="362" column="81" selection-start-line="362" selection-start-column="81" selection-end-line="362" selection-end-column="81" />
           <folding />
         </state>
       </provider>
@@ -4013,28 +3994,6 @@
           <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
           <folding>
             <element signature="e#1550#1570#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/HTMLExtensions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="214" column="26" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="178" column="40" selection-start-line="178" selection-start-column="40" selection-end-line="178" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1843#1844#0" expanded="false" />
-            <element signature="e#1889#1890#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4071,32 +4030,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_render_test.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0">
-          <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="11" selection-start-line="67" selection-start-column="11" selection-end-line="67" selection-end-column="11" />
+        <state vertical-scroll-proportion="-7.3055553">
+          <caret line="204" column="29" selection-start-line="204" selection-start-column="29" selection-end-line="204" selection-end-column="29" />
           <folding>
             <element signature="e#2096#2277#0" expanded="true" />
             <element signature="e#2276#2277#0" expanded="true" />
@@ -4106,31 +4051,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="9" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
+        <state vertical-scroll-proportion="-7.9166665">
+          <caret line="122" column="39" selection-start-line="122" selection-start-column="39" selection-end-line="122" selection-end-column="39" />
           <folding>
-            <element signature="e#1492#1493#0" expanded="true" />
-            <element signature="e#1553#1554#0" expanded="true" />
-            <element signature="e#1898#1899#0" expanded="true" />
-            <element signature="e#1967#1968#0" expanded="true" />
-            <element signature="e#2422#2423#0" expanded="true" />
-            <element signature="e#2478#2479#0" expanded="true" />
-            <element signature="e#3440#3441#0" expanded="true" />
-            <element signature="e#3507#3508#0" expanded="true" />
-            <element signature="e#3552#3553#0" expanded="true" />
-            <element signature="e#3616#3617#0" expanded="true" />
-            <element signature="e#3784#3785#0" expanded="true" />
-            <element signature="e#3841#3842#0" expanded="true" />
-            <element signature="e#4327#4328#0" expanded="true" />
-            <element signature="e#4390#4391#0" expanded="true" />
+            <element signature="e#4588#4589#0" expanded="true" />
+            <element signature="e#4656#4657#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="319" column="29" selection-start-line="319" selection-start-column="29" selection-end-line="319" selection-end-column="29" />
+          <folding>
+            <element signature="e#3934#4167#0" expanded="true" />
+            <element signature="e#4166#4167#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_render_test.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.22068095">
+          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="30" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="30" />
+          <caret line="168" column="11" selection-start-line="159" selection-start-column="6" selection-end-line="168" selection-end-column="11" />
           <folding>
             <element signature="method#InsertLink#0;class#InputExtensions#0" expanded="false" />
             <element signature="method#InsertLink#1;class#InputExtensions#0" expanded="false" />
@@ -4139,10 +4094,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/build.gradle">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6875">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+        <state vertical-scroll-proportion="-13.323529">
+          <caret line="52" column="58" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/BaseClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="186" column="42" selection-start-line="186" selection-start-column="42" selection-end-line="186" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="41" selection-start-line="107" selection-start-column="41" selection-end-line="107" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/HTMLExtensions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4050786">
+          <caret line="133" column="22" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="22" />
           <folding />
         </state>
       </provider>

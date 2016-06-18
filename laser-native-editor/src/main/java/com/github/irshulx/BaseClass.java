@@ -187,7 +187,7 @@
                 if(tag==EditorType.INPUT){
                     int length=((EditText)this.__activeView).getText().length();
                     if(length>0){
-                        return type==EditorType.UL_LI ||type==EditorType.OL_LI?currentIndex: currentIndex+1;
+                        return type==EditorType.UL_LI ||type==EditorType.OL_LI?currentIndex: currentIndex;
                     }else{
                         return currentIndex;
                     }
@@ -447,6 +447,7 @@
 
             public void clearAllContents(){
                 this.__parentView.removeAllViews();
+
             }
 
             public class Utilities {

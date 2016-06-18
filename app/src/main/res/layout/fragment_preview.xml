@@ -23,7 +23,6 @@
                 android:layout_height="wrap_content"
                 card_view:cardCornerRadius="3dp"
                 card_view:cardElevation="3dp"
-                android:paddingTop="10dp"
                 android:paddingBottom="30dp">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -52,9 +51,8 @@
                                 android:layout_width="match_parent"
                                 android:id="@+id/renderer"
                                 app:render_type="Renderer"
-                                android:paddingTop="10dp"
-                                android:paddingLeft="15dp"
-                                android:paddingRight="15dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
                                 android:layout_height="wrap_content"
                                 android:paddingBottom="10dp"
                                 />

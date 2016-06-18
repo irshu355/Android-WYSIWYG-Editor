@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import com.github.irshulx.R;
 import com.github.irshulx.BaseClass;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.RenderType;
 
 /**
  * Created by mkallingal on 5/1/2016.
@@ -50,7 +51,7 @@ public class DividerExtensions {
         view.setTag(base.CreateTag(EditorType.hr));
         int Index= base.determineIndex(EditorType.hr);
         base.getParentView().addView(view, Index);
-        if(base.isLastRow(view)) {
+        if(base.isLastRow(view)&&base.getRenderType()== RenderType.Editor) {
             //check if ul is active
            base.getInputExtensions().InsertEditText(Index + 1, null, null);
         }
