@@ -232,15 +232,6 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
  - `InsertMap(String Cords);` Insert the marker into the editor. The cordinates must be of string form,  `"LAT,LNG"`
  - `setMapViewLayout(int layout);` Override the default layout for maps in the editor
 
-## Overridable layouts ##
-
-You can create your own layouts with the same Id's with the required Id's and put them in your app's layout directory. App will then override the library's layout and pick the one from your app's layout directory. As of now, you can override the following layouts.
-
-| Layout     | Description | Required Id's |
-| :------- | :-----: |:-----: |
-| [R.layout.editor_image_view](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/editor_image_view.xml) | Used to insert an image to the editor  | @+id/progress, @+id/lblStatus,@+id/imageView,@+id/btn_remove
-| [R.layout.tmpl_list_item](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_unordered_list_item.xml) | Used to insert an ordered/unordered list  | @+id/lblOrder, @+id/txtText,@+id/lblText
-
 ## Available Fonts##
 
 You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API: `editor.setFontFace(R.string.fontFamily__cursive);`
@@ -260,6 +251,14 @@ You are free to set any of the below fonts as the default font for your editor. 
 | cursive | `R.string.fontFamily__cursive` | 
 | monospace | `R.string.fontFamily__monospace` | 
 
+## Overridable layouts ##
+
+You can create your own layouts with the same Id's with the required Id's and put them in your app's layout directory. App will then override the library's layout and pick the one from your app's layout directory. As of now, you can override the following layouts.
+
+| Layout     | Description | Required Id's |
+| :------- | :-----: |:-----: |
+| [R.layout.editor_image_view](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/editor_image_view.xml) | Used to insert an image to the editor  | `@+id/progress`, `@+id/lblStatus`,`@+id/imageView`,`@+id/btn_remove`
+| [R.layout.tmpl_list_item](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_unordered_list_item.xml) | Used to insert an ordered/unordered list  | `@+id/lblOrder`, `@+id/txtText`,`@+id/lblText`
 
 
 ##Future Improvements
