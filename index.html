@@ -250,7 +250,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 <li><p><code>UpdateTextStyle(EditorTextStyle style);</code> Update the text style for
 the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDENT and OUTDENT</code> .  </p></li>
 <li><p><code>setH1TextSize(int size), setH2TextSize(int size) and setH3TextSize(int size);</code> Override the existing text sizes. There are getter methods as well to retrieve the existing text sizes for each.</p></li>
-<li><p><code>getFontFace(int resource);</code> Sets the FontFace for the editor.</p></li>
+<li><p><code>setFontFace(int resource);</code> Sets the FontFace for the editor.</p></li>
 <li><p><code>setLineSpacing(float value);</code> Sets the linespace for the editor.</p></li>
 <li><p><code>OpenImagePicker();</code> Opens up the image picker. Once the user has selected the image, it's automatically inserted to the editor. But you must configure a remote URL ,where you want the image to be uploaded. If the Remote URL is not specifed, the image is not persisted.</p></li>
 <li><p><code>InsertImage(Bitmap bitmap);</code> Insert a bitmap image into the editor.</p></li>
@@ -267,6 +267,95 @@ the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDEN
 </ul>
 
 <h2>
+<a id="available-fonts" class="anchor" href="#available-fonts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Available Fonts</h2>
+
+<p>You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API, for e.g: <code>editor.setFontFace(R.string.fontFamily__cursive);</code></p>
+
+<p><img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-1.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-2.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-3.jpg" alt="enter image description here">  </p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Font Name</th>
+<th align="center">Resource</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">serif</td>
+<td align="center"><code>R.string.fontFamily__serif</code></td>
+</tr>
+<tr>
+<td align="left">sans-serif</td>
+<td align="center"><code>R.string.fontFamily__sans_serif</code></td>
+</tr>
+<tr>
+<td align="left">sans-serif-light</td>
+<td align="center"><code>R.string.fontFamily__sans_serif_light</code></td>
+</tr>
+<tr>
+<td align="left">sans-serif-condensed</td>
+<td align="center"><code>R.string.fontFamily__sans_serif_condensed</code></td>
+</tr>
+<tr>
+<td align="left">sans-serif-thin</td>
+<td align="center"><code>R.string.fontFamily__sans_serif_thin</code></td>
+</tr>
+<tr>
+<td align="left">Serifsans-serif-medium</td>
+<td align="center"><code>R.string.fontFamily__sans_serif_medium</code></td>
+</tr>
+<tr>
+<td align="left">serif-monospace</td>
+<td align="center"><code>R.string.fontFamily__serif_monospace</code></td>
+</tr>
+<tr>
+<td align="left">casual</td>
+<td align="center"><code>R.string.fontFamily__casual</code></td>
+</tr>
+<tr>
+<td align="left">cursive</td>
+<td align="center"><code>R.string.fontFamily__cursive</code></td>
+</tr>
+<tr>
+<td align="left">monospace</td>
+<td align="center"><code>R.string.fontFamily__monospace</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="overridable-layouts" class="anchor" href="#overridable-layouts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overridable layouts</h2>
+
+<p>You can create your own layouts with the same Id's with the required Id's and put them in your app's layout directory. App will then override the library's layout and pick the one from your app's layout directory. As of now, you can override the following layouts.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Layout</th>
+<th align="center">Description</th>
+<th align="center">Required Id's</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/editor_image_view.xml">R.layout.editor_image_view</a></td>
+<td align="center">Used to insert an image to the editor</td>
+<td align="center">
+<code>@+id/progress</code>, <code>@+id/lblStatus</code>,<code>@+id/imageView</code>,<code>@+id/btn_remove</code>
+</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_unordered_list_item.xml">R.layout.tmpl_list_item</a></td>
+<td align="center">Used to insert an ordered/unordered list</td>
+<td align="center">
+<code>@+id/lblOrder</code>, <code>@+id/txtText</code>,<code>@+id/lblText</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
 <a id="future-improvements" class="anchor" href="#future-improvements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Future Improvements</h2>
 
 <ul>
@@ -276,6 +365,24 @@ the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDEN
 </ul>
 
 <p>Contributions are much appreciated, feel free to fork and customize for your needs.</p>
+
+<p>If you come across any bugs or needs, please mention it on issues, i will address it and resolve it the latest possible.</p>
+
+<h2>
+<a id="lisense" class="anchor" href="#lisense" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lisense</h2>
+
+<pre><code>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/irshuLx/laser-native-editor">Laser-native-editor</a> is maintained by <a href="https://github.com/irshuLx">irshuLx</a>.</span>
