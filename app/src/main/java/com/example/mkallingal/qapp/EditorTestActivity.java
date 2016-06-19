@@ -132,6 +132,7 @@ public class EditorTestActivity extends AppCompatActivity {
 
         //  _editor.dividerBackground=R.drawable.divider_background_dark;
         _editor.setImageUploaderUri("http://192.168.43.239/Laser-Editor-WebApi/api/ImageUploaderApi/PostImage");
+        _editor.setFontFace(R.string.fontFamily__serif);
         //_editor.StartEditor();
         _editor.setEditorListener(new BaseClass.EditorListener() {
             @Override

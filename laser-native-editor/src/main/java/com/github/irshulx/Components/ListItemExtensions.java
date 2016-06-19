@@ -78,9 +78,10 @@ public class ListItemExtensions {
     public View AddListItem(TableLayout layout, boolean isOrdered, String text){
         final View childLayout = ((Activity) base.getContext()).getLayoutInflater().inflate(this.listItemTemplate, null);
         final CustomEditText editText= (CustomEditText) childLayout.findViewById(R.id.txtText);
+        final TextView _order= (TextView) childLayout.findViewById(R.id.lblOrder);
+        _order.setTypeface(Typeface.create(base.getInputExtensions().getFontFace(),Typeface.BOLD));
         editText.setTypeface(Typeface.create(base.getInputExtensions().getFontFace(),Typeface.NORMAL));
                if(isOrdered){
-            final TextView _order= (TextView) childLayout.findViewById(R.id.lblOrder);
             int count= layout.getChildCount();
             _order.setText(String.valueOf(count+1)+".");
         }

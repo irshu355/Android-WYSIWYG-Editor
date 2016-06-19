@@ -159,10 +159,13 @@ public class HTMLExtensions {
                         break;
                     case ITALIC:
                         tmpl = tmpl.replace("{{$content}}", "<i>{{$content}}</i>");
+                        break;
                     case INDENT:
                         tmpl= tmpl.replace("{{$style}}","style=\"margin-left:25px\"");
+                        break;
                     case OUTDENT:
                         tmpl= tmpl.replace("{{$style}}","style=\"margin-left:0px\"");
+                        break;
                     case H1:
                         tmpl = tmpl.replace("{{$tag}}", "h1");
                         isParagraph = false;

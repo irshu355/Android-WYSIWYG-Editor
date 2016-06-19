@@ -93,12 +93,25 @@
         public void setH3TextSize(int size){
             getInputExtensions().setH3TextSize(size);
         }
+        public void setFontFace(int StringResource) {
+            getInputExtensions().setFontFace(StringResource);
+        }
+        public String getFontFace() {
+           return getInputExtensions().getFontFace();
+        }
+        public void setLineSpacing(float value){
+           getInputExtensions().setLineSpacing(value);
+        }
+        public float getLineSpacing(){
+            return getInputExtensions().getLineSpacing();
+        }
         public void UpdateTextStyle(EditorTextStyle style){
             getInputExtensions().UpdateTextStyle(style, null);
         }
         public void InsertLink() {
             getInputExtensions().InsertLink();
         }
+
 
         /*divider extensions
          */

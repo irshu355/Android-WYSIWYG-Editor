@@ -233,12 +233,6 @@ public class ImageExtensions {
         }
     }
 
-    private void SetImageScaleType(View view, ImageView.ScaleType scaleType){
-        final ImageView imageView= (ImageView) view.findViewById(R.id.imageView);
-        imageView.setScaleType(scaleType);
-        EditorControl tag= base.GetControlTag(view);
-        view.setTag(tag);
-    }
 
     private void BindEvents(final View layout){
         final ImageView imageView= (ImageView) layout.findViewById(R.id.imageView);
