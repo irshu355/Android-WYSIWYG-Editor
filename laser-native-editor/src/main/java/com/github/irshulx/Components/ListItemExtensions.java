@@ -46,7 +46,7 @@ import com.github.irshulx.models.RenderType;
 public class ListItemExtensions {
     private Context context;
     BaseClass base;
-    private int listItemTemplate=R.layout.tmpl_unordered_list_item;
+    private int listItemTemplate=R.layout.tmpl_list_item;
 
     public ListItemExtensions(BaseClass baseClass, Context context){
         this.base = baseClass;

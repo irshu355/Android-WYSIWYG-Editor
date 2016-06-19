@@ -117,7 +117,7 @@
          */
 
         public void setDividerLayout(int layout){
-            this.getDividerExtensions().setDividerBackground(layout);
+            this.getDividerExtensions().setDividerLayout(layout);
         }
         public void InsertDivider() {
             getDividerExtensions().InsertDivider();

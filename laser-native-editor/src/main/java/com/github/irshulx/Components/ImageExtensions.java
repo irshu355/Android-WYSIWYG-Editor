@@ -64,7 +64,7 @@ public class ImageExtensions {
     private Context context;
     private BaseClass base;
     private String imageUploadUri;
-    private int editorImageLayout=R.layout.editor_image_view;
+    private int editorImageLayout=R.layout.tmpl_image_view;
     public ImageExtensions(BaseClass baseClass, Context context){
         this.context = context;
         this.base = baseClass;

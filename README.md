@@ -236,7 +236,7 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
 
 ## Available Fonts##
 
-You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API, for e.g: `editor.setFontFace(R.string.fontFamily__cursive);`
+You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API, for e.g: `_editor.setFontFace(R.string.fontFamily__cursive);`
 
 ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-1.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-2.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-3.jpg)  
 
@@ -259,9 +259,17 @@ You can create your own layouts with the same Id's with the required Id's and pu
 
 | Layout     | Description | Required Id's |
 | :------- | :-----: |:-----: |
-| [R.layout.editor_image_view](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/editor_image_view.xml) | Used to insert an image to the editor  | `@+id/progress`, `@+id/lblStatus`,`@+id/imageView`,`@+id/btn_remove`
-| [R.layout.tmpl_list_item](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_unordered_list_item.xml) | Used to insert an ordered/unordered list  | `@+id/lblOrder`, `@+id/txtText`,`@+id/lblText`
+| [R.layout.tmpl_image_view](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_image_view.xml) | Used to insert an image to the editor  | `@+id/progress`, `@+id/lblStatus`,`@+id/imageView`,`@+id/btn_remove`
+| [R.layout.tmpl_list_item](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_list_item.xml) | Used to insert an ordered/unordered list  | `@+id/lblOrder`, `@+id/txtText`,`@+id/lblText`
+| [R.layout.tmpl_divider_layout](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml) | Used to insert a line divider  | -
 
+You could also set the layouts via the API:
+
+ -         `_editor.setEditorImageLayout(R.layout.tmpl_image_view);`
+ 
+ -         `_editor.setListItemLayout(R.layout.tmpl_list_item);`
+ 
+ -         `_editor.setDividerLayout(R.layout.tmpl_divider_layout);`
 
 ##Future Improvements
 

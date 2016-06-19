@@ -15,6 +15,7 @@
  */
 package com.github.irshulx.Components;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,24 +31,20 @@ import com.github.irshulx.models.RenderType;
  */
 public class DividerExtensions {
     private Context context;
-    private int dividerBackground= R.drawable.divider_background_light;
+    private int dividerLayout= R.layout.tmpl_divider_layout;
     BaseClass base;
     public DividerExtensions(BaseClass baseClass, Context context){
         this.base = baseClass;
         this.context = context;
     }
 
-    public void setDividerBackground(int drawable){
-        this.dividerBackground=drawable;
+    public void setDividerLayout(int layout){
+        this.dividerLayout=layout;
     }
 
     public void InsertDivider(){
 
-        View view=new View(context);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 3);
-        params.setMargins(10, 10, 10, 10);
-        view.setLayoutParams(params);
-        view.setBackgroundDrawable(context.getResources().getDrawable(dividerBackground));
+        View view=  ((Activity) context).getLayoutInflater().inflate(this.dividerLayout, null);
         view.setTag(base.CreateTag(EditorType.hr));
         int Index= base.determineIndex(EditorType.hr);
         base.getParentView().addView(view, Index);

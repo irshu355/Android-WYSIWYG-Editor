@@ -35,7 +35,7 @@ import com.squareup.picasso.Picasso;
 public class MapExtensions {
     private Context context;
     BaseClass base;
-    private int mapExtensionTemplate=R.layout.editor_image_view;
+    private int mapExtensionTemplate=R.layout.tmpl_image_view;
 
     public MapExtensions(BaseClass baseClass, Context context){
         this.base = baseClass;
