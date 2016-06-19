@@ -207,7 +207,7 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
 
  - `setH1TextSize(int size), setH2TextSize(int size) and setH3TextSize(int size);` Override the existing text sizes. There are getter methods as well to retrieve the existing text sizes for each.
  
- - `getFontFace(int resource);` Sets the FontFace for the editor.
+ - `setFontFace(int resource);` Sets the FontFace for the editor.
  
  - `setLineSpacing(float value);` Sets the linespace for the editor.
  
