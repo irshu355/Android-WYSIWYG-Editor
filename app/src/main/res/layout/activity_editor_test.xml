@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -22,6 +23,49 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_editor_test" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="60dp"
+        android:layout_height="match_parent">
+
+
+        <!-- Begin Editor toolbar -->
+
+        <HorizontalScrollView android:id="@+id/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:layout_alignParentBottom="true"
+            android:scrollbars="none">
+
+            <include layout="@layout/editor_toolbar_linearlayout_horizontal" />
+
+
+        </HorizontalScrollView>
+        <!--End of Editor toolbar -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="vertical"
+            android:layout_marginBottom="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_height="match_parent"
+            >
+            <com.github.irshulx.Editor
+                android:layout_width="match_parent"
+                android:id="@+id/editor"
+                app:render_type="Editor"
+                android:background="@color/white"
+                app:placeholder="Start writing here..."
+                android:paddingTop="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="100dp"
+                >
+
+            </com.github.irshulx.Editor>
+        </ScrollView>
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

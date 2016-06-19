@@ -9,14 +9,14 @@ Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:0.3.0'
+    compile 'com.github.irshulx:laser-native-editor:0.3.1'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>0.3.0</version>
+      <version>0.3.1</version>
       <type>pom</type>
     </dependency>
 
@@ -58,6 +58,8 @@ The editor is built, so that every part of the design have been exposed and is a
 
 Usage
 -------------------
+
+For a complete overview of the implementation, please take a loot at [activity_editor_test.xml](https://github.com/irshuLx/laser-native-editor/blob/master/app/src/main/res/layout/activity_editor_test.xml), [EditorTestActivity.java](https://github.com/irshuLx/laser-native-editor/blob/master/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java) and [editor_toolbar_linearlayout_horizontal.xml](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/editor_toolbar_linearlayout_horizontal.xml).
 
 **Layout XML**
 
