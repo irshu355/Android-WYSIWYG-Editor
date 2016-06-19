@@ -31,7 +31,7 @@
 
 <p>gradle:</p>
 
-<pre><code>compile 'com.github.irshulx:laser-native-editor:0.3.0'
+<pre><code>compile 'com.github.irshulx:laser-native-editor:0.3.1'
 </code></pre>
 
 <p>or maven:</p>
@@ -39,7 +39,7 @@
 <pre><code>&lt;dependency&gt;
   &lt;groupId&gt;com.github.irshulx&lt;/groupId&gt;
   &lt;artifactId&gt;laser-native-editor&lt;/artifactId&gt;
-  &lt;version&gt;0.3.0&lt;/version&gt;
+  &lt;version&gt;0.3.1&lt;/version&gt;
   &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;
 </code></pre>
@@ -114,6 +114,8 @@
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>For a complete overview of the implementation, please take a loot at <a href="https://github.com/irshuLx/laser-native-editor/blob/master/app/src/main/res/layout/activity_editor_test.xml">activity_editor_test.xml</a>, <a href="https://github.com/irshuLx/laser-native-editor/blob/master/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java">EditorTestActivity.java</a> and <a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/editor_toolbar_linearlayout_horizontal.xml">editor_toolbar_linearlayout_horizontal.xml</a>.</p>
 
 <p><strong>Layout XML</strong></p>
 
@@ -271,7 +273,7 @@ the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDEN
 <h2>
 <a id="available-fonts" class="anchor" href="#available-fonts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Available Fonts</h2>
 
-<p>You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API, for e.g: <code>editor.setFontFace(R.string.fontFamily__cursive);</code></p>
+<p>You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API, for e.g: <code>_editor.setFontFace(R.string.fontFamily__cursive);</code></p>
 
 <p><img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-1.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-2.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-3.jpg" alt="enter image description here">  </p>
 
@@ -341,24 +343,37 @@ the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDEN
 </thead>
 <tbody>
 <tr>
-<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/editor_image_view.xml">R.layout.editor_image_view</a></td>
+<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_image_view.xml">R.layout.tmpl_image_view</a></td>
 <td align="center">Used to insert an image to the editor</td>
 <td align="center">
 <code>@+id/progress</code>, <code>@+id/lblStatus</code>,<code>@+id/imageView</code>,<code>@+id/btn_remove</code>
 </td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_unordered_list_item.xml">R.layout.tmpl_list_item</a></td>
+<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_list_item.xml">R.layout.tmpl_list_item</a></td>
 <td align="center">Used to insert an ordered/unordered list</td>
 <td align="center">
 <code>@+id/lblOrder</code>, <code>@+id/txtText</code>,<code>@+id/lblText</code>
 </td>
 </tr>
+<tr>
+<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml">R.layout.tmpl_divider_layout</a></td>
+<td align="center">Used to insert a line divider</td>
+<td align="center">-</td>
+</tr>
 </tbody>
 </table>
 
+<p>You could also set the layouts via the API:</p>
+
+<ul>
+<li><p><code>_editor.setEditorImageLayout(R.layout.tmpl_image_view);</code></p></li>
+<li><p><code>_editor.setListItemLayout(R.layout.tmpl_list_item);</code></p></li>
+<li><p><code>_editor.setDividerLayout(R.layout.tmpl_divider_layout);</code></p></li>
+</ul>
+
 <h2>
-<a id="future-improvements" class="anchor" href="#future-improvements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Future Improvements</h2>
+<a id="future-plans" class="anchor" href="#future-plans" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Future Plans</h2>
 
 <ul>
 <li>Insert quotes.</li>
