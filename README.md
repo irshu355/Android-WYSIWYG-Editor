@@ -1,4 +1,4 @@
-![enter image description here](https://img.shields.io/badge/release-v0.3.0-blue.svg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://img.shields.io/badge/license-Apache 2-red.svg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://img.shields.io/badge/issues-0-green.svg)
+![enter image description here](https://img.shields.io/badge/version-0.3.2-blue.svg)&nbsp; ![enter image description here](https://img.shields.io/badge/license-Apache-2-red.svg)&nbsp; ![enter image description here](https://img.shields.io/badge/license-Apache-2-red.svg)&nbsp; ![enter image description here](https://img.shields.io/badge/issues-0-green.svg)
 
 Laser-Native-Editor
 ===================
