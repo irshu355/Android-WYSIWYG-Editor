@@ -249,16 +249,16 @@ You are free to set any of the below fonts as the default font for your editor. 
 
 | Font Name     | Resource | 
 | :------- | :-----: |
-| serif | R.string.fontFamily__serif | 
-| sans-serif | R.string.fontFamily__sans_serif | 
-| sans-serif-light | R.string.fontFamily__sans_serif_light | 
-| sans-serif-condensed | R.string.fontFamily__sans_serif_condensed | 
-| sans-serif-thin | R.string.fontFamily__sans_serif_thin | 
-| Serifsans-serif-medium | R.string.fontFamily__sans_serif_medium | 
-| serif-monospace | R.string.fontFamily__serif_monospace | 
-| casual | R.string.fontFamily__casual | 
-| cursive | R.string.fontFamily__cursive | 
-| monospace | R.string.fontFamily__monospace | 
+| serif | `R.string.fontFamily__serif` | 
+| sans-serif | `R.string.fontFamily__sans_serif` | 
+| sans-serif-light | `R.string.fontFamily__sans_serif_light` | 
+| sans-serif-condensed | `R.string.fontFamily__sans_serif_condensed` | 
+| sans-serif-thin | `R.string.fontFamily__sans_serif_thin` | 
+| Serifsans-serif-medium | `R.string.fontFamily__sans_serif_medium` | 
+| serif-monospace | `R.string.fontFamily__serif_monospace` | 
+| casual | `R.string.fontFamily__casual` | 
+| cursive | `R.string.fontFamily__cursive` | 
+| monospace | `R.string.fontFamily__monospace` | 
 
 
 
