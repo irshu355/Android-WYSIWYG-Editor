@@ -234,7 +234,7 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
 
 ## Available Fonts##
 
-You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API: `editor.setFontFace(R.string.fontFamily__cursive);`
+You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API, for e.g: `editor.setFontFace(R.string.fontFamily__cursive);`
 
 ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-1.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-2.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-3.jpg)  
 
