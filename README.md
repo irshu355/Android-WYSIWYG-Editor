@@ -279,9 +279,9 @@ Now every image inserted to the editor will issue a POST with the following sign
 
 If you are using ASP.NET Web API, your server wrapper would look something like this:
 
-     public class ImageUploaderApiController : ApiController
+     public class filesApiController : ApiController
         {
-            public async Task<HttpResponseMessage> PostImage()
+            public async Task<HttpResponseMessage> Post()
             {
                 var httpRequest = System.Web.HttpContext.Current.Request;
                 if (httpRequest.Files.Count > 0)
@@ -300,7 +300,7 @@ If you are using ASP.NET Web API, your server wrapper would look something like 
 
 **Note:** Once the upload is complete you must return the response in `JSON`:
 
-`{Uri:'the uri for the uploaded image', ResponseCd:'HTTP status code'}`
+`{Uri:'the uri for the uploaded image', HttpStatusCode:'HTTP status code'}`
 
 `
 
