@@ -284,7 +284,7 @@ Contributions are much appreciated, feel free to fork and customize for your nee
 
 If you come across any bugs or needs, please mention it on issues, i will address it and resolve it the latest possible.
 
-##Lisense
+##License
 
     
     Licensed under the Apache License, Version 2.0 (the "License");
