@@ -5,6 +5,6 @@ package com.github.irshulx.models;
  */
 public class ImageResponse {
        public String Uri;
-        public int ResponseCd;
+        public int HttpStatusCode;
     public String Message;
     }
