@@ -277,8 +277,8 @@ You could also set the layouts via the API:
 
 
  - Insert quotes.
- - Underline and Overline selections.
- - Imrove and add more callbacks.
+ - Improve and add more callbacks.
+ - Address the issues and feature requests from fellow devs.
 
 Contributions are much appreciated, feel free to fork and customize for your needs.
 
