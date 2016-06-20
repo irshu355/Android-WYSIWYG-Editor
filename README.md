@@ -182,14 +182,6 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
     }
 
 
-###Adding Callbacks
-
-     _editor.setEditorListener(new BaseClass.EditorListener() {
-                @Override
-                public void onTextChanged(EditText editText, Editable text) {
-                   // Toast.makeText(EditorTestActivity.this, text,Toast.LENGTH_SHORT).show();
-                }
-            });
 
 ##API
 
@@ -273,6 +265,55 @@ You could also set the layouts via the API:
  -  `_editor.setListItemLayout(R.layout.tmpl_list_item);`
   
  -  `_editor.setDividerLayout(R.layout.tmpl_divider_layout);`
+
+##Image Upload
+
+If your editor is to support image upload, you must configure your remote endpoint where the image will be posted to. The editor will issue a POST request with `Content-Type: multipart/form-data`. You can configure the endpoint through the API, for eg:
+` _editor.setImageUploaderUri("www.myhost.com/files/post");`
+Now every image inserted to the editor will issue a POST with the following signature:
+
+    POST www.myhost.com/files/post HTTP/1.1
+    Content-Type: multipart/form-data; boundary=---------------------------7d81b516112482
+    Accept-Encoding: gzip, deflate
+    Content-Length: 324
+
+If you are using ASP.NET Web API, your server wrapper would look something like this:
+
+     public class ImageUploaderApiController : ApiController
+        {
+            public async Task<HttpResponseMessage> PostImage()
+            {
+                var httpRequest = System.Web.HttpContext.Current.Request;
+                if (httpRequest.Files.Count > 0)
+                {
+                        var postedFile = httpRequest.Files[0];
+                        String relativePath = "~/Blobs/" + postedFile.FileName;
+                        var filePath = System.Web.HttpContext.Current.Server.MapPath(relativePath);
+                        postedFile.SaveAs(filePath);
+                      string uri=  ResolveServerUrl(VirtualPathUtility.ToAbsolute(relativePath));
+                        // NOTE: To store in memory use postedFile.InputStream
+                        return Request.CreateResponse(HttpStatusCode.Created, new { Uri = uri, ResponseCd =200});
+                }
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+    }
+
+**Note:** Once the upload is complete you must return the response in `JSON`:
+
+`{Uri:'the uri for the uploaded image', ResponseCd:'HTTP status code'}`
+
+`
+
+
+##Adding Callback
+
+     _editor.setEditorListener(new BaseClass.EditorListener() {
+                @Override
+                public void onTextChanged(EditText editText, Editable text) {
+                   // Toast.makeText(EditorTestActivity.this, text,Toast.LENGTH_SHORT).show();
+                }
+            });
+
 
 ##Future Plans
 
