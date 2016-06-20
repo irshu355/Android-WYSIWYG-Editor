@@ -298,7 +298,7 @@ If you are using ASP.NET Web API, your server wrapper would look something like 
             }
     }
 
-**Note:** Once the upload is complete you must return the response in `JSON`:
+**Note:** Once the upload is complete, you must return the response in the following `JSON` format to let the ediitor grab the uri for the image:
 
 `{Uri:'the uri for the uploaded image', HttpStatusCode:'HTTP status code'}`
 
@@ -319,7 +319,9 @@ If you are using ASP.NET Web API, your server wrapper would look something like 
 
 
  - Insert quotes.
+ 
  - Improve and add more callbacks.
+ 
  - Address the issues and feature requests from fellow devs.
 
 Contributions are much appreciated, feel free to fork and customize for your needs.
