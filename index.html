@@ -31,7 +31,7 @@
 
 <p>gradle:</p>
 
-<pre><code>compile 'com.github.irshulx:laser-native-editor:0.3.1'
+<pre><code>compile 'com.github.irshulx:laser-native-editor:0.3.2'
 </code></pre>
 
 <p>or maven:</p>
@@ -39,7 +39,7 @@
 <pre><code>&lt;dependency&gt;
   &lt;groupId&gt;com.github.irshulx&lt;/groupId&gt;
   &lt;artifactId&gt;laser-native-editor&lt;/artifactId&gt;
-  &lt;version&gt;0.3.1&lt;/version&gt;
+  &lt;version&gt;0.3.2&lt;/version&gt;
   &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;
 </code></pre>
@@ -231,17 +231,6 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 </code></pre>
 
-<h3>
-<a id="adding-callbacks" class="anchor" href="#adding-callbacks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding Callbacks</h3>
-
-<pre><code> _editor.setEditorListener(new BaseClass.EditorListener() {
-            @Override
-            public void onTextChanged(EditText editText, Editable text) {
-               // Toast.makeText(EditorTestActivity.this, text,Toast.LENGTH_SHORT).show();
-            }
-        });
-</code></pre>
-
 <h2>
 <a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
 
@@ -373,6 +362,58 @@ the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDEN
 <li><p><code>_editor.setListItemLayout(R.layout.tmpl_list_item);</code></p></li>
 <li><p><code>_editor.setDividerLayout(R.layout.tmpl_divider_layout);</code></p></li>
 </ul>
+
+<h2>
+<a id="image-upload" class="anchor" href="#image-upload" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Image Upload</h2>
+
+<p>If your editor is to support image upload, you must configure your remote endpoint where the image will be posted to. The editor will issue a POST request with <code>Content-Type: multipart/form-data</code>. You can configure the endpoint through the API, for eg:
+<code>_editor.setImageUploaderUri("www.myhost.com/files/post");</code>
+Now every image inserted to the editor will issue a POST with the following signature:</p>
+
+<pre><code>POST www.myhost.com/files/post HTTP/1.1
+Content-Type: multipart/form-data; boundary=---------------------------7d81b516112482
+Accept-Encoding: gzip, deflate
+Content-Length: 324
+</code></pre>
+
+<p>If you are using ASP.NET Web API, your server wrapper would look something like this:</p>
+
+<pre><code> public class filesApiController : ApiController
+    {
+        public async Task&lt;HttpResponseMessage&gt; Post()
+        {
+            var httpRequest = System.Web.HttpContext.Current.Request;
+            if (httpRequest.Files.Count &gt; 0)
+            {
+                    var postedFile = httpRequest.Files[0];
+                    String relativePath = "~/Blobs/" + postedFile.FileName;
+                    var filePath = System.Web.HttpContext.Current.Server.MapPath(relativePath);
+                    postedFile.SaveAs(filePath);
+                  string uri=  ResolveServerUrl(VirtualPathUtility.ToAbsolute(relativePath));
+                    // NOTE: To store in memory use postedFile.InputStream
+                    return Request.CreateResponse(HttpStatusCode.Created, new { Uri = uri, ResponseCd =200});
+            }
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+}
+</code></pre>
+
+<p><strong>Note:</strong> Once the upload is complete you must return the response in <code>JSON</code>:</p>
+
+<p><code>{Uri:'the uri for the uploaded image', HttpStatusCode:'HTTP status code'}</code></p>
+
+<p>`</p>
+
+<h2>
+<a id="adding-callback" class="anchor" href="#adding-callback" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding Callback</h2>
+
+<pre><code> _editor.setEditorListener(new BaseClass.EditorListener() {
+            @Override
+            public void onTextChanged(EditText editText, Editable text) {
+               // Toast.makeText(EditorTestActivity.this, text,Toast.LENGTH_SHORT).show();
+            }
+        });
+</code></pre>
 
 <h2>
 <a id="future-plans" class="anchor" href="#future-plans" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Future Plans</h2>
