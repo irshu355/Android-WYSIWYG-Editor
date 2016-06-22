@@ -1,9 +1,9 @@
 ![enter image description here](https://img.shields.io/badge/release-0.3.0-blue.svg)&nbsp; ![enter image description here](https://img.shields.io/badge/license-Apache 2-blue.svg)&nbsp; ![enter image description here](https://img.shields.io/badge/issues-0-green.svg)
 
-Laser-Native-Editor
+Android-WYSIWYG-Editor
 ===================
 
-**Laser-Native-Editor** is an iFrame free WYSIWYG editor that uses the native components in the content tree.
+**Android-WYSIWYG-Editor** is an iFrame free WYSIWYG editor that uses the native components in the content tree.
 
 Download
 ------------
