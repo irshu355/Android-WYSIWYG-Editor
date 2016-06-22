@@ -3,7 +3,7 @@
 Android-WYSIWYG-Editor
 ===================
 
-**Android-WYSIWYG-Editor** is an iframe free text editor that uses the native components in the content tree.
+**Android-WYSIWYG-Editor** is an iframe free text editor that uses native components in the content tree.
 
 Download
 ------------
