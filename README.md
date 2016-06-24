@@ -30,9 +30,9 @@ Demo APK can be download [here](https://www.dropbox.com/s/xmqw2mj1ocj7wgt/laser-
 Features
 -------------
 
- - **Renderer or Editor**: You can use Laser as a **Renderer** to Render the content or use it as an **Editor** to create the content.
+ - **Renderer or Editor**: You can use it as a **Renderer** to Render the content or use it as an **Editor** to create the content.
  
- - **No Webviews used** to render the content. Laser uses Native EditText, ImageView and as such to render the contents.
+ - **No Webviews used** to render the content. It uses Native EditText, ImageView and as such to render the contents.
  
  - **HTML Parser:** Render your HTML Code into the editor and vice versa.
  
