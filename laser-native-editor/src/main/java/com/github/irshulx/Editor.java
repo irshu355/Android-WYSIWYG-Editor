@@ -21,7 +21,7 @@
     import com.github.irshulx.models.EditorContent;
     import com.github.irshulx.models.RenderType;
 
-    public class Editor extends BaseClass {
+    public class Editor extends EditorCore {
         public Editor(Context context, AttributeSet attrs) {
             super(context, attrs);
             super.setEditorListener(null);

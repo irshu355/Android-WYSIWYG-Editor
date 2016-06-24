@@ -1,4 +1,4 @@
-package com.example.mkallingal.qapp.Utilities;
+package com.github.irshulx.qapp.Utilities;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

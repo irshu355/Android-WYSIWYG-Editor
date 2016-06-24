@@ -40,7 +40,7 @@
         /**
          * Created by mkallingal on 4/30/2016.
          */
-        public class BaseClass extends LinearLayout {
+        public class EditorCore extends LinearLayout {
             /*
             * EditText initializors
             */
@@ -67,7 +67,7 @@
             private DividerExtensions __dividerExtensions;
             private HTMLExtensions __htmlExtensions;
             private MapExtensions __mapExtensions;
-                public BaseClass(Context _context, AttributeSet attrs){
+                public EditorCore(Context _context, AttributeSet attrs){
                     super(_context,attrs);
                     this.__context = _context;
                     this.__activity= (Activity)_context;
@@ -79,13 +79,13 @@
                 __utilities =new Utilities();
                 this.__resources = context.getResources();
                 __gson =new Gson();
-                __inputExtensions =new InputExtensions(this,context);
-                __imageExtensions =new ImageExtensions(this,context);
+                __inputExtensions =new InputExtensions(this);
+                __imageExtensions =new ImageExtensions(this);
                 __imageExtensions.setImageUploadUri(this.__imageUploaderUri);
-                __listItemExtensions =new ListItemExtensions(this,context);
-                __dividerExtensions =new DividerExtensions(this,context);
-                __mapExtensions = new MapExtensions(this,context);
-                __htmlExtensions = new HTMLExtensions(this,context);
+                __listItemExtensions =new ListItemExtensions(this);
+                __dividerExtensions =new DividerExtensions(this);
+                __mapExtensions = new MapExtensions(this);
+                __htmlExtensions = new HTMLExtensions(this);
                 this.__parentView = this;
             }
 

@@ -17,12 +17,11 @@
 package com.github.irshulx.Components;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.github.irshulx.BaseClass;
+import com.github.irshulx.EditorCore;
 import com.github.irshulx.MapsActivity;
 import com.github.irshulx.R;
 import com.github.irshulx.models.EditorControl;
@@ -33,13 +32,10 @@ import com.squareup.picasso.Picasso;
  * Created by mkallingal on 5/1/2016.
  */
 public class MapExtensions {
-    private Context context;
-    BaseClass base;
+    EditorCore editorCore;
     private int mapExtensionTemplate=R.layout.tmpl_image_view;
-
-    public MapExtensions(BaseClass baseClass, Context context){
-        this.base = baseClass;
-        this.context = context;
+    public MapExtensions(EditorCore editorCore){
+        this.editorCore = editorCore;
     }
 
     public void setMapViewTemplate(int drawable)
@@ -52,7 +48,7 @@ public class MapExtensions {
         String[] x= cords.split(",");
         String lat = x[0];
         String lng = x[1];
-        int[]size= base.getUtilitiles().GetScreenDimension();
+        int[]size= editorCore.getUtilitiles().GetScreenDimension();
         int width=size[0];
         StringBuilder builder = new StringBuilder();
         builder.append("http://maps.google.com/maps/api/staticmap?");
@@ -64,9 +60,9 @@ public class MapExtensions {
 //        parentView.addView(imageView);
 //        Picasso.with(this.context).load(builder.toString()).into(imageView);
 
-        final View childLayout = ((Activity) context).getLayoutInflater().inflate(this.mapExtensionTemplate, null);
+        final View childLayout = ((Activity) this.editorCore.getContext()).getLayoutInflater().inflate(this.mapExtensionTemplate, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        Picasso.with(this.context).load(builder.toString()).into(imageView);
+        Picasso.with(this.editorCore.getContext()).load(builder.toString()).into(imageView);
 
         final View btn =  childLayout.findViewById(R.id.btn_remove);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -84,22 +80,22 @@ public class MapExtensions {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                base.getParentView().removeView(childLayout);
+                editorCore.getParentView().removeView(childLayout);
             }
         });
-        EditorControl control = base.CreateTag(EditorType.map);
+        EditorControl control = editorCore.CreateTag(EditorType.map);
         control.Cords= cords;
         childLayout.setTag(control);
-        int Index= base.determineIndex(EditorType.map);
-        base.getParentView().addView(childLayout, Index);
+        int Index= editorCore.determineIndex(EditorType.map);
+        editorCore.getParentView().addView(childLayout, Index);
         if(insertEditText){
-          base.getInputExtensions().InsertEditText(Index + 1, null, null);
+          editorCore.getInputExtensions().InsertEditText(Index + 1, null, null);
         }
     }
 
     public void loadMapActivity(){
-                Intent intent=new Intent(context, MapsActivity.class);
-                ((Activity) context).startActivityForResult(intent, base.MAP_MARKER_REQUEST);
+                Intent intent=new Intent(this.editorCore.getContext(), MapsActivity.class);
+                ((Activity) this.editorCore.getContext()).startActivityForResult(intent, editorCore.MAP_MARKER_REQUEST);
     }
 
 }

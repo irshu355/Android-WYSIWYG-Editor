@@ -1,4 +1,4 @@
-package com.example.mkallingal.qapp;
+package com.github.irshulx.qapp;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,9 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.github.irshulx.BaseClass;
 import com.github.irshulx.Editor;
+import com.github.irshulx.EditorCore;
 import com.github.irshulx.models.EditorTextStyle;
 
 import java.io.IOException;
@@ -137,7 +136,7 @@ public class EditorTestActivity extends AppCompatActivity {
         _editor.setEditorImageLayout(R.layout.tmpl_image_view);
         _editor.setListItemLayout(R.layout.tmpl_list_item);
         //_editor.StartEditor();
-        _editor.setEditorListener(new BaseClass.EditorListener() {
+        _editor.setEditorListener(new EditorCore.EditorListener() {
             @Override
             public void onTextChanged(EditText editText, Editable text) {
                 // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();

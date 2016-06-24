@@ -1,4 +1,4 @@
-package com.example.mkallingal.qapp;
+package com.github.irshulx.qapp;
 
 
 import android.os.Bundle;

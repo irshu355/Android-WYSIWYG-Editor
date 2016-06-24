@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:background="@color/colorPrimary"
     android:layout_height="match_parent"
-    tools:context="com.example.mkallingal.qapp.HTMLRenderedFragment">
+    tools:context="com.github.irshulx.qapp.HTMLRenderedFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

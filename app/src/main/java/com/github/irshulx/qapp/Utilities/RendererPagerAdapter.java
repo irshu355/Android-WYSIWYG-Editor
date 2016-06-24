@@ -1,13 +1,13 @@
-package com.example.mkallingal.qapp.Utilities;
+package com.github.irshulx.qapp.Utilities;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.mkallingal.qapp.HTMLRenderedFragment;
-import com.example.mkallingal.qapp.PreviewFragment;
-import com.example.mkallingal.qapp.SerializedFragment;
+import com.github.irshulx.qapp.HTMLRenderedFragment;
+import com.github.irshulx.qapp.PreviewFragment;
+import com.github.irshulx.qapp.SerializedFragment;
 
 /**
  * Created by mkallingal on 6/12/2016.

@@ -1,4 +1,4 @@
-package com.example.mkallingal.qapp;
+package com.github.irshulx.qapp;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -6,8 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.example.mkallingal.qapp.Utilities.RenderType;
-import com.example.mkallingal.qapp.Utilities.RendererPagerAdapter;
+import com.github.irshulx.qapp.Utilities.RenderType;
+import com.github.irshulx.qapp.Utilities.RendererPagerAdapter;
 import com.google.gson.Gson;
 import com.github.irshulx.Editor;
 import com.github.irshulx.models.EditorContent;

@@ -16,13 +16,10 @@
 package com.github.irshulx.Components;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.github.irshulx.R;
-import com.github.irshulx.BaseClass;
+import com.github.irshulx.EditorCore;
 import com.github.irshulx.models.EditorType;
 import com.github.irshulx.models.RenderType;
 
@@ -30,35 +27,28 @@ import com.github.irshulx.models.RenderType;
  * Created by mkallingal on 5/1/2016.
  */
 public class DividerExtensions {
-    private Context context;
     private int dividerLayout= R.layout.tmpl_divider_layout;
-    BaseClass base;
-    public DividerExtensions(BaseClass baseClass, Context context){
-        this.base = baseClass;
-        this.context = context;
+    EditorCore editorCore;
+    public DividerExtensions(EditorCore editorCore){
+        this.editorCore = editorCore;
     }
-
     public void setDividerLayout(int layout){
         this.dividerLayout=layout;
     }
-
     public void InsertDivider(){
-
-        View view=  ((Activity) context).getLayoutInflater().inflate(this.dividerLayout, null);
-        view.setTag(base.CreateTag(EditorType.hr));
-        int Index= base.determineIndex(EditorType.hr);
-        base.getParentView().addView(view, Index);
-        if(base.isLastRow(view)&&base.getRenderType()== RenderType.Editor) {
+        View view=  ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.dividerLayout, null);
+        view.setTag(editorCore.CreateTag(EditorType.hr));
+        int Index= editorCore.determineIndex(EditorType.hr);
+        editorCore.getParentView().addView(view, Index);
+        if(editorCore.isLastRow(view)&& editorCore.getRenderType()== RenderType.Editor) {
             //check if ul is active
-           base.getInputExtensions().InsertEditText(Index + 1, null, null);
+           editorCore.getInputExtensions().InsertEditText(Index + 1, null, null);
         }
     }
     public void deleteHr(int indexOfDeleteItem) {
-        View view= base.getParentView().getChildAt(indexOfDeleteItem);
-        if(base.GetControlType(view)==EditorType.hr){
-            base.getParentView().removeView(view);
+        View view= editorCore.getParentView().getChildAt(indexOfDeleteItem);
+        if(editorCore.GetControlType(view)==EditorType.hr){
+            editorCore.getParentView().removeView(view);
         }
     }
-
-
 }

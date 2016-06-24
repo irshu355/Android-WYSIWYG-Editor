@@ -1,10 +1,9 @@
 package com.github.irshulx.Components;
 
-import android.content.Context;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.github.irshulx.BaseClass;
+import com.github.irshulx.EditorCore;
 import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorType;
@@ -20,12 +19,10 @@ import org.jsoup.parser.Tag;
  * Created by mkallingal on 5/25/2016.
  */
 public class HTMLExtensions {
-    private Context context;
-    BaseClass base;
+    EditorCore editorCore;
 
-    public HTMLExtensions(BaseClass baseClass, Context context){
-        this.base = baseClass;
-        this.context = context;
+    public HTMLExtensions(EditorCore editorCore){
+        this.editorCore = editorCore;
     }
     public void parseHtml(String htmlString){
         Document doc= Jsoup.parse(htmlString);
@@ -39,13 +36,13 @@ public class HTMLExtensions {
         String text;
         TextView editText;
         HtmlTag tag= HtmlTag.valueOf(element.tagName().toLowerCase());
-        int count= base.getParentView().getChildCount();
+        int count= editorCore.getParentView().getChildCount();
         if("<br>".equals(element.html().replaceAll("\\s+", ""))||"<br/>".equals(element.html().replaceAll("\\s+", ""))){
-            base.getInputExtensions().InsertEditText(count, null, null);
+            editorCore.getInputExtensions().InsertEditText(count, null, null);
             return;
         }
         else if("<hr>".equals(element.html().replaceAll("\\s+", ""))||"<hr/>".equals(element.html().replaceAll("\\s+", ""))){
-            base.getDividerExtensions().InsertDivider();
+            editorCore.getDividerExtensions().InsertDivider();
             return;
         }
         switch (tag){
@@ -56,7 +53,7 @@ public class HTMLExtensions {
                 break;
             case p:
                 text= element.html();
-                editText= base.getInputExtensions().InsertEditText(count, null, text);
+                editText= editorCore.getInputExtensions().InsertEditText(count, null, text);
                 break;
             case ul:
             case ol:
@@ -70,27 +67,27 @@ public class HTMLExtensions {
 
     private void RenderImage(Element element) {
         String src= element.attr("src");
-        int Index= base.getParentChildCount();
-        base.getImageExtensions().executeDownloadImageTask(src,Index);
+        int Index= editorCore.getParentChildCount();
+        editorCore.getImageExtensions().executeDownloadImageTask(src,Index);
     }
     private void RenderList(boolean isOrdered, Element element) {
         if(element.children().size()>0){
             Element li=element.child(0);
             String text=getHtmlSpan(li);
-            TableLayout layout= base.getListItemExtensions().insertList(base.getParentChildCount(),isOrdered,text);
+            TableLayout layout= editorCore.getListItemExtensions().insertList(editorCore.getParentChildCount(),isOrdered,text);
             for (int i=1;i<element.children().size();i++){
                  text=getHtmlSpan(li);
-                base.getListItemExtensions().AddListItem(layout,isOrdered,text);
+                editorCore.getListItemExtensions().AddListItem(layout,isOrdered,text);
             }
         }
     }
 
     private void RenderHeader(HtmlTag tag, Element element){
-       int count= base.getParentView().getChildCount();
+       int count= editorCore.getParentView().getChildCount();
        String text=getHtmlSpan(element);
-       TextView  editText= base.getInputExtensions().InsertEditText(count, null, text);
+       TextView  editText= editorCore.getInputExtensions().InsertEditText(count, null, text);
        EditorTextStyle style= tag==HtmlTag.h1? EditorTextStyle.H1:tag==HtmlTag.h2? EditorTextStyle.H2: EditorTextStyle.H3;
-       base.getInputExtensions().UpdateTextStyle(style,editText);
+       editorCore.getInputExtensions().UpdateTextStyle(style,editText);
     }
 
     private String getHtmlSpan(Element element) {
@@ -146,7 +143,7 @@ public class HTMLExtensions {
         boolean isParagraph=true;
         String tmpl= getTemplateHtml(EditorType.INPUT);
       //  CharSequence content= android.text.Html.fromHtml(item.content.get(0)).toString();
-      //  CharSequence trimmed= base.getInputExtensions().noTrailingwhiteLines(content);
+      //  CharSequence trimmed= editorCore.getInputExtensions().noTrailingwhiteLines(content);
         String trimmed= Jsoup.parse(item.content.get(0)).body().select("p").html();
         if(item._ControlStyles.size()>0) {
             for (EditorTextStyle style : item._ControlStyles) {
@@ -200,7 +197,7 @@ public class HTMLExtensions {
     public String getContentAsHTML() {
         StringBuilder htmlBlock = new StringBuilder();
         String html;
-        EditorContent content = base.getContent();
+        EditorContent content = editorCore.getContent();
        return getContentAsHTML(content);
     }
 
@@ -232,7 +229,7 @@ public class HTMLExtensions {
     }
 
     public String getContentAsHTML(String editorContentAsSerialized) {
-        EditorContent content = base.getContentDeserialized(editorContentAsSerialized);
+        EditorContent content = editorCore.getContentDeserialized(editorContentAsSerialized);
         return getContentAsHTML(content);
     }
 

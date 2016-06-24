@@ -15,7 +15,6 @@
  */
 package com.github.irshulx.Components;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,7 +30,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.irshulx.BaseClass;
+import com.github.irshulx.EditorCore;
 import com.github.irshulx.R;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorContent;
@@ -61,13 +60,11 @@ import retrofit2.Callback;
  * Created by mkallingal on 5/1/2016.
  */
 public class ImageExtensions {
-    private Context context;
-    private BaseClass base;
+    private EditorCore editorCore;
     private String imageUploadUri;
     private int editorImageLayout=R.layout.tmpl_image_view;
-    public ImageExtensions(BaseClass baseClass, Context context){
-        this.context = context;
-        this.base = baseClass;
+    public ImageExtensions(EditorCore editorCore){
+        this.editorCore = editorCore;
     }
 
     public void setEditorImageLayout(int drawable){
@@ -83,38 +80,38 @@ public class ImageExtensions {
     }
 
     public void OpenImageGallery() {
-        int Index=this.base.determineIndex(EditorType.none);
-        EditorContent state= base.getContent();
+        int Index=this.editorCore.determineIndex(EditorType.none);
+        EditorContent state= editorCore.getContent();
         Intent intent = new Intent();
 // Show only images, no videos or anything else
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
     // Always show the chooser (if there are multiple options available)
-        ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select an image"), base.PICK_IMAGE_REQUEST);
+        ((Activity) editorCore.getContext()).startActivityForResult(Intent.createChooser(intent, "Select an image"), editorCore.PICK_IMAGE_REQUEST);
     }
 
     public void InsertImage(Bitmap _image,int Index) {
        // Render(getStateFromString());
-        final View childLayout = ((Activity) context).getLayoutInflater().inflate(this.editorImageLayout, null);
+        final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
         imageView.setImageBitmap(_image);
         final String uuid= GenerateUUID();
         BindEvents(childLayout);
         if(Index==-1) {
-             Index = base.determineIndex(EditorType.img);
+             Index = editorCore.determineIndex(EditorType.img);
         }
-        base.getParentView().addView(childLayout, Index);
+        editorCore.getParentView().addView(childLayout, Index);
         //      _Views.add(childLayout);
-        if(base.isLastRow(childLayout)) {
-            base.getInputExtensions().InsertEditText(Index + 1, null, null);
+        if(editorCore.isLastRow(childLayout)) {
+            editorCore.getInputExtensions().InsertEditText(Index + 1, null, null);
         }
-        EditorControl control= base.CreateTag(EditorType.img);
+        EditorControl control= editorCore.CreateTag(EditorType.img);
         childLayout.setTag(control);
-        if(TextUtils.isEmpty(base.getImageUploaderUri())) {
+        if(TextUtils.isEmpty(editorCore.getImageUploaderUri())) {
             String error="You must configure a valid remote URI to be able to upload the image.This image is not persisted";
-            base.getUtilitiles().toastItOut(error);
+            editorCore.getUtilitiles().toastItOut(error);
             TextView sts=(TextView) childLayout.findViewById(R.id.lblStatus);
-            sts.setBackgroundDrawable(base.getResources().getDrawable(R.drawable.error_background));
+            sts.setBackgroundDrawable(editorCore.getResources().getDrawable(R.drawable.error_background));
             sts.setVisibility(View.VISIBLE);
             sts.setText(error);
             return;
@@ -133,13 +130,13 @@ public class ImageExtensions {
       /used by the renderer to render the image from the state
     */
     public  void loadImage(String _path){
-        ImageView imageView = new ImageView(this.context);
+        ImageView imageView = new ImageView(this.editorCore.getContext());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0,25,0,30);
+        params.setMargins(0, 25, 0, 30);
         imageView.setLayoutParams(params);
 
-        Picasso.with(this.context).load(_path).into(imageView);
-        base.getParentView().addView(imageView);
+        Picasso.with(this.editorCore.getContext()).load(_path).into(imageView);
+        editorCore.getParentView().addView(imageView);
     }
     /*
       /used to fetch an image from internet and return a Bitmap equivalent
@@ -171,7 +168,7 @@ public class ImageExtensions {
          /used to upload the image to remote
        */
     private  void UploadImageToServer(Bitmap bitmap, final View view, String uuid){
-        File f = new File(context.getCacheDir(), uuid+".png");
+        File f = new File(this.editorCore.getContext().getCacheDir(), uuid+".png");
         final TextView lblStatus= (TextView) view.findViewById(R.id.lblStatus);
         try {
             f.createNewFile();
@@ -196,20 +193,20 @@ public class ImageExtensions {
             // finally, execute the request
             view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
             lblStatus.setVisibility(View.VISIBLE);
-            if(base.getEditorListener()!=null){
+            if(editorCore.getEditorListener()!=null){
             }
-            Call<ImageResponse> call = service.upload(base.getImageUploaderUri(), description, body);
+            Call<ImageResponse> call = service.upload(editorCore.getImageUploaderUri(), description, body);
             call.enqueue(new Callback<ImageResponse>() {
                 @Override
                 public void onResponse(Call<ImageResponse> call, final retrofit2.Response<ImageResponse> response) {
                     ((TextView) view.findViewById(R.id.lblStatus)).setText("Upload complete");
-                    EditorControl control= base.CreateTag(EditorType.img);
+                    EditorControl control= editorCore.CreateTag(EditorType.img);
                     control.Path= response.body().Uri;
                     view.setTag(control);
                     new java.util.Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            ((Activity) context).runOnUiThread(new Runnable() {
+                            ((Activity) editorCore.getContext()).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     // This code will always run on the UI thread, therefore is safe to modify UI elements.
@@ -224,7 +221,7 @@ public class ImageExtensions {
                 @Override
                 public void onFailure(Call<ImageResponse> call, Throwable t) {
                     lblStatus.setText(t.getMessage());
-                    lblStatus.setBackgroundDrawable(base.getResources().getDrawable(R.drawable.error_background));
+                    lblStatus.setBackgroundDrawable(editorCore.getResources().getDrawable(R.drawable.error_background));
                     view.findViewById(R.id.progress).setVisibility(View.GONE);
                 }
             });
@@ -241,7 +238,7 @@ public class ImageExtensions {
         btn_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                base.getParentView().removeView(layout);
+                editorCore.getParentView().removeView(layout);
             }
         });
 

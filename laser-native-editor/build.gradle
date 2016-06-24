@@ -2,17 +2,16 @@ apply plugin: 'com.android.library'
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'laser-native-editor'
-
     publishedGroupId = 'com.github.irshulx'
     libraryName = 'laser-native-editor'
     artifact = 'laser-native-editor'
 
-    libraryDescription = 'Laser-Native-Editor is a WYSIWYG editor written in Android using the native components in the content tree. The library can be used as both Editor and Renderer. The HTML parser helps it easier to integrate with specific web WYSIWY'
+    libraryDescription = 'Android WYSIWYG is a text editor written in Android using the native components in the content tree. The library can be used as both Editor and Renderer. The HTML parser helps it easier to integrate with specific web WYSIWY'
 
     siteUrl = 'http://irshulx.github.io/laser-native-editor'
     gitUrl = 'https://github.com/irshuLx/laser-native-editor.git'
 
-    libraryVersion = '0.3.2'
+    libraryVersion = '0.3.8'
 
     developerId = 'irshuLx'
     developerName = 'Irshu'

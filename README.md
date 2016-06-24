@@ -3,25 +3,30 @@
 Android-WYSIWYG-Editor
 ===================
 
-**Android-WYSIWYG-Editor** is an iframe free text editor that uses native components in the content tree.
+An iframe free text editor that uses native components in the content tree.
+
+<a href="https://play.google.com/store/apps/details?id=com.github.irshulx.qapp">![alt text][1]</a>
+[1]: https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/play-icon.jpg
+
 
 Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:android-wysiwyg-editor:0.3.2'
+    compile 'com.github.irshulx:laser-native-editor:0.3.5'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
-      <artifactId>android-wysiwyg-editor</artifactId>
-      <version>0.3.2</version>
+      <artifactId>laser-native-editor</artifactId>
+      <version>0.3.5</version>
       <type>pom</type>
     </dependency>
 
 Demo
 --------------
+
 Demo APK can be download [here](https://www.dropbox.com/s/xmqw2mj1ocj7wgt/laser-native-editor-demo.apk?dl=0).
 
 ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-1.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-2.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-3.gif)&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_1.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_2.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_3.jpg)  
@@ -270,14 +275,14 @@ You could also set the layouts via the API:
 
 If your editor is to support image upload, you must configure your remote endpoint where the image will be posted to. The editor will issue a POST request with `Content-Type: multipart/form-data`. You can configure the endpoint through the API, for eg:
 ` _editor.setImageUploaderUri("www.myhost.com/files/post");`
-Now every image inserted to the editor will issue a POST with the following signature:
+Now every image inserted to the editor will issue a POST with the following signature,for eg:
 
     POST www.myhost.com/files/post HTTP/1.1
     Content-Type: multipart/form-data; boundary=---------------------------7d81b516112482
     Accept-Encoding: gzip, deflate
     Content-Length: 324
 
-If you are using ASP.NET Web API, your server wrapper would look something like this:
+If you are using **ASP.NET Web API**, your server wrapper would look something like this:
 
      public class filesApiController : ApiController
         {
@@ -342,5 +347,4 @@ If you come across any bugs or needs, please mention it on issues, i will addres
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
 
