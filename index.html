@@ -12,7 +12,7 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Android-WYSIWYG-Editor</h1>
-      <h2 class="project-tagline">An iframe free text editor written in Android using native components in the content tree. The library can be used as both Editor and Renderer. The HTML parser helps it easier to integrate with web based WYSIWYG&#39;s.</h2>
+      <h2 class="project-tagline">An iframe free text editor written in Android using native components in the content tree. The library can be used as both Editor and Renderer. Integrate easily to work with web based WYSIWYG&#39;s.</h2>
       <a href="https://github.com/irshuLx/android-wysiwyg-editor" class="btn">View on GitHub</a>
       <a href="https://github.com/irshuLx/android-wysiwyg-editor/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/irshuLx/android-wysiwyg-editor/tarball/master" class="btn">Download .tar.gz</a>
@@ -49,14 +49,14 @@
 
 <p>Demo APK can be download <a href="https://www.dropbox.com/s/xmqw2mj1ocj7wgt/laser-native-editor-demo.apk?dl=0">here</a>.</p>
 
-<p><img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-1.gif" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-2.gif" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-3.gif" alt="enter image description here">   <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_1.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_2.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_3.jpg" alt="enter image description here">  </p>
+<p><img src="https://raw.githubusercontent.com/irshuLx/android-wysiwyg-editor/master/screens/gif-1.gif" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/android-wysiwyg-editor/master/screens/gif-2.gif" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/android-wysiwyg-editor/master/screens/gif-3.gif" alt="enter image description here">   <img src="https://raw.githubusercontent.com/irshuLx/android-wysiwyg-editor/master/screens/editor_screen_1.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/android-wysiwyg-editor/master/screens/editor_screen_2.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/android-wysiwyg-editor/master/screens/editor_screen_3.jpg" alt="enter image description here">  </p>
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
-<li><p><strong>Renderer or Editor</strong>: You can use Laser as a <strong>Renderer</strong> to Render the content or use it as an <strong>Editor</strong> to create the content.</p></li>
-<li><p><strong>No Webviews used</strong> to render the content. Laser uses Native EditText, ImageView and as such to render the contents.</p></li>
+<li><p><strong>Renderer or Editor</strong>: You can use it as a <strong>Renderer</strong> to Render the content or use it as an <strong>Editor</strong> to create the content.</p></li>
+<li><p><strong>No Webviews used</strong> to render the content. It uses Native EditText, ImageView and as such to render the contents.</p></li>
 <li><p><strong>HTML Parser:</strong> Render your HTML Code into the editor and vice versa.</p></li>
 <li><p><strong>Image Uploader Api:</strong> Use the Built-in API to upload the images to the server.</p></li>
 <li><p><strong>Integration with web based WYSIWYG's:</strong> HTMLParser helps the Editor to work seemlessly with the WYSIWYG editor on your web platform.</p></li>
@@ -117,7 +117,7 @@
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>For a complete overview of the implementation, please take a look at <a href="https://github.com/irshuLx/laser-native-editor/blob/master/app/src/main/res/layout/activity_editor_test.xml">activity_editor_test.xml</a>, <a href="https://github.com/irshuLx/laser-native-editor/blob/master/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java">EditorTestActivity.java</a> and <a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/editor_toolbar_linearlayout_horizontal.xml">editor_toolbar_linearlayout_horizontal.xml</a>.</p>
+<p>For a complete overview of the implementation, please take a look at <a href="https://github.com/irshuLx/android-wysiwyg-editor/blob/master/app/src/main/res/layout/activity_editor_test.xml">activity_editor_test.xml</a>, <a href="https://github.com/irshuLx/android-wysiwyg-editor/blob/master/app/src/main/java/com/example/mkallingal/qapp/EditorTestActivity.java">EditorTestActivity.java</a> and <a href="https://github.com/irshuLx/android-wysiwyg-editor/blob/master/laser-native-editor/src/main/res/layout/editor_toolbar_linearlayout_horizontal.xml">editor_toolbar_linearlayout_horizontal.xml</a>.</p>
 
 <p><strong>Layout XML</strong></p>
 
@@ -266,7 +266,7 @@ the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDEN
 
 <p>You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API, for e.g: <code>_editor.setFontFace(R.string.fontFamily__cursive);</code></p>
 
-<p><img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-1.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-2.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-3.jpg" alt="enter image description here">  </p>
+<p><img src="https://raw.githubusercontent.com/irshuLx/android-wysiwyg-editor/master/screens/font-style-1.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/android-wysiwyg-editor/master/screens/font-style-2.jpg" alt="enter image description here">    <img src="https://raw.githubusercontent.com/irshuLx/android-wysiwyg-editor/master/screens/font-style-3.jpg" alt="enter image description here">  </p>
 
 <table>
 <thead>
@@ -334,21 +334,21 @@ the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDEN
 </thead>
 <tbody>
 <tr>
-<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_image_view.xml">R.layout.tmpl_image_view</a></td>
+<td align="left"><a href="https://github.com/irshuLx/android-wysiwyg-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_image_view.xml">R.layout.tmpl_image_view</a></td>
 <td align="center">Used to insert an image to the editor</td>
 <td align="center">
 <code>@+id/progress</code>, <code>@+id/lblStatus</code>,<code>@+id/imageView</code>,<code>@+id/btn_remove</code>
 </td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_list_item.xml">R.layout.tmpl_list_item</a></td>
+<td align="left"><a href="https://github.com/irshuLx/android-wysiwyg-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_list_item.xml">R.layout.tmpl_list_item</a></td>
 <td align="center">Used to insert an ordered/unordered list</td>
 <td align="center">
 <code>@+id/lblOrder</code>, <code>@+id/txtText</code>,<code>@+id/lblText</code>
 </td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml">R.layout.tmpl_divider_layout</a></td>
+<td align="left"><a href="https://github.com/irshuLx/android-wysiwyg-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml">R.layout.tmpl_divider_layout</a></td>
 <td align="center">Used to insert a line divider</td>
 <td align="center">-</td>
 </tr>
