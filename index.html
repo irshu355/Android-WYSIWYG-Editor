@@ -26,6 +26,8 @@
 
 <p>An iframe free text editor that uses native components in the content tree.</p>
 
+<p><a href="https://play.google.com/store/apps/details?id=com.github.irshulx.qapp"><img src="https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/play-icon.jpg" alt="alt text"></a></p>
+
 <h2>
 <a id="download" class="anchor" href="#download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Download</h2>
 
@@ -368,7 +370,7 @@ the currently active block. Possible values are <code>H1,H2,H3,BOLD,ITALIC,INDEN
 
 <p>If your editor is to support image upload, you must configure your remote endpoint where the image will be posted to. The editor will issue a POST request with <code>Content-Type: multipart/form-data</code>. You can configure the endpoint through the API, for eg:
 <code>_editor.setImageUploaderUri("www.myhost.com/files/post");</code>
-Now every image inserted to the editor will issue a POST with the following signature:</p>
+Now every image inserted to the editor will issue a POST with the following signature,for eg:</p>
 
 <pre><code>POST www.myhost.com/files/post HTTP/1.1
 Content-Type: multipart/form-data; boundary=---------------------------7d81b516112482
