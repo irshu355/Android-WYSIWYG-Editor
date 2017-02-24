@@ -4,6 +4,7 @@ package com.github.irshulx.Components;
  * Created by mkallingal on 4/25/2016.
  */
 import android.content.Context;
+import android.support.design.widget.TextInputEditText;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
@@ -13,7 +14,7 @@ import android.widget.EditText;
 /**
  * Created by mkallingal on 4/25/2016.
  */
-public class CustomEditText extends EditText {
+public class CustomEditText extends TextInputEditText {
 
     public CustomEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
