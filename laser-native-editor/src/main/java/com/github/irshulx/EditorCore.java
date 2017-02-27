@@ -37,6 +37,8 @@
         import java.util.ArrayList;
         import java.util.List;
 
+        import retrofit2.Retrofit;
+
         /**
          * Created by mkallingal on 4/30/2016.
          */
@@ -67,7 +69,9 @@
             private DividerExtensions __dividerExtensions;
             private HTMLExtensions __htmlExtensions;
             private MapExtensions __mapExtensions;
-                public EditorCore(Context _context, AttributeSet attrs){
+            private OnImageUpload __serviceGenerator;
+
+            public EditorCore(Context _context, AttributeSet attrs){
                     super(_context,attrs);
                     this.__context = _context;
                     this.__activity= (Activity)_context;
@@ -143,15 +147,18 @@
             public String getImageUploaderUri() {
                 return this.__imageUploaderUri;
             }
-
+            public void onImageUpload(OnImageUpload serviceGenerator){
+                this.__serviceGenerator = serviceGenerator;
+            }
             public void setImageUploaderUri(String imageUploaderUri) {
                 this.__imageUploaderUri = imageUploaderUri;
             }
 
-            //endregion
-            public interface EditorListener{
-                 void onTextChanged(EditText editText, Editable text);
+            public OnImageUpload get__serviceGenerator() {
+                return __serviceGenerator;
             }
+
+            //endregion
 
             private void loadStateFromAttrs(AttributeSet attributeSet) {
                 if (attributeSet == null) {

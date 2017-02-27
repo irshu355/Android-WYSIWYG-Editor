@@ -38,8 +38,8 @@ dependencies {
     compile 'com.android.support:design:25.1.1'
     compile 'com.android.support:cardview-v7:25.1.1'
     compile 'com.android.support:support-v4:25.1.1'
-    compile project(':laser-native-editor')
-   // compile 'com.github.irshulx:laser-native-editor:0.3.5'
+    //compile project(':laser-native-editor')
+   compile 'com.github.irshulx:laser-native-editor:1.0.0'
 
 
 }

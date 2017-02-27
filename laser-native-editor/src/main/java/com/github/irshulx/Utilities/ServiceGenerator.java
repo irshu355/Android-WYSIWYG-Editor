@@ -18,7 +18,11 @@ public class ServiceGenerator {
                     .baseUrl(API_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create());
 
-    public static <S> S createService(Class<S> serviceClass) {
+    public static Retrofit.Builder getRetrofitBuilder(){
+        return builder;
+    }
+
+    public static <S> S createService(Retrofit.Builder builder, Class<S> serviceClass) {
         Retrofit retrofit = builder.client(httpClient.build()).build();
         return retrofit.create(serviceClass);
     }

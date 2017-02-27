@@ -17,9 +17,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.github.irshulx.Editor;
 import com.github.irshulx.EditorCore;
+import com.github.irshulx.EditorListener;
 import com.github.irshulx.models.EditorTextStyle;
 
 import java.io.IOException;
+
+import retrofit2.Retrofit;
 
 public class EditorTestActivity extends AppCompatActivity {
     Editor _editor;
@@ -136,10 +139,15 @@ public class EditorTestActivity extends AppCompatActivity {
         _editor.setEditorImageLayout(R.layout.tmpl_image_view);
         _editor.setListItemLayout(R.layout.tmpl_list_item);
         //_editor.StartEditor();
-        _editor.setEditorListener(new EditorCore.EditorListener() {
+        _editor.setEditorListener(new EditorListener() {
             @Override
             public void onTextChanged(EditText editText, Editable text) {
                 // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public Retrofit.Builder onUpload(Retrofit.Builder retrofit) {
+                return null;
             }
         });
 

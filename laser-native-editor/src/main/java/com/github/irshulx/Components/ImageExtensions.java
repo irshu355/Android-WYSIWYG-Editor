@@ -55,6 +55,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Retrofit;
 
 /**
  * Created by mkallingal on 5/1/2016.
@@ -179,8 +180,17 @@ public class ImageExtensions {
             fos.write(bitmapdata);
             fos.flush();
             fos.close();
-            IEditorRetrofitApi service =
-                    ServiceGenerator.createService(IEditorRetrofitApi.class);
+
+
+            Retrofit.Builder builder = ServiceGenerator.getRetrofitBuilder();
+
+            if(editorCore.getEditorListener()!=null){
+                Retrofit.Builder customBuilder = editorCore.getEditorListener().onUpload(builder);
+                if(customBuilder!=null)
+                    builder = customBuilder;
+            }
+
+            IEditorRetrofitApi service = ServiceGenerator.createService(builder, IEditorRetrofitApi.class);
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), f);
             // MultipartBody.Part is used to send also the actual file name
