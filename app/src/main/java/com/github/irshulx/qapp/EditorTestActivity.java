@@ -22,6 +22,7 @@ import com.github.irshulx.models.EditorTextStyle;
 
 import java.io.IOException;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
 public class EditorTestActivity extends AppCompatActivity {
@@ -147,7 +148,11 @@ public class EditorTestActivity extends AppCompatActivity {
 
             @Override
             public Retrofit.Builder onUpload(Retrofit.Builder retrofit) {
-                return null;
+                OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+                httpClient.addInterceptor(new customHeadersInterceptor());
+                OkHttpClient client =  httpClient.build();
+                retrofit.client(client);
+                return retrofit;
             }
         });
 
