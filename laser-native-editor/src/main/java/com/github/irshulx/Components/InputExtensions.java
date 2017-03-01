@@ -392,22 +392,19 @@ public class InputExtensions{
     }
 
     private void InsertLink(String uri) {
-        EditorType editorType = editorCore. GetControlType(editorCore.getActiveView());
+        EditorType editorType = editorCore.GetControlType(editorCore.getActiveView());
         EditText editText = (EditText) editorCore.getActiveView();
-        if (editorType == EditorType.INPUT ||editorType==EditorType.UL_LI) {
+        if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
             String text = Html.toHtml(editText.getText());
-            text=trimLineEnding(text);
-            Document _doc= Jsoup.parse(text);
-            Elements x= _doc.select("p");
-
-            if(x.size()>0){
-                String existing= x.get(0).html();
-                x.get(0).html(existing + " <a href='" + uri + "'>" + uri + "</a>");
-                Spanned toTrim=Html.fromHtml(x.toString());
-                CharSequence trimmed = noTrailingwhiteLines(toTrim);
-                editText.setText(trimmed);   //
-                editText.setSelection(editText.getText().length());
-            }
+            text = TextUtils.isEmpty(text)? "<p dir=\"ltr\"></p>":trimLineEnding(text);
+            Document _doc = Jsoup.parse(text);
+            Elements x = _doc.select("p");
+            String existing = x.get(0).html();
+            x.get(0).html(existing + " <a href='" + uri + "'>" + uri + "</a>");
+            Spanned toTrim = Html.fromHtml(x.toString());
+            CharSequence trimmed = noTrailingwhiteLines(toTrim);
+            editText.setText(trimmed);   //
+            editText.setSelection(editText.getText().length());
         }
     }
 
