@@ -150,6 +150,8 @@ public class InputExtensions{
                 if (keyCode == KeyEvent.KEYCODE_DEL) {
                     if (IsEditTextNull(editText)) {
                         editorCore.deleteFocusedPrevious(editText);
+                    }else {
+                        editorCore.onBackspace(editText);
                     }
                 }
                 return false;
@@ -179,31 +181,31 @@ public class InputExtensions{
             public void afterTextChanged(Editable s) {
                 String text = Html.toHtml(editText.getText());
                 if (s.length() > 0) {
-                        /*
-                        * if user had pressed enter, replace it with br
-                        */
-                    if (s.charAt(s.length() - 1) == '\n') {
-                        text = text.replaceAll("<br>", "");
-                        if(text.length()>0) {
-                            setText(editText, text);
-                        }else{
-                           editText.getText().clear();
-                        }
-                        int index = editorCore.getParentView().indexOfChild(editText);
-                        /* if the index was 0, set the placeholder to empty
-                         */
-                        if(index==0){
-                            editText.setHint(null);
-                        }
-
-                        /*
-                        * if user has configured the listener, fire the onTextChanged event
-                        */
-                        /*
-                        * since it was a return key, add a new editText below
-                        */
-                        InsertEditText(index + 1, null, null);
+                /*
+                * if user had pressed enter, replace it with br
+                */
+                if (s.charAt(s.length() - 1) == '\n') {
+                    text = text.replaceAll("<br>", "");
+                    if(text.length()>0) {
+                        setText(editText, text);
+                    }else{
+                       editText.getText().clear();
                     }
+                    int index = editorCore.getParentView().indexOfChild(editText);
+                    /* if the index was 0, set the placeholder to empty
+                     */
+                    if(index==0){
+                        editText.setHint(null);
+                    }
+
+                    /*
+                    * if user has configured the listener, fire the onTextChanged event
+                    */
+                    /*
+                    * since it was a return key, add a new editText below
+                    */
+                    InsertEditText(index + 1, null, null);
+                }
                 }
                 if (editorCore.getEditorListener() != null) {
                     editorCore.getEditorListener().onTextChanged(editText, s);
@@ -396,7 +398,7 @@ public class InputExtensions{
         EditText editText = (EditText) editorCore.getActiveView();
         if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
             String text = Html.toHtml(editText.getText());
-            text = TextUtils.isEmpty(text)? "<p dir=\"ltr\"></p>":trimLineEnding(text);
+            text = trimLineEnding(text);
             Document _doc = Jsoup.parse(text);
             Elements x = _doc.select("p");
             String existing = x.get(0).html();

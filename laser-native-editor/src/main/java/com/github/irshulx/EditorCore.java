@@ -19,6 +19,7 @@
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.github.irshulx.Components.CustomEditText;
         import com.google.gson.Gson;
         import com.github.irshulx.Components.DividerExtensions;
         import com.github.irshulx.Components.HTMLExtensions;
@@ -454,6 +455,13 @@
 
             public void clearAllContents(){
                 this.__parentView.removeAllViews();
+
+            }
+
+            public void onBackspace(CustomEditText editText) {
+                String text= editText.getText().toString();
+                editText.setText(text.substring(0,text.length()-1));
+                editText.setSelection(editText.getText().length());
 
             }
 
