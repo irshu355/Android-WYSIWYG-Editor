@@ -1,0 +1,8 @@
+title: Android-WYSIWYG-Editor
+description: An iframe free text editor written in Android using native components in the content tree. The library can be used as both Editor and Renderer. Integrate easily to work with web based WYSIWYG's.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
