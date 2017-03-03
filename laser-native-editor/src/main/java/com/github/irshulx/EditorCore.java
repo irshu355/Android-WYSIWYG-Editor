@@ -261,14 +261,17 @@
             }
 
             public void deleteFocusedPrevious(EditText view) {
+                int index = __parentView.indexOfChild(view);
+                if(index==0)
+                    return;
                 String parentTagName= view.getParent().getClass().getName();
                 if(parentTagName.toLowerCase().equals("android.widget.tablerow")){
                     TableRow _row = (TableRow) view.getParent();
                     TableLayout _table = (TableLayout) _row.getParent();
-                    int index = _table.indexOfChild(_row);
+                    int index2 = _table.indexOfChild(_row);
                     _table.removeView(_row);
-                    if (index > 0) {
-                        TableRow focusrow = (TableRow) _table.getChildAt(index - 1);
+                    if (index2 > 0) {
+                        TableRow focusrow = (TableRow) _table.getChildAt(index2 - 1);
                         EditText text = (EditText) focusrow.findViewById(R.id.txtText);
                         if (text.requestFocus()) {
                             text.setSelection(text.getText().length());
@@ -276,7 +279,28 @@
                     }else{
                         RemoveParent(_table);
                     }
-                }else{
+                }
+                else if(index!=0){
+                    View toFocus = __parentView.getChildAt(index-1);
+                    EditorControl control = (EditorControl) toFocus.getTag();
+                    if(control.Type==EditorType.ol||control.Type==EditorType.ul){
+                        this.__parentView.removeView(view);
+                        TableLayout tableLayout = (TableLayout)toFocus;
+                        int count = tableLayout.getChildCount();
+                        if(tableLayout.getChildCount()>0){
+                            TableRow tableRow =(TableRow) tableLayout.getChildAt(count-1);
+                            if(tableRow!=null){
+                                EditText editText = (EditText) tableRow.findViewById(R.id.txtText);
+                                if (editText.requestFocus()) {
+                                    editText.setSelection(editText.getText().length());
+                                }
+                            }
+                        }
+                    } else{
+                        RemoveParent(view);
+                    }
+                }
+                else{
                     RemoveParent(view);
                 }
             }
@@ -284,8 +308,6 @@
             public void RemoveParent(View view){
                 int indexOfDeleteItem= __parentView.indexOfChild(view);
                 View nextItem=null;
-                if(indexOfDeleteItem==0)
-                    return;
                 //remove hr if its on top of the delete field
               __dividerExtensions.deleteHr(indexOfDeleteItem - 1);
                 for (int i=0;i< __parentView.getChildCount();i++){
@@ -296,12 +318,10 @@
                 this.__parentView.removeView(view);
                 if(nextItem!=null) {
                     EditText text = (EditText) nextItem;
-                    String x=text.getText().toString();
-                    //   _Text.setSelection(_Text.getText().length());
                     if(text.requestFocus()){
                         text.setSelection(text.getText().length());
                     }
-                    this.__activeView =nextItem;
+                    this.__activeView = nextItem;
                 }
             }
 
@@ -459,18 +479,14 @@
             }
 
             public void onBackspace(CustomEditText editText) {
-                String text= editText.getText().toString();
-                editText.setText(text.substring(0,text.length()-1));
-                editText.setSelection(editText.getText().length());
+                int len= editText.getText().length();
+                editText.getText().delete(len - 1, len);
 
+//                if(editText.requestFocus())
+//                editText.setSelection(editText.getText().length());
             }
 
             public class Utilities {
-                public float PxtoSp(float px){
-                    float scaledDensity = __context.getResources().getDisplayMetrics().scaledDensity;
-                    float sp = px / scaledDensity;
-                    return sp;
-                }
                 public int[] GetScreenDimension(){
                     Display display =((Activity) __context).getWindowManager().getDefaultDisplay();
                     Point size = new Point();
