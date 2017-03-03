@@ -398,6 +398,8 @@ public class InputExtensions{
         EditText editText = (EditText) editorCore.getActiveView();
         if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
             String text = Html.toHtml(editText.getText());
+            if(TextUtils.isEmpty(text))
+                text="<p dir=\"ltr\"></p>";
             text = trimLineEnding(text);
             Document _doc = Jsoup.parse(text);
             Elements x = _doc.select("p");
