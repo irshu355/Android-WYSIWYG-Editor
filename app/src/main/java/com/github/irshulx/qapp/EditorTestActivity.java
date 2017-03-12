@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.github.irshulx.Editor;
-import com.github.irshulx.EditorCore;
 import com.github.irshulx.EditorListener;
 import com.github.irshulx.models.EditorTextStyle;
 
@@ -26,121 +25,121 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
 public class EditorTestActivity extends AppCompatActivity {
-    Editor _editor;
+    Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_test);
-        _editor= (Editor) findViewById(R.id.editor);
+        editor = (Editor) findViewById(R.id.editor);
         CreateEditor();
     }
     private void CreateEditor() {
         findViewById(R.id.action_h1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(EditorTextStyle.H1);
+                editor.UpdateTextStyle(EditorTextStyle.H1);
             }
         });
 
         findViewById(R.id.action_h2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(EditorTextStyle.H2);
+                editor.UpdateTextStyle(EditorTextStyle.H2);
             }
         });
 
         findViewById(R.id.action_h3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(EditorTextStyle.H3);
+                editor.UpdateTextStyle(EditorTextStyle.H3);
             }
         });
 
         findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(EditorTextStyle.BOLD);
+                editor.UpdateTextStyle(EditorTextStyle.BOLD);
             }
         });
 
         findViewById(R.id.action_Italic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(EditorTextStyle.ITALIC);
+                editor.UpdateTextStyle(EditorTextStyle.ITALIC);
             }
         });
 
         findViewById(R.id.action_indent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(EditorTextStyle.INDENT);
+                editor.UpdateTextStyle(EditorTextStyle.INDENT);
             }
         });
 
         findViewById(R.id.action_outdent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.UpdateTextStyle(EditorTextStyle.OUTDENT);
+                editor.UpdateTextStyle(EditorTextStyle.OUTDENT);
             }
         });
 
         findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.InsertList(false);
+                editor.InsertList(false);
             }
         });
 
         findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.InsertList(true);
+                editor.InsertList(true);
             }
         });
 
         findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.InsertDivider();
+                editor.InsertDivider();
             }
         });
 
         findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.OpenImagePicker();
+                editor.OpenImagePicker();
             }
         });
 
         findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.InsertLink();
+                editor.insertLink();
             }
         });
 
         findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.InsertMap();
+                editor.InsertMap();
             }
         });
 
         findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _editor.clearAllContents();
+                editor.clearAllContents();
             }
         });
 
-        //  _editor.dividerBackground=R.drawable.divider_background_dark;
-        _editor.setImageUploaderUri("http://192.168.43.239/Laser-Editor-WebApi/api/ImageUploaderApi/PostImage");
-        _editor.setFontFace(R.string.fontFamily__serif);
-        _editor.setDividerLayout(R.layout.tmpl_divider_layout);
-        _editor.setEditorImageLayout(R.layout.tmpl_image_view);
-        _editor.setListItemLayout(R.layout.tmpl_list_item);
-        //_editor.StartEditor();
-        _editor.setEditorListener(new EditorListener() {
+        //  editor.dividerBackground=R.drawable.divider_background_dark;
+        editor.setImageUploaderUri("http://192.168.43.239/Laser-Editor-WebApi/api/ImageUploaderApi/PostImage");
+        editor.setFontFace(R.string.fontFamily__serif);
+        editor.setDividerLayout(R.layout.tmpl_divider_layout);
+        editor.setEditorImageLayout(R.layout.tmpl_image_view);
+        editor.setListItemLayout(R.layout.tmpl_list_item);
+        //editor.StartEditor();
+        editor.setEditorListener(new EditorListener() {
             @Override
             public void onTextChanged(EditText editText, Editable text) {
                 // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
@@ -156,7 +155,7 @@ public class EditorTestActivity extends AppCompatActivity {
             }
         });
 
-        _editor.Render();  // this method must be called to start the editor
+        editor.Render();  // this method must be called to start the editor
 
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +163,7 @@ public class EditorTestActivity extends AppCompatActivity {
                 /*
                 Retrieve the content as serialized, you could also say getContentAsHTML();
                 */
-                String text= _editor.getContentAsSerialized();
+                String text= editor.getContentAsSerialized();
                 Intent intent=new Intent(getApplicationContext(), RenderTestActivity.class);
                 intent.putExtra("content", text);
                 startActivity(intent);
@@ -207,18 +206,18 @@ public class EditorTestActivity extends AppCompatActivity {
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\">Example about using summernote with meteor.</p>"+
                 "<ul style=\"color: rgb(51, 51, 51);\"><li style=\"font-size: 14px; color: rgb(104, 116, 127);\"><a href=\"https://github.com/hackerwins/summernote-meteor-example\" target=\"_blank\">summernote-meteor-example</a></li></ul>"+
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\"><br></p>";
-        _editor.Render();
+        editor.Render();
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == _editor.PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK&& data != null && data.getData() != null) {
+        if (requestCode == editor.PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK&& data != null && data.getData() != null) {
             Uri uri = data.getData();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 // Log.d(TAG, String.valueOf(bitmap));
-                _editor.InsertImage(bitmap);
+                editor.InsertImage(bitmap);
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -227,10 +226,10 @@ public class EditorTestActivity extends AppCompatActivity {
         else if (resultCode == Activity.RESULT_CANCELED) {
             //Write your code if there's no result
             Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-           // _editor.RestoreState();
+           // editor.RestoreState();
         }
-        else if(requestCode== _editor.MAP_MARKER_REQUEST){
-            _editor.InsertMap(data.getStringExtra("cords"));
+        else if(requestCode== editor.MAP_MARKER_REQUEST){
+            editor.InsertMap(data.getStringExtra("cords"));
         }
     }
 

@@ -108,10 +108,13 @@
         public void UpdateTextStyle(EditorTextStyle style){
             getInputExtensions().UpdateTextStyle(style, null);
         }
-        public void InsertLink() {
-            getInputExtensions().InsertLink();
+        public void insertLink() {
+            getInputExtensions().insertLink();
         }
 
+        public void insertLink(String link){
+            getInputExtensions().insertLink(link);
+        }
 
         /*divider extensions
          */

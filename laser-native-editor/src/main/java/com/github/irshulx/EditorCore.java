@@ -5,7 +5,6 @@
         import android.content.res.Resources;
         import android.content.res.TypedArray;
         import android.graphics.Point;
-        import android.text.Editable;
         import android.text.Html;
         import android.text.TextUtils;
         import android.util.AttributeSet;
@@ -37,8 +36,6 @@
 
         import java.util.ArrayList;
         import java.util.List;
-
-        import retrofit2.Retrofit;
 
         /**
          * Created by mkallingal on 4/30/2016.
@@ -573,7 +570,7 @@
                 activity.findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        editor.InsertLink();
+                        editor.insertLink();
                     }
                 });
                 activity.findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {

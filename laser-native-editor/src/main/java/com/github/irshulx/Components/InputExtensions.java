@@ -368,7 +368,7 @@ public class InputExtensions{
 
     }
 
-    public void InsertLink() {
+    public void insertLink() {
         final AlertDialog.Builder inputAlert = new AlertDialog.Builder(this.editorCore.getContext());
         inputAlert.setTitle("Add a Link");
         final EditText userInput = new EditText(this.editorCore.getContext());
@@ -380,7 +380,7 @@ public class InputExtensions{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String userInputValue = userInput.getText().toString();
-                InsertLink(userInputValue);
+                insertLink(userInputValue);
             }
         });
         inputAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -393,7 +393,7 @@ public class InputExtensions{
         alertDialog.show();
     }
 
-    private void InsertLink(String uri) {
+    public void insertLink(String uri) {
         EditorType editorType = editorCore.GetControlType(editorCore.getActiveView());
         EditText editText = (EditText) editorCore.getActiveView();
         if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
