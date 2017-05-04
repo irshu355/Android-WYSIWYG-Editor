@@ -5,12 +5,9 @@ ext {
     publishedGroupId = 'com.github.irshulx'
     libraryName = 'laser-native-editor'
     artifact = 'laser-native-editor'
-
     libraryDescription = 'Android WYSIWYG is a text editor written in Android using the native components in the content tree. The library can be used as both Editor and Renderer. The HTML parser helps it easier to integrate with specific web WYSIWY'
-
     siteUrl = 'http://irshulx.github.io/laser-native-editor'
     gitUrl = 'https://github.com/irshuLx/laser-native-editor.git'
-
     libraryVersion = '1.1.2'
 
     developerId = 'irshuLx'
@@ -24,7 +21,7 @@ ext {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.1"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         minSdkVersion 15

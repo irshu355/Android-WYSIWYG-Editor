@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="library-1.1.0">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.weiwangcn.betterspinner/library/1.1.0/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.weiwangcn.betterspinner/library/1.1.0/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/8b0e3b02230bcac1cdd22422a5b700ef07a49650/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/8b0e3b02230bcac1cdd22422a5b700ef07a49650/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
