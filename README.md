@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp; ![enter image description here](https://img.shields.io/badge/license-Apache 2-blue.svg)&nbsp; ![enter image description here](https://img.shields.io/badge/issues-0-green.svg)
+[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-5-red.svg)
 
 Android-WYSIWYG-Editor
 ===================
