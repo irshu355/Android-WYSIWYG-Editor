@@ -296,7 +296,12 @@ public class EditorCore extends LinearLayout {
             if (index2 > 0) {
                 TableRow focusrow = (TableRow) _table.getChildAt(index2 - 1);
                 EditText text = (EditText) focusrow.findViewById(R.id.txtText);
-                rearrangeColumns();
+                /**
+                 * Rearrange the nodes
+                 */
+               if(controlXX.Type == EditorType.OL_LI) {
+                   rearrangeColumns(_table);
+               }
                 if (text.requestFocus()) {
                     text.setSelection(text.getText().length());
                 }
@@ -329,9 +334,18 @@ public class EditorCore extends LinearLayout {
             RemoveParent(view);
         }
     }
-
-    private void rearrangeColumns() {
+    /*
+     *
+     * Rearrange all items on the list, if the tag is OL
+     *
+     */
+    private void rearrangeColumns(TableLayout _table) {
         //TODO, make sure that if OL, all the items are ordered numerically
+        for(int i=0;i<_table.getChildCount();i++){
+            TableRow tableRow = (TableRow) _table.getChildAt(i);
+            TextView _bullet= (TextView) tableRow.findViewById(R.id.lblOrder);
+            _bullet.setText(String.valueOf(i+1)+".");
+        }
     }
 
     public void RemoveParent(View view) {
