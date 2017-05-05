@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -199,6 +198,11 @@ public class EditorCore extends LinearLayout {
         }
     }
 
+    /**
+     * determine target index for the next insert,
+     * @param type
+     * @return
+     */
     public int determineIndex(EditorType type) {
         int size = this.__parentView.getChildCount();
         if (this.__renderType == RenderType.Renderer)
@@ -281,72 +285,37 @@ public class EditorCore extends LinearLayout {
         int index = __parentView.indexOfChild(view);
         if (index == 0)
             return;
-        EditorControl controlXX = (EditorControl) ((View) view.getParent()).getTag();
 
-        /*
+        EditorControl contentType = (EditorControl) ((View) view.getParent()).getTag();
+          /*
          *
          * If the person was on an active ul|li, move him to the previous node
          *
          */
-        if (controlXX!=null&&(controlXX.Type == EditorType.OL_LI || controlXX.Type == EditorType.UL_LI)) {
-            TableRow _row = (TableRow) view.getParent();
-            TableLayout _table = (TableLayout) _row.getParent();
-            int index2 = _table.indexOfChild(_row);
-            _table.removeView(_row);
-            if (index2 > 0) {
-                TableRow focusrow = (TableRow) _table.getChildAt(index2 - 1);
-                EditText text = (EditText) focusrow.findViewById(R.id.txtText);
-                /**
-                 * Rearrange the nodes
-                 */
-               if(controlXX.Type == EditorType.OL_LI) {
-                   rearrangeColumns(_table);
-               }
-                if (text.requestFocus()) {
-                    text.setSelection(text.getText().length());
-                }
-            } else {
-                RemoveParent(_table);
-            }
+        if (contentType != null && (contentType.Type == EditorType.OL_LI || contentType.Type == EditorType.UL_LI)) {
+            __listItemExtensions.validateAndRemoveLisNode(view, contentType);
             return;
         }
         /*
          *
-         * If the person had removed the whole edittext, we need to move into the previous line
+         * If the person was on edittext,  had removed the whole text, we need to move into the previous line
          *
          */
         View toFocus = __parentView.getChildAt(index - 1);
         EditorControl control = (EditorControl) toFocus.getTag();
         if (control.Type == EditorType.ol || control.Type == EditorType.ul) {
+         /*
+         *
+         * previous node on the editor is a list, set focus to its inside
+         *
+         */
             this.__parentView.removeView(view);
-            TableLayout tableLayout = (TableLayout) toFocus;
-            int count = tableLayout.getChildCount();
-            if (tableLayout.getChildCount() > 0) {
-                TableRow tableRow = (TableRow) tableLayout.getChildAt(count - 1);
-                if (tableRow != null) {
-                    EditText editText = (EditText) tableRow.findViewById(R.id.txtText);
-                    if (editText.requestFocus()) {
-                        editText.setSelection(editText.getText().length());
-                    }
-                }
-            }
+            __listItemExtensions.setFocusToList(view);
         } else {
             RemoveParent(view);
         }
     }
-    /*
-     *
-     * Rearrange all items on the list, if the tag is OL
-     *
-     */
-    private void rearrangeColumns(TableLayout _table) {
-        //TODO, make sure that if OL, all the items are ordered numerically
-        for(int i=0;i<_table.getChildCount();i++){
-            TableRow tableRow = (TableRow) _table.getChildAt(i);
-            TextView _bullet= (TextView) tableRow.findViewById(R.id.lblOrder);
-            _bullet.setText(String.valueOf(i+1)+".");
-        }
-    }
+
 
     public void RemoveParent(View view) {
         int indexOfDeleteItem = __parentView.indexOfChild(view);
@@ -508,14 +477,6 @@ public class EditorCore extends LinearLayout {
         return length - 1 == index;
     }
 
-    public int GetChildCount() {
-        int Count = __parentView.getChildCount();
-        return Count;
-    }
-
-    public int GetChildCountforView(View view) {
-        return ((ViewGroup) view).getChildCount();
-    }
 
     public void RenderEditorFromHtml(String content) {
         __htmlExtensions.parseHtml(content);

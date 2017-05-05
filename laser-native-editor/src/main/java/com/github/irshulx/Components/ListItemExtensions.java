@@ -368,4 +368,62 @@ public class ListItemExtensions {
         }
 
     }
+
+
+    private void rearrangeColumns(TableLayout _table) {
+        //TODO, make sure that if OL, all the items are ordered numerically
+        for(int i=0;i<_table.getChildCount();i++){
+            TableRow tableRow = (TableRow) _table.getChildAt(i);
+            TextView _bullet= (TextView) tableRow.findViewById(R.id.lblOrder);
+            _bullet.setText(String.valueOf(i+1)+".");
+        }
+    }
+
+
+    public void validateAndRemoveLisNode(View view,EditorControl contentType){
+        /*
+         *
+         * If the person was on an active ul|li, move him to the previous node
+         *
+         */
+            TableRow _row = (TableRow) view.getParent();
+            TableLayout _table = (TableLayout) _row.getParent();
+            int indexOnList = _table.indexOfChild(_row);
+            _table.removeView(_row);
+            if (indexOnList > 0) {
+                /**
+                 * check if the index of the deleted row is <0, if so, move the focus to the previous li
+                 */
+                TableRow focusrow = (TableRow) _table.getChildAt(indexOnList - 1);
+                EditText text = (EditText) focusrow.findViewById(R.id.txtText);
+                /**
+                 * Rearrange the nodes
+                 */
+                if(contentType.Type == EditorType.OL_LI) {
+                    rearrangeColumns(_table);
+                }
+                if (text.requestFocus()) {
+                    text.setSelection(text.getText().length());
+                }
+            } else {
+                /**
+                 * The removed row was first on the list. delete the list, and set the focus to previous element on the editor
+                 */
+               editorCore.RemoveParent(_table);
+            }
+    }
+
+    public void setFocusToList(View view){
+        TableLayout tableLayout = (TableLayout) view;
+        int count = tableLayout.getChildCount();
+        if (tableLayout.getChildCount() > 0) {
+            TableRow tableRow = (TableRow) tableLayout.getChildAt(count - 1);
+            if (tableRow != null) {
+                EditText editText = (EditText) tableRow.findViewById(R.id.txtText);
+                if (editText.requestFocus()) {
+                    editText.setSelection(editText.getText().length());
+                }
+            }
+        }
+    }
 }
