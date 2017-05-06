@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-5-red.svg)
+2[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-5-red.svg)
 
 Android-WYSIWYG-Editor
 ===================
@@ -13,14 +13,14 @@ Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:1.1.2'
+    compile 'com.github.irshulx:laser-native-editor:1.2.0'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>1.1.2</version>
+      <version>1.2.0</version>
       <type>pom</type>
     </dependency>
 
