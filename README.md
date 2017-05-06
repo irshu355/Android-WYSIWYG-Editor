@@ -1,4 +1,4 @@
-![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) (https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)
+2[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-5-red.svg)
 
 Android-WYSIWYG-Editor
 ===================
@@ -355,4 +355,3 @@ If you come across any bugs or needs, please mention it on issues, i will addres
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
