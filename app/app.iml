@@ -119,12 +119,8 @@
     <orderEntry type="library" exported="" name="animated-vector-drawable-25.1.1" level="project" />
     <orderEntry type="module" module-name="laser-native-editor" exported="" />
     <orderEntry type="library" exported="" name="android-android-25" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.6.1" level="project" />
     <orderEntry type="library" exported="" name="jsoup-1.8.1" level="project" />
-    <orderEntry type="library" exported="" name="okio-1.6.0" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.4" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
-    <orderEntry type="library" exported="" name="retrofit-2.0.2" level="project" />
-    <orderEntry type="library" exported="" name="converter-gson-2.0.0" level="project" />
-    <orderEntry type="library" exported="" name="okhttp-3.2.0" level="project" />
   </component>
 </module>

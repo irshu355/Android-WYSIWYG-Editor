@@ -21,6 +21,8 @@
     import com.github.irshulx.models.EditorContent;
     import com.github.irshulx.models.RenderType;
 
+    import java.util.Map;
+
     public class Editor extends EditorCore {
         public Editor(Context context, AttributeSet attrs) {
             super(context, attrs);
@@ -59,7 +61,7 @@
         }
         public void Render(){
             if (getRenderType() == RenderType.Editor) {
-                getInputExtensions().InsertEditText(0, this.PlaceHolder, null);
+                getInputExtensions().insertEditText(0, this.PlaceHolder, null);
             }
         }
         private void RestoreState(){
@@ -69,11 +71,15 @@
         public void clearAllContents(){
              super.clearAllContents();
             if (getRenderType() == RenderType.Editor) {
-                getInputExtensions().InsertEditText(0, this.PlaceHolder, null);
+                getInputExtensions().insertEditText(0, this.PlaceHolder, null);
             }
         }
         //region Miscellanious getters and setters
-        /*input extensions
+
+        /*
+         *
+         * Input extension
+         *
          */
         public int getH1TextSize(){
             return getInputExtensions().getH1TextSize();
@@ -93,12 +99,17 @@
         public void setH3TextSize(int size){
             getInputExtensions().setH3TextSize(size);
         }
+
+        /**
+         * Set the fontface for the editor
+         *
+         * @deprecated use {@link #setContentTypeface(Map)} and {@link #setHeadingTypeface(Map)} (Map)} ()} instead.
+         */
+        @Deprecated
         public void setFontFace(int StringResource) {
             getInputExtensions().setFontFace(StringResource);
         }
-        public String getFontFace() {
-           return getInputExtensions().getFontFace();
-        }
+
         public void setLineSpacing(float value){
            getInputExtensions().setLineSpacing(value);
         }
@@ -108,6 +119,7 @@
         public void UpdateTextStyle(EditorTextStyle style){
             getInputExtensions().UpdateTextStyle(style, null);
         }
+
         public void insertLink() {
             getInputExtensions().insertLink();
         }
@@ -116,7 +128,49 @@
             getInputExtensions().insertLink(link);
         }
 
-        /*divider extensions
+
+
+        /**
+         * setup the fontfaces for editor content
+         * For eg:
+         *Map<Integer, String> typefaceMap = new HashMap<>();
+         typefaceMap.put(Typeface.NORMAL,"fonts/GreycliffCF-Medium.ttf");
+         typefaceMap.put(Typeface.BOLD,"fonts/GreycliffCF-Bold.ttf");
+         typefaceMap.put(Typeface.ITALIC,"fonts/GreycliffCF-Medium.ttf");
+         typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/GreycliffCF-Medium.ttf");
+         * @param map
+         */
+
+        public void setContentTypeface(Map<Integer,String> map){
+            getInputExtensions().setContentTypeface(map);
+        }
+
+        public Map<Integer, String> getContentTypeface(){
+            return getInputExtensions().getContentTypeface();
+        }
+
+        /**
+         * setup the fontfaces for editor heding tags (h1,h2,h3)
+         * for Eg:
+         *Map<Integer, String> typefaceMap = new HashMap<>();
+         typefaceMap.put(Typeface.NORMAL,"fonts/GreycliffCF-Medium.ttf");
+         typefaceMap.put(Typeface.BOLD,"fonts/GreycliffCF-Bold.ttf");
+         typefaceMap.put(Typeface.ITALIC,"fonts/GreycliffCF-Medium.ttf");
+         typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/GreycliffCF-Medium.ttf");
+         * @param map
+         */
+        public void setHeadingTypeface(Map<Integer, String> map){
+            getInputExtensions().setHeadingTypeface(map);
+        }
+        public Map<Integer,String>getHeadingTypeface(){
+            return getInputExtensions().getHeadingTypeface();
+        }
+
+
+        /*
+         *
+         * Divider extension
+         *
          */
 
         public void setDividerLayout(int layout){
@@ -126,7 +180,10 @@
             getDividerExtensions().InsertDivider();
         }
 
-        /*image Extensions
+        /*
+         *
+         * Image Extension
+         *
          */
 
         public void setEditorImageLayout(int layout){
@@ -139,7 +196,18 @@
             getImageExtensions().InsertImage(bitmap, -1);
         }
 
-        /*List Item extensions
+        public void onUploadComplete(String url, String imageId){
+            getImageExtensions().onPostUpload(url, imageId);
+        }
+        public void onImageUploadFailed(String imageId){
+            getImageExtensions().onPostUpload(null, imageId);
+        }
+
+
+        /*
+         *
+         *List Item extension
+         *
          */
         public void setListItemLayout(int layout){
             this.getListItemExtensions().setListItemTemplate(layout);
@@ -148,8 +216,12 @@
             this.getListItemExtensions().Insertlist(isOrdered);
         }
 
-        /*Map extensions
-        */
+
+        /*
+         *
+         * Map Extension
+         *
+         */
 
         public void setMapViewLayout(int layout){
             this.getMapExtensions().setMapViewTemplate(layout);
@@ -162,9 +234,15 @@
             getMapExtensions().insertMap(Cords, true);
         }
 
-      //  public void ExpressSetup(){
-        //    super.ExpressSetup(this);
-        // }
+
+        /**
+         * add the express setup for the editor with toolbar
+         *
+         * @deprecated
+         */
+        @Deprecated
+        public void ExpressSetup(){
+         }
         //endregion
 
 

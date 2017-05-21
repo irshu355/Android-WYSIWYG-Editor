@@ -38,17 +38,40 @@ public class DividerExtensions {
     public void InsertDivider(){
         View view=  ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.dividerLayout, null);
         view.setTag(editorCore.CreateTag(EditorType.hr));
-        int Index= editorCore.determineIndex(EditorType.hr);
-        editorCore.getParentView().addView(view, Index);
+        int index= editorCore.determineIndex(EditorType.hr);
+        editorCore.getParentView().addView(view, index);
         if(editorCore.isLastRow(view)&& editorCore.getRenderType()== RenderType.Editor) {
             //check if ul is active
-           editorCore.getInputExtensions().InsertEditText(Index + 1, null, null);
+           editorCore.getInputExtensions().insertEditText(index + 1, null, null);
+        }else if(editorCore.getRenderType()==RenderType.Editor){
+            editorCore.getParentView().removeViewAt(index+1);
+            /**
+             * set focus to the next nearby edittext
+             */
+            setFocusToNearbyEditText(index+1);
         }
     }
     public void deleteHr(int indexOfDeleteItem) {
         View view= editorCore.getParentView().getChildAt(indexOfDeleteItem);
         if(editorCore.GetControlType(view)==EditorType.hr){
             editorCore.getParentView().removeView(view);
+        }
+    }
+
+    public void setFocusToNearbyEditText(int startIndex){
+        for(int i=startIndex;i<editorCore.getParentView().getChildCount();i++){
+            View view = editorCore.getParentView().getChildAt(i);
+            EditorType editorType = editorCore.GetControlType(view);
+            if(editorType==EditorType.hr||editorType==EditorType.img||editorType==EditorType.map||editorType==EditorType.none)
+                continue;
+            if(editorType==EditorType.INPUT) {
+                editorCore.getInputExtensions().setFocus((CustomEditText)view);
+                break;
+            }
+            if(editorType==EditorType.ol||editorType==EditorType.ul){
+                editorCore.getListItemExtensions().setFocusToList(view,ListItemExtensions.POSITION_START);
+                editorCore.setActiveView(view);
+            }
         }
     }
 }

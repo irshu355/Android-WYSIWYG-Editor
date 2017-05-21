@@ -1,9 +1,8 @@
 package com.github.irshulx;
 
+import android.graphics.Bitmap;
 import android.text.Editable;
 import android.widget.EditText;
-
-import retrofit2.Retrofit;
 
 /**
  * Created by IRSHU on 27/2/2017.
@@ -11,5 +10,5 @@ import retrofit2.Retrofit;
 
 public interface EditorListener{
     void onTextChanged(EditText editText, Editable text);
-    Retrofit.Builder onUpload(Retrofit.Builder retrofit);
+    void onUpload(Bitmap image, String uuid);
 }

@@ -45,6 +45,8 @@ import com.github.irshulx.models.RenderType;
  */
 public class ListItemExtensions {
     EditorCore editorCore;
+    public static final int POSITION_START=0;
+    public static final int POSITION_END = 1;
     private int listItemTemplate=R.layout.tmpl_list_item;
 
     public ListItemExtensions(EditorCore editorCore){
@@ -144,7 +146,7 @@ public class ListItemExtensions {
                             if (s.length() == 0 || s.toString().equals("\n")) {
                                 int index = editorCore.getParentView().indexOfChild(_table);
                                 _table.removeView(_row);
-                                editorCore.getInputExtensions().InsertEditText(index + 1, "", "");
+                                editorCore.getInputExtensions().insertEditText(index + 1, "", "");
                             } else {
                                 Spanned __ = Html.fromHtml(text);
                                 CharSequence toReplace = editorCore.getInputExtensions().noTrailingwhiteLines(__);
@@ -157,7 +159,7 @@ public class ListItemExtensions {
 
 
                                 int index = _table.indexOfChild(_row);
-                                //  InsertEditText(index + 1, "");
+                                //  insertEditText(index + 1, "");
                                 AddListItem(_table, type == EditorType.ol, "");
                             }
 
@@ -203,7 +205,7 @@ public class ListItemExtensions {
             _table.removeView(_childRow);
             String text = getTextFromListItem(_childRow);
             int Index= editorCore.getParentView().indexOfChild(_table);
-            editorCore.getInputExtensions().InsertEditText(Index+1,"",text);
+            editorCore.getInputExtensions().insertEditText(Index+1,"",text);
             i -= 1;
             tableChildCount-=1;
         }
@@ -413,11 +415,11 @@ public class ListItemExtensions {
             }
     }
 
-    public void setFocusToList(View view){
+    public void setFocusToList(View view,int position){
         TableLayout tableLayout = (TableLayout) view;
         int count = tableLayout.getChildCount();
         if (tableLayout.getChildCount() > 0) {
-            TableRow tableRow = (TableRow) tableLayout.getChildAt(count - 1);
+            TableRow tableRow = (TableRow) tableLayout.getChildAt(position==POSITION_START?0:count - 1);
             if (tableRow != null) {
                 EditText editText = (EditText) tableRow.findViewById(R.id.txtText);
                 if (editText.requestFocus()) {

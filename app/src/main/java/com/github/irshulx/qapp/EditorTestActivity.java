@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,20 +21,21 @@ import com.github.irshulx.EditorListener;
 import com.github.irshulx.models.EditorTextStyle;
 
 import java.io.IOException;
-
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EditorTestActivity extends AppCompatActivity {
     Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_test);
         editor = (Editor) findViewById(R.id.editor);
-        CreateEditor();
+        setUpEditor();
     }
-    private void CreateEditor() {
+
+    private void setUpEditor() {
         findViewById(R.id.action_h1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,10 +133,12 @@ public class EditorTestActivity extends AppCompatActivity {
                 editor.clearAllContents();
             }
         });
-
-        //  editor.dividerBackground=R.drawable.divider_background_dark;
-        editor.setImageUploaderUri("http://192.168.43.239/Laser-Editor-WebApi/api/ImageUploaderApi/PostImage");
-        editor.setFontFace(R.string.fontFamily__serif);
+        //editor.dividerBackground=R.drawable.divider_background_dark;
+        //editor.setFontFace(R.string.fontFamily__serif);
+        Map<Integer, String> headingTypeface = getHeadingTypeface();
+        Map<Integer, String> contentTypeface = getContentface();
+        editor.setHeadingTypeface(headingTypeface);
+        editor.setContentTypeface(contentTypeface);
         editor.setDividerLayout(R.layout.tmpl_divider_layout);
         editor.setEditorImageLayout(R.layout.tmpl_image_view);
         editor.setListItemLayout(R.layout.tmpl_list_item);
@@ -144,27 +148,22 @@ public class EditorTestActivity extends AppCompatActivity {
             public void onTextChanged(EditText editText, Editable text) {
                 // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
             }
-
             @Override
-            public Retrofit.Builder onUpload(Retrofit.Builder retrofit) {
-                OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-                httpClient.addInterceptor(new customHeadersInterceptor());
-                OkHttpClient client =  httpClient.build();
-                retrofit.client(client);
-                return retrofit;
+            public void onUpload(Bitmap image, String uuid) {
+                Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
+                editor.onUploadComplete("http://travee.co/upload/plans/945/thumb_Petronas_twin_towers_wallpaper.jpg",uuid);
             }
         });
-
+        editor.setLineSpacing(1.0f);
         editor.Render();  // this method must be called to start the editor
-
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*
                 Retrieve the content as serialized, you could also say getContentAsHTML();
                 */
-                String text= editor.getContentAsSerialized();
-                Intent intent=new Intent(getApplicationContext(), RenderTestActivity.class);
+                String text = editor.getContentAsSerialized();
+                Intent intent = new Intent(getApplicationContext(), RenderTestActivity.class);
                 intent.putExtra("content", text);
                 startActivity(intent);
             }
@@ -252,7 +251,24 @@ public class EditorTestActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        Button btnRender=(Button)findViewById(R.id.btnRender);
-        setGhost(btnRender);
+        setGhost((Button)findViewById(R.id.btnRender));
+    }
+
+    public Map<Integer,String> getHeadingTypeface() {
+        Map<Integer, String> typefaceMap = new HashMap<>();
+        typefaceMap.put(Typeface.NORMAL,"fonts/GreycliffCF-Medium.ttf");
+        typefaceMap.put(Typeface.BOLD,"fonts/GreycliffCF-Bold.ttf");
+        typefaceMap.put(Typeface.ITALIC,"fonts/GreycliffCF-Medium.ttf");
+        typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/GreycliffCF-Medium.ttf");
+        return typefaceMap;
+    }
+
+    public Map<Integer,String> getContentface() {
+        Map<Integer, String> typefaceMap = new HashMap<>();
+        typefaceMap.put(Typeface.NORMAL,"fonts/Lato-Medium.ttf");
+        typefaceMap.put(Typeface.BOLD,"fonts/Lato-Bold.ttf");
+        typefaceMap.put(Typeface.ITALIC,"fonts/Lato-MediumItalic.ttf");
+        typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/Lato-BoldItalic.ttf");
+        return typefaceMap;
     }
 }

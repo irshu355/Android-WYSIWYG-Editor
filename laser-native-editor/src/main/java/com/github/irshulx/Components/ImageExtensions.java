@@ -33,16 +33,9 @@ import android.widget.TextView;
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.R;
 import com.github.irshulx.models.EditorControl;
-import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorType;
-import com.github.irshulx.Utilities.IEditorRetrofitApi;
-import com.github.irshulx.models.ImageResponse;
-import com.github.irshulx.Utilities.ServiceGenerator;
 import com.squareup.picasso.Picasso;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -50,19 +43,11 @@ import java.util.Date;
 import java.util.TimerTask;
 import java.util.UUID;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-
 /**
  * Created by mkallingal on 5/1/2016.
  */
 public class ImageExtensions {
     private EditorCore editorCore;
-    private String imageUploadUri;
     private int editorImageLayout=R.layout.tmpl_image_view;
     public ImageExtensions(EditorCore editorCore){
         this.editorCore = editorCore;
@@ -76,13 +61,8 @@ public class ImageExtensions {
         new DownloadImageTask(index).execute(url);
     }
 
-    public void setImageUploadUri(String uri){
-        this.imageUploadUri= uri;
-    }
 
     public void OpenImageGallery() {
-        int Index=this.editorCore.determineIndex(EditorType.none);
-        EditorContent state= editorCore.getContent();
         Intent intent = new Intent();
 // Show only images, no videos or anything else
         intent.setType("image/*");
@@ -95,6 +75,7 @@ public class ImageExtensions {
        // Render(getStateFromString());
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
+        final TextView lblStatus= (TextView) childLayout.findViewById(R.id.lblStatus);
         imageView.setImageBitmap(_image);
         final String uuid= GenerateUUID();
         BindEvents(childLayout);
@@ -104,20 +85,14 @@ public class ImageExtensions {
         editorCore.getParentView().addView(childLayout, Index);
         //      _Views.add(childLayout);
         if(editorCore.isLastRow(childLayout)) {
-            editorCore.getInputExtensions().InsertEditText(Index + 1, null, null);
+            editorCore.getInputExtensions().insertEditText(Index + 1, null, null);
         }
         EditorControl control= editorCore.CreateTag(EditorType.img);
+        control.Path=uuid; // set the imageId,so we can recognize later after upload
         childLayout.setTag(control);
-        if(TextUtils.isEmpty(editorCore.getImageUploaderUri())) {
-            String error="You must configure a valid remote URI to be able to upload the image.This image is not persisted";
-            editorCore.getUtilitiles().toastItOut(error);
-            TextView sts=(TextView) childLayout.findViewById(R.id.lblStatus);
-            sts.setBackgroundDrawable(editorCore.getResources().getDrawable(R.drawable.error_background));
-            sts.setVisibility(View.VISIBLE);
-            sts.setText(error);
-            return;
-        }
-        UploadImageToServer(_image, childLayout, uuid);
+        childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
+        lblStatus.setVisibility(View.VISIBLE);
+        editorCore.getEditorListener().onUpload(_image,uuid);
     }
     public String GenerateUUID(){
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -139,6 +114,43 @@ public class ImageExtensions {
         Picasso.with(this.editorCore.getContext()).load(_path).into(imageView);
         editorCore.getParentView().addView(imageView);
     }
+
+
+    public View findImageById(String imageId){
+        for(int i=0;i<editorCore.getParentChildCount();i++){
+            View view = editorCore.getParentView().getChildAt(i);
+            EditorControl control = editorCore.GetControlTag(view);
+            if(!TextUtils.isEmpty(control.Path)&&control.Path.equals(imageId))
+                return view;
+        }
+        return null;
+    }
+
+    public void onPostUpload(String url, String imageId) {
+        View view=findImageById(imageId);
+        final TextView lblStatus = (TextView) view.findViewById(R.id.lblStatus);
+        lblStatus.setText(!TextUtils.isEmpty(url)?"Upload complete":"Upload failed");
+        if(!TextUtils.isEmpty(url)) {
+            EditorControl control = editorCore.CreateTag(EditorType.img);
+            control.Path = url;
+            view.setTag(control);
+            TimerTask timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    ((Activity) editorCore.getContext()).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // This code will always run on th UI thread, therefore is safe to modify UI elements.
+                            lblStatus.setVisibility(View.GONE);
+                        }
+                    });
+                }
+            };
+            new java.util.Timer().schedule(timerTask, 3000);
+        }
+        view.findViewById(R.id.progress).setVisibility(View.GONE);
+    }
+
     /*
       /used to fetch an image from internet and return a Bitmap equivalent
     */
@@ -164,81 +176,6 @@ public class ImageExtensions {
         }
     }
 
-
-    /*
-         /used to upload the image to remote
-       */
-    private  void UploadImageToServer(Bitmap bitmap, final View view, String uuid){
-        File f = new File(this.editorCore.getContext().getCacheDir(), uuid+".png");
-        final TextView lblStatus= (TextView) view.findViewById(R.id.lblStatus);
-        try {
-            f.createNewFile();
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-            byte[] bitmapdata = bos.toByteArray();
-            FileOutputStream fos = new FileOutputStream(f);
-            fos.write(bitmapdata);
-            fos.flush();
-            fos.close();
-
-
-            Retrofit.Builder builder = ServiceGenerator.getRetrofitBuilder();
-
-            if(editorCore.getEditorListener()!=null){
-                Retrofit.Builder customBuilder = editorCore.getEditorListener().onUpload(builder);
-                if(customBuilder!=null)
-                    builder = customBuilder;
-            }
-
-            IEditorRetrofitApi service = ServiceGenerator.createService(builder, IEditorRetrofitApi.class);
-            RequestBody requestFile =
-                    RequestBody.create(MediaType.parse("multipart/form-data"), f);
-            // MultipartBody.Part is used to send also the actual file name
-            MultipartBody.Part body =
-                    MultipartBody.Part.createFormData("picture", f.getName(), requestFile);
-            // add another part within the multipart request
-            RequestBody description =
-                    RequestBody.create(
-                            MediaType.parse("multipart/form-data"), "");
-            // finally, execute the request
-            view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
-            lblStatus.setVisibility(View.VISIBLE);
-            if(editorCore.getEditorListener()!=null){
-            }
-            Call<ImageResponse> call = service.upload(editorCore.getImageUploaderUri(), description, body);
-            call.enqueue(new Callback<ImageResponse>() {
-                @Override
-                public void onResponse(Call<ImageResponse> call, final retrofit2.Response<ImageResponse> response) {
-                    ((TextView) view.findViewById(R.id.lblStatus)).setText("Upload complete");
-                    EditorControl control= editorCore.CreateTag(EditorType.img);
-                    control.Path= response.body().Uri;
-                    view.setTag(control);
-                    new java.util.Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            ((Activity) editorCore.getContext()).runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    // This code will always run on the UI thread, therefore is safe to modify UI elements.
-                                    lblStatus.setVisibility(View.GONE);
-                                }
-                            });
-                        }
-                    },3000);
-                    view.findViewById(R.id.progress).setVisibility(View.GONE);
-                }
-
-                @Override
-                public void onFailure(Call<ImageResponse> call, Throwable t) {
-                    lblStatus.setText(t.getMessage());
-                    lblStatus.setBackgroundDrawable(editorCore.getResources().getDrawable(R.drawable.error_background));
-                    view.findViewById(R.id.progress).setVisibility(View.GONE);
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private void BindEvents(final View layout){

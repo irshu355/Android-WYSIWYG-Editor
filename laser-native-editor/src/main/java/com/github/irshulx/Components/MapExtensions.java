@@ -89,7 +89,7 @@ public class MapExtensions {
         int Index= editorCore.determineIndex(EditorType.map);
         editorCore.getParentView().addView(childLayout, Index);
         if(insertEditText){
-          editorCore.getInputExtensions().InsertEditText(Index + 1, null, null);
+          editorCore.getInputExtensions().insertEditText(Index + 1, null, null);
         }
     }
 

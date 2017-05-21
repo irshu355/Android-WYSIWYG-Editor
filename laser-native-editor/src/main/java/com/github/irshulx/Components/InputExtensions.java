@@ -35,6 +35,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.R;
+import com.github.irshulx.Utilities.FontCache;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
@@ -44,17 +45,23 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.util.Map;
+
 /**
  * Created by mkallingal on 4/30/2016.
  */
 public class InputExtensions{
+    private static final int HEADING=0;
+    private static final int CONTENT =1;
     private int H1TEXTSIZE =23;
     private int H2TEXTSIZE =20;
     private int H3TEXTSIZE =18;
     private int NORMALTEXTSIZE =16;
     private int fontFace=R.string.fontFamily__serif;
-    private float lineSpacing=9.0f;
+    private float lineSpacing=4.0f;
     EditorCore editorCore;
+    private Map<Integer,String> contentTypeface;
+    private Map<Integer,String> headingTypeface;
 
     public int getH1TextSize(){
         return this.H1TEXTSIZE;
@@ -90,6 +97,24 @@ public class InputExtensions{
         this.fontFace=fontFace;
     }
 
+
+    public Map<Integer, String> getContentTypeface() {
+        return contentTypeface;
+    }
+
+    public void setContentTypeface(Map<Integer, String> contentTypeface) {
+        this.contentTypeface = contentTypeface;
+    }
+
+    public Map<Integer, String> getHeadingTypeface() {
+        return headingTypeface;
+    }
+
+    public void setHeadingTypeface(Map<Integer, String> headingTypeface) {
+        this.headingTypeface = headingTypeface;
+    }
+
+
     public float getLineSpacing(){
         return this.lineSpacing;
     }
@@ -112,7 +137,7 @@ public class InputExtensions{
     }
     private TextView GetNewTextView(String text){
         final TextView textView = new TextView(this.editorCore.getContext());
-        textView.setTypeface(Typeface.create(getFontFace(), Typeface.NORMAL));
+        textView.setTypeface(getTypeface(CONTENT,Typeface.NORMAL));
         textView.setGravity(Gravity.BOTTOM);
         textView.setTextColor(editorCore.getResources().getColor(R.color.darkertext));
         textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.getLineSpacing(), editorCore.getResources().getDisplayMetrics()), 1.0f);
@@ -129,7 +154,7 @@ public class InputExtensions{
     }
     public CustomEditText GetNewEditTextInst(String hint, String text) {
         final CustomEditText editText = new CustomEditText(this.editorCore.getContext());
-        editText.setTypeface(Typeface.create( getFontFace() ,Typeface.NORMAL));
+        editText.setTypeface(getTypeface(CONTENT,Typeface.NORMAL));
         editText.setGravity(Gravity.BOTTOM);
         editText.setFocusableInTouchMode(true);
       //  editText.setTextColor(editorCore.getResources().getColor(R.color.darkertext));
@@ -204,7 +229,7 @@ public class InputExtensions{
                     /*
                     * since it was a return key, add a new editText below
                     */
-                    InsertEditText(index + 1, null, null);
+                    insertEditText(index + 1, null, null);
                 }
                 }
                 if (editorCore.getEditorListener() != null) {
@@ -216,7 +241,7 @@ public class InputExtensions{
     }
 
 
-    public TextView InsertEditText(int position, String hint, String text) {
+    public TextView insertEditText(int position, String hint, String text) {
         if(editorCore.getRenderType() == RenderType.Editor) {
             final CustomEditText view = GetNewEditTextInst(hint, text);
                 editorCore.getParentView().addView(view, position);
@@ -225,11 +250,7 @@ public class InputExtensions{
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    view.requestFocus();
-                    InputMethodManager mgr = (InputMethodManager) editorCore.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    mgr.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
-                    view.setSelection(view.getText().length());
-                    editorCore.setActiveView(view);
+                  setFocus(view);
                 }
             }, 0);
             editorCore.setActiveView(view);
@@ -242,6 +263,105 @@ public class InputExtensions{
         }
     }
 
+
+    private EditorControl reWriteTags(EditorControl tag,EditorTextStyle styleToAdd){
+        tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
+        tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
+        tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
+        tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Delete);
+        tag = editorCore.UpdateTagStyle(tag,styleToAdd,Op.Insert);
+        return tag;
+    }
+
+    public boolean isEditorTextStyleHeaders(EditorTextStyle editorTextStyle){
+        return editorTextStyle==EditorTextStyle.H1 || editorTextStyle==EditorTextStyle.H2 || editorTextStyle==EditorTextStyle.H3;
+    }
+
+    public boolean isEditorTextStyleContentStyles(EditorTextStyle editorTextStyle){
+        return editorTextStyle== EditorTextStyle.BOLD || editorTextStyle==EditorTextStyle.BOLDITALIC || editorTextStyle==EditorTextStyle.ITALIC;
+    }
+
+
+    public int getTextStyleFromStyle(EditorTextStyle editorTextStyle){
+        if(editorTextStyle==EditorTextStyle.H1)
+            return H1TEXTSIZE;
+        if(editorTextStyle==EditorTextStyle.H2)
+            return H2TEXTSIZE;
+        if(editorTextStyle==EditorTextStyle.H3)
+            return H3TEXTSIZE;
+        return NORMALTEXTSIZE;
+    }
+
+    private void updateTextStyle(TextView editText, EditorTextStyle editorTextStyle){
+        EditorControl tag;
+        if(editText==null) {
+            editText = (EditText) editorCore.getActiveView();
+        }
+        EditorControl editorControl= editorCore.GetControlTag(editText);
+        if(isEditorTextStyleHeaders(editorTextStyle)){
+            if(editorCore.ContainsStyle(editorControl._ControlStyles,editorTextStyle)) {
+                editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
+                editText.setTypeface(getTypeface(CONTENT,Typeface.NORMAL));
+             tag=   reWriteTags(editorControl,EditorTextStyle.NORMAL);
+            }else{
+                editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, getTextStyleFromStyle(editorTextStyle));
+                editText.setTypeface(getTypeface(HEADING,Typeface.BOLD));
+              tag= reWriteTags(editorControl,editorTextStyle);
+            }
+            editText.setTag(tag);
+        }
+    }
+
+    private boolean containsHeaderTextStyle(EditorControl tag){
+        for (EditorTextStyle item : tag._ControlStyles) {
+            if (isEditorTextStyleHeaders(item)) {
+                return true;
+            }
+            continue;
+        }
+        return false;
+    }
+
+
+
+    public void boldifyText(EditorControl tag, TextView editText, int textMode){
+            if (editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLD)) {
+                tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Delete);
+                editText.setTypeface(getTypeface(textMode, Typeface.NORMAL));
+            } else if (editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLDITALIC)) {
+                tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Delete);
+                tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Insert);
+                editText.setTypeface(getTypeface(textMode, Typeface.ITALIC));
+            } else if (editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.ITALIC)) {
+                tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Insert);
+                tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Delete);
+                editText.setTypeface(getTypeface(textMode, Typeface.BOLD_ITALIC));
+            } else {
+                tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Insert);
+                editText.setTypeface(getTypeface(textMode, Typeface.BOLD));
+            }
+            editText.setTag(tag);
+        }
+
+    public void italicizeText(EditorControl tag, TextView editText, int textMode) {
+
+        if (editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.ITALIC)) {
+            tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Delete);
+            editText.setTypeface(getTypeface(textMode, Typeface.NORMAL));
+        } else if (editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLDITALIC)) {
+            tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Delete);
+            tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Insert);
+            editText.setTypeface(getTypeface(textMode, Typeface.BOLD));
+        } else if (editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLD)) {
+            tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Insert);
+            tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Delete);
+            editText.setTypeface(getTypeface(textMode, Typeface.BOLD_ITALIC));
+        } else {
+            tag = editorCore.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Insert);
+            editText.setTypeface(getTypeface(textMode, Typeface.ITALIC));
+        }
+        editText.setTag(tag);
+    }
     public void UpdateTextStyle(EditorTextStyle style,TextView editText) {
         /// String type = GetControlType(getActiveView());
         try {
@@ -249,106 +369,33 @@ public class InputExtensions{
                 editText = (EditText) editorCore.getActiveView();
             }
             EditorControl tag= editorCore.GetControlTag(editText);
-            if(style== EditorTextStyle.H1){
-                if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.H1)) {
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Insert);
-                }else{
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H1TEXTSIZE);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Insert);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Delete);
-                }
 
+            if(isEditorTextStyleHeaders(style)){
+                updateTextStyle(editText,style);
+                return;
             }
-            else if(style== EditorTextStyle.H2){
-                if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.H2)) {
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-                    tag=  editorCore.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Insert);
-                }else{
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H2TEXTSIZE);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Insert);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Delete);
+            if(isEditorTextStyleContentStyles(style)) {
+                boolean containsHeadertextStyle = containsHeaderTextStyle(tag);
+                 if (style == EditorTextStyle.BOLD) {
+                    boldifyText(tag, editText,containsHeadertextStyle?HEADING:CONTENT );
                 }
+                else if(style==EditorTextStyle.ITALIC){
+                     italicizeText(tag, editText,containsHeadertextStyle?HEADING:CONTENT );
+                 }
+                 return;
             }
-            else if(style== EditorTextStyle.H3){
-                if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.H3)) {
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-                    tag=  editorCore.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Insert);
-                }else{
-                    editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, H3TEXTSIZE);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H3, Op.Insert);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Delete);
-                }
-            }
-            else if(style== EditorTextStyle.NORMAL){
-                editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-                tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H1, Op.Delete);
-                tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.H2, Op.Delete);
-                if(!editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.NORMAL)) {
-                    tag=   editorCore.UpdateTagStyle(tag, EditorTextStyle.NORMAL, Op.Insert);
-                }
-            }
-            else if(style== EditorTextStyle.BOLD){
-                if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLD)) {
-                    tag=   editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Delete);
-                    editText.setTypeface(Typeface.create(getFontFace(), Typeface.NORMAL));
-                }else if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLDITALIC)){
-                    tag=  editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Delete);
-                    tag=  editorCore.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Insert);
-                    editText.setTypeface(Typeface.create(getFontFace(), Typeface.ITALIC));
-                }
-                else if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.ITALIC)){
-                    tag=  editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Insert);
-                    tag=  editorCore.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Delete);
-                    editText.setTypeface(Typeface.create(getFontFace(), Typeface.BOLD_ITALIC));
-                }else{
-                    tag=   editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Insert);
-                    editText.setTypeface(Typeface.create(getFontFace(), Typeface.BOLD));
-                }
-            }
-            else if(style== EditorTextStyle.ITALIC){
-                if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.ITALIC)) {
-                    tag=   editorCore.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Delete);
-                    editText.setTypeface(Typeface.create(getFontFace(), Typeface.NORMAL));
-                }else if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLDITALIC)){
-                    tag=  editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Delete);
-                    tag= editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Insert);
-                    editText.setTypeface(Typeface.create(getFontFace(), Typeface.BOLD));
-                }
-                else if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.BOLD)){
-                    tag=  editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLDITALIC, Op.Insert);
-                    tag=  editorCore.UpdateTagStyle(tag, EditorTextStyle.BOLD, Op.Delete);
-                    editText.setTypeface(Typeface.create(getFontFace(), Typeface.BOLD_ITALIC));
-                }else{
-                    tag=   editorCore.UpdateTagStyle(tag, EditorTextStyle.ITALIC, Op.Insert);
-                    editText.setTypeface(Typeface.create(getFontFace(), Typeface.ITALIC));
-                }
-            }
-            else if(style== EditorTextStyle.INDENT){
+             if(style== EditorTextStyle.INDENT){
                 int pBottom= editText.getPaddingBottom();
                 int pRight= editText.getPaddingRight();
                 int pTop= editText.getPaddingTop();
                 if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.INDENT)){
                     tag=   editorCore.UpdateTagStyle(tag, EditorTextStyle.INDENT, Op.Delete);
                     editText.setPadding(0,pTop,pRight,pBottom);
+                    editText.setTag(tag);
                 }else{
                     tag=   editorCore.UpdateTagStyle(tag, EditorTextStyle.INDENT, Op.Insert);
                     editText.setPadding(30,pTop,pRight,pBottom);
+                    editText.setTag(tag);
                 }
             }
             else if(style== EditorTextStyle.OUTDENT){
@@ -358,9 +405,9 @@ public class InputExtensions{
                 if(editorCore.ContainsStyle(tag._ControlStyles, EditorTextStyle.INDENT)){
                     tag=   editorCore.UpdateTagStyle(tag, EditorTextStyle.INDENT, Op.Delete);
                     editText.setPadding(0,pTop,pRight,pBottom);
+                    editText.setTag(tag);
                 }
             }
-            editText.setTag(tag);
         }
         catch (Exception e){
 
@@ -429,6 +476,40 @@ public class InputExtensions{
             return formatted;
         }
         return  s;
+    }
+
+    /**
+     * returns the appropriate typeface
+     * @param mode => whether heading (0) or content(1)
+     * @param style => NORMAL, BOLD, BOLDITALIC, ITALIC
+     * @return typeface
+     */
+    public Typeface getTypeface(int mode, int style){
+        if(mode==HEADING && headingTypeface==null){
+           return Typeface.create(getFontFace(), style);
+        }
+        else if(mode==CONTENT &&contentTypeface==null){
+            return Typeface.create(getFontFace(), style);
+        }
+        if(mode==HEADING && !headingTypeface.containsKey(style)){
+            throw new IllegalArgumentException("the provided fonts for heading is missing the varient for this style. Please checkout the documentation on adding custom fonts.");
+        }
+        else if(mode==CONTENT && !headingTypeface.containsKey(style)){
+            throw new IllegalArgumentException("the provided fonts for content is missing the varient for this style. Please checkout the documentation on adding custom fonts.");
+        }
+        if(mode==HEADING) {
+            return FontCache.get(headingTypeface.get(style), editorCore.getContext());
+        }else{
+            return FontCache.get(contentTypeface.get(style), editorCore.getContext());
+        }
+    }
+
+    public void setFocus(CustomEditText view){
+        view.requestFocus();
+        InputMethodManager mgr = (InputMethodManager) editorCore.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        view.setSelection(view.getText().length());
+        editorCore.setActiveView(view);
     }
 
 }

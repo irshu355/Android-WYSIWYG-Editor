@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -60,14 +59,12 @@ public class EditorCore extends LinearLayout {
     private EditorListener __listener;
     public final int MAP_MARKER_REQUEST = 20;
     public final int PICK_IMAGE_REQUEST = 1;
-    private String __imageUploaderUri;
     private InputExtensions __inputExtensions;
     private ImageExtensions __imageExtensions;
     private ListItemExtensions __listItemExtensions;
     private DividerExtensions __dividerExtensions;
     private HTMLExtensions __htmlExtensions;
     private MapExtensions __mapExtensions;
-    private OnImageUpload __serviceGenerator;
 
     public EditorCore(Context _context, AttributeSet attrs) {
         super(_context, attrs);
@@ -84,7 +81,6 @@ public class EditorCore extends LinearLayout {
         __gson = new Gson();
         __inputExtensions = new InputExtensions(this);
         __imageExtensions = new ImageExtensions(this);
-        __imageExtensions.setImageUploadUri(this.__imageUploaderUri);
         __listItemExtensions = new ListItemExtensions(this);
         __dividerExtensions = new DividerExtensions(this);
         __mapExtensions = new MapExtensions(this);
@@ -93,26 +89,57 @@ public class EditorCore extends LinearLayout {
     }
 
     //region Getters_and_Setters
+
+    /**
+     *
+     *
+     * Exposed
+     */
+
+    /**
+     * returns activity
+     * @return
+     */
     public Activity getActivity() {
         return this.__activity;
     }
 
+    /**
+     * used to get the editor node
+     * @return
+     */
     public LinearLayout getParentView() {
         return this.__parentView;
     }
 
+    /**
+     * Get number of childs in the editor
+     * @return
+     */
     public int getParentChildCount() {
         return this.__parentView.getChildCount();
     }
 
+    /**
+     * returns whether editor is set as Editor or Rendeder
+     * @return
+     */
     public RenderType getRenderType() {
         return this.__renderType;
     }
 
+    /**
+     * no idea what this is
+     * @return
+     */
     public Resources getResources() {
         return this.__resources;
     }
 
+    /**
+     * The current active view on the editor
+     * @return
+     */
     public View getActiveView() {
         return this.__activeView;
     }
@@ -133,6 +160,11 @@ public class EditorCore extends LinearLayout {
         this.__listener = _listener;
     }
 
+    /*
+     *
+     * Getters and setters for  extensions
+     *
+     */
     public InputExtensions getInputExtensions() {
         return this.__inputExtensions;
     }
@@ -156,22 +188,11 @@ public class EditorCore extends LinearLayout {
     public DividerExtensions getDividerExtensions() {
         return this.__dividerExtensions;
     }
-
-    public String getImageUploaderUri() {
-        return this.__imageUploaderUri;
-    }
-
-    public void onImageUpload(OnImageUpload serviceGenerator) {
-        this.__serviceGenerator = serviceGenerator;
-    }
-
-    public void setImageUploaderUri(String imageUploaderUri) {
-        this.__imageUploaderUri = imageUploaderUri;
-    }
-
-    public OnImageUpload get__serviceGenerator() {
-        return __serviceGenerator;
-    }
+/*
+ *
+ *
+ *
+ */
 
     //endregion
 
@@ -310,7 +331,7 @@ public class EditorCore extends LinearLayout {
          *
          */
             this.__parentView.removeView(view);
-            __listItemExtensions.setFocusToList(view);
+            __listItemExtensions.setFocusToList(view,ListItemExtensions.POSITION_END);
         } else {
             RemoveParent(view);
         }
@@ -404,8 +425,10 @@ public class EditorCore extends LinearLayout {
                     break;
                 case img:
                     EditorControl imgTag = (EditorControl) view.getTag();
-                    state.content.add(imgTag.Path);
-                    list.add(state);
+                    if(!TextUtils.isEmpty(imgTag.Path)) {
+                        state.content.add(imgTag.Path);
+                        list.add(state);
+                    }
                     //field type, content[]
                     break;
                 case hr:
@@ -438,7 +461,7 @@ public class EditorCore extends LinearLayout {
             switch (item.type) {
                 case INPUT:
                     String text = item.content.get(0);
-                    TextView view = __inputExtensions.InsertEditText(0, "", text);
+                    TextView view = __inputExtensions.insertEditText(0, "", text);
                     if (item._ControlStyles != null) {
                         for (EditorTextStyle style : item._ControlStyles) {
                             __inputExtensions.UpdateTextStyle(style, view);
@@ -510,95 +533,4 @@ public class EditorCore extends LinearLayout {
             Toast.makeText(__context, message, Toast.LENGTH_SHORT).show();
         }
     }
-
-    public void ExpressSetup(final Editor editor) {
-        Activity activity = (Activity) __context;
-        activity.findViewById(R.id.action_h1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.H1);
-            }
-        });
-        activity.findViewById(R.id.action_h2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.H2);
-            }
-        });
-        activity.findViewById(R.id.action_h3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.H3);
-            }
-        });
-        activity.findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.BOLD);
-            }
-        });
-
-        activity.findViewById(R.id.action_Italic).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.ITALIC);
-            }
-        });
-        activity.findViewById(R.id.action_indent).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.INDENT);
-            }
-        });
-        activity.findViewById(R.id.action_outdent).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.OUTDENT);
-            }
-        });
-        activity.findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.InsertList(false);
-            }
-        });
-        activity.findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.InsertList(true);
-            }
-        });
-        activity.findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.InsertDivider();
-            }
-        });
-        activity.findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.OpenImagePicker();
-            }
-        });
-        activity.findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.insertLink();
-            }
-        });
-        activity.findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.InsertMap();
-            }
-        });
-        activity.findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.clearAllContents();
-            }
-        });
-        editor.Render();  // this method must be called to start the editor
-    }
-
 }

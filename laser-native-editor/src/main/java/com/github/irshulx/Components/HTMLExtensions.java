@@ -38,7 +38,7 @@ public class HTMLExtensions {
         HtmlTag tag= HtmlTag.valueOf(element.tagName().toLowerCase());
         int count= editorCore.getParentView().getChildCount();
         if("<br>".equals(element.html().replaceAll("\\s+", ""))||"<br/>".equals(element.html().replaceAll("\\s+", ""))){
-            editorCore.getInputExtensions().InsertEditText(count, null, null);
+            editorCore.getInputExtensions().insertEditText(count, null, null);
             return;
         }
         else if("<hr>".equals(element.html().replaceAll("\\s+", ""))||"<hr/>".equals(element.html().replaceAll("\\s+", ""))){
@@ -53,7 +53,7 @@ public class HTMLExtensions {
                 break;
             case p:
                 text= element.html();
-                editText= editorCore.getInputExtensions().InsertEditText(count, null, text);
+                editText= editorCore.getInputExtensions().insertEditText(count, null, text);
                 break;
             case ul:
             case ol:
@@ -85,7 +85,7 @@ public class HTMLExtensions {
     private void RenderHeader(HtmlTag tag, Element element){
        int count= editorCore.getParentView().getChildCount();
        String text=getHtmlSpan(element);
-       TextView  editText= editorCore.getInputExtensions().InsertEditText(count, null, text);
+       TextView  editText= editorCore.getInputExtensions().insertEditText(count, null, text);
        EditorTextStyle style= tag==HtmlTag.h1? EditorTextStyle.H1:tag==HtmlTag.h2? EditorTextStyle.H2: EditorTextStyle.H3;
        editorCore.getInputExtensions().UpdateTextStyle(style,editText);
     }

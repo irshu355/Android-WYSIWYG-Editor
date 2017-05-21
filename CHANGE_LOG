@@ -1,0 +1,6 @@
+* fixed the glitch when divider is inserted between the contents
+
+
+TODO
+
+if the path is not url, it shouldnt be extracted as content
