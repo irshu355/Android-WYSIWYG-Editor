@@ -3,6 +3,8 @@
 Android-WYSIWYG-Editor
 ===================
 
+> **Note on 27.05.17:** A major update for the editor will be releasing over the next 2 days. Un updated README will be avaiable soon.
+
 An iframe free text editor that uses native components in the content tree.
 
 <a href="https://play.google.com/store/apps/details?id=com.github.irshulx.qapp">![alt text][1]</a>
