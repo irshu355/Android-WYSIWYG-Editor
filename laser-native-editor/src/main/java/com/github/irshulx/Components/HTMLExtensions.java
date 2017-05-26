@@ -8,7 +8,7 @@ import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorType;
 import com.github.irshulx.models.HtmlTag;
-import com.github.irshulx.models.state;
+import com.github.irshulx.models.Node;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -139,14 +139,14 @@ public class HTMLExtensions {
         }
         return template;
     }
-    private String getInputHtml(state item){
+    private String getInputHtml(Node item){
         boolean isParagraph=true;
         String tmpl= getTemplateHtml(EditorType.INPUT);
       //  CharSequence content= android.text.Html.fromHtml(item.content.get(0)).toString();
       //  CharSequence trimmed= editorCore.getInputExtensions().noTrailingwhiteLines(content);
         String trimmed= Jsoup.parse(item.content.get(0)).body().select("p").html();
-        if(item._ControlStyles.size()>0) {
-            for (EditorTextStyle style : item._ControlStyles) {
+        if(item.contentStyles.size()>0) {
+            for (EditorTextStyle style : item.contentStyles) {
                 switch (style) {
                     case BOLD:
                         tmpl = tmpl.replace("{{$content}}", "<b>{{$content}}</b>");
@@ -204,7 +204,7 @@ public class HTMLExtensions {
     public String getContentAsHTML(EditorContent content){
         StringBuilder htmlBlock = new StringBuilder();
         String html;
-        for (state item : content.stateList) {
+        for (Node item : content.nodes) {
             switch (item.type) {
                 case INPUT:
                     html = getInputHtml(item);
@@ -234,7 +234,7 @@ public class HTMLExtensions {
     }
 
 
-    private String getListAsHtml(state item) {
+    private String getListAsHtml(Node item) {
         int count= item.content.size();
         String tmpl_parent = getTemplateHtml(item.type);
         StringBuilder childBlock=new StringBuilder();

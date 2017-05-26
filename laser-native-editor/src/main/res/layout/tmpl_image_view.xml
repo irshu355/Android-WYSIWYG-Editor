@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_marginBottom="10dp"
-    android:background="@color/darkertext"
-    android:layout_marginTop="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,9 +10,22 @@
         android:layout_width="match_parent"
         android:adjustViewBounds="true"
         android:focusable="true"
+        android:src="@color/lightBackground"
         android:focusableInTouchMode="true"
         android:layout_height="wrap_content"
         />
+    <com.github.irshulx.Components.CustomEditText
+        android:layout_width="match_parent"
+        android:textSize="12sp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/imageView"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/darktext"
+        android:background="@android:color/transparent"
+        android:hint="Description here (optional)"
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="wrap_content"

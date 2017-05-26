@@ -44,10 +44,12 @@ public class CustomEditText extends TextInputEditText {
 
         @Override
         public boolean sendKeyEvent(KeyEvent event) {
-            if (event.getAction() == KeyEvent.ACTION_DOWN
-                    && event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
-            }
-            return super.sendKeyEvent(event);
+           if(event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+                return super.sendKeyEvent(event);
+            }else if(event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
+               return super.sendKeyEvent(event);
+           }
+            return false;
         }
 
 
@@ -56,10 +58,16 @@ public class CustomEditText extends TextInputEditText {
             // magic: in latest Android, deleteSurroundingText(1, 0) will be called for backspace
             if (beforeLength == 1 && afterLength == 0) {
                 // backspace
-                return sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
-                        && sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+                int len = getText().length();
+                if(len==0){
+                    boolean isBackspace = sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
+                            && sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+                    return isBackspace;
+                }
+                int selection= getSelectionStart();
+                if(selection==0)
+                    return false;
             }
-
             return super.deleteSurroundingText(beforeLength, afterLength);
         }
 

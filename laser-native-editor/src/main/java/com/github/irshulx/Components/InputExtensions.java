@@ -173,11 +173,7 @@ public class InputExtensions{
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_DEL) {
-                    if (IsEditTextNull(editText)) {
                         editorCore.deleteFocusedPrevious(editText);
-                    }else {
-                        editorCore.onBackspace(editText);
-                    }
                 }
                 return false;
             }
@@ -510,6 +506,41 @@ public class InputExtensions{
         mgr.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
         view.setSelection(view.getText().length());
         editorCore.setActiveView(view);
+    }
+
+
+    public void setFocusToNext(int startIndex){
+        for(int i=startIndex;i<editorCore.getParentView().getChildCount();i++){
+            View view = editorCore.getParentView().getChildAt(i);
+            EditorType editorType = editorCore.GetControlType(view);
+            if(editorType==EditorType.hr||editorType==EditorType.img||editorType==EditorType.map||editorType==EditorType.none)
+                continue;
+            if(editorType==EditorType.INPUT) {
+                setFocus((CustomEditText)view);
+                break;
+            }
+            if(editorType==EditorType.ol||editorType==EditorType.ul){
+                editorCore.getListItemExtensions().setFocusToList(view,ListItemExtensions.POSITION_START);
+                editorCore.setActiveView(view);
+            }
+        }
+    }
+
+    public void setFocusToPrevious(int startIndex){
+        for(int i=startIndex;i>0;i--){
+            View view = editorCore.getParentView().getChildAt(i);
+            EditorType editorType = editorCore.GetControlType(view);
+            if(editorType==EditorType.hr||editorType==EditorType.img||editorType==EditorType.map||editorType==EditorType.none)
+                continue;
+            if(editorType==EditorType.INPUT) {
+                setFocus((CustomEditText)view);
+                break;
+            }
+            if(editorType==EditorType.ol||editorType==EditorType.ul){
+                editorCore.getListItemExtensions().setFocusToList(view,ListItemExtensions.POSITION_START);
+                editorCore.setActiveView(view);
+            }
+        }
     }
 
 }

@@ -28,9 +28,9 @@ import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.Node;
 import com.github.irshulx.models.Op;
 import com.github.irshulx.models.RenderType;
-import com.github.irshulx.models.state;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -313,8 +313,22 @@ public class EditorCore extends LinearLayout {
          * If the person was on an active ul|li, move him to the previous node
          *
          */
+
+
+
         if (contentType != null && (contentType.Type == EditorType.OL_LI || contentType.Type == EditorType.UL_LI)) {
             __listItemExtensions.validateAndRemoveLisNode(view, contentType);
+            return;
+        }
+
+        View toFocus = __parentView.getChildAt(index - 1);
+        EditorControl control = (EditorControl) toFocus.getTag();
+        /**
+         * If the previous node is an image, do not delete the edittext, set focus to previous edittext
+         */
+
+        if(control.Type==EditorType.img || control.Type==EditorType.map){
+            getInputExtensions().setFocusToPrevious(index);
             return;
         }
         /*
@@ -322,8 +336,7 @@ public class EditorCore extends LinearLayout {
          * If the person was on edittext,  had removed the whole text, we need to move into the previous line
          *
          */
-        View toFocus = __parentView.getChildAt(index - 1);
-        EditorControl control = (EditorControl) toFocus.getTag();
+
         if (control.Type == EditorType.ol || control.Type == EditorType.ul) {
          /*
          *
@@ -408,31 +421,31 @@ public class EditorCore extends LinearLayout {
 
         int childCount = this.__parentView.getChildCount();
         EditorContent editorState = new EditorContent();
-        List<state> list = new ArrayList<>();
+        List<Node> list = new ArrayList<>();
         for (int i = 0; i < childCount; i++) {
-            state state = new state();
+            Node node = new Node();
             View view = __parentView.getChildAt(i);
             EditorType type = GetControlType(view);
-            state.type = type;
-            state.content = new ArrayList<>();
+            node.type = type;
+            node.content = new ArrayList<>();
             switch (type) {
                 case INPUT:
                     EditText _text = (EditText) view;
                     EditorControl tag = (EditorControl) view.getTag();
-                    state._ControlStyles = tag._ControlStyles;
-                    state.content.add(Html.toHtml(_text.getText()));
-                    list.add(state);
+                    node.contentStyles = tag._ControlStyles;
+                    node.content.add(Html.toHtml(_text.getText()));
+                    list.add(node);
                     break;
                 case img:
                     EditorControl imgTag = (EditorControl) view.getTag();
                     if(!TextUtils.isEmpty(imgTag.Path)) {
-                        state.content.add(imgTag.Path);
-                        list.add(state);
+                        node.content.add(imgTag.Path);
+                        list.add(node);
                     }
                     //field type, content[]
                     break;
                 case hr:
-                    list.add(state);
+                    list.add(node);
                     break;
                 case ul:
                 case ol:
@@ -441,29 +454,29 @@ public class EditorCore extends LinearLayout {
                     for (int j = 0; j < _rowCount; j++) {
                         View row = table.getChildAt(j);
                         EditText li = (EditText) row.findViewById(R.id.txtText);
-                        state.content.add(Html.toHtml(li.getText()));
+                        node.content.add(Html.toHtml(li.getText()));
                     }
-                    list.add(state);
+                    list.add(node);
                     break;
                 case map:
                     EditorControl mapTag = (EditorControl) view.getTag();
-                    state.content.add(mapTag.Cords);
-                    list.add(state);
+                    node.content.add(mapTag.Cords);
+                    list.add(node);
             }
         }
-        editorState.stateList = list;
+        editorState.nodes = list;
         return editorState;
     }
 
     public void RenderEditor(EditorContent _state) {
         this.__parentView.removeAllViews();
-        for (state item : _state.stateList) {
+        for (Node item : _state.nodes) {
             switch (item.type) {
                 case INPUT:
                     String text = item.content.get(0);
                     TextView view = __inputExtensions.insertEditText(0, "", text);
-                    if (item._ControlStyles != null) {
-                        for (EditorTextStyle style : item._ControlStyles) {
+                    if (item.contentStyles != null) {
+                        for (EditorTextStyle style : item.contentStyles) {
                             __inputExtensions.UpdateTextStyle(style, view);
                         }
                     }
@@ -480,7 +493,7 @@ public class EditorCore extends LinearLayout {
                     TableLayout _layout = null;
                     for (int i = 0; i < item.content.size(); i++) {
                         if (i == 0) {
-                            _layout = __listItemExtensions.insertList(_state.stateList.indexOf(item), item.type == EditorType.ol, item.content.get(i));
+                            _layout = __listItemExtensions.insertList(_state.nodes.indexOf(item), item.type == EditorType.ol, item.content.get(i));
                         } else {
                             __listItemExtensions.AddListItem(_layout, item.type == EditorType.ol, item.content.get(i));
                         }
@@ -512,7 +525,10 @@ public class EditorCore extends LinearLayout {
 
     public void onBackspace(CustomEditText editText) {
         int len = editText.getText().length();
-        editText.getText().delete(len - 1, len);
+        int selection= editText.getSelectionStart();
+        if(selection==0)
+            return;
+        editText.getText().delete(selection,1);
 
 //                if(editText.requestFocus())
 //                editText.setSelection(editText.getText().length());

@@ -151,10 +151,11 @@ public class EditorTestActivity extends AppCompatActivity {
             @Override
             public void onUpload(Bitmap image, String uuid) {
                 Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
-                editor.onUploadComplete("http://travee.co/upload/plans/945/thumb_Petronas_twin_towers_wallpaper.jpg",uuid);
+              //  editor.onImageUploadComplete("http://travee.co/upload/plans/945/thumb_Petronas_twin_towers_wallpaper.jpg",uuid);
+                editor.onImageUploadFailed(uuid);
             }
         });
-        editor.setLineSpacing(1.0f);
+        editor.setLineSpacing(3.0f);
         editor.Render();  // this method must be called to start the editor
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,10 +257,10 @@ public class EditorTestActivity extends AppCompatActivity {
 
     public Map<Integer,String> getHeadingTypeface() {
         Map<Integer, String> typefaceMap = new HashMap<>();
-        typefaceMap.put(Typeface.NORMAL,"fonts/GreycliffCF-Medium.ttf");
-        typefaceMap.put(Typeface.BOLD,"fonts/GreycliffCF-Bold.ttf");
-        typefaceMap.put(Typeface.ITALIC,"fonts/GreycliffCF-Medium.ttf");
-        typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/GreycliffCF-Medium.ttf");
+        typefaceMap.put(Typeface.NORMAL,"fonts/Audiowide-Regular.ttf");
+        typefaceMap.put(Typeface.BOLD,"fonts/Audiowide-Regular.ttf");
+        typefaceMap.put(Typeface.ITALIC,"fonts/Audiowide-Regular.ttf");
+        typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/Audiowide-Regular.ttf");
         return typefaceMap;
     }
 

@@ -103,7 +103,7 @@ public class ImageExtensions {
     }
 
     /*
-      /used by the renderer to render the image from the state
+      /used by the renderer to render the image from the Node
     */
     public  void loadImage(String _path){
         ImageView imageView = new ImageView(this.editorCore.getContext());
@@ -185,7 +185,9 @@ public class ImageExtensions {
         btn_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int index = editorCore.getParentView().indexOfChild(layout);
                 editorCore.getParentView().removeView(layout);
+                editorCore.getInputExtensions().setFocusToPrevious(index);
             }
         });
 

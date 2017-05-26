@@ -196,7 +196,7 @@
             getImageExtensions().InsertImage(bitmap, -1);
         }
 
-        public void onUploadComplete(String url, String imageId){
+        public void onImageUploadComplete(String url, String imageId){
             getImageExtensions().onPostUpload(url, imageId);
         }
         public void onImageUploadFailed(String imageId){

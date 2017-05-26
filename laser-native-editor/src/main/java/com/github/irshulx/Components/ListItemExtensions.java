@@ -112,9 +112,7 @@ public class ListItemExtensions {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
                     if (keyCode == KeyEvent.KEYCODE_DEL) {
-                        if (editorCore.getInputExtensions().IsEditTextNull(editText)) {
                             editorCore.deleteFocusedPrevious(editText);
-                        }
                     }
                     return false;
                 }
