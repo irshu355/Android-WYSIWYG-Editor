@@ -13,14 +13,14 @@ Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:1.1.2'
+    compile 'com.github.irshulx:laser-native-editor:1.2.0'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>1.1.2</version>
+      <version>1.2.0</version>
       <type>pom</type>
     </dependency>
 
@@ -355,4 +355,3 @@ If you come across any bugs or needs, please mention it on issues, i will addres
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
