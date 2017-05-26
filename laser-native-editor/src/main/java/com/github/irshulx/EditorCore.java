@@ -355,15 +355,16 @@ public class EditorCore extends LinearLayout {
         int indexOfDeleteItem = __parentView.indexOfChild(view);
         View nextItem = null;
         //remove hr if its on top of the delete field
+        this.__parentView.removeView(view);
         __dividerExtensions.deleteHr(indexOfDeleteItem - 1);
-        for (int i = 0; i < __parentView.getChildCount(); i++) {
-            if (i < indexOfDeleteItem && GetControlType(__parentView.getChildAt(i)) == EditorType.INPUT) {
+        for (int i = __parentView.getChildCount()-1; i >=0; i--) {
+            if (GetControlType(__parentView.getChildAt(i)) == EditorType.INPUT) {
                 nextItem = __parentView.getChildAt(i);
+                break;
             }
         }
-        this.__parentView.removeView(view);
         if (nextItem != null) {
-            EditText text = (EditText) nextItem;
+            CustomEditText text = (CustomEditText) nextItem;
             if (text.requestFocus()) {
                 text.setSelection(text.getText().length());
             }
