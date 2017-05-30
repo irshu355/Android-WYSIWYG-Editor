@@ -172,8 +172,19 @@ public class InputExtensions{
         editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_DEL) {
-                        editorCore.deleteFocusedPrevious(editText);
+                if(keyCode != KeyEvent.KEYCODE_DEL){
+                    return false;
+                }
+                if (isEditTextEmpty(editText)) {
+                    editorCore.deleteFocusedPrevious(editText);
+                    return false;
+                }
+                int length = editText.getText().length();
+                int selectionStart = editText.getSelectionStart();
+                if(selectionStart==0 &&length>0){
+                    CustomEditText editText1 = getEditTextPrevious(editorCore.getParentView().indexOfChild(editText));
+                    editorCore.deleteFocusedPrevious(editText);
+                    editText1.setText(editText1.getText().toString()+editText.getText().toString());
                 }
                 return false;
             }
@@ -210,10 +221,10 @@ public class InputExtensions{
                     if(text.length()>0) {
                         setText(editText, text);
                     }else{
-                       editText.getText().clear();
+                       s.clear();
                     }
                     int index = editorCore.getParentView().indexOfChild(editText);
-                    /* if the index was 0, set the placeholder to empty
+                    /* if the index was 0, set the placeholder to empty, behaviour happens when the user just press enter
                      */
                     if(index==0){
                         editText.setHint(null);
@@ -463,7 +474,7 @@ public class InputExtensions{
         }
         return text;
     }
-    boolean IsEditTextNull(EditText editText){
+    boolean isEditTextEmpty(EditText editText){
         return editText.getText().toString().trim().length() == 0;
     }
     private String trimLineEnding(String s) {
@@ -524,6 +535,25 @@ public class InputExtensions{
                 editorCore.setActiveView(view);
             }
         }
+    }
+
+    private CustomEditText getEditTextPrevious(int startIndex){
+        CustomEditText customEditText=null;
+        for(int i=0;i<startIndex;i++){
+            View view = editorCore.getParentView().getChildAt(i);
+            EditorType editorType = editorCore.GetControlType(view);
+            if(editorType==EditorType.hr||editorType==EditorType.img||editorType==EditorType.map||editorType==EditorType.none)
+                continue;
+            if(editorType==EditorType.INPUT) {
+                customEditText = (CustomEditText)view;
+                continue;
+            }
+//            if(editorType==EditorType.ol||editorType==EditorType.ul){
+//                editorCore.getListItemExtensions().setFocusToList(view,ListItemExtensions.POSITION_START);
+//                editorCore.setActiveView(view);
+//            }
+        }
+        return customEditText;
     }
 
     public void setFocusToPrevious(int startIndex){

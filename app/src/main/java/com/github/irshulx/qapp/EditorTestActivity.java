@@ -151,8 +151,8 @@ public class EditorTestActivity extends AppCompatActivity {
             @Override
             public void onUpload(Bitmap image, String uuid) {
                 Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
-              //  editor.onImageUploadComplete("http://travee.co/upload/plans/945/thumb_Petronas_twin_towers_wallpaper.jpg",uuid);
-                editor.onImageUploadFailed(uuid);
+                editor.onImageUploadComplete("https://cache-graphicslib.viator.com/graphicslib/thumbs674x446/15693/SITours/small-group-pompeii-with-amalfi-coast-drive-and-positano-stop-from-in-rome-265047.jpg",uuid);
+               // editor.onImageUploadFailed(uuid);
             }
         });
         editor.setLineSpacing(3.0f);

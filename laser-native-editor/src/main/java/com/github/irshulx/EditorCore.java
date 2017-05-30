@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Point;
+import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -323,12 +324,11 @@ public class EditorCore extends LinearLayout {
 
         View toFocus = __parentView.getChildAt(index - 1);
         EditorControl control = (EditorControl) toFocus.getTag();
-        /**
-         * If the previous node is an image, do not delete the edittext, set focus to previous edittext
-         */
 
+        /**
+         * If its an image or map, do not delete edittext, as there is nothing to focus on after image
+         */
         if(control.Type==EditorType.img || control.Type==EditorType.map){
-            getInputExtensions().setFocusToPrevious(index);
             return;
         }
         /*
@@ -344,7 +344,7 @@ public class EditorCore extends LinearLayout {
          *
          */
             this.__parentView.removeView(view);
-            __listItemExtensions.setFocusToList(view,ListItemExtensions.POSITION_END);
+            __listItemExtensions.setFocusToList(toFocus,ListItemExtensions.POSITION_END);
         } else {
             RemoveParent(view);
         }
@@ -441,6 +441,8 @@ public class EditorCore extends LinearLayout {
                     EditorControl imgTag = (EditorControl) view.getTag();
                     if(!TextUtils.isEmpty(imgTag.Path)) {
                         node.content.add(imgTag.Path);
+                        Editable desc =((EditText)view.findViewById(R.id.desc)).getText();
+                        node.content.add(desc.length()>0?desc.toString():"");
                         list.add(node);
                     }
                     //field type, content[]
@@ -487,7 +489,8 @@ public class EditorCore extends LinearLayout {
                     break;
                 case img:
                     String path = item.content.get(0);
-                    __imageExtensions.loadImage(path);
+                    String desc = item.content.get(1);
+                    __imageExtensions.loadImage(path,desc);
                     break;
                 case ul:
                 case ol:

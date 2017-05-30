@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -71,28 +72,28 @@ public class ImageExtensions {
         ((Activity) editorCore.getContext()).startActivityForResult(Intent.createChooser(intent, "Select an image"), editorCore.PICK_IMAGE_REQUEST);
     }
 
-    public void InsertImage(Bitmap _image,int Index) {
+    public void InsertImage(Bitmap image,int index) {
        // Render(getStateFromString());
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
         final TextView lblStatus= (TextView) childLayout.findViewById(R.id.lblStatus);
-        imageView.setImageBitmap(_image);
+        imageView.setImageBitmap(image);
         final String uuid= GenerateUUID();
         BindEvents(childLayout);
-        if(Index==-1) {
-             Index = editorCore.determineIndex(EditorType.img);
+        if(index==-1) {
+             index = editorCore.determineIndex(EditorType.img);
         }
-        editorCore.getParentView().addView(childLayout, Index);
+        editorCore.getParentView().addView(childLayout, index);
         //      _Views.add(childLayout);
         if(editorCore.isLastRow(childLayout)) {
-            editorCore.getInputExtensions().insertEditText(Index + 1, null, null);
+            editorCore.getInputExtensions().insertEditText(index + 1, null, null);
         }
         EditorControl control= editorCore.CreateTag(EditorType.img);
         control.Path=uuid; // set the imageId,so we can recognize later after upload
         childLayout.setTag(control);
         childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
         lblStatus.setVisibility(View.VISIBLE);
-        editorCore.getEditorListener().onUpload(_image,uuid);
+        editorCore.getEditorListener().onUpload(image,uuid);
     }
     public String GenerateUUID(){
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -105,14 +106,18 @@ public class ImageExtensions {
     /*
       /used by the renderer to render the image from the Node
     */
-    public  void loadImage(String _path){
-        ImageView imageView = new ImageView(this.editorCore.getContext());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, 25, 0, 30);
-        imageView.setLayoutParams(params);
-
+    public  void loadImage(String _path, String desc){
+        final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
+        ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
+        CustomEditText text = (CustomEditText)childLayout.findViewById(R.id.desc);
+        if(TextUtils.isEmpty(desc)){
+            text.setVisibility(View.GONE);
+        }else {
+            text.setText(desc);
+            text.setEnabled(false);
+        }
         Picasso.with(this.editorCore.getContext()).load(_path).into(imageView);
-        editorCore.getParentView().addView(imageView);
+        editorCore.getParentView().addView(childLayout);
     }
 
 

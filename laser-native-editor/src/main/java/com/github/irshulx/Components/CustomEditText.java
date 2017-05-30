@@ -15,7 +15,7 @@ import android.widget.EditText;
  * Created by mkallingal on 4/25/2016.
  */
 public class CustomEditText extends TextInputEditText {
-
+    public static final int KEYCODE_REMOVE=100;
     public CustomEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }

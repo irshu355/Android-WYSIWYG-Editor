@@ -21,6 +21,7 @@
         android:layout_below="@+id/imageView"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:id="@+id/desc"
         android:gravity="center_horizontal"
         android:textColor="@color/darktext"
         android:background="@android:color/transparent"

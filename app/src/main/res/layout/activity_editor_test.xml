@@ -25,7 +25,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@drawable/background"
+        android:background="@color/white"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_height="match_parent">
 
@@ -55,7 +55,6 @@
                 android:layout_width="match_parent"
                 android:id="@+id/editor"
                 app:render_type="Editor"
-                android:background="@drawable/background"
                 app:placeholder="Start writing here..."
                 android:paddingTop="10dp"
                 android:paddingLeft="20dp"

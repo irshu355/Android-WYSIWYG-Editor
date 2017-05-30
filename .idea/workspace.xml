@@ -11,8 +11,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9c917b4-9a71-4841-b7ae-af5aaa4f19e6" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laser-native-editor/TODO" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_editor_test.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_editor_test.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laser-native-editor/src/main/res/layout/tmpl_image_view.xml" afterPath="$PROJECT_DIR$/laser-native-editor/src/main/res/layout/tmpl_image_view.xml" />
     </list>
     <ignored path="Android-WYSIWYG-Editor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,11 +53,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="EditorCore.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditorCore.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="365" column="31" selection-start-line="365" selection-start-column="31" selection-end-line="365" selection-end-column="31" />
+            <state relative-caret-position="482">
+              <caret line="229" column="53" selection-start-line="229" selection-start-column="53" selection-end-line="229" selection-end-column="53" />
               <folding>
                 <element signature="method#loadStateFromAttrs#0;class#EditorCore#0" expanded="false" />
                 <element signature="method#ContainsStyle#0;class#EditorCore#0" expanded="false" />
@@ -58,9 +65,6 @@
                 <element signature="method#GetControlType#0;class#EditorCore#0" expanded="false" />
                 <element signature="method#GetControlTag#0;class#EditorCore#0" expanded="false" />
                 <element signature="method#CreateTag#0;class#EditorCore#0" expanded="false" />
-                <element signature="method#getStateFromString#0;class#EditorCore#0" expanded="false" />
-                <element signature="method#GetValue#0;class#EditorCore#0" expanded="false" />
-                <element signature="method#putValue#0;class#EditorCore#0" expanded="false" />
                 <element signature="method#clearAllContents#0;class#EditorCore#0" expanded="false" />
                 <element signature="class#Utilities#0;class#EditorCore#0" expanded="false" />
               </folding>
@@ -71,54 +75,38 @@
       <file leaf-file-name="ListItemExtensions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="135" column="58" selection-start-line="135" selection-start-column="58" selection-end-line="135" selection-end-column="58" />
+            <state relative-caret-position="9750">
+              <caret line="416" column="0" selection-start-line="416" selection-start-column="0" selection-end-line="416" selection-end-column="0" />
               <folding>
-                <element signature="e#4753#5100#0" expanded="true" />
-                <element signature="e#5099#5100#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Looper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-24/android/os/Looper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3536">
-              <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#10170#0" expanded="false" />
+                <element signature="e#0#19264#0" expanded="false" />
                 <element signature="imports" expanded="false" />
-                <element signature="e#2964#2965#0" expanded="false" />
-                <element signature="e#2993#2994#0" expanded="false" />
-                <element signature="e#6590#6591#0" expanded="false" />
-                <element signature="e#6631#6632#0" expanded="false" />
-                <element signature="e#6891#6892#0" expanded="false" />
-                <element signature="e#6931#6932#0" expanded="false" />
-                <element signature="e#7193#7194#0" expanded="false" />
-                <element signature="e#7249#7250#0" expanded="false" />
-                <element signature="e#7716#7717#0" expanded="false" />
-                <element signature="e#7750#7751#0" expanded="false" />
-                <element signature="e#7815#7816#0" expanded="false" />
-                <element signature="e#7851#7852#0" expanded="false" />
-                <element signature="e#8551#8552#0" expanded="false" />
-                <element signature="e#8585#8586#0" expanded="false" />
-                <element signature="e#9180#9181#0" expanded="false" />
-                <element signature="e#9213#9214#0" expanded="false" />
-                <element signature="e#9366#9367#0" expanded="false" />
-                <element signature="e#9396#9397#0" expanded="false" />
-                <element signature="e#9550#9551#0" expanded="false" />
-                <element signature="e#9579#9580#0" expanded="false" />
+                <element signature="e#1769#1770#0" expanded="false" />
+                <element signature="e#1813#1814#0" expanded="false" />
+                <element signature="e#1865#1866#0" expanded="false" />
+                <element signature="e#1911#1912#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DividerExtensions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java">
+      <file leaf-file-name="toolbar_editor.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/toolbar_editor.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="832">
+              <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/res/values/colors.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -127,8 +115,8 @@
       <file leaf-file-name="ImageExtensions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1586">
-              <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+            <state relative-caret-position="524">
+              <caret line="116" column="35" selection-start-line="116" selection-start-column="35" selection-end-line="116" selection-end-column="35" />
               <folding>
                 <element signature="method#OpenImageGallery#0;class#ImageExtensions#0" expanded="false" />
                 <element signature="method#GenerateUUID#0;class#ImageExtensions#0" expanded="false" />
@@ -137,13 +125,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InputExtensions.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EditorTestActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="30" column="56" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tmpl_image_view.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/res/layout/tmpl_image_view.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InputExtensions.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+            <state relative-caret-position="279">
+              <caret line="178" column="43" selection-start-line="178" selection-start-column="43" selection-end-line="178" selection-end-column="43" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#GetSanitizedHtml#0;class#InputExtensions#0" expanded="false" />
                 <element signature="method#setText#0;class#InputExtensions#0" expanded="false" />
                 <element signature="method#noTrailingwhiteLines#0;class#InputExtensions#0" expanded="false" />
@@ -152,69 +162,459 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/view/View.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252928">
+              <caret line="9959" column="33" selection-start-line="9959" selection-start-column="33" selection-end-line="9959" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#938213#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#154967#154968#0" expanded="false" />
+                <element signature="e#155006#155007#0" expanded="false" />
+                <element signature="e#203829#203830#0" expanded="false" />
+                <element signature="e#203878#203879#0" expanded="false" />
+                <element signature="e#221333#221334#0" expanded="false" />
+                <element signature="e#221406#221407#0" expanded="false" />
+                <element signature="e#223874#223875#0" expanded="false" />
+                <element signature="e#223918#223919#0" expanded="false" />
+                <element signature="e#225439#225440#0" expanded="false" />
+                <element signature="e#225503#225504#0" expanded="false" />
+                <element signature="e#230194#230195#0" expanded="false" />
+                <element signature="e#230246#230247#0" expanded="false" />
+                <element signature="e#230459#230460#0" expanded="false" />
+                <element signature="e#230513#230514#0" expanded="false" />
+                <element signature="e#231035#231036#0" expanded="false" />
+                <element signature="e#231089#231090#0" expanded="false" />
+                <element signature="e#231534#231535#0" expanded="false" />
+                <element signature="e#231587#231588#0" expanded="false" />
+                <element signature="e#241008#241009#0" expanded="false" />
+                <element signature="e#241067#241068#0" expanded="false" />
+                <element signature="e#260284#260285#0" expanded="false" />
+                <element signature="e#260333#260334#0" expanded="false" />
+                <element signature="e#262595#262596#0" expanded="false" />
+                <element signature="e#262638#262639#0" expanded="false" />
+                <element signature="e#278757#278758#0" expanded="false" />
+                <element signature="e#278801#278802#0" expanded="false" />
+                <element signature="e#281612#281613#0" expanded="false" />
+                <element signature="e#281657#281658#0" expanded="false" />
+                <element signature="e#285525#285526#0" expanded="false" />
+                <element signature="e#285567#285568#0" expanded="false" />
+                <element signature="e#289017#289018#0" expanded="false" />
+                <element signature="e#289071#289072#0" expanded="false" />
+                <element signature="e#290825#290826#0" expanded="false" />
+                <element signature="e#290878#290879#0" expanded="false" />
+                <element signature="e#291131#291132#0" expanded="false" />
+                <element signature="e#291165#291166#0" expanded="false" />
+                <element signature="e#292397#292398#0" expanded="false" />
+                <element signature="e#292432#292433#0" expanded="false" />
+                <element signature="e#292946#292947#0" expanded="false" />
+                <element signature="e#293005#293006#0" expanded="false" />
+                <element signature="e#293256#293257#0" expanded="false" />
+                <element signature="e#293329#293330#0" expanded="false" />
+                <element signature="e#295272#295273#0" expanded="false" />
+                <element signature="e#295334#295335#0" expanded="false" />
+                <element signature="e#296316#296317#0" expanded="false" />
+                <element signature="e#296373#296374#0" expanded="false" />
+                <element signature="e#297105#297106#0" expanded="false" />
+                <element signature="e#297144#297145#0" expanded="false" />
+                <element signature="e#297484#297485#0" expanded="false" />
+                <element signature="e#297534#297535#0" expanded="false" />
+                <element signature="e#297835#297836#0" expanded="false" />
+                <element signature="e#297875#297876#0" expanded="false" />
+                <element signature="e#298220#298221#0" expanded="false" />
+                <element signature="e#298272#298273#0" expanded="false" />
+                <element signature="e#298564#298565#0" expanded="false" />
+                <element signature="e#298601#298602#0" expanded="false" />
+                <element signature="e#298931#298932#0" expanded="false" />
+                <element signature="e#298977#298978#0" expanded="false" />
+                <element signature="e#299275#299276#0" expanded="false" />
+                <element signature="e#299314#299315#0" expanded="false" />
+                <element signature="e#299654#299655#0" expanded="false" />
+                <element signature="e#299704#299705#0" expanded="false" />
+                <element signature="e#300011#300012#0" expanded="false" />
+                <element signature="e#300053#300054#0" expanded="false" />
+                <element signature="e#316600#316601#0" expanded="false" />
+                <element signature="e#316645#316646#0" expanded="false" />
+                <element signature="e#317109#317110#0" expanded="false" />
+                <element signature="e#317150#317151#0" expanded="false" />
+                <element signature="e#318258#318259#0" expanded="false" />
+                <element signature="e#318309#318310#0" expanded="false" />
+                <element signature="e#318605#318606#0" expanded="false" />
+                <element signature="e#318658#318659#0" expanded="false" />
+                <element signature="e#318925#318926#0" expanded="false" />
+                <element signature="e#318986#318987#0" expanded="false" />
+                <element signature="e#327485#327486#0" expanded="false" />
+                <element signature="e#327554#327555#0" expanded="false" />
+                <element signature="e#330311#330312#0" expanded="false" />
+                <element signature="e#330353#330354#0" expanded="false" />
+                <element signature="e#331407#331408#0" expanded="false" />
+                <element signature="e#331471#331472#0" expanded="false" />
+                <element signature="e#332703#332704#0" expanded="false" />
+                <element signature="e#332763#332764#0" expanded="false" />
+                <element signature="e#333228#333229#0" expanded="false" />
+                <element signature="e#333290#333291#0" expanded="false" />
+                <element signature="e#333593#333594#0" expanded="false" />
+                <element signature="e#333663#333664#0" expanded="false" />
+                <element signature="e#337119#337120#0" expanded="false" />
+                <element signature="e#337190#337191#0" expanded="false" />
+                <element signature="e#337688#337689#0" expanded="false" />
+                <element signature="e#337756#337757#0" expanded="false" />
+                <element signature="e#338999#339000#0" expanded="false" />
+                <element signature="e#339072#339073#0" expanded="false" />
+                <element signature="e#342620#342621#0" expanded="false" />
+                <element signature="e#342685#342686#0" expanded="false" />
+                <element signature="e#346191#346192#0" expanded="false" />
+                <element signature="e#346273#346274#0" expanded="false" />
+                <element signature="e#357298#357299#0" expanded="false" />
+                <element signature="e#357350#357351#0" expanded="false" />
+                <element signature="e#358303#358304#0" expanded="false" />
+                <element signature="e#358355#358356#0" expanded="false" />
+                <element signature="e#387621#387622#0" expanded="false" />
+                <element signature="e#387667#387668#0" expanded="false" />
+                <element signature="e#387873#387874#0" expanded="false" />
+                <element signature="e#387901#387902#0" expanded="false" />
+                <element signature="e#387981#387982#0" expanded="false" />
+                <element signature="e#388032#388033#0" expanded="false" />
+                <element signature="e#388110#388111#0" expanded="false" />
+                <element signature="e#388165#388166#0" expanded="false" />
+                <element signature="e#404286#404287#0" expanded="false" />
+                <element signature="e#404314#404315#0" expanded="false" />
+                <element signature="e#404749#404750#0" expanded="false" />
+                <element signature="e#404777#404778#0" expanded="false" />
+                <element signature="e#405206#405207#0" expanded="false" />
+                <element signature="e#405234#405235#0" expanded="false" />
+                <element signature="e#406392#406393#0" expanded="false" />
+                <element signature="e#406438#406439#0" expanded="false" />
+                <element signature="e#407848#407849#0" expanded="false" />
+                <element signature="e#407921#407922#0" expanded="false" />
+                <element signature="e#409456#409457#0" expanded="false" />
+                <element signature="e#409491#409492#0" expanded="false" />
+                <element signature="e#418838#418839#0" expanded="false" />
+                <element signature="e#418869#418870#0" expanded="false" />
+                <element signature="e#419573#419574#0" expanded="false" />
+                <element signature="e#419601#419602#0" expanded="false" />
+                <element signature="e#421685#421686#0" expanded="false" />
+                <element signature="e#421713#421714#0" expanded="false" />
+                <element signature="e#423793#423794#0" expanded="false" />
+                <element signature="e#423821#423822#0" expanded="false" />
+                <element signature="e#424456#424457#0" expanded="false" />
+                <element signature="e#424484#424485#0" expanded="false" />
+                <element signature="e#425454#425455#0" expanded="false" />
+                <element signature="e#425482#425483#0" expanded="false" />
+                <element signature="e#426608#426609#0" expanded="false" />
+                <element signature="e#426635#426636#0" expanded="false" />
+                <element signature="e#427207#427208#0" expanded="false" />
+                <element signature="e#427235#427236#0" expanded="false" />
+                <element signature="e#428957#428958#0" expanded="false" />
+                <element signature="e#428984#428985#0" expanded="false" />
+                <element signature="e#429916#429917#0" expanded="false" />
+                <element signature="e#429944#429945#0" expanded="false" />
+                <element signature="e#431744#431745#0" expanded="false" />
+                <element signature="e#431772#431773#0" expanded="false" />
+                <element signature="e#436868#436869#0" expanded="false" />
+                <element signature="e#436927#436928#0" expanded="false" />
+                <element signature="e#453007#453008#0" expanded="false" />
+                <element signature="e#453048#453049#0" expanded="false" />
+                <element signature="e#453156#453157#0" expanded="false" />
+                <element signature="e#453193#453194#0" expanded="false" />
+                <element signature="e#467260#467261#0" expanded="false" />
+                <element signature="e#467290#467291#0" expanded="false" />
+                <element signature="e#467572#467573#0" expanded="false" />
+                <element signature="e#467613#467614#0" expanded="false" />
+                <element signature="e#467893#467894#0" expanded="false" />
+                <element signature="e#467934#467935#0" expanded="false" />
+                <element signature="e#468314#468315#0" expanded="false" />
+                <element signature="e#468345#468346#0" expanded="false" />
+                <element signature="e#468711#468712#0" expanded="false" />
+                <element signature="e#468742#468743#0" expanded="false" />
+                <element signature="e#468945#468946#0" expanded="false" />
+                <element signature="e#468982#468983#0" expanded="false" />
+                <element signature="e#469184#469185#0" expanded="false" />
+                <element signature="e#469221#469222#0" expanded="false" />
+                <element signature="e#470166#470167#0" expanded="false" />
+                <element signature="e#470224#470225#0" expanded="false" />
+                <element signature="e#470999#471000#0" expanded="false" />
+                <element signature="e#471036#471037#0" expanded="false" />
+                <element signature="e#471324#471325#0" expanded="false" />
+                <element signature="e#471383#471384#0" expanded="false" />
+                <element signature="e#472161#472162#0" expanded="false" />
+                <element signature="e#472199#472200#0" expanded="false" />
+                <element signature="e#473611#473612#0" expanded="false" />
+                <element signature="e#473665#473666#0" expanded="false" />
+                <element signature="e#477560#477561#0" expanded="false" />
+                <element signature="e#477608#477609#0" expanded="false" />
+                <element signature="e#478808#478809#0" expanded="false" />
+                <element signature="e#478857#478858#0" expanded="false" />
+                <element signature="e#480284#480285#0" expanded="false" />
+                <element signature="e#480333#480334#0" expanded="false" />
+                <element signature="e#481836#481837#0" expanded="false" />
+                <element signature="e#481882#481883#0" expanded="false" />
+                <element signature="e#483010#483011#0" expanded="false" />
+                <element signature="e#483056#483057#0" expanded="false" />
+                <element signature="e#484228#484229#0" expanded="false" />
+                <element signature="e#484274#484275#0" expanded="false" />
+                <element signature="e#485667#485668#0" expanded="false" />
+                <element signature="e#485713#485714#0" expanded="false" />
+                <element signature="e#486975#486976#0" expanded="false" />
+                <element signature="e#487058#487059#0" expanded="false" />
+                <element signature="e#490307#490308#0" expanded="false" />
+                <element signature="e#490334#490335#0" expanded="false" />
+                <element signature="e#496679#496680#0" expanded="false" />
+                <element signature="e#496706#496707#0" expanded="false" />
+                <element signature="e#498860#498861#0" expanded="false" />
+                <element signature="e#498890#498891#0" expanded="false" />
+                <element signature="e#499060#499061#0" expanded="false" />
+                <element signature="e#499122#499123#0" expanded="false" />
+                <element signature="e#501219#501220#0" expanded="false" />
+                <element signature="e#501247#501248#0" expanded="false" />
+                <element signature="e#503423#503424#0" expanded="false" />
+                <element signature="e#503452#503453#0" expanded="false" />
+                <element signature="e#505692#505693#0" expanded="false" />
+                <element signature="e#505740#505741#0" expanded="false" />
+                <element signature="e#506121#506122#0" expanded="false" />
+                <element signature="e#506163#506164#0" expanded="false" />
+                <element signature="e#506526#506527#0" expanded="false" />
+                <element signature="e#506573#506574#0" expanded="false" />
+                <element signature="e#506952#506953#0" expanded="false" />
+                <element signature="e#506993#506994#0" expanded="false" />
+                <element signature="e#507368#507369#0" expanded="false" />
+                <element signature="e#507425#507426#0" expanded="false" />
+                <element signature="e#507816#507817#0" expanded="false" />
+                <element signature="e#507867#507868#0" expanded="false" />
+                <element signature="e#508116#508117#0" expanded="false" />
+                <element signature="e#508165#508166#0" expanded="false" />
+                <element signature="e#509013#509014#0" expanded="false" />
+                <element signature="e#509065#509066#0" expanded="false" />
+                <element signature="e#510279#510280#0" expanded="false" />
+                <element signature="e#510331#510332#0" expanded="false" />
+                <element signature="e#511406#511407#0" expanded="false" />
+                <element signature="e#511458#511459#0" expanded="false" />
+                <element signature="e#512505#512506#0" expanded="false" />
+                <element signature="e#512546#512547#0" expanded="false" />
+                <element signature="e#513750#513751#0" expanded="false" />
+                <element signature="e#513803#513804#0" expanded="false" />
+                <element signature="e#516908#516909#0" expanded="false" />
+                <element signature="e#516947#516948#0" expanded="false" />
+                <element signature="e#518621#518622#0" expanded="false" />
+                <element signature="e#518667#518668#0" expanded="false" />
+                <element signature="e#520933#520934#0" expanded="false" />
+                <element signature="e#520966#520967#0" expanded="false" />
+                <element signature="e#522270#522271#0" expanded="false" />
+                <element signature="e#522322#522323#0" expanded="false" />
+                <element signature="e#527351#527352#0" expanded="false" />
+                <element signature="e#527387#527388#0" expanded="false" />
+                <element signature="e#529554#529555#0" expanded="false" />
+                <element signature="e#529606#529607#0" expanded="false" />
+                <element signature="e#538916#538917#0" expanded="false" />
+                <element signature="e#538948#538949#0" expanded="false" />
+                <element signature="e#542184#542185#0" expanded="false" />
+                <element signature="e#542226#542227#0" expanded="false" />
+                <element signature="e#555592#555593#0" expanded="false" />
+                <element signature="e#555632#555633#0" expanded="false" />
+                <element signature="e#574466#574467#0" expanded="false" />
+                <element signature="e#574523#574524#0" expanded="false" />
+                <element signature="e#575210#575211#0" expanded="false" />
+                <element signature="e#575243#575244#0" expanded="false" />
+                <element signature="e#576012#576013#0" expanded="false" />
+                <element signature="e#576043#576044#0" expanded="false" />
+                <element signature="e#576810#576811#0" expanded="false" />
+                <element signature="e#576843#576844#0" expanded="false" />
+                <element signature="e#577491#577492#0" expanded="false" />
+                <element signature="e#577525#577526#0" expanded="false" />
+                <element signature="e#578278#578279#0" expanded="false" />
+                <element signature="e#578309#578310#0" expanded="false" />
+                <element signature="e#579059#579060#0" expanded="false" />
+                <element signature="e#579093#579094#0" expanded="false" />
+                <element signature="e#589799#589800#0" expanded="false" />
+                <element signature="e#589827#589828#0" expanded="false" />
+                <element signature="e#594456#594457#0" expanded="false" />
+                <element signature="e#594505#594506#0" expanded="false" />
+                <element signature="e#595138#595139#0" expanded="false" />
+                <element signature="e#595206#595207#0" expanded="false" />
+                <element signature="e#603371#603372#0" expanded="false" />
+                <element signature="e#603417#603418#0" expanded="false" />
+                <element signature="e#603608#603609#0" expanded="false" />
+                <element signature="e#603666#603667#0" expanded="false" />
+                <element signature="e#605348#605349#0" expanded="false" />
+                <element signature="e#605389#605390#0" expanded="false" />
+                <element signature="e#607436#607437#0" expanded="false" />
+                <element signature="e#607508#607509#0" expanded="false" />
+                <element signature="e#614092#614093#0" expanded="false" />
+                <element signature="e#614142#614143#0" expanded="false" />
+                <element signature="e#622096#622097#0" expanded="false" />
+                <element signature="e#622169#622170#0" expanded="false" />
+                <element signature="e#629208#629209#0" expanded="false" />
+                <element signature="e#629241#629242#0" expanded="false" />
+                <element signature="e#638935#638936#0" expanded="false" />
+                <element signature="e#638980#638981#0" expanded="false" />
+                <element signature="e#642489#642490#0" expanded="false" />
+                <element signature="e#642540#642541#0" expanded="false" />
+                <element signature="e#642740#642741#0" expanded="false" />
+                <element signature="e#642780#642781#0" expanded="false" />
+                <element signature="e#653884#653885#0" expanded="false" />
+                <element signature="e#653912#653913#0" expanded="false" />
+                <element signature="e#654629#654630#0" expanded="false" />
+                <element signature="e#654657#654658#0" expanded="false" />
+                <element signature="e#654979#654980#0" expanded="false" />
+                <element signature="e#655003#655004#0" expanded="false" />
+                <element signature="e#655328#655329#0" expanded="false" />
+                <element signature="e#655352#655353#0" expanded="false" />
+                <element signature="e#655671#655672#0" expanded="false" />
+                <element signature="e#655695#655696#0" expanded="false" />
+                <element signature="e#656023#656024#0" expanded="false" />
+                <element signature="e#656047#656048#0" expanded="false" />
+                <element signature="e#658661#658662#0" expanded="false" />
+                <element signature="e#658736#658737#0" expanded="false" />
+                <element signature="e#688833#688834#0" expanded="false" />
+                <element signature="e#688857#688858#0" expanded="false" />
+                <element signature="e#699444#699445#0" expanded="false" />
+                <element signature="e#699477#699478#0" expanded="false" />
+                <element signature="e#704365#704366#0" expanded="false" />
+                <element signature="e#704413#704414#0" expanded="false" />
+                <element signature="e#704458#704459#0" expanded="false" />
+                <element signature="e#704517#704518#0" expanded="false" />
+                <element signature="e#721030#721031#0" expanded="false" />
+                <element signature="e#721064#721065#0" expanded="false" />
+                <element signature="e#739032#739033#0" expanded="false" />
+                <element signature="e#739066#739067#0" expanded="false" />
+                <element signature="e#739352#739353#0" expanded="false" />
+                <element signature="e#739389#739390#0" expanded="false" />
+                <element signature="e#743225#743226#0" expanded="false" />
+                <element signature="e#743263#743264#0" expanded="false" />
+                <element signature="e#744787#744788#0" expanded="false" />
+                <element signature="e#744847#744848#0" expanded="false" />
+                <element signature="e#746420#746421#0" expanded="false" />
+                <element signature="e#746481#746482#0" expanded="false" />
+                <element signature="e#759772#759773#0" expanded="false" />
+                <element signature="e#759839#759840#0" expanded="false" />
+                <element signature="e#760196#760197#0" expanded="false" />
+                <element signature="e#760222#760223#0" expanded="false" />
+                <element signature="e#760497#760498#0" expanded="false" />
+                <element signature="e#760524#760525#0" expanded="false" />
+                <element signature="e#760968#760969#0" expanded="false" />
+                <element signature="e#760994#760995#0" expanded="false" />
+                <element signature="e#763487#763488#0" expanded="false" />
+                <element signature="e#763511#763512#0" expanded="false" />
+                <element signature="e#766616#766617#0" expanded="false" />
+                <element signature="e#766641#766642#0" expanded="false" />
+                <element signature="e#782409#782410#0" expanded="false" />
+                <element signature="e#782442#782443#0" expanded="false" />
+                <element signature="e#783242#783243#0" expanded="false" />
+                <element signature="e#783274#783275#0" expanded="false" />
+                <element signature="e#784007#784008#0" expanded="false" />
+                <element signature="e#784047#784048#0" expanded="false" />
+                <element signature="e#786284#786285#0" expanded="false" />
+                <element signature="e#786340#786341#0" expanded="false" />
+                <element signature="e#786693#786694#0" expanded="false" />
+                <element signature="e#786750#786751#0" expanded="false" />
+                <element signature="e#787427#787428#0" expanded="false" />
+                <element signature="e#787455#787456#0" expanded="false" />
+                <element signature="e#796024#796025#0" expanded="false" />
+                <element signature="e#796066#796067#0" expanded="false" />
+                <element signature="e#801051#801052#0" expanded="false" />
+                <element signature="e#801112#801113#0" expanded="false" />
+                <element signature="e#801631#801632#0" expanded="false" />
+                <element signature="e#801692#801693#0" expanded="false" />
+                <element signature="e#802225#802226#0" expanded="false" />
+                <element signature="e#802267#802268#0" expanded="false" />
+                <element signature="e#815758#815759#0" expanded="false" />
+                <element signature="e#815786#815787#0" expanded="false" />
+                <element signature="e#815935#815936#0" expanded="false" />
+                <element signature="e#815985#815986#0" expanded="false" />
+                <element signature="e#818291#818292#0" expanded="false" />
+                <element signature="e#818360#818361#0" expanded="false" />
+                <element signature="e#826241#826242#0" expanded="false" />
+                <element signature="e#826279#826280#0" expanded="false" />
+                <element signature="e#832798#832799#0" expanded="false" />
+                <element signature="e#832851#832852#0" expanded="false" />
+                <element signature="e#866649#866650#0" expanded="false" />
+                <element signature="e#866684#866685#0" expanded="false" />
+                <element signature="e#867055#867056#0" expanded="false" />
+                <element signature="e#867101#867102#0" expanded="false" />
+                <element signature="e#867160#867161#0" expanded="false" />
+                <element signature="e#867208#867209#0" expanded="false" />
+                <element signature="e#867590#867591#0" expanded="false" />
+                <element signature="e#867643#867644#0" expanded="false" />
+                <element signature="e#867710#867711#0" expanded="false" />
+                <element signature="e#867765#867766#0" expanded="false" />
+                <element signature="e#868147#868148#0" expanded="false" />
+                <element signature="e#868200#868201#0" expanded="false" />
+                <element signature="e#868259#868260#0" expanded="false" />
+                <element signature="e#868314#868315#0" expanded="false" />
+                <element signature="e#868696#868697#0" expanded="false" />
+                <element signature="e#868749#868750#0" expanded="false" />
+                <element signature="e#868808#868809#0" expanded="false" />
+                <element signature="e#868863#868864#0" expanded="false" />
+                <element signature="e#869189#869190#0" expanded="false" />
+                <element signature="e#869231#869232#0" expanded="false" />
+                <element signature="e#869290#869291#0" expanded="false" />
+                <element signature="e#869334#869335#0" expanded="false" />
+                <element signature="e#869660#869661#0" expanded="false" />
+                <element signature="e#869702#869703#0" expanded="false" />
+                <element signature="e#869761#869762#0" expanded="false" />
+                <element signature="e#869805#869806#0" expanded="false" />
+                <element signature="e#870131#870132#0" expanded="false" />
+                <element signature="e#870173#870174#0" expanded="false" />
+                <element signature="e#870232#870233#0" expanded="false" />
+                <element signature="e#870276#870277#0" expanded="false" />
+                <element signature="e#870637#870638#0" expanded="false" />
+                <element signature="e#870686#870687#0" expanded="false" />
+                <element signature="e#870745#870746#0" expanded="false" />
+                <element signature="e#870796#870797#0" expanded="false" />
+                <element signature="e#871163#871164#0" expanded="false" />
+                <element signature="e#871213#871214#0" expanded="false" />
+                <element signature="e#871272#871273#0" expanded="false" />
+                <element signature="e#871324#871325#0" expanded="false" />
+                <element signature="e#871691#871692#0" expanded="false" />
+                <element signature="e#871741#871742#0" expanded="false" />
+                <element signature="e#871800#871801#0" expanded="false" />
+                <element signature="e#871852#871853#0" expanded="false" />
+                <element signature="e#872204#872205#0" expanded="false" />
+                <element signature="e#872251#872252#0" expanded="false" />
+                <element signature="e#872310#872311#0" expanded="false" />
+                <element signature="e#872359#872360#0" expanded="false" />
+                <element signature="e#872711#872712#0" expanded="false" />
+                <element signature="e#872758#872759#0" expanded="false" />
+                <element signature="e#872817#872818#0" expanded="false" />
+                <element signature="e#872866#872867#0" expanded="false" />
+                <element signature="e#877709#877710#0" expanded="false" />
+                <element signature="e#877766#877767#0" expanded="false" />
+                <element signature="e#879937#879938#0" expanded="false" />
+                <element signature="e#880008#880009#0" expanded="false" />
+                <element signature="e#880446#880447#0" expanded="false" />
+                <element signature="e#880484#880485#0" expanded="false" />
+                <element signature="e#881216#881217#0" expanded="false" />
+                <element signature="e#881264#881265#0" expanded="false" />
+                <element signature="e#881699#881700#0" expanded="false" />
+                <element signature="e#881737#881738#0" expanded="false" />
+                <element signature="e#892130#892131#0" expanded="false" />
+                <element signature="e#892171#892172#0" expanded="false" />
+                <element signature="e#892665#892666#0" expanded="false" />
+                <element signature="e#892707#892708#0" expanded="false" />
+                <element signature="e#893399#893400#0" expanded="false" />
+                <element signature="e#893440#893441#0" expanded="false" />
+                <element signature="e#893863#893864#0" expanded="false" />
+                <element signature="e#893924#893925#0" expanded="false" />
+                <element signature="e#894180#894181#0" expanded="false" />
+                <element signature="e#894243#894244#0" expanded="false" />
+                <element signature="e#924784#924785#0" expanded="false" />
+                <element signature="e#924819#924820#0" expanded="false" />
+                <element signature="e#926196#926197#0" expanded="false" />
+                <element signature="e#926244#926245#0" expanded="false" />
+                <element signature="e#926414#926415#0" expanded="false" />
+                <element signature="e#926477#926478#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CustomEditText.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InputConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/view/inputmethod/InputConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7490">
-              <caret line="648" column="34" selection-start-line="648" selection-start-column="34" selection-end-line="648" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Handler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-24/android/os/Handler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1950">
-              <caret line="92" column="46" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#31769#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#4519#4520#0" expanded="false" />
-                <element signature="e#4552#4553#0" expanded="false" />
-                <element signature="e#5003#5004#0" expanded="false" />
-                <element signature="e#5040#5041#0" expanded="false" />
-                <element signature="e#5218#5219#0" expanded="false" />
-                <element signature="e#5259#5260#0" expanded="false" />
-                <element signature="e#5605#5606#0" expanded="false" />
-                <element signature="e#5650#5651#0" expanded="false" />
-                <element signature="e#6442#6443#0" expanded="false" />
-                <element signature="e#6475#6476#0" expanded="false" />
-                <element signature="e#10650#10651#0" expanded="false" />
-                <element signature="e#10693#10694#0" expanded="false" />
-                <element signature="e#11006#11007#0" expanded="false" />
-                <element signature="e#11055#11056#0" expanded="false" />
-                <element signature="e#13251#13252#0" expanded="false" />
-                <element signature="e#13314#13315#0" expanded="false" />
-                <element signature="e#20585#20586#0" expanded="false" />
-                <element signature="e#20637#20638#0" expanded="false" />
-                <element signature="e#21480#21481#0" expanded="false" />
-                <element signature="e#21529#21530#0" expanded="false" />
-                <element signature="e#21886#21887#0" expanded="false" />
-                <element signature="e#21941#21942#0" expanded="false" />
-                <element signature="e#27042#27043#0" expanded="false" />
-                <element signature="e#27097#27098#0" expanded="false" />
-                <element signature="e#27933#27934#0" expanded="false" />
-                <element signature="e#27992#27993#0" expanded="false" />
-                <element signature="e#28453#28454#0" expanded="false" />
-                <element signature="e#28509#28510#0" expanded="false" />
-                <element signature="e#28690#28691#0" expanded="false" />
-                <element signature="e#28720#28721#0" expanded="false" />
-                <element signature="e#30052#30053#0" expanded="false" />
-                <element signature="e#30090#30091#0" expanded="false" />
-                <element signature="e#30428#30429#0" expanded="false" />
-                <element signature="e#30464#30465#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -2642,7 +3042,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="C:\Work\libraries\Android-WYSIWYG-Editor" value="5970665235471" />
+        <entry key="C:\Work\libraries\Android-WYSIWYG-Editor" value="5971273064024" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -3113,15 +3513,16 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_editor_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/res/layout/tmpl_image_view.xml" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java" />
-        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_editor_test.xml" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/res/layout/tmpl_image_view.xml" />
+        <option value="$PROJECT_DIR$/laser-native-editor/TODO" />
         <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java" />
+        <option value="$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java" />
       </list>
     </option>
   </component>
@@ -3193,8 +3594,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3223,7 +3622,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="laser-native-editor" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3237,7 +3636,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="laser-native-editor" />
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android-WYSIWYG-Editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android-WYSIWYG-Editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -3245,7 +3662,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android-WYSIWYG-Editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android-WYSIWYG-Editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -3253,41 +3692,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android-WYSIWYG-Editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android-WYSIWYG-Editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laser-native-editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="qapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane />
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="settings.editor.splitter.proportion" value="0.22350231" />
-    <property name="device.picker.selection" value="LGH8606a22f0aa" />
-    <property name="SearchEverywhereHistoryKey" value="List&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java&#10;Custome&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java&#10;div&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;inp&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;build.&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/build.gradle&#10;Dividere&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;EditorCore&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java&#10;Inpu&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;image_&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/layout/tmpl_image_view.xml&#10;imagex&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;activity_ed&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/res/layout/activity_editor_test.xml&#10;colors.xml&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/values/colors.xml&#10;styles.&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/res/values/styles.xml&#10;activity_te&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/res/layout/activity_editor_test.xml&#10;state&#9;PSI&#9;JAVA://com.github.irshulx.models.state&#10;Edi&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Editor.java&#10;EditorC&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java&#10;bui&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/build.gradle&#10;ImageEx&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;build&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/build.gradle&#10;Edito&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;InputExte&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;EditorCode&#9;null&#9;null&#10;Divide&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;layout&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml&#10;Divider&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;EditorTest&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;Editor&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Editor.java&#10;Inpute&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;Custom&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java&#10;Test&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;Activity&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;build.g&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/build.gradle&#10;editor.&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;editor&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java&#10;Inputextensions&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;activity_map&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/layout/activity_maps.xml&#10;readm&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/README.md&#10;divider&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;buil&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/build.gradle&#10;MapExtension&#9;PSI&#9;JAVA://com.github.irshulx.Components.MapExtensions&#10;Editte&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java&#10;inputex&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;Cor&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java&#10;list_item&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/layout/tmpl_list_item.xml&#10;Zanyed&#9;PSI&#9;JAVA://com.github.irshulx.qapp.ZanyEditText&#10;eDIT&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;im&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;androidmanife&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/AndroidManifest.xml&#10;CustomEd&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java" />
+    <property name="device.picker.selection" value="4_WVGA_Nexus_S_API_25" />
+    <property name="SearchEverywhereHistoryKey" value="InputExten&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;Testac&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;Editorc&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java&#10;Customed&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java&#10;inputex&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;TODO&#9;ACTION&#9;ActivateTODOToolWindow&#10;EditorC&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java&#10;imagex&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;activity_ed&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/res/layout/activity_editor_test.xml&#10;List&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java&#10;Custome&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java&#10;div&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;inp&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;build.&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/build.gradle&#10;Dividere&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;EditorCore&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java&#10;Inpu&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;image_&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/layout/tmpl_image_view.xml&#10;colors.xml&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/values/colors.xml&#10;styles.&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/res/values/styles.xml&#10;activity_te&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/res/layout/activity_editor_test.xml&#10;state&#9;PSI&#9;JAVA://com.github.irshulx.models.state&#10;Edi&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Editor.java&#10;bui&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/build.gradle&#10;ImageEx&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java&#10;build&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/build.gradle&#10;Edito&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;InputExte&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;EditorCode&#9;null&#9;null&#10;Divide&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;layout&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml&#10;Divider&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;EditorTest&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;Editor&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Editor.java&#10;Inpute&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;Custom&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java&#10;Test&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;Activity&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;build.g&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/build.gradle&#10;editor.&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java&#10;editor&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java&#10;Inputextensions&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java&#10;activity_map&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/layout/activity_maps.xml&#10;readm&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/README.md&#10;divider&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java&#10;buil&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/app/build.gradle&#10;MapExtension&#9;PSI&#9;JAVA://com.github.irshulx.Components.MapExtensions&#10;Editte&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java&#10;Cor&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java&#10;list_item&#9;FILE&#9;file://C:/Work/libraries/Android-WYSIWYG-Editor/laser-native-editor/src/main/res/layout/tmpl_list_item.xml" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
     <property name="ExportApk.ApkPath" value="C:\Work\libraries\Android-WYSIWYG-Editor\app" />
     <property name="ExportApk.Flavors" value="" />
@@ -3671,11 +4094,20 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32705882" sideWeight="0.49570355" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.513986" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3710,7 +4142,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32588235" sideWeight="0.49785176" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32588235" sideWeight="0.49785176" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3729,86 +4161,34 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java</url>
-          <line>129</line>
+          <line>134</line>
           <properties />
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java</url>
-          <line>119</line>
+          <line>124</line>
           <properties />
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java</url>
-          <line>187</line>
-          <properties />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java</url>
-          <line>527</line>
+          <line>530</line>
           <properties />
           <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java</url>
-          <line>58</line>
-          <properties />
-          <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java</url>
           <line>174</line>
           <properties />
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java</url>
-          <line>354</line>
-          <properties />
-          <option name="timeStamp" value="60" />
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="61" />
+      <option name="time" value="68" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor>
-            <js_state />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/res/layout/activity_maps.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/github/irshulx/qapp/Utilities/MyInputConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/MapsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="910">
@@ -3879,21 +4259,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-24/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="22431" column="0" selection-start-line="22431" selection-start-column="0" selection-end-line="22431" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
           <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laser-native-editor/build.gradle">
@@ -4021,23 +4394,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_editor_test.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
@@ -4049,7 +4405,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1534">
           <caret line="71" column="59" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4060,18 +4415,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2756">
-          <caret line="157" column="36" selection-start-line="157" selection-start-column="36" selection-end-line="157" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/view/ViewGroup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117364">
           <caret line="4618" column="16" selection-start-line="4618" selection-start-column="16" selection-end-line="4618" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4082,69 +4429,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/res/layout/tmpl_image_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1586">
-          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-          <folding>
-            <element signature="method#OpenImageGallery#0;class#ImageExtensions#0" expanded="false" />
-            <element signature="method#GenerateUUID#0;class#ImageExtensions#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-24/android/os/Handler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1950">
           <caret line="92" column="46" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#31769#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#4519#4520#0" expanded="false" />
-            <element signature="e#4552#4553#0" expanded="false" />
-            <element signature="e#5003#5004#0" expanded="false" />
-            <element signature="e#5040#5041#0" expanded="false" />
-            <element signature="e#5218#5219#0" expanded="false" />
-            <element signature="e#5259#5260#0" expanded="false" />
-            <element signature="e#5605#5606#0" expanded="false" />
-            <element signature="e#5650#5651#0" expanded="false" />
-            <element signature="e#6442#6443#0" expanded="false" />
-            <element signature="e#6475#6476#0" expanded="false" />
-            <element signature="e#10650#10651#0" expanded="false" />
-            <element signature="e#10693#10694#0" expanded="false" />
-            <element signature="e#11006#11007#0" expanded="false" />
-            <element signature="e#11055#11056#0" expanded="false" />
-            <element signature="e#13251#13252#0" expanded="false" />
-            <element signature="e#13314#13315#0" expanded="false" />
-            <element signature="e#20585#20586#0" expanded="false" />
-            <element signature="e#20637#20638#0" expanded="false" />
-            <element signature="e#21480#21481#0" expanded="false" />
-            <element signature="e#21529#21530#0" expanded="false" />
-            <element signature="e#21886#21887#0" expanded="false" />
-            <element signature="e#21941#21942#0" expanded="false" />
-            <element signature="e#27042#27043#0" expanded="false" />
-            <element signature="e#27097#27098#0" expanded="false" />
-            <element signature="e#27933#27934#0" expanded="false" />
-            <element signature="e#27992#27993#0" expanded="false" />
-            <element signature="e#28453#28454#0" expanded="false" />
-            <element signature="e#28509#28510#0" expanded="false" />
-            <element signature="e#28690#28691#0" expanded="false" />
-            <element signature="e#28720#28721#0" expanded="false" />
-            <element signature="e#30052#30053#0" expanded="false" />
-            <element signature="e#30090#30091#0" expanded="false" />
-            <element signature="e#30428#30429#0" expanded="false" />
-            <element signature="e#30464#30465#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4152,30 +4440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3536">
           <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10170#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2964#2965#0" expanded="false" />
-            <element signature="e#2993#2994#0" expanded="false" />
-            <element signature="e#6590#6591#0" expanded="false" />
-            <element signature="e#6631#6632#0" expanded="false" />
-            <element signature="e#6891#6892#0" expanded="false" />
-            <element signature="e#6931#6932#0" expanded="false" />
-            <element signature="e#7193#7194#0" expanded="false" />
-            <element signature="e#7249#7250#0" expanded="false" />
-            <element signature="e#7716#7717#0" expanded="false" />
-            <element signature="e#7750#7751#0" expanded="false" />
-            <element signature="e#7815#7816#0" expanded="false" />
-            <element signature="e#7851#7852#0" expanded="false" />
-            <element signature="e#8551#8552#0" expanded="false" />
-            <element signature="e#8585#8586#0" expanded="false" />
-            <element signature="e#9180#9181#0" expanded="false" />
-            <element signature="e#9213#9214#0" expanded="false" />
-            <element signature="e#9366#9367#0" expanded="false" />
-            <element signature="e#9396#9397#0" expanded="false" />
-            <element signature="e#9550#9551#0" expanded="false" />
-            <element signature="e#9579#9580#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4190,62 +4454,568 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3213">
           <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/view/inputmethod/InputConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7490">
+        <state relative-caret-position="16354">
           <caret line="648" column="34" selection-start-line="648" selection-start-column="34" selection-end-line="648" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="135" column="58" selection-start-line="135" selection-start-column="58" selection-end-line="135" selection-end-column="58" />
-          <folding>
-            <element signature="e#4753#5100#0" expanded="true" />
-            <element signature="e#5099#5100#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/DividerExtensions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
+        <state relative-caret-position="884">
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-24/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="10561" column="0" selection-start-line="10561" selection-start-column="0" selection-end-line="10561" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_editor_test.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/toolbar_editor.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="832">
+          <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/TODO">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="37" selection-start-line="0" selection-start-column="37" selection-end-line="0" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252928">
+          <caret line="9959" column="33" selection-start-line="9959" selection-start-column="33" selection-end-line="9959" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#938213#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#154967#154968#0" expanded="false" />
+            <element signature="e#155006#155007#0" expanded="false" />
+            <element signature="e#203829#203830#0" expanded="false" />
+            <element signature="e#203878#203879#0" expanded="false" />
+            <element signature="e#221333#221334#0" expanded="false" />
+            <element signature="e#221406#221407#0" expanded="false" />
+            <element signature="e#223874#223875#0" expanded="false" />
+            <element signature="e#223918#223919#0" expanded="false" />
+            <element signature="e#225439#225440#0" expanded="false" />
+            <element signature="e#225503#225504#0" expanded="false" />
+            <element signature="e#230194#230195#0" expanded="false" />
+            <element signature="e#230246#230247#0" expanded="false" />
+            <element signature="e#230459#230460#0" expanded="false" />
+            <element signature="e#230513#230514#0" expanded="false" />
+            <element signature="e#231035#231036#0" expanded="false" />
+            <element signature="e#231089#231090#0" expanded="false" />
+            <element signature="e#231534#231535#0" expanded="false" />
+            <element signature="e#231587#231588#0" expanded="false" />
+            <element signature="e#241008#241009#0" expanded="false" />
+            <element signature="e#241067#241068#0" expanded="false" />
+            <element signature="e#260284#260285#0" expanded="false" />
+            <element signature="e#260333#260334#0" expanded="false" />
+            <element signature="e#262595#262596#0" expanded="false" />
+            <element signature="e#262638#262639#0" expanded="false" />
+            <element signature="e#278757#278758#0" expanded="false" />
+            <element signature="e#278801#278802#0" expanded="false" />
+            <element signature="e#281612#281613#0" expanded="false" />
+            <element signature="e#281657#281658#0" expanded="false" />
+            <element signature="e#285525#285526#0" expanded="false" />
+            <element signature="e#285567#285568#0" expanded="false" />
+            <element signature="e#289017#289018#0" expanded="false" />
+            <element signature="e#289071#289072#0" expanded="false" />
+            <element signature="e#290825#290826#0" expanded="false" />
+            <element signature="e#290878#290879#0" expanded="false" />
+            <element signature="e#291131#291132#0" expanded="false" />
+            <element signature="e#291165#291166#0" expanded="false" />
+            <element signature="e#292397#292398#0" expanded="false" />
+            <element signature="e#292432#292433#0" expanded="false" />
+            <element signature="e#292946#292947#0" expanded="false" />
+            <element signature="e#293005#293006#0" expanded="false" />
+            <element signature="e#293256#293257#0" expanded="false" />
+            <element signature="e#293329#293330#0" expanded="false" />
+            <element signature="e#295272#295273#0" expanded="false" />
+            <element signature="e#295334#295335#0" expanded="false" />
+            <element signature="e#296316#296317#0" expanded="false" />
+            <element signature="e#296373#296374#0" expanded="false" />
+            <element signature="e#297105#297106#0" expanded="false" />
+            <element signature="e#297144#297145#0" expanded="false" />
+            <element signature="e#297484#297485#0" expanded="false" />
+            <element signature="e#297534#297535#0" expanded="false" />
+            <element signature="e#297835#297836#0" expanded="false" />
+            <element signature="e#297875#297876#0" expanded="false" />
+            <element signature="e#298220#298221#0" expanded="false" />
+            <element signature="e#298272#298273#0" expanded="false" />
+            <element signature="e#298564#298565#0" expanded="false" />
+            <element signature="e#298601#298602#0" expanded="false" />
+            <element signature="e#298931#298932#0" expanded="false" />
+            <element signature="e#298977#298978#0" expanded="false" />
+            <element signature="e#299275#299276#0" expanded="false" />
+            <element signature="e#299314#299315#0" expanded="false" />
+            <element signature="e#299654#299655#0" expanded="false" />
+            <element signature="e#299704#299705#0" expanded="false" />
+            <element signature="e#300011#300012#0" expanded="false" />
+            <element signature="e#300053#300054#0" expanded="false" />
+            <element signature="e#316600#316601#0" expanded="false" />
+            <element signature="e#316645#316646#0" expanded="false" />
+            <element signature="e#317109#317110#0" expanded="false" />
+            <element signature="e#317150#317151#0" expanded="false" />
+            <element signature="e#318258#318259#0" expanded="false" />
+            <element signature="e#318309#318310#0" expanded="false" />
+            <element signature="e#318605#318606#0" expanded="false" />
+            <element signature="e#318658#318659#0" expanded="false" />
+            <element signature="e#318925#318926#0" expanded="false" />
+            <element signature="e#318986#318987#0" expanded="false" />
+            <element signature="e#327485#327486#0" expanded="false" />
+            <element signature="e#327554#327555#0" expanded="false" />
+            <element signature="e#330311#330312#0" expanded="false" />
+            <element signature="e#330353#330354#0" expanded="false" />
+            <element signature="e#331407#331408#0" expanded="false" />
+            <element signature="e#331471#331472#0" expanded="false" />
+            <element signature="e#332703#332704#0" expanded="false" />
+            <element signature="e#332763#332764#0" expanded="false" />
+            <element signature="e#333228#333229#0" expanded="false" />
+            <element signature="e#333290#333291#0" expanded="false" />
+            <element signature="e#333593#333594#0" expanded="false" />
+            <element signature="e#333663#333664#0" expanded="false" />
+            <element signature="e#337119#337120#0" expanded="false" />
+            <element signature="e#337190#337191#0" expanded="false" />
+            <element signature="e#337688#337689#0" expanded="false" />
+            <element signature="e#337756#337757#0" expanded="false" />
+            <element signature="e#338999#339000#0" expanded="false" />
+            <element signature="e#339072#339073#0" expanded="false" />
+            <element signature="e#342620#342621#0" expanded="false" />
+            <element signature="e#342685#342686#0" expanded="false" />
+            <element signature="e#346191#346192#0" expanded="false" />
+            <element signature="e#346273#346274#0" expanded="false" />
+            <element signature="e#357298#357299#0" expanded="false" />
+            <element signature="e#357350#357351#0" expanded="false" />
+            <element signature="e#358303#358304#0" expanded="false" />
+            <element signature="e#358355#358356#0" expanded="false" />
+            <element signature="e#387621#387622#0" expanded="false" />
+            <element signature="e#387667#387668#0" expanded="false" />
+            <element signature="e#387873#387874#0" expanded="false" />
+            <element signature="e#387901#387902#0" expanded="false" />
+            <element signature="e#387981#387982#0" expanded="false" />
+            <element signature="e#388032#388033#0" expanded="false" />
+            <element signature="e#388110#388111#0" expanded="false" />
+            <element signature="e#388165#388166#0" expanded="false" />
+            <element signature="e#404286#404287#0" expanded="false" />
+            <element signature="e#404314#404315#0" expanded="false" />
+            <element signature="e#404749#404750#0" expanded="false" />
+            <element signature="e#404777#404778#0" expanded="false" />
+            <element signature="e#405206#405207#0" expanded="false" />
+            <element signature="e#405234#405235#0" expanded="false" />
+            <element signature="e#406392#406393#0" expanded="false" />
+            <element signature="e#406438#406439#0" expanded="false" />
+            <element signature="e#407848#407849#0" expanded="false" />
+            <element signature="e#407921#407922#0" expanded="false" />
+            <element signature="e#409456#409457#0" expanded="false" />
+            <element signature="e#409491#409492#0" expanded="false" />
+            <element signature="e#418838#418839#0" expanded="false" />
+            <element signature="e#418869#418870#0" expanded="false" />
+            <element signature="e#419573#419574#0" expanded="false" />
+            <element signature="e#419601#419602#0" expanded="false" />
+            <element signature="e#421685#421686#0" expanded="false" />
+            <element signature="e#421713#421714#0" expanded="false" />
+            <element signature="e#423793#423794#0" expanded="false" />
+            <element signature="e#423821#423822#0" expanded="false" />
+            <element signature="e#424456#424457#0" expanded="false" />
+            <element signature="e#424484#424485#0" expanded="false" />
+            <element signature="e#425454#425455#0" expanded="false" />
+            <element signature="e#425482#425483#0" expanded="false" />
+            <element signature="e#426608#426609#0" expanded="false" />
+            <element signature="e#426635#426636#0" expanded="false" />
+            <element signature="e#427207#427208#0" expanded="false" />
+            <element signature="e#427235#427236#0" expanded="false" />
+            <element signature="e#428957#428958#0" expanded="false" />
+            <element signature="e#428984#428985#0" expanded="false" />
+            <element signature="e#429916#429917#0" expanded="false" />
+            <element signature="e#429944#429945#0" expanded="false" />
+            <element signature="e#431744#431745#0" expanded="false" />
+            <element signature="e#431772#431773#0" expanded="false" />
+            <element signature="e#436868#436869#0" expanded="false" />
+            <element signature="e#436927#436928#0" expanded="false" />
+            <element signature="e#453007#453008#0" expanded="false" />
+            <element signature="e#453048#453049#0" expanded="false" />
+            <element signature="e#453156#453157#0" expanded="false" />
+            <element signature="e#453193#453194#0" expanded="false" />
+            <element signature="e#467260#467261#0" expanded="false" />
+            <element signature="e#467290#467291#0" expanded="false" />
+            <element signature="e#467572#467573#0" expanded="false" />
+            <element signature="e#467613#467614#0" expanded="false" />
+            <element signature="e#467893#467894#0" expanded="false" />
+            <element signature="e#467934#467935#0" expanded="false" />
+            <element signature="e#468314#468315#0" expanded="false" />
+            <element signature="e#468345#468346#0" expanded="false" />
+            <element signature="e#468711#468712#0" expanded="false" />
+            <element signature="e#468742#468743#0" expanded="false" />
+            <element signature="e#468945#468946#0" expanded="false" />
+            <element signature="e#468982#468983#0" expanded="false" />
+            <element signature="e#469184#469185#0" expanded="false" />
+            <element signature="e#469221#469222#0" expanded="false" />
+            <element signature="e#470166#470167#0" expanded="false" />
+            <element signature="e#470224#470225#0" expanded="false" />
+            <element signature="e#470999#471000#0" expanded="false" />
+            <element signature="e#471036#471037#0" expanded="false" />
+            <element signature="e#471324#471325#0" expanded="false" />
+            <element signature="e#471383#471384#0" expanded="false" />
+            <element signature="e#472161#472162#0" expanded="false" />
+            <element signature="e#472199#472200#0" expanded="false" />
+            <element signature="e#473611#473612#0" expanded="false" />
+            <element signature="e#473665#473666#0" expanded="false" />
+            <element signature="e#477560#477561#0" expanded="false" />
+            <element signature="e#477608#477609#0" expanded="false" />
+            <element signature="e#478808#478809#0" expanded="false" />
+            <element signature="e#478857#478858#0" expanded="false" />
+            <element signature="e#480284#480285#0" expanded="false" />
+            <element signature="e#480333#480334#0" expanded="false" />
+            <element signature="e#481836#481837#0" expanded="false" />
+            <element signature="e#481882#481883#0" expanded="false" />
+            <element signature="e#483010#483011#0" expanded="false" />
+            <element signature="e#483056#483057#0" expanded="false" />
+            <element signature="e#484228#484229#0" expanded="false" />
+            <element signature="e#484274#484275#0" expanded="false" />
+            <element signature="e#485667#485668#0" expanded="false" />
+            <element signature="e#485713#485714#0" expanded="false" />
+            <element signature="e#486975#486976#0" expanded="false" />
+            <element signature="e#487058#487059#0" expanded="false" />
+            <element signature="e#490307#490308#0" expanded="false" />
+            <element signature="e#490334#490335#0" expanded="false" />
+            <element signature="e#496679#496680#0" expanded="false" />
+            <element signature="e#496706#496707#0" expanded="false" />
+            <element signature="e#498860#498861#0" expanded="false" />
+            <element signature="e#498890#498891#0" expanded="false" />
+            <element signature="e#499060#499061#0" expanded="false" />
+            <element signature="e#499122#499123#0" expanded="false" />
+            <element signature="e#501219#501220#0" expanded="false" />
+            <element signature="e#501247#501248#0" expanded="false" />
+            <element signature="e#503423#503424#0" expanded="false" />
+            <element signature="e#503452#503453#0" expanded="false" />
+            <element signature="e#505692#505693#0" expanded="false" />
+            <element signature="e#505740#505741#0" expanded="false" />
+            <element signature="e#506121#506122#0" expanded="false" />
+            <element signature="e#506163#506164#0" expanded="false" />
+            <element signature="e#506526#506527#0" expanded="false" />
+            <element signature="e#506573#506574#0" expanded="false" />
+            <element signature="e#506952#506953#0" expanded="false" />
+            <element signature="e#506993#506994#0" expanded="false" />
+            <element signature="e#507368#507369#0" expanded="false" />
+            <element signature="e#507425#507426#0" expanded="false" />
+            <element signature="e#507816#507817#0" expanded="false" />
+            <element signature="e#507867#507868#0" expanded="false" />
+            <element signature="e#508116#508117#0" expanded="false" />
+            <element signature="e#508165#508166#0" expanded="false" />
+            <element signature="e#509013#509014#0" expanded="false" />
+            <element signature="e#509065#509066#0" expanded="false" />
+            <element signature="e#510279#510280#0" expanded="false" />
+            <element signature="e#510331#510332#0" expanded="false" />
+            <element signature="e#511406#511407#0" expanded="false" />
+            <element signature="e#511458#511459#0" expanded="false" />
+            <element signature="e#512505#512506#0" expanded="false" />
+            <element signature="e#512546#512547#0" expanded="false" />
+            <element signature="e#513750#513751#0" expanded="false" />
+            <element signature="e#513803#513804#0" expanded="false" />
+            <element signature="e#516908#516909#0" expanded="false" />
+            <element signature="e#516947#516948#0" expanded="false" />
+            <element signature="e#518621#518622#0" expanded="false" />
+            <element signature="e#518667#518668#0" expanded="false" />
+            <element signature="e#520933#520934#0" expanded="false" />
+            <element signature="e#520966#520967#0" expanded="false" />
+            <element signature="e#522270#522271#0" expanded="false" />
+            <element signature="e#522322#522323#0" expanded="false" />
+            <element signature="e#527351#527352#0" expanded="false" />
+            <element signature="e#527387#527388#0" expanded="false" />
+            <element signature="e#529554#529555#0" expanded="false" />
+            <element signature="e#529606#529607#0" expanded="false" />
+            <element signature="e#538916#538917#0" expanded="false" />
+            <element signature="e#538948#538949#0" expanded="false" />
+            <element signature="e#542184#542185#0" expanded="false" />
+            <element signature="e#542226#542227#0" expanded="false" />
+            <element signature="e#555592#555593#0" expanded="false" />
+            <element signature="e#555632#555633#0" expanded="false" />
+            <element signature="e#574466#574467#0" expanded="false" />
+            <element signature="e#574523#574524#0" expanded="false" />
+            <element signature="e#575210#575211#0" expanded="false" />
+            <element signature="e#575243#575244#0" expanded="false" />
+            <element signature="e#576012#576013#0" expanded="false" />
+            <element signature="e#576043#576044#0" expanded="false" />
+            <element signature="e#576810#576811#0" expanded="false" />
+            <element signature="e#576843#576844#0" expanded="false" />
+            <element signature="e#577491#577492#0" expanded="false" />
+            <element signature="e#577525#577526#0" expanded="false" />
+            <element signature="e#578278#578279#0" expanded="false" />
+            <element signature="e#578309#578310#0" expanded="false" />
+            <element signature="e#579059#579060#0" expanded="false" />
+            <element signature="e#579093#579094#0" expanded="false" />
+            <element signature="e#589799#589800#0" expanded="false" />
+            <element signature="e#589827#589828#0" expanded="false" />
+            <element signature="e#594456#594457#0" expanded="false" />
+            <element signature="e#594505#594506#0" expanded="false" />
+            <element signature="e#595138#595139#0" expanded="false" />
+            <element signature="e#595206#595207#0" expanded="false" />
+            <element signature="e#603371#603372#0" expanded="false" />
+            <element signature="e#603417#603418#0" expanded="false" />
+            <element signature="e#603608#603609#0" expanded="false" />
+            <element signature="e#603666#603667#0" expanded="false" />
+            <element signature="e#605348#605349#0" expanded="false" />
+            <element signature="e#605389#605390#0" expanded="false" />
+            <element signature="e#607436#607437#0" expanded="false" />
+            <element signature="e#607508#607509#0" expanded="false" />
+            <element signature="e#614092#614093#0" expanded="false" />
+            <element signature="e#614142#614143#0" expanded="false" />
+            <element signature="e#622096#622097#0" expanded="false" />
+            <element signature="e#622169#622170#0" expanded="false" />
+            <element signature="e#629208#629209#0" expanded="false" />
+            <element signature="e#629241#629242#0" expanded="false" />
+            <element signature="e#638935#638936#0" expanded="false" />
+            <element signature="e#638980#638981#0" expanded="false" />
+            <element signature="e#642489#642490#0" expanded="false" />
+            <element signature="e#642540#642541#0" expanded="false" />
+            <element signature="e#642740#642741#0" expanded="false" />
+            <element signature="e#642780#642781#0" expanded="false" />
+            <element signature="e#653884#653885#0" expanded="false" />
+            <element signature="e#653912#653913#0" expanded="false" />
+            <element signature="e#654629#654630#0" expanded="false" />
+            <element signature="e#654657#654658#0" expanded="false" />
+            <element signature="e#654979#654980#0" expanded="false" />
+            <element signature="e#655003#655004#0" expanded="false" />
+            <element signature="e#655328#655329#0" expanded="false" />
+            <element signature="e#655352#655353#0" expanded="false" />
+            <element signature="e#655671#655672#0" expanded="false" />
+            <element signature="e#655695#655696#0" expanded="false" />
+            <element signature="e#656023#656024#0" expanded="false" />
+            <element signature="e#656047#656048#0" expanded="false" />
+            <element signature="e#658661#658662#0" expanded="false" />
+            <element signature="e#658736#658737#0" expanded="false" />
+            <element signature="e#688833#688834#0" expanded="false" />
+            <element signature="e#688857#688858#0" expanded="false" />
+            <element signature="e#699444#699445#0" expanded="false" />
+            <element signature="e#699477#699478#0" expanded="false" />
+            <element signature="e#704365#704366#0" expanded="false" />
+            <element signature="e#704413#704414#0" expanded="false" />
+            <element signature="e#704458#704459#0" expanded="false" />
+            <element signature="e#704517#704518#0" expanded="false" />
+            <element signature="e#721030#721031#0" expanded="false" />
+            <element signature="e#721064#721065#0" expanded="false" />
+            <element signature="e#739032#739033#0" expanded="false" />
+            <element signature="e#739066#739067#0" expanded="false" />
+            <element signature="e#739352#739353#0" expanded="false" />
+            <element signature="e#739389#739390#0" expanded="false" />
+            <element signature="e#743225#743226#0" expanded="false" />
+            <element signature="e#743263#743264#0" expanded="false" />
+            <element signature="e#744787#744788#0" expanded="false" />
+            <element signature="e#744847#744848#0" expanded="false" />
+            <element signature="e#746420#746421#0" expanded="false" />
+            <element signature="e#746481#746482#0" expanded="false" />
+            <element signature="e#759772#759773#0" expanded="false" />
+            <element signature="e#759839#759840#0" expanded="false" />
+            <element signature="e#760196#760197#0" expanded="false" />
+            <element signature="e#760222#760223#0" expanded="false" />
+            <element signature="e#760497#760498#0" expanded="false" />
+            <element signature="e#760524#760525#0" expanded="false" />
+            <element signature="e#760968#760969#0" expanded="false" />
+            <element signature="e#760994#760995#0" expanded="false" />
+            <element signature="e#763487#763488#0" expanded="false" />
+            <element signature="e#763511#763512#0" expanded="false" />
+            <element signature="e#766616#766617#0" expanded="false" />
+            <element signature="e#766641#766642#0" expanded="false" />
+            <element signature="e#782409#782410#0" expanded="false" />
+            <element signature="e#782442#782443#0" expanded="false" />
+            <element signature="e#783242#783243#0" expanded="false" />
+            <element signature="e#783274#783275#0" expanded="false" />
+            <element signature="e#784007#784008#0" expanded="false" />
+            <element signature="e#784047#784048#0" expanded="false" />
+            <element signature="e#786284#786285#0" expanded="false" />
+            <element signature="e#786340#786341#0" expanded="false" />
+            <element signature="e#786693#786694#0" expanded="false" />
+            <element signature="e#786750#786751#0" expanded="false" />
+            <element signature="e#787427#787428#0" expanded="false" />
+            <element signature="e#787455#787456#0" expanded="false" />
+            <element signature="e#796024#796025#0" expanded="false" />
+            <element signature="e#796066#796067#0" expanded="false" />
+            <element signature="e#801051#801052#0" expanded="false" />
+            <element signature="e#801112#801113#0" expanded="false" />
+            <element signature="e#801631#801632#0" expanded="false" />
+            <element signature="e#801692#801693#0" expanded="false" />
+            <element signature="e#802225#802226#0" expanded="false" />
+            <element signature="e#802267#802268#0" expanded="false" />
+            <element signature="e#815758#815759#0" expanded="false" />
+            <element signature="e#815786#815787#0" expanded="false" />
+            <element signature="e#815935#815936#0" expanded="false" />
+            <element signature="e#815985#815986#0" expanded="false" />
+            <element signature="e#818291#818292#0" expanded="false" />
+            <element signature="e#818360#818361#0" expanded="false" />
+            <element signature="e#826241#826242#0" expanded="false" />
+            <element signature="e#826279#826280#0" expanded="false" />
+            <element signature="e#832798#832799#0" expanded="false" />
+            <element signature="e#832851#832852#0" expanded="false" />
+            <element signature="e#866649#866650#0" expanded="false" />
+            <element signature="e#866684#866685#0" expanded="false" />
+            <element signature="e#867055#867056#0" expanded="false" />
+            <element signature="e#867101#867102#0" expanded="false" />
+            <element signature="e#867160#867161#0" expanded="false" />
+            <element signature="e#867208#867209#0" expanded="false" />
+            <element signature="e#867590#867591#0" expanded="false" />
+            <element signature="e#867643#867644#0" expanded="false" />
+            <element signature="e#867710#867711#0" expanded="false" />
+            <element signature="e#867765#867766#0" expanded="false" />
+            <element signature="e#868147#868148#0" expanded="false" />
+            <element signature="e#868200#868201#0" expanded="false" />
+            <element signature="e#868259#868260#0" expanded="false" />
+            <element signature="e#868314#868315#0" expanded="false" />
+            <element signature="e#868696#868697#0" expanded="false" />
+            <element signature="e#868749#868750#0" expanded="false" />
+            <element signature="e#868808#868809#0" expanded="false" />
+            <element signature="e#868863#868864#0" expanded="false" />
+            <element signature="e#869189#869190#0" expanded="false" />
+            <element signature="e#869231#869232#0" expanded="false" />
+            <element signature="e#869290#869291#0" expanded="false" />
+            <element signature="e#869334#869335#0" expanded="false" />
+            <element signature="e#869660#869661#0" expanded="false" />
+            <element signature="e#869702#869703#0" expanded="false" />
+            <element signature="e#869761#869762#0" expanded="false" />
+            <element signature="e#869805#869806#0" expanded="false" />
+            <element signature="e#870131#870132#0" expanded="false" />
+            <element signature="e#870173#870174#0" expanded="false" />
+            <element signature="e#870232#870233#0" expanded="false" />
+            <element signature="e#870276#870277#0" expanded="false" />
+            <element signature="e#870637#870638#0" expanded="false" />
+            <element signature="e#870686#870687#0" expanded="false" />
+            <element signature="e#870745#870746#0" expanded="false" />
+            <element signature="e#870796#870797#0" expanded="false" />
+            <element signature="e#871163#871164#0" expanded="false" />
+            <element signature="e#871213#871214#0" expanded="false" />
+            <element signature="e#871272#871273#0" expanded="false" />
+            <element signature="e#871324#871325#0" expanded="false" />
+            <element signature="e#871691#871692#0" expanded="false" />
+            <element signature="e#871741#871742#0" expanded="false" />
+            <element signature="e#871800#871801#0" expanded="false" />
+            <element signature="e#871852#871853#0" expanded="false" />
+            <element signature="e#872204#872205#0" expanded="false" />
+            <element signature="e#872251#872252#0" expanded="false" />
+            <element signature="e#872310#872311#0" expanded="false" />
+            <element signature="e#872359#872360#0" expanded="false" />
+            <element signature="e#872711#872712#0" expanded="false" />
+            <element signature="e#872758#872759#0" expanded="false" />
+            <element signature="e#872817#872818#0" expanded="false" />
+            <element signature="e#872866#872867#0" expanded="false" />
+            <element signature="e#877709#877710#0" expanded="false" />
+            <element signature="e#877766#877767#0" expanded="false" />
+            <element signature="e#879937#879938#0" expanded="false" />
+            <element signature="e#880008#880009#0" expanded="false" />
+            <element signature="e#880446#880447#0" expanded="false" />
+            <element signature="e#880484#880485#0" expanded="false" />
+            <element signature="e#881216#881217#0" expanded="false" />
+            <element signature="e#881264#881265#0" expanded="false" />
+            <element signature="e#881699#881700#0" expanded="false" />
+            <element signature="e#881737#881738#0" expanded="false" />
+            <element signature="e#892130#892131#0" expanded="false" />
+            <element signature="e#892171#892172#0" expanded="false" />
+            <element signature="e#892665#892666#0" expanded="false" />
+            <element signature="e#892707#892708#0" expanded="false" />
+            <element signature="e#893399#893400#0" expanded="false" />
+            <element signature="e#893440#893441#0" expanded="false" />
+            <element signature="e#893863#893864#0" expanded="false" />
+            <element signature="e#893924#893925#0" expanded="false" />
+            <element signature="e#894180#894181#0" expanded="false" />
+            <element signature="e#894243#894244#0" expanded="false" />
+            <element signature="e#924784#924785#0" expanded="false" />
+            <element signature="e#924819#924820#0" expanded="false" />
+            <element signature="e#926196#926197#0" expanded="false" />
+            <element signature="e#926244#926245#0" expanded="false" />
+            <element signature="e#926414#926415#0" expanded="false" />
+            <element signature="e#926477#926478#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ListItemExtensions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9750">
+          <caret line="416" column="0" selection-start-line="416" selection-start-column="0" selection-end-line="416" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19264#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1769#1770#0" expanded="false" />
+            <element signature="e#1813#1814#0" expanded="false" />
+            <element signature="e#1865#1866#0" expanded="false" />
+            <element signature="e#1911#1912#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/res/layout/tmpl_image_view.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="30" column="56" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/ImageExtensions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="116" column="35" selection-start-line="116" selection-start-column="35" selection-end-line="116" selection-end-column="35" />
+          <folding>
+            <element signature="method#OpenImageGallery#0;class#ImageExtensions#0" expanded="false" />
+            <element signature="method#GenerateUUID#0;class#ImageExtensions#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/CustomEditText.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        <state relative-caret-position="136">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#GetSanitizedHtml#0;class#InputExtensions#0" expanded="false" />
-            <element signature="method#setText#0;class#InputExtensions#0" expanded="false" />
-            <element signature="method#noTrailingwhiteLines#0;class#InputExtensions#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/EditorCore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="365" column="31" selection-start-line="365" selection-start-column="31" selection-end-line="365" selection-end-column="31" />
+        <state relative-caret-position="482">
+          <caret line="229" column="53" selection-start-line="229" selection-start-column="53" selection-end-line="229" selection-end-column="53" />
           <folding>
             <element signature="method#loadStateFromAttrs#0;class#EditorCore#0" expanded="false" />
             <element signature="method#ContainsStyle#0;class#EditorCore#0" expanded="false" />
@@ -4253,11 +5023,20 @@
             <element signature="method#GetControlType#0;class#EditorCore#0" expanded="false" />
             <element signature="method#GetControlTag#0;class#EditorCore#0" expanded="false" />
             <element signature="method#CreateTag#0;class#EditorCore#0" expanded="false" />
-            <element signature="method#getStateFromString#0;class#EditorCore#0" expanded="false" />
-            <element signature="method#GetValue#0;class#EditorCore#0" expanded="false" />
-            <element signature="method#putValue#0;class#EditorCore#0" expanded="false" />
             <element signature="method#clearAllContents#0;class#EditorCore#0" expanded="false" />
             <element signature="class#Utilities#0;class#EditorCore#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser-native-editor/src/main/java/com/github/irshulx/Components/InputExtensions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="178" column="43" selection-start-line="178" selection-start-column="43" selection-end-line="178" selection-end-column="43" />
+          <folding>
+            <element signature="method#GetSanitizedHtml#0;class#InputExtensions#0" expanded="false" />
+            <element signature="method#setText#0;class#InputExtensions#0" expanded="false" />
+            <element signature="method#noTrailingwhiteLines#0;class#InputExtensions#0" expanded="false" />
           </folding>
         </state>
       </provider>
