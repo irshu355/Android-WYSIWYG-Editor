@@ -40,6 +40,8 @@ import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
 import com.github.irshulx.models.RenderType;
 
+import static com.github.irshulx.Components.InputExtensions.CONTENT;
+
 /**
  * Created by mkallingal on 5/1/2016.
  */
@@ -86,11 +88,10 @@ public class ListItemExtensions {
             _order.setText(String.valueOf(count+1)+".");
         }
          if(editorCore.getRenderType() ==RenderType.Editor) {
-            editText.setTextColor(editorCore.getResources().getColor(R.color.darkertext));
-            editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, editorCore.getInputExtensions().getLineSpacing(), editorCore.getResources().getDisplayMetrics()), 1.0f);
-            editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, editorCore.getInputExtensions().getNormtalTextSize());
+            editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, editorCore.getInputExtensions().getNormalTextSize());
             editText.setTag(editorCore.CreateTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI));
             childLayout.setTag(editorCore.CreateTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI));
+             editText.setTypeface(editorCore.getInputExtensions().getTypeface(CONTENT,Typeface.NORMAL));
             editorCore.setActiveView(editText);
             editorCore.getInputExtensions().setText(editText, text);
             editText.setOnClickListener(new View.OnClickListener() {
@@ -111,10 +112,7 @@ public class ListItemExtensions {
             editText.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (keyCode == KeyEvent.KEYCODE_DEL) {
-                            editorCore.deleteFocusedPrevious(editText);
-                    }
-                    return false;
+                   return editorCore.onKey(v,keyCode,event,editText);
                 }
             });
 
@@ -179,16 +177,15 @@ public class ListItemExtensions {
         }
         else{
             final TextView textView= (TextView) childLayout.findViewById(R.id.lblText);
-             textView.setTypeface(Typeface.create(editorCore.getInputExtensions().getFontFace(),Typeface.NORMAL));
+             textView.setTypeface(editorCore.getInputExtensions().getTypeface(CONTENT,Typeface.NORMAL));
+
             /*
             It's a renderer, so instead of EditText,render TextView
              */
             if(!TextUtils.isEmpty(text)){
               editorCore.getInputExtensions().setText(textView, text);
             }
-             textView.setTextColor(editorCore.getResources().getColor(R.color.darkertext));
-             textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, editorCore.getInputExtensions().getLineSpacing(), editorCore.getResources().getDisplayMetrics()), 1.0f);
-             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, editorCore.getInputExtensions().getNormalTextSize());
              textView.setVisibility(View.VISIBLE);
              editText.setVisibility(View.GONE);
         }
@@ -425,5 +422,31 @@ public class ListItemExtensions {
                 }
             }
         }
+    }
+
+
+    public int getIndexOnEditorByEditText(CustomEditText customEditText){
+        TableRow tableRow = (TableRow) customEditText.getParent();
+        TableLayout tableLayout = (TableLayout)tableRow.getParent();
+        int indexOnTable = tableLayout.indexOfChild(tableRow);
+        return indexOnTable;
+    }
+
+    public CustomEditText setFocusToSpecific(CustomEditText customEditText){
+        TableRow tableRow = (TableRow) customEditText.getParent();
+        TableLayout tableLayout = (TableLayout)tableRow.getParent();
+        int indexOnTable = tableLayout.indexOfChild(tableRow);
+        if(indexOnTable==0){
+            //what if index is 0, get the previous on edittext
+        }
+        TableRow prevRow = (TableRow) tableLayout.getChildAt(indexOnTable-1);
+        if (prevRow != null) {
+            CustomEditText editText = (CustomEditText) tableRow.findViewById(R.id.txtText);
+            if (editText.requestFocus()) {
+                editText.setSelection(editText.getText().length());
+            }
+            return editText;
+        }
+        return null;
     }
 }

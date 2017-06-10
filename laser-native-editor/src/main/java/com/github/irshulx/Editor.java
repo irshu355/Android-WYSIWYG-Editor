@@ -110,12 +110,7 @@
             getInputExtensions().setFontFace(StringResource);
         }
 
-        public void setLineSpacing(float value){
-           getInputExtensions().setLineSpacing(value);
-        }
-        public float getLineSpacing(){
-            return getInputExtensions().getLineSpacing();
-        }
+
         public void UpdateTextStyle(EditorTextStyle style){
             getInputExtensions().UpdateTextStyle(style, null);
         }

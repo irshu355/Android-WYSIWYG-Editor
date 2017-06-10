@@ -14,21 +14,19 @@
         android:id="@+id/txtText"
         android:layout_weight="1"
         android:focusableInTouchMode="true"
-        android:textSize="14sp"
+        style="@style/WysiwygEditText"
         android:text=""
         android:layout_marginBottom="8dp"
         android:layout_width="wrap_content"
-        android:background="@drawable/invisible_edit_text"
-        android:textColor="@color/darkertext"></com.github.irshulx.Components.CustomEditText>
+        android:background="@drawable/invisible_edit_text"></com.github.irshulx.Components.CustomEditText>
 
     <TextView
         android:layout_column="2"
         android:id="@+id/lblText"
         android:layout_weight="1"
         android:visibility="gone"
-        android:textSize="14sp"
+        style="@style/WysiwygEditText"
         android:layout_marginBottom="8dp"
-        android:layout_width="wrap_content"
-        android:textColor="@color/darkertext"></TextView>
+        android:layout_width="wrap_content"></TextView>
 
 </TableRow>

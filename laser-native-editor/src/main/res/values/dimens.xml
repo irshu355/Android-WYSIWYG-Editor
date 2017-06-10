@@ -14,4 +14,5 @@
     <dimen name="app_bar_height">230dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="edittext_margin_bottom">20dp</dimen>
 </resources>

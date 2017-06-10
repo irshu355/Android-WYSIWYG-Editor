@@ -17,7 +17,10 @@ package com.github.irshulx.Components;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -51,14 +54,13 @@ import java.util.Map;
  * Created by mkallingal on 4/30/2016.
  */
 public class InputExtensions{
-    private static final int HEADING=0;
-    private static final int CONTENT =1;
+    public static final int HEADING=0;
+    public static final int CONTENT =1;
     private int H1TEXTSIZE =23;
     private int H2TEXTSIZE =20;
     private int H3TEXTSIZE =18;
     private int NORMALTEXTSIZE =16;
     private int fontFace=R.string.fontFamily__serif;
-    private float lineSpacing=4.0f;
     EditorCore editorCore;
     private Map<Integer,String> contentTypeface;
     private Map<Integer,String> headingTypeface;
@@ -86,7 +88,7 @@ public class InputExtensions{
         this.H3TEXTSIZE=size;
     }
 
-    public int getNormtalTextSize(){
+    public int getNormalTextSize(){
         return this.NORMALTEXTSIZE;
     }
 
@@ -115,12 +117,7 @@ public class InputExtensions{
     }
 
 
-    public float getLineSpacing(){
-        return this.lineSpacing;
-    }
-    public void setLineSpacing(float value){
-        this.lineSpacing=value;
-    }
+
 
     public InputExtensions(EditorCore editorCore){
         this.editorCore = editorCore;
@@ -135,15 +132,13 @@ public class InputExtensions{
         CharSequence toReplace = GetSanitizedHtml(text);
         textView.setText(toReplace);
     }
+
+
     private TextView GetNewTextView(String text){
-        final TextView textView = new TextView(this.editorCore.getContext());
-        textView.setTypeface(getTypeface(CONTENT,Typeface.NORMAL));
-        textView.setGravity(Gravity.BOTTOM);
-        textView.setTextColor(editorCore.getResources().getColor(R.color.darkertext));
-        textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.getLineSpacing(), editorCore.getResources().getDisplayMetrics()), 1.0f);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        textView.setPadding(textView.getPaddingLeft(),textView.getPaddingTop(),textView.getPaddingRight(),30);
+        final TextView textView = new TextView(new ContextThemeWrapper(this.editorCore.getContext(), R.style.WysiwygEditText));
+        addEditableStyling(textView);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0,0,0,(int)editorCore.getContext().getResources().getDimension(R.dimen.edittext_margin_bottom));
         textView.setLayoutParams(params);
         if(!TextUtils.isEmpty(text)){
             Spanned __ = Html.fromHtml(text);
@@ -153,14 +148,9 @@ public class InputExtensions{
         return textView;
     }
     public CustomEditText GetNewEditTextInst(String hint, String text) {
-        final CustomEditText editText = new CustomEditText(this.editorCore.getContext());
-        editText.setTypeface(getTypeface(CONTENT,Typeface.NORMAL));
-        editText.setGravity(Gravity.BOTTOM);
-        editText.setFocusableInTouchMode(true);
-      //  editText.setTextColor(editorCore.getResources().getColor(R.color.darkertext));
-        editText.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.getLineSpacing(), editorCore.getResources().getDisplayMetrics()), 1.0f);
-        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
-        editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        final CustomEditText editText = new CustomEditText(new ContextThemeWrapper(this.editorCore.getContext(), R.style.WysiwygEditText));
+        addEditableStyling(editText);
+        editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         if(hint!=null){
             editText.setHint(hint);
         }
@@ -168,25 +158,11 @@ public class InputExtensions{
             setText(editText, text);
         }
         editText.setTag(editorCore.CreateTag(EditorType.INPUT));
-        editText.setBackgroundDrawable(this.editorCore.getContext().getResources().getDrawable(R.drawable.invisible_edit_text));
+        editText.setBackgroundDrawable(ContextCompat.getDrawable(this.editorCore.getContext(),R.drawable.invisible_edit_text));
         editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode != KeyEvent.KEYCODE_DEL){
-                    return false;
-                }
-                if (isEditTextEmpty(editText)) {
-                    editorCore.deleteFocusedPrevious(editText);
-                    return false;
-                }
-                int length = editText.getText().length();
-                int selectionStart = editText.getSelectionStart();
-                if(selectionStart==0 &&length>0){
-                    CustomEditText editText1 = getEditTextPrevious(editorCore.getParentView().indexOfChild(editText));
-                    editorCore.deleteFocusedPrevious(editText);
-                    editText1.setText(editText1.getText().toString()+editText.getText().toString());
-                }
-                return false;
+               return editorCore.onKey(v,keyCode,event,editText);
             }
         });
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -247,11 +223,18 @@ public class InputExtensions{
         return editText;
     }
 
+    private void addEditableStyling(TextView editText) {
+        editText.setTypeface(getTypeface(CONTENT,Typeface.NORMAL));
+        editText.setFocusableInTouchMode(true);
+        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
+
+    }
+
 
     public TextView insertEditText(int position, String hint, String text) {
         if(editorCore.getRenderType() == RenderType.Editor) {
             final CustomEditText view = GetNewEditTextInst(hint, text);
-                editorCore.getParentView().addView(view, position);
+            editorCore.getParentView().addView(view, position);
             editorCore.setActiveView(view);
             final android.os.Handler handler = new android.os.Handler();
             handler.postDelayed(new Runnable() {
@@ -474,7 +457,7 @@ public class InputExtensions{
         }
         return text;
     }
-    boolean isEditTextEmpty(EditText editText){
+    public boolean isEditTextEmpty(EditText editText){
         return editText.getText().toString().trim().length() == 0;
     }
     private String trimLineEnding(String s) {
@@ -537,7 +520,7 @@ public class InputExtensions{
         }
     }
 
-    private CustomEditText getEditTextPrevious(int startIndex){
+    public CustomEditText getEditTextPrevious(int startIndex){
         CustomEditText customEditText=null;
         for(int i=0;i<startIndex;i++){
             View view = editorCore.getParentView().getChildAt(i);
@@ -548,10 +531,10 @@ public class InputExtensions{
                 customEditText = (CustomEditText)view;
                 continue;
             }
-//            if(editorType==EditorType.ol||editorType==EditorType.ul){
-//                editorCore.getListItemExtensions().setFocusToList(view,ListItemExtensions.POSITION_START);
-//                editorCore.setActiveView(view);
-//            }
+            if(editorType==EditorType.ol||editorType==EditorType.ul){
+                editorCore.getListItemExtensions().setFocusToList(view,ListItemExtensions.POSITION_START);
+                editorCore.setActiveView(view);
+            }
         }
         return customEditText;
     }

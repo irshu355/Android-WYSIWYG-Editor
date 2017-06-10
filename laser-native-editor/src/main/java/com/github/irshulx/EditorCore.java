@@ -11,6 +11,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -307,7 +308,6 @@ public class EditorCore extends LinearLayout {
         int index = __parentView.indexOfChild(view);
         if (index == 0)
             return;
-
         EditorControl contentType = (EditorControl) ((View) view.getParent()).getTag();
           /*
          *
@@ -356,11 +356,12 @@ public class EditorCore extends LinearLayout {
         View nextItem = null;
         //remove hr if its on top of the delete field
         this.__parentView.removeView(view);
-        __dividerExtensions.deleteHr(indexOfDeleteItem - 1);
-        for (int i = __parentView.getChildCount()-1; i >=0; i--) {
+       if(__dividerExtensions.deleteHr(indexOfDeleteItem - 1))
+           indexOfDeleteItem-=1;
+        for (int i = 0; i <indexOfDeleteItem; i++) {
             if (GetControlType(__parentView.getChildAt(i)) == EditorType.INPUT) {
                 nextItem = __parentView.getChildAt(i);
-                break;
+                continue;
             }
         }
         if (nextItem != null) {
@@ -536,6 +537,38 @@ public class EditorCore extends LinearLayout {
 
 //                if(editText.requestFocus())
 //                editText.setSelection(editText.getText().length());
+    }
+
+    public boolean onKey(View v, int keyCode, KeyEvent event, CustomEditText editText) {
+        if(keyCode != KeyEvent.KEYCODE_DEL){
+            return false;
+        }
+        if (__inputExtensions.isEditTextEmpty(editText)) {
+            deleteFocusedPrevious(editText);
+            return false;
+        }
+        int length = editText.getText().length();
+        int selectionStart = editText.getSelectionStart();
+
+        EditorType editorType = GetControlType(this.__activeView);
+        CustomEditText nextFocus;
+        if(selectionStart==0 &&length>0){
+            if((editorType==EditorType.UL_LI||editorType==EditorType.OL_LI)){
+                //now that we are inside the edittext, focus inside it
+                int index = __listItemExtensions.getIndexOnEditorByEditText(editText);
+                if(index==0){
+                    deleteFocusedPrevious(editText);
+                }
+            }else{
+                int index=getParentView().indexOfChild(editText);
+                if(index==0)
+                    return false;
+                nextFocus = __inputExtensions.getEditTextPrevious(index);
+                deleteFocusedPrevious(editText);
+                nextFocus.setText(nextFocus.getText().toString()+editText.getText().toString());
+            }
+        }
+        return false;
     }
 
     public class Utilities {

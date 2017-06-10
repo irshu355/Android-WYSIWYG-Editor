@@ -51,10 +51,12 @@ public class DividerExtensions {
 //            setFocusToNearbyEditText(index+1);
         }
     }
-    public void deleteHr(int indexOfDeleteItem) {
+    public boolean deleteHr(int indexOfDeleteItem) {
         View view= editorCore.getParentView().getChildAt(indexOfDeleteItem);
         if(editorCore.GetControlType(view)==EditorType.hr){
             editorCore.getParentView().removeView(view);
+            return true;
         }
+        return false;
     }
 }

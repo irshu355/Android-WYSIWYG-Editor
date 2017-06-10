@@ -155,7 +155,6 @@ public class EditorTestActivity extends AppCompatActivity {
                // editor.onImageUploadFailed(uuid);
             }
         });
-        editor.setLineSpacing(3.0f);
         editor.Render();  // this method must be called to start the editor
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
