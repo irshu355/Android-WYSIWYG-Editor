@@ -17,13 +17,13 @@
     <com.github.irshulx.Components.CustomEditText
         android:layout_width="match_parent"
         android:textSize="12sp"
+        style="@style/WysiwygEditText"
         android:layout_marginTop="3dp"
         android:layout_below="@+id/imageView"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:id="@+id/desc"
         android:gravity="center_horizontal"
-        android:textColor="@color/darktext"
         android:background="@android:color/transparent"
         android:hint="Description here (optional)"
         android:layout_height="wrap_content" />
