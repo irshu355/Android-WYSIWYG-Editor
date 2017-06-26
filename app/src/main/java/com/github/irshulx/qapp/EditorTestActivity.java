@@ -151,7 +151,7 @@ public class EditorTestActivity extends AppCompatActivity {
             @Override
             public void onUpload(Bitmap image, String uuid) {
                 Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
-                editor.onImageUploadComplete("https://cache-graphicslib.viator.com/graphicslib/thumbs674x446/15693/SITours/small-group-pompeii-with-amalfi-coast-drive-and-positano-stop-from-in-rome-265047.jpg",uuid);
+                editor.onImageUploadComplete("http://www.videogamesblogger.com/wp-content/uploads/2015/08/metal-gear-solid-5-the-phantom-pain-cheats-640x325.jpg",uuid);
                // editor.onImageUploadFailed(uuid);
             }
         });
@@ -256,10 +256,10 @@ public class EditorTestActivity extends AppCompatActivity {
 
     public Map<Integer,String> getHeadingTypeface() {
         Map<Integer, String> typefaceMap = new HashMap<>();
-        typefaceMap.put(Typeface.NORMAL,"fonts/Audiowide-Regular.ttf");
-        typefaceMap.put(Typeface.BOLD,"fonts/Audiowide-Regular.ttf");
-        typefaceMap.put(Typeface.ITALIC,"fonts/Audiowide-Regular.ttf");
-        typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/Audiowide-Regular.ttf");
+        typefaceMap.put(Typeface.NORMAL,"fonts/GreycliffCF-Bold.ttf");
+        typefaceMap.put(Typeface.BOLD,"fonts/GreycliffCF-Heavy.ttf");
+        typefaceMap.put(Typeface.ITALIC,"fonts/GreycliffCF-Heavy.ttf");
+        typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/GreycliffCF-Bold.ttf");
         return typefaceMap;
     }
 

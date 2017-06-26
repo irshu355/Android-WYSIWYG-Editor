@@ -17,6 +17,7 @@ package com.github.irshulx.Components;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.irshulx.R;
 import com.github.irshulx.EditorCore;
@@ -39,6 +40,10 @@ public class DividerExtensions {
         View view=  ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.dividerLayout, null);
         view.setTag(editorCore.CreateTag(EditorType.hr));
         int index= editorCore.determineIndex(EditorType.hr);
+        if(index==0){
+            Toast.makeText(editorCore.getContext(), "divider cannot be inserted on first line", Toast.LENGTH_SHORT).show();
+            return;
+        }
         editorCore.getParentView().addView(view, index);
         if(editorCore.isLastRow(view)&& editorCore.getRenderType()== RenderType.Editor) {
             //check if ul is active

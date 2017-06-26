@@ -24,6 +24,7 @@ import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -192,28 +193,24 @@ public class InputExtensions{
                 /*
                 * if user had pressed enter, replace it with br
                 */
-                if (s.charAt(s.length() - 1) == '\n') {
-                    text = text.replaceAll("<br>", "");
-                    if(text.length()>0) {
-                        setText(editText, text);
-                    }else{
-                       s.clear();
-                    }
-                    int index = editorCore.getParentView().indexOfChild(editText);
+                    for (int i = 0; i < s.length(); i++) {
+                        if (s.charAt(i) == '\n') {
+                            CharSequence subChars = s.subSequence(0, i);
+                            SpannableStringBuilder ssb = new SpannableStringBuilder(subChars);
+                            text = Html.toHtml(ssb);
+                            if (text.length() > 0)
+                                setText(editText, text);
+                            else
+                                s.clear();
+                            int index = editorCore.getParentView().indexOfChild(editText);
                     /* if the index was 0, set the placeholder to empty, behaviour happens when the user just press enter
                      */
-                    if(index==0){
-                        editText.setHint(null);
+                            if (index == 0) {
+                                editText.setHint(null);
+                            }
+                            insertEditText(index + 1, null,i==s.length()-1?null:s.subSequence(i+1,s.length()-1).toString());
+                        }
                     }
-
-                    /*
-                    * if user has configured the listener, fire the onTextChanged event
-                    */
-                    /*
-                    * since it was a return key, add a new editText below
-                    */
-                    insertEditText(index + 1, null, null);
-                }
                 }
                 if (editorCore.getEditorListener() != null) {
                     editorCore.getEditorListener().onTextChanged(editText, s);

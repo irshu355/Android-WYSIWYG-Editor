@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,6 +22,7 @@
         android:layout_below="@+id/imageView"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:textColor="@color/darktext"
         android:id="@+id/desc"
         android:gravity="center_horizontal"
         android:background="@android:color/transparent"
