@@ -26,6 +26,7 @@ import com.github.irshulx.MapsActivity;
 import com.github.irshulx.R;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.RenderType;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -43,16 +44,22 @@ public class MapExtensions {
         this.mapExtensionTemplate= drawable;
     }
 
-    public void insertMap(String cords,boolean insertEditText) {
+
+
+    public String getMapStaticImgUri(String cords, int width){
+        StringBuilder builder = new StringBuilder();
+        builder.append("http://maps.google.com/maps/api/staticmap?");
+        builder.append("size="+String.valueOf(width)+"x400&zoom=15&sensor=true&markers="+cords);
+        return builder.toString();
+    }
+
+    public void insertMap(String cords, String desc, boolean insertEditText) {
 //        String image="http://maps.googleapis.com/maps/api/staticmap?center=43.137022,13.067162&zoom=16&size=600x400&maptype=roadmap&sensor=true&markers=color:blue|43.137022,13.067162";
         String[] x= cords.split(",");
         String lat = x[0];
         String lng = x[1];
         int[]size= editorCore.getUtilitiles().GetScreenDimension();
         int width=size[0];
-        StringBuilder builder = new StringBuilder();
-        builder.append("http://maps.google.com/maps/api/staticmap?");
-        builder.append("size="+String.valueOf(width)+"x400&zoom=15&sensor=true&markers="+ lat + "," + lng);
 //        ImageView imageView = new ImageView(context);
 //        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 400);
 //        params.bottomMargin=12;
@@ -62,7 +69,19 @@ public class MapExtensions {
 
         final View childLayout = ((Activity) this.editorCore.getContext()).getLayoutInflater().inflate(this.mapExtensionTemplate, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        Picasso.with(this.editorCore.getContext()).load(builder.toString()).into(imageView);
+        Picasso.with(this.editorCore.getContext()).load(getMapStaticImgUri(String.valueOf(lat)+","+String.valueOf(lng),width)).into(imageView);
+
+        /**
+         * description, if render mode, set the description and disable it
+         */
+        CustomEditText editText = (CustomEditText) childLayout.findViewById(R.id.desc);
+        if(editorCore.getRenderType()== RenderType.Renderer){
+            editText.setText(desc);
+            editText.setEnabled(false);
+        }
+        /*
+         *  remove button
+         */
 
         final View btn =  childLayout.findViewById(R.id.btn_remove);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -98,4 +117,7 @@ public class MapExtensions {
                 ((Activity) this.editorCore.getContext()).startActivityForResult(intent, editorCore.MAP_MARKER_REQUEST);
     }
 
+    public CharSequence getCordsAsUri(String s) {
+        return getMapStaticImgUri(s,800);
+    }
 }

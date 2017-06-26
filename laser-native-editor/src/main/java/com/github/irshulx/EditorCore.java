@@ -464,7 +464,9 @@ public class EditorCore extends LinearLayout {
                     break;
                 case map:
                     EditorControl mapTag = (EditorControl) view.getTag();
+                    Editable desc = ((CustomEditText)view.findViewById(R.id.desc)).getText();
                     node.content.add(mapTag.Cords);
+                    node.content.add(desc.length()>0?desc.toString():"");
                     list.add(node);
             }
         }
@@ -505,7 +507,7 @@ public class EditorCore extends LinearLayout {
                     }
                     break;
                 case map:
-                    __mapExtensions.insertMap(item.content.get(0), true);
+                    __mapExtensions.insertMap(item.content.get(0),item.content.get(1), true);
                     break;
             }
         }

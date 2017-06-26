@@ -226,7 +226,7 @@
             getMapExtensions().loadMapActivity();
         }
         public void InsertMap(String Cords){
-            getMapExtensions().insertMap(Cords, true);
+            getMapExtensions().insertMap(Cords, null, true);
         }
 
 

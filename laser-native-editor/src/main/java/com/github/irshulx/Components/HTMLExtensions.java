@@ -124,7 +124,7 @@ public class HTMLExtensions {
                 template="<div data-tag=\"img\"><img src=\"{{$content}}\" /><br/></div>";
                 break;
             case map:
-                template="<div data-tag=\"map\"><img src=\"{{$content}}\" /></div>";
+                template="<div data-tag=\"map\"><img src=\"{{$content}}\" /><span text-align:'center'>{{$desc}}</span></div>";
                 break;
             case ol:
                 template="<ol data-tag=\"ol\">{{$content}}</ol>";
@@ -217,7 +217,7 @@ public class HTMLExtensions {
                     htmlBlock.append(getTemplateHtml(item.type));
                     break;
                 case map:
-                    htmlBlock.append(getTemplateHtml(item.type).replace("{{$content}}", item.content.get(0)));
+                    htmlBlock.append(getTemplateHtml(item.type).replace("{{$content}}", editorCore.getMapExtensions().getCordsAsUri(item.content.get(0))).replace("{{$desc}}",item.content.get(1)));
                     break;
                 case ul:
                 case ol:
