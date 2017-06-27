@@ -29,7 +29,13 @@ or maven:
 Demo
 --------------
 
-![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-4b5b0fc2bd.gif)&nbsp;![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-3c5a0f84f2.gif)&nbsp;&nbsp;![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-b3c73d7be8.gif)![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot1.png)&nbsp; ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot2.png)&nbsp; ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot3.png)![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot4.png)
+![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-4b5b0fc2bd.gif)&nbsp;![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-3c5a0f84f2.gif)&nbsp;&nbsp;![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-b3c73d7be8.gif)&nbsp;&nbsp;
+
+
+
+
+
+![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot1.png)&nbsp; ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot2.png)&nbsp; ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot3.png)![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot4.png)
 ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot5.png)
 
 
