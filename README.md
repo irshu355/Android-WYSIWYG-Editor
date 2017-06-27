@@ -1,35 +1,36 @@
+
 [ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-5-red.svg)
 
 Android-WYSIWYG-Editor
 ===================
 
-> **Note on 27.05.17:** A major update for the editor will be releasing over the next few days. Un updated README will be avaiable soon.
 
 An iframe free text editor that uses native components in the content tree.
 
-<a href="https://play.google.com/store/apps/details?id=com.github.irshulx.qapp">![alt text][1]</a>
-[1]: https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/play-icon.jpg
+<a href="https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg">![alt text][1]</a>
+[1]: https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/Google_Play.png
 
 
 Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:1.2.0'
+    compile 'com.github.irshulx:laser-native-editor:2.0.0'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>1.2.0</version>
+      <version>2.0.0</version>
       <type>pom</type>
     </dependency>
 
 Demo
 --------------
 
-![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-1.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-2.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-3.gif)&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_1.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_2.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_3.jpg)
+![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-4b5b0fc2bd.gif)&nbsp;![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-3c5a0f84f2.gif)&nbsp;&nbsp;![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-b3c73d7be8.gif)![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot1.png)&nbsp; ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot2.png)&nbsp; ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot3.png)![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot4.png)
+![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot5.png)
 
 
 Features
