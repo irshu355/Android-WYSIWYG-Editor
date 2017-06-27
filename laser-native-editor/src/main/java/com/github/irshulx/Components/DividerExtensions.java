@@ -41,7 +41,7 @@ public class DividerExtensions {
         view.setTag(editorCore.CreateTag(EditorType.hr));
         int index= editorCore.determineIndex(EditorType.hr);
         if(index==0){
-            Toast.makeText(editorCore.getContext(), "divider cannot be inserted on line zer", Toast.LENGTH_SHORT).show();
+            Toast.makeText(editorCore.getContext(), "divider cannot be inserted on line zero", Toast.LENGTH_SHORT).show();
             return;
         }
         editorCore.getParentView().addView(view, index);
