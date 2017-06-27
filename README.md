@@ -1,5 +1,5 @@
 
-[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-5-red.svg)
+[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-8-red.svg)
 
 Android-WYSIWYG-Editor
 ===================
@@ -8,7 +8,7 @@ Android-WYSIWYG-Editor
 An iframe free text editor that uses native components in the content tree.
 
 <a href="https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg">![alt text][1]</a>
-[1]: https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/Google_Play.png
+ https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/Google_Play.png
 
 
 Download
