@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="laser-native-editor-2.0.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/0c2e630de49c5f05eed532b8b88ca2d74f2a4a42/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/0c2e630de49c5f05eed532b8b88ca2d74f2a4a42/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.irshulx/laser-native-editor/2.0.0/e6b9b81039c9cd77f76296304e7ce120b706e63b/laser-native-editor-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

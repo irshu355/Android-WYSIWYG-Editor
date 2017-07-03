@@ -9,7 +9,6 @@ ext {
     siteUrl = 'http://irshulx.github.io/laser-native-editor'
     gitUrl = 'https://github.com/irshuLx/laser-native-editor.git'
     libraryVersion = '2.0.0'
-
     developerId = 'irshuLx'
     developerName = 'Irshu'
     developerEmail = 'irshu@outlook.com'
