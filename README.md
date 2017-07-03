@@ -1,35 +1,42 @@
-[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-5-red.svg)
+
+[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-8-red.svg)
 
 Android-WYSIWYG-Editor
 ===================
 
-> **Note on 27.05.17:** A major update for the editor will be releasing over the next few days. Un updated README will be avaiable soon.
 
 An iframe free text editor that uses native components in the content tree.
 
-<a href="https://play.google.com/store/apps/details?id=com.github.irshulx.qapp">![alt text][1]</a>
-[1]: https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/play-icon.jpg
+[<img src="https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/play-icon.jpg">](https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg)
+
 
 
 Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:1.2.0'
+    compile 'com.github.irshulx:laser-native-editor:2.0.0'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>1.2.0</version>
+      <version>2.0.0</version>
       <type>pom</type>
     </dependency>
 
 Demo
 --------------
 
-![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-1.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-2.gif)&nbsp;&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/gif-3.gif)&nbsp;&nbsp;&nbsp;![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_1.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_2.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/editor_screen_3.jpg)
+![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-4b5b0fc2bd.gif)&nbsp;![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-3c5a0f84f2.gif)&nbsp;&nbsp;![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/ezgif-3-b3c73d7be8.gif)&nbsp;&nbsp;
+
+
+
+
+
+![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot1.png)&nbsp; ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot2.png)&nbsp; ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot3.png)![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot4.png)
+![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/screenshot5.png)
 
 
 Features
@@ -40,8 +47,6 @@ Features
  - **No Webviews used** to render the content. It uses Native EditText, ImageView and as such to render the contents.
 
  - **HTML Parser:** Render your HTML Code into the editor and vice versa.
-
- - **Image Uploader Api:** Use the Built-in API to upload the images to the server.
 
  - **Integration with web based WYSIWYG's:** HTMLParser helps the Editor to work seemlessly with the WYSIWYG editor on your web platform.
 
@@ -234,24 +239,6 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
  - `InsertMap(String Cords);` Insert the marker into the editor. The cordinates must be of string form,  `"LAT,LNG"`
  - `setMapViewLayout(int layout);` Override the default layout for maps in the editor
 
-## Available Fonts##
-
-You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API, for e.g: `_editor.setFontFace(R.string.fontFamily__cursive);`
-
-![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-1.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-2.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-3.jpg)
-
-| Font Name     | Resource |
-| :------- | :-----: |
-| serif | `R.string.fontFamily__serif` |
-| sans-serif | `R.string.fontFamily__sans_serif` |
-| sans-serif-light | `R.string.fontFamily__sans_serif_light` |
-| sans-serif-condensed | `R.string.fontFamily__sans_serif_condensed` |
-| sans-serif-thin | `R.string.fontFamily__sans_serif_thin` |
-| Serifsans-serif-medium | `R.string.fontFamily__sans_serif_medium` |
-| serif-monospace | `R.string.fontFamily__serif_monospace` |
-| casual | `R.string.fontFamily__casual` |
-| cursive | `R.string.fontFamily__cursive` |
-| monospace | `R.string.fontFamily__monospace` |
 
 ## Overridable layouts ##
 
@@ -270,64 +257,6 @@ You could also set the layouts via the API:
  -  `_editor.setListItemLayout(R.layout.tmpl_list_item);`
 
  -  `_editor.setDividerLayout(R.layout.tmpl_divider_layout);`
-
-##Image Upload
-
-If your editor is to support image upload, you must configure your remote endpoint where the image will be posted to. The editor will issue a POST request with `Content-Type: multipart/form-data`. You can configure the endpoint through the API, for eg:
-` _editor.setImageUploaderUri("www.myhost.com/files/post");`
-Now every image inserted to the editor will issue a POST with the following signature,for eg:
-
-    POST www.myhost.com/files/post HTTP/1.1
-    Content-Type: multipart/form-data; boundary=---------------------------7d81b516112482
-    Accept-Encoding: gzip, deflate
-    Content-Length: 324
-
-If you are using **ASP.NET Web API**, your server wrapper would look something like this:
-
-     public class filesApiController : ApiController
-        {
-            public async Task<HttpResponseMessage> Post()
-            {
-                var httpRequest = System.Web.HttpContext.Current.Request;
-                if (httpRequest.Files.Count > 0)
-                {
-                        var postedFile = httpRequest.Files[0];
-                        String relativePath = "~/Blobs/" + postedFile.FileName;
-                        var filePath = System.Web.HttpContext.Current.Server.MapPath(relativePath);
-                        postedFile.SaveAs(filePath);
-                      string uri=  ResolveServerUrl(VirtualPathUtility.ToAbsolute(relativePath));
-                        // NOTE: To store in memory use postedFile.InputStream
-                        return Request.CreateResponse(HttpStatusCode.Created, new { Uri = uri, ResponseCd =200});
-                }
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-    }
-
-**Note:** Once the upload is complete, you must return the response in the following `JSON` format to let the ediitor grab the uri for the image:
-
-`{Uri:'the uri for the uploaded image', HttpStatusCode:'HTTP status code'}`
-
-`
-
-
-##Adding Callback
-
-     _editor.setEditorListener(new EditorListener() {
-                @Override
-                public void onTextChanged(EditText editText, Editable text) {
-                    // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public Retrofit.Builder onUpload(Retrofit.Builder retrofit) {
-                    //OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-                    //httpClient.addInterceptor(new customHeadersInterceptor());
-                    //OkHttpClient client =  httpClient.build();
-                    //retrofit.client(client);
-                    //return retrofit;
-                    return null;
-                }
-            });
 
 
 ##Future Plans
