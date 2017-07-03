@@ -253,8 +253,6 @@ API
 
  - `insertImage(Bitmap bitmap);` Insert a bitmap image into the editor.
 
- - `setImageUploaderUri(String Url);`used to configure the remote URL ,where you want the image to be uploaded. This is compulsory if you are using the Image Picker.
-
  - `setEditorImageLayout(int layout);` Override the default layout for images in the editor.
 
  - `insertList(boolean isOrdered);`Insert an Ordered or Unordered List.
