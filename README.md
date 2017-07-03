@@ -101,33 +101,20 @@ For a complete overview of the implementation, please take a look at [EditorTest
         //you must call editor.render() to be able to display the editor
         
         findViewById(R.id.action_h1).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H1));
-
         findViewById(R.id.action_h2).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H2));
-
         findViewById(R.id.action_h3).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H3));
-
         findViewById(R.id.action_bold).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.BOLD));
-
         findViewById(R.id.action_Italic).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.ITALIC));
-
         findViewById(R.id.action_indent).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.INDENT));
-
         findViewById(R.id.action_outdent).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.OUTDENT));
-
         findViewById(R.id.action_bulleted).setOnClickListener(v -> editor.insertList(false));
-
         findViewById(R.id.action_unordered_numbered).setOnClickListener(v -> editor.insertList(true));
-
         findViewById(R.id.action_hr).setOnClickListener(v -> editor.insertDivider());
-
         findViewById(R.id.action_insert_image).setOnClickListener(v -> editor.openImagePicker());
-
         findViewById(R.id.action_insert_link).setOnClickListener(v -> editor.insertLink());
-
         findViewById(R.id.action_map).setOnClickListener(v -> editor.insertMap());
-
         findViewById(R.id.action_erase).setOnClickListener(v -> editor.clearAllContents());
-        
+   
         editor.render(); 
     }
 
