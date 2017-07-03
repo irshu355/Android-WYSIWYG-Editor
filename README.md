@@ -97,6 +97,9 @@ For a complete overview of the implementation, please take a look at [EditorTest
      protected void onCreate(Bundle savedInstanceState) {
 
         editor = (Editor) findViewById(R.id.editor);
+        
+        //you must call editor.render() to be able to display the editor
+        
         findViewById(R.id.action_h1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
