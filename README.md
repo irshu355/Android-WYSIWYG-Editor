@@ -48,8 +48,6 @@ Features
 
  - **HTML Parser:** Render your HTML Code into the editor and vice versa.
 
- - **Image Uploader Api:** Use the Built-in API to upload the images to the server.
-
  - **Integration with web based WYSIWYG's:** HTMLParser helps the Editor to work seemlessly with the WYSIWYG editor on your web platform.
 
 The editor is built, so that every part of the design have been exposed and is available for customization. You can define, how the editor should look like, and what are the controls, that should be available (the controls toolbar layout can also be created by yourself, just call the API methods on the click event).
@@ -241,24 +239,6 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
  - `InsertMap(String Cords);` Insert the marker into the editor. The cordinates must be of string form,  `"LAT,LNG"`
  - `setMapViewLayout(int layout);` Override the default layout for maps in the editor
 
-## Available Fonts##
-
-You are free to set any of the below fonts as the default font for your editor.  To apply the font, use the API, for e.g: `_editor.setFontFace(R.string.fontFamily__cursive);`
-
-![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-1.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-2.jpg)&nbsp;&nbsp;&nbsp; ![enter image description here](https://raw.githubusercontent.com/irshuLx/laser-native-editor/master/screens/font-style-3.jpg)
-
-| Font Name     | Resource |
-| :------- | :-----: |
-| serif | `R.string.fontFamily__serif` |
-| sans-serif | `R.string.fontFamily__sans_serif` |
-| sans-serif-light | `R.string.fontFamily__sans_serif_light` |
-| sans-serif-condensed | `R.string.fontFamily__sans_serif_condensed` |
-| sans-serif-thin | `R.string.fontFamily__sans_serif_thin` |
-| Serifsans-serif-medium | `R.string.fontFamily__sans_serif_medium` |
-| serif-monospace | `R.string.fontFamily__serif_monospace` |
-| casual | `R.string.fontFamily__casual` |
-| cursive | `R.string.fontFamily__cursive` |
-| monospace | `R.string.fontFamily__monospace` |
 
 ## Overridable layouts ##
 
@@ -277,64 +257,6 @@ You could also set the layouts via the API:
  -  `_editor.setListItemLayout(R.layout.tmpl_list_item);`
 
  -  `_editor.setDividerLayout(R.layout.tmpl_divider_layout);`
-
-##Image Upload
-
-If your editor is to support image upload, you must configure your remote endpoint where the image will be posted to. The editor will issue a POST request with `Content-Type: multipart/form-data`. You can configure the endpoint through the API, for eg:
-` _editor.setImageUploaderUri("www.myhost.com/files/post");`
-Now every image inserted to the editor will issue a POST with the following signature,for eg:
-
-    POST www.myhost.com/files/post HTTP/1.1
-    Content-Type: multipart/form-data; boundary=---------------------------7d81b516112482
-    Accept-Encoding: gzip, deflate
-    Content-Length: 324
-
-If you are using **ASP.NET Web API**, your server wrapper would look something like this:
-
-     public class filesApiController : ApiController
-        {
-            public async Task<HttpResponseMessage> Post()
-            {
-                var httpRequest = System.Web.HttpContext.Current.Request;
-                if (httpRequest.Files.Count > 0)
-                {
-                        var postedFile = httpRequest.Files[0];
-                        String relativePath = "~/Blobs/" + postedFile.FileName;
-                        var filePath = System.Web.HttpContext.Current.Server.MapPath(relativePath);
-                        postedFile.SaveAs(filePath);
-                      string uri=  ResolveServerUrl(VirtualPathUtility.ToAbsolute(relativePath));
-                        // NOTE: To store in memory use postedFile.InputStream
-                        return Request.CreateResponse(HttpStatusCode.Created, new { Uri = uri, ResponseCd =200});
-                }
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-    }
-
-**Note:** Once the upload is complete, you must return the response in the following `JSON` format to let the ediitor grab the uri for the image:
-
-`{Uri:'the uri for the uploaded image', HttpStatusCode:'HTTP status code'}`
-
-`
-
-
-##Adding Callback
-
-     _editor.setEditorListener(new EditorListener() {
-                @Override
-                public void onTextChanged(EditText editText, Editable text) {
-                    // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public Retrofit.Builder onUpload(Retrofit.Builder retrofit) {
-                    //OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-                    //httpClient.addInterceptor(new customHeadersInterceptor());
-                    //OkHttpClient client =  httpClient.build();
-                    //retrofit.client(client);
-                    //return retrofit;
-                    return null;
-                }
-            });
 
 
 ##Future Plans
