@@ -223,7 +223,8 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
 
 
 
-##API
+API
+-------------------
 
  - `render();` Render the editor. This method must be called to render the editor.
 
@@ -333,7 +334,8 @@ You could also set the layouts via the API:
  -  `_editor.setDividerLayout(R.layout.tmpl_divider_layout);`
 
 
-##Future Plans
+Future Plans
+-------------------
 
 
  - Insert quotes.
@@ -345,7 +347,6 @@ You could also set the layouts via the API:
 Contributions are much appreciated, feel free to fork and customize for your needs.
 
 If you come across any bugs or needs, please mention it on issues, i will address it and resolve it the latest possible.
-
 
 ##License
 
