@@ -12,10 +12,10 @@ An iframe free text editor that uses native components in the content tree.
 What's New in 2.0.0
 ------------
 
- 1. **A better editor**
- 2. **Automatic image upload functionality has been removed**. You will have to do the upload on your own, just pass the uri to the editor.
- 3. **Custom fonts**. You can now apply custom fonts for the editor ( with option for seperate fonts for header and content)
- 4. **Subtitle option for images**
+ - **A better editor**
+ - **Automatic image upload functionality has been removed**. You will have to do the upload on your own, just pass the uri to the editor.
+ - **Custom fonts**. You can now apply custom fonts for the editor ( with option for seperate fonts for header and content)
+ - **Subtitle option for images**
 
 Download
 ------------
