@@ -9,6 +9,13 @@ An iframe free text editor that uses native components in the content tree.
 [<img src="https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/play-icon.jpg">](https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg)
 
 
+What's New in 2.0.0
+------------
+
+ 1. **A better editor**
+ 2. **Automatic image upload functionality has been removed**. You will have to do the upload on your own, just pass the uri to the editor.
+ 3. **Custom fonts**. You can now apply custom fonts for the editor ( with option for seperate fonts for header and content)
+ 4. **Subtitle option for images**
 
 Download
 ------------
@@ -97,26 +104,105 @@ For a complete overview of the implementation, please take a look at [EditorTest
      protected void onCreate(Bundle savedInstanceState) {
 
         editor = (Editor) findViewById(R.id.editor);
-        
-        //you must call editor.render() to be able to display the editor
-        
-        findViewById(R.id.action_h1).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H1));
-        findViewById(R.id.action_h2).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H2));
-        findViewById(R.id.action_h3).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H3));
-        findViewById(R.id.action_bold).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.BOLD));
-        findViewById(R.id.action_Italic).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.ITALIC));
-        findViewById(R.id.action_indent).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.INDENT));
-        findViewById(R.id.action_outdent).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.OUTDENT));
-        findViewById(R.id.action_bulleted).setOnClickListener(v -> editor.insertList(false));
-        findViewById(R.id.action_unordered_numbered).setOnClickListener(v -> editor.insertList(true));
-        findViewById(R.id.action_hr).setOnClickListener(v -> editor.insertDivider());
-        findViewById(R.id.action_insert_image).setOnClickListener(v -> editor.openImagePicker());
-        findViewById(R.id.action_insert_link).setOnClickListener(v -> editor.insertLink());
-        findViewById(R.id.action_map).setOnClickListener(v -> editor.insertMap());
-        findViewById(R.id.action_erase).setOnClickListener(v -> editor.clearAllContents());
-   
-        editor.render(); 
+        findViewById(R.id.action_h1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextStyle(EditorTextStyle.H1);
+            }
+        });
+
+        findViewById(R.id.action_h2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextStyle(EditorTextStyle.H2);
+            }
+        });
+
+        findViewById(R.id.action_h3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextStyle(EditorTextStyle.H3);
+            }
+        });
+
+        findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextStyle(EditorTextStyle.BOLD);
+            }
+        });
+
+        findViewById(R.id.action_Italic).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextStyle(EditorTextStyle.ITALIC);
+            }
+        });
+
+        findViewById(R.id.action_indent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextStyle(EditorTextStyle.INDENT);
+            }
+        });
+
+        findViewById(R.id.action_outdent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextStyle(EditorTextStyle.OUTDENT);
+            }
+        });
+
+        findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.insertList(false);
+            }
+        });
+
+        findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.insertList(true);
+            }
+        });
+
+        findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.insertDivider();
+            }
+        });
+
+        findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.openImagePicker();
+            }
+        });
+
+        findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.insertLink();
+            }
+        });
+
+        findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.insertMap();
+            }
+        });
+
+        findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.clearAllContents();
+            }
+        });
     }
+    editor.render(); 
 
 
 
@@ -240,17 +326,17 @@ You can create your own layouts with the same Id's with the required Id's and pu
 
 | Layout     | Description | Required Id's |
 | :------- | :-----: |:-----: |
-| [R.layout.tmpl_image_view](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_image_view.xml) | Used to insert an image to the editor  | `@+id/progress`, `@+id/lblStatus`,`@+id/imageView`,`@+id/btn_remove`, `@+id/desc`
+| [R.layout.tmpl_image_view](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_image_view.xml) | Used to insert an image to the editor  | `@+id/progress`, `@+id/lblStatus`,`@+id/imageView`,`@+id/btn_remove`
 | [R.layout.tmpl_list_item](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_list_item.xml) | Used to insert an ordered/unordered list  | `@+id/lblOrder`, `@+id/txtText`,`@+id/lblText`
 | [R.layout.tmpl_divider_layout](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml) | Used to insert a line divider  | -
 
 You could also set the layouts via the API:
 
- -  `editor.setEditorImageLayout(R.layout.tmpl_image_view);`
+ -  `_editor.setEditorImageLayout(R.layout.tmpl_image_view);`
 
- -  `editor.setListItemLayout(R.layout.tmpl_list_item);`
+ -  `_editor.setListItemLayout(R.layout.tmpl_list_item);`
 
- -  `editor.setDividerLayout(R.layout.tmpl_divider_layout);`
+ -  `_editor.setDividerLayout(R.layout.tmpl_divider_layout);`
 
 
 Future Plans
