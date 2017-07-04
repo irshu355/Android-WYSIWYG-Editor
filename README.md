@@ -332,11 +332,11 @@ You can create your own layouts with the same Id's with the required Id's and pu
 
 You could also set the layouts via the API:
 
- -  `_editor.setEditorImageLayout(R.layout.tmpl_image_view);`
+ -  `editor.setEditorImageLayout(R.layout.tmpl_image_view);`
 
- -  `_editor.setListItemLayout(R.layout.tmpl_list_item);`
+ -  `editor.setListItemLayout(R.layout.tmpl_list_item);`
 
- -  `_editor.setDividerLayout(R.layout.tmpl_divider_layout);`
+ -  `editor.setDividerLayout(R.layout.tmpl_divider_layout);`
 
 
 Future Plans
