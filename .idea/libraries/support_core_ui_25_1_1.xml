@@ -5,8 +5,8 @@
       <root url="jar://$PROJECT_DIR$/laser-native-editor/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/c4e4276bc5edeb4df18d2203add66aa5cd4708b4/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/c4e4276bc5edeb4df18d2203add66aa5cd4708b4/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/cc6b59b89270cffa22e7f250d7eeac975a82561e/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/cc6b59b89270cffa22e7f250d7eeac975a82561e/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -25,10 +25,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.irshulx.EditorCore;
@@ -88,7 +85,7 @@ public class ImageExtensions {
         if(editorCore.isLastRow(childLayout)) {
             editorCore.getInputExtensions().insertEditText(index + 1, null, null);
         }
-        EditorControl control= editorCore.CreateTag(EditorType.img);
+        EditorControl control= editorCore.createTag(EditorType.img);
         control.Path=uuid; // set the imageId,so we can recognize later after upload
         childLayout.setTag(control);
         childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
@@ -124,7 +121,7 @@ public class ImageExtensions {
     public View findImageById(String imageId){
         for(int i=0;i<editorCore.getParentChildCount();i++){
             View view = editorCore.getParentView().getChildAt(i);
-            EditorControl control = editorCore.GetControlTag(view);
+            EditorControl control = editorCore.getControlTag(view);
             if(!TextUtils.isEmpty(control.Path)&&control.Path.equals(imageId))
                 return view;
         }
@@ -136,7 +133,7 @@ public class ImageExtensions {
         final TextView lblStatus = (TextView) view.findViewById(R.id.lblStatus);
         lblStatus.setText(!TextUtils.isEmpty(url)?"Upload complete":"Upload failed");
         if(!TextUtils.isEmpty(url)) {
-            EditorControl control = editorCore.CreateTag(EditorType.img);
+            EditorControl control = editorCore.createTag(EditorType.img);
             control.Path = url;
             view.setTag(control);
             TimerTask timerTask = new TimerTask() {

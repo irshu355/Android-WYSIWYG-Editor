@@ -100,6 +100,7 @@ public class EditorCore extends LinearLayout {
 
     /**
      * returns activity
+     *
      * @return
      */
     public Activity getActivity() {
@@ -108,6 +109,7 @@ public class EditorCore extends LinearLayout {
 
     /**
      * used to get the editor node
+     *
      * @return
      */
     public LinearLayout getParentView() {
@@ -116,6 +118,7 @@ public class EditorCore extends LinearLayout {
 
     /**
      * Get number of childs in the editor
+     *
      * @return
      */
     public int getParentChildCount() {
@@ -124,6 +127,7 @@ public class EditorCore extends LinearLayout {
 
     /**
      * returns whether editor is set as Editor or Rendeder
+     *
      * @return
      */
     public RenderType getRenderType() {
@@ -132,6 +136,7 @@ public class EditorCore extends LinearLayout {
 
     /**
      * no idea what this is
+     *
      * @return
      */
     public Resources getResources() {
@@ -140,6 +145,7 @@ public class EditorCore extends LinearLayout {
 
     /**
      * The current active view on the editor
+     *
      * @return
      */
     public View getActiveView() {
@@ -223,6 +229,7 @@ public class EditorCore extends LinearLayout {
 
     /**
      * determine target index for the next insert,
+     *
      * @param type
      * @return
      */
@@ -234,7 +241,7 @@ public class EditorCore extends LinearLayout {
         if (_view == null)
             return size;
         int currentIndex = this.__parentView.indexOfChild(_view);
-        EditorType tag = GetControlType(_view);
+        EditorType tag = getControlType(_view);
         if (tag == EditorType.INPUT) {
             int length = ((EditText) this.__activeView).getText().length();
             if (length > 0) {
@@ -253,7 +260,7 @@ public class EditorCore extends LinearLayout {
         }
     }
 
-    public boolean ContainsStyle(List<EditorTextStyle> _Styles, EditorTextStyle style) {
+    public boolean containsStyle(List<EditorTextStyle> _Styles, EditorTextStyle style) {
         for (EditorTextStyle item : _Styles) {
             if (item == style) {
                 return true;
@@ -263,7 +270,7 @@ public class EditorCore extends LinearLayout {
         return false;
     }
 
-    public EditorControl UpdateTagStyle(EditorControl controlTag, EditorTextStyle style, Op _op) {
+    public EditorControl updateTagStyle(EditorControl controlTag, EditorTextStyle style, Op _op) {
         List<EditorTextStyle> styles = controlTag._ControlStyles;
         if (_op == Op.Delete) {
             int index = styles.indexOf(style);
@@ -280,17 +287,17 @@ public class EditorCore extends LinearLayout {
         return controlTag;
     }
 
-    public EditorType GetControlType(View _view) {
+    public EditorType getControlType(View _view) {
         EditorControl _control = (EditorControl) _view.getTag();
         return _control.Type;
     }
 
-    public EditorControl GetControlTag(View view) {
+    public EditorControl getControlTag(View view) {
         EditorControl control = (EditorControl) view.getTag();
         return control;
     }
 
-    public EditorControl CreateTag(EditorType type) {
+    public EditorControl createTag(EditorType type) {
         EditorControl control = new EditorControl();
         control.Type = type;
         control._ControlStyles = new ArrayList<>();
@@ -316,7 +323,6 @@ public class EditorCore extends LinearLayout {
          */
 
 
-
         if (contentType != null && (contentType.Type == EditorType.OL_LI || contentType.Type == EditorType.UL_LI)) {
             __listItemExtensions.validateAndRemoveLisNode(view, contentType);
             return;
@@ -328,7 +334,7 @@ public class EditorCore extends LinearLayout {
         /**
          * If its an image or map, do not delete edittext, as there is nothing to focus on after image
          */
-        if(control.Type==EditorType.img || control.Type==EditorType.map){
+        if (control.Type == EditorType.img || control.Type == EditorType.map) {
             return;
         }
         /*
@@ -344,22 +350,22 @@ public class EditorCore extends LinearLayout {
          *
          */
             this.__parentView.removeView(view);
-            __listItemExtensions.setFocusToList(toFocus,ListItemExtensions.POSITION_END);
+            __listItemExtensions.setFocusToList(toFocus, ListItemExtensions.POSITION_END);
         } else {
-            RemoveParent(view);
+            removeParent(view);
         }
     }
 
 
-    public void RemoveParent(View view) {
+    public void removeParent(View view) {
         int indexOfDeleteItem = __parentView.indexOfChild(view);
         View nextItem = null;
         //remove hr if its on top of the delete field
         this.__parentView.removeView(view);
-       if(__dividerExtensions.deleteHr(indexOfDeleteItem - 1))
-           indexOfDeleteItem-=1;
-        for (int i = 0; i <indexOfDeleteItem; i++) {
-            if (GetControlType(__parentView.getChildAt(i)) == EditorType.INPUT) {
+        if (__dividerExtensions.deleteHr(indexOfDeleteItem - 1))
+            indexOfDeleteItem -= 1;
+        for (int i = 0; i < indexOfDeleteItem; i++) {
+            if (getControlType(__parentView.getChildAt(i)) == EditorType.INPUT) {
                 nextItem = __parentView.getChildAt(i);
                 continue;
             }
@@ -376,13 +382,13 @@ public class EditorCore extends LinearLayout {
 
     public EditorContent getStateFromString(String content) {
         if (content == null) {
-            content = GetValue("editorState", "");
+            content = getValue("editorState", "");
         }
         EditorContent deserialized = __gson.fromJson(content, EditorContent.class);
         return deserialized;
     }
 
-    public String GetValue(String Key, String defaultVal) {
+    public String getValue(String Key, String defaultVal) {
         SharedPreferences _Preferences = __context.getSharedPreferences(SHAREDPREFERENCE, 0);
         return _Preferences.getString(Key, defaultVal);
 
@@ -427,7 +433,7 @@ public class EditorCore extends LinearLayout {
         for (int i = 0; i < childCount; i++) {
             Node node = new Node();
             View view = __parentView.getChildAt(i);
-            EditorType type = GetControlType(view);
+            EditorType type = getControlType(view);
             node.type = type;
             node.content = new ArrayList<>();
             switch (type) {
@@ -440,10 +446,10 @@ public class EditorCore extends LinearLayout {
                     break;
                 case img:
                     EditorControl imgTag = (EditorControl) view.getTag();
-                    if(!TextUtils.isEmpty(imgTag.Path)) {
+                    if (!TextUtils.isEmpty(imgTag.Path)) {
                         node.content.add(imgTag.Path);
-                        Editable desc =((EditText)view.findViewById(R.id.desc)).getText();
-                        node.content.add(desc.length()>0?desc.toString():"");
+                        Editable desc = ((EditText) view.findViewById(R.id.desc)).getText();
+                        node.content.add(desc.length() > 0 ? desc.toString() : "");
                         list.add(node);
                     }
                     //field type, content[]
@@ -464,9 +470,9 @@ public class EditorCore extends LinearLayout {
                     break;
                 case map:
                     EditorControl mapTag = (EditorControl) view.getTag();
-                    Editable desc = ((CustomEditText)view.findViewById(R.id.desc)).getText();
+                    Editable desc = ((CustomEditText) view.findViewById(R.id.desc)).getText();
                     node.content.add(mapTag.Cords);
-                    node.content.add(desc.length()>0?desc.toString():"");
+                    node.content.add(desc.length() > 0 ? desc.toString() : "");
                     list.add(node);
             }
         }
@@ -474,7 +480,7 @@ public class EditorCore extends LinearLayout {
         return editorState;
     }
 
-    public void RenderEditor(EditorContent _state) {
+    public void renderEditor(EditorContent _state) {
         this.__parentView.removeAllViews();
         for (Node item : _state.nodes) {
             switch (item.type) {
@@ -488,12 +494,12 @@ public class EditorCore extends LinearLayout {
                     }
                     break;
                 case hr:
-                    __dividerExtensions.InsertDivider();
+                    __dividerExtensions.insertDivider();
                     break;
                 case img:
                     String path = item.content.get(0);
                     String desc = item.content.get(1);
-                    __imageExtensions.loadImage(path,desc);
+                    __imageExtensions.loadImage(path, desc);
                     break;
                 case ul:
                 case ol:
@@ -507,7 +513,7 @@ public class EditorCore extends LinearLayout {
                     }
                     break;
                 case map:
-                    __mapExtensions.insertMap(item.content.get(0),item.content.get(1), true);
+                    __mapExtensions.insertMap(item.content.get(0), item.content.get(1), true);
                     break;
             }
         }
@@ -521,7 +527,7 @@ public class EditorCore extends LinearLayout {
     }
 
 
-    public void RenderEditorFromHtml(String content) {
+    public void renderEditorFromHtml(String content) {
         __htmlExtensions.parseHtml(content);
     }
 
@@ -532,17 +538,17 @@ public class EditorCore extends LinearLayout {
 
     public void onBackspace(CustomEditText editText) {
         int len = editText.getText().length();
-        int selection= editText.getSelectionStart();
-        if(selection==0)
+        int selection = editText.getSelectionStart();
+        if (selection == 0)
             return;
-        editText.getText().delete(selection,1);
+        editText.getText().delete(selection, 1);
 
 //                if(editText.requestFocus())
 //                editText.setSelection(editText.getText().length());
     }
 
     public boolean onKey(View v, int keyCode, KeyEvent event, CustomEditText editText) {
-        if(keyCode != KeyEvent.KEYCODE_DEL){
+        if (keyCode != KeyEvent.KEYCODE_DEL) {
             return false;
         }
         if (__inputExtensions.isEditTextEmpty(editText)) {
@@ -552,29 +558,29 @@ public class EditorCore extends LinearLayout {
         int length = editText.getText().length();
         int selectionStart = editText.getSelectionStart();
 
-        EditorType editorType = GetControlType(this.__activeView);
+        EditorType editorType = getControlType(this.__activeView);
         CustomEditText nextFocus;
-        if(selectionStart==0 &&length>0){
-            if((editorType==EditorType.UL_LI||editorType==EditorType.OL_LI)){
+        if (selectionStart == 0 && length > 0) {
+            if ((editorType == EditorType.UL_LI || editorType == EditorType.OL_LI)) {
                 //now that we are inside the edittext, focus inside it
                 int index = __listItemExtensions.getIndexOnEditorByEditText(editText);
-                if(index==0){
+                if (index == 0) {
                     deleteFocusedPrevious(editText);
                 }
-            }else{
-                int index=getParentView().indexOfChild(editText);
-                if(index==0)
+            } else {
+                int index = getParentView().indexOfChild(editText);
+                if (index == 0)
                     return false;
                 nextFocus = __inputExtensions.getEditTextPrevious(index);
                 deleteFocusedPrevious(editText);
-                nextFocus.setText(nextFocus.getText().toString()+editText.getText().toString());
+                nextFocus.setText(nextFocus.getText().toString() + editText.getText().toString());
             }
         }
         return false;
     }
 
     public class Utilities {
-        public int[] GetScreenDimension() {
+        public int[] getScreenDimension() {
             Display display = ((Activity) __context).getWindowManager().getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);

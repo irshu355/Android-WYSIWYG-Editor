@@ -28,27 +28,30 @@ import com.github.irshulx.models.RenderType;
  * Created by mkallingal on 5/1/2016.
  */
 public class DividerExtensions {
-    private int dividerLayout= R.layout.tmpl_divider_layout;
+    private int dividerLayout = R.layout.tmpl_divider_layout;
     EditorCore editorCore;
-    public DividerExtensions(EditorCore editorCore){
+
+    public DividerExtensions(EditorCore editorCore) {
         this.editorCore = editorCore;
     }
-    public void setDividerLayout(int layout){
-        this.dividerLayout=layout;
+
+    public void setDividerLayout(int layout) {
+        this.dividerLayout = layout;
     }
-    public void InsertDivider(){
-        View view=  ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.dividerLayout, null);
-        view.setTag(editorCore.CreateTag(EditorType.hr));
-        int index= editorCore.determineIndex(EditorType.hr);
-        if(index==0){
+
+    public void insertDivider() {
+        View view = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.dividerLayout, null);
+        view.setTag(editorCore.createTag(EditorType.hr));
+        int index = editorCore.determineIndex(EditorType.hr);
+        if (index == 0) {
             Toast.makeText(editorCore.getContext(), "divider cannot be inserted on line zero", Toast.LENGTH_SHORT).show();
             return;
         }
         editorCore.getParentView().addView(view, index);
-        if(editorCore.isLastRow(view)&& editorCore.getRenderType()== RenderType.Editor) {
+        if (editorCore.isLastRow(view) && editorCore.getRenderType() == RenderType.Editor) {
             //check if ul is active
-           editorCore.getInputExtensions().insertEditText(index + 1, null, null);
-        }else if(editorCore.getRenderType()==RenderType.Editor){
+            editorCore.getInputExtensions().insertEditText(index + 1, null, null);
+        } else if (editorCore.getRenderType() == RenderType.Editor) {
 //            editorCore.getParentView().removeViewAt(index+1);
 //            /**
 //             * set focus to the next nearby edittext
@@ -56,9 +59,10 @@ public class DividerExtensions {
 //            setFocusToNearbyEditText(index+1);
         }
     }
+
     public boolean deleteHr(int indexOfDeleteItem) {
-        View view= editorCore.getParentView().getChildAt(indexOfDeleteItem);
-        if(editorCore.GetControlType(view)==EditorType.hr){
+        View view = editorCore.getParentView().getChildAt(indexOfDeleteItem);
+        if (editorCore.getControlType(view) == EditorType.hr) {
             editorCore.getParentView().removeView(view);
             return true;
         }
