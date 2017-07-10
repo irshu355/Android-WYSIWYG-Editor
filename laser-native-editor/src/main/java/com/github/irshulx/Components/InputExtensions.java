@@ -208,7 +208,14 @@ public class InputExtensions{
                             if (index == 0) {
                                 editText.setHint(null);
                             }
-                            insertEditText(index + 1, null,i==s.length()-1?null:s.subSequence(i+1,s.length()-1).toString());
+                            int position = index + 1;
+                            String hint = null;
+                            String newText = null;
+                            int lastIndex = s.length() - 1;
+                            int nextIndex = i + 1;
+                            if (nextIndex < lastIndex)
+                                newText = s.subSequence(nextIndex, lastIndex).toString();
+                            insertEditText(position, hint, newText);
                         }
                     }
                 }
