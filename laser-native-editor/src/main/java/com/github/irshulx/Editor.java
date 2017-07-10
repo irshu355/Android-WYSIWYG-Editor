@@ -53,20 +53,20 @@
         public String getContentAsHTML(String editorContentAsSerialized){
             return getHtmlExtensions().getContentAsHTML(editorContentAsSerialized);
         }
-        public void Render(EditorContent _state) {
+        public void render(EditorContent _state) {
             super.RenderEditor(_state);
         }
-        public void Render(String HtmlString){
+        public void render(String HtmlString){
             RenderEditorFromHtml(HtmlString);
         }
-        public void Render(){
+        public void render(){
             if (getRenderType() == RenderType.Editor) {
                 getInputExtensions().insertEditText(0, this.PlaceHolder, null);
             }
         }
-        private void RestoreState(){
+        private void restoreState(){
             EditorContent state= getStateFromString(null);
-            Render(state);
+            render(state);
         }
         public void clearAllContents(){
              super.clearAllContents();
@@ -111,7 +111,7 @@
         }
 
 
-        public void UpdateTextStyle(EditorTextStyle style){
+        public void updateTextStyle(EditorTextStyle style){
             getInputExtensions().UpdateTextStyle(style, null);
         }
 
@@ -171,7 +171,7 @@
         public void setDividerLayout(int layout){
             this.getDividerExtensions().setDividerLayout(layout);
         }
-        public void InsertDivider() {
+        public void insertDivider() {
             getDividerExtensions().InsertDivider();
         }
 
@@ -184,10 +184,10 @@
         public void setEditorImageLayout(int layout){
             this.getImageExtensions().setEditorImageLayout(layout);
         }
-        public void OpenImagePicker() {
+        public void openImagePicker() {
             getImageExtensions().OpenImageGallery();
         }
-        public void InsertImage(Bitmap bitmap){
+        public void insertImage(Bitmap bitmap){
             getImageExtensions().InsertImage(bitmap, -1);
         }
 
@@ -207,7 +207,7 @@
         public void setListItemLayout(int layout){
             this.getListItemExtensions().setListItemTemplate(layout);
         }
-        public void InsertList(boolean isOrdered){
+        public void insertList(boolean isOrdered){
             this.getListItemExtensions().Insertlist(isOrdered);
         }
 
@@ -222,10 +222,10 @@
             this.getMapExtensions().setMapViewTemplate(layout);
         }
 
-        public void InsertMap(){
+        public void insertMap(){
             getMapExtensions().loadMapActivity();
         }
-        public void InsertMap(String Cords){
+        public void insertMap(String Cords){
             getMapExtensions().insertMap(Cords, null, true);
         }
 
@@ -236,7 +236,7 @@
          * @deprecated
          */
         @Deprecated
-        public void ExpressSetup(){
+        public void expressSetup(){
          }
         //endregion
 
