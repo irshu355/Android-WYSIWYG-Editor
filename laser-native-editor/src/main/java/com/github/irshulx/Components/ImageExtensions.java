@@ -119,6 +119,7 @@ public class ImageExtensions {
             if (prevType == EditorType.INPUT)
                 hint = null;
         }
+        Log.d("hideInputHint", "hideInputHint : " + index + " hint : " + hint);
 
         TextView tv = (TextView) view;
         tv.setHint(hint);
@@ -222,8 +223,8 @@ public class ImageExtensions {
             @Override
             public void onClick(View v) {
                 int index = editorCore.getParentView().indexOfChild(layout);
-                hideInputHint(index);
                 editorCore.getParentView().removeView(layout);
+                hideInputHint(index);
                 editorCore.getInputExtensions().setFocusToPrevious(index);
             }
         });
