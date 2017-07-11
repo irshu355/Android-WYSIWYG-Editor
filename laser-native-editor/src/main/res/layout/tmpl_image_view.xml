@@ -1,77 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp">
+
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/imageView"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:focusable="true"
-        android:src="@color/lightBackground"
         android:focusableInTouchMode="true"
-        android:layout_height="wrap_content"
-        />
+        android:src="@color/lightBackground" />
+
     <com.github.irshulx.Components.CustomEditText
-        android:layout_width="match_parent"
-        android:textSize="12sp"
+        android:id="@+id/desc"
         style="@style/WysiwygEditText"
-        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
+        android:layout_marginTop="3dp"
+        android:background="@android:color/transparent"
+        android:gravity="center_horizontal"
+        android:hint="Description here (optional)"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:textColor="@color/darktext"
-        android:id="@+id/desc"
-        android:gravity="center_horizontal"
-        android:background="@android:color/transparent"
-        android:hint="Description here (optional)"
-        android:layout_height="wrap_content" />
+        android:textSize="12sp" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
         <ProgressBar
+            android:id="@+id/progress"
             android:layout_width="wrap_content"
-            android:visibility="gone"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:indeterminate="true"
             android:indeterminateTint="@color/colorPrimary"
             android:indeterminateTintMode="src_in"
-            android:layout_height="wrap_content"
-            android:id="@+id/progress"
-            android:indeterminate="true" />
+            android:visibility="gone" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:textColor="@color/f5f5f5"
             android:id="@+id/lblStatus"
-            android:paddingRight="8dp"
-            android:gravity="center_horizontal"
-            android:layout_centerInParent="true"
-            android:textSize="@dimen/larger_text"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:visibility="gone"
-            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/progress"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:paddingBottom="2dp"
             android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="2dp"
             android:text="Uploading..."
-            android:layout_height="wrap_content" />
+            android:textColor="@color/f5f5f5"
+            android:textSize="@dimen/larger_text"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <ImageButton
-        android:maxHeight="40dp"
-        android:maxWidth="40dp"
+        android:id="@+id/btn_remove"
         android:layout_width="40dp"
-        android:background="@android:color/transparent"
         android:layout_height="40dp"
-        android:visibility="gone"
-            android:id="@+id/btn_remove"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_close_white_36dp" />
+        android:background="@android:color/transparent"
+        android:maxHeight="40dp"
+        android:maxWidth="40dp"
+        android:src="@drawable/ic_close_white_36dp"
+        android:visibility="gone" />
 
 
 </RelativeLayout>
