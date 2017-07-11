@@ -58,7 +58,7 @@ public class MapExtensions {
         String[] x= cords.split(",");
         String lat = x[0];
         String lng = x[1];
-        int[]size= editorCore.getUtilitiles().GetScreenDimension();
+        int[]size= editorCore.getUtilitiles().getScreenDimension();
         int width=size[0];
 //        ImageView imageView = new ImageView(context);
 //        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 400);
@@ -102,7 +102,7 @@ public class MapExtensions {
                 editorCore.getParentView().removeView(childLayout);
             }
         });
-        EditorControl control = editorCore.CreateTag(EditorType.map);
+        EditorControl control = editorCore.createTag(EditorType.map);
         control.Cords= cords;
         childLayout.setTag(control);
         int Index= editorCore.determineIndex(EditorType.map);

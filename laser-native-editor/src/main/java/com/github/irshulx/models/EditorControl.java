@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class EditorControl {
     public EditorType Type;
-    public String Path;
+    public String path;
     public String Cords;
     public List<EditorTextStyle> _ControlStyles;
 }

@@ -1,146 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="horizontal">
 
 
     <Button
-        android:text="H1"
-        android:width="40dp"
-        android:height="40dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:background="@android:color/transparent"
-        android:textColor="#444444"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
         android:id="@+id/action_h1"
-        />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:width="40dp"
+        android:height="40dp"
+        android:background="@android:color/transparent"
+        android:text="H1"
+        android:textColor="#444444"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <Button
-        android:text="H2"
         android:id="@+id/action_h2"
-        android:textStyle="bold"
-        android:textColor="#444444"
-        android:background="@android:color/transparent"
-        android:width="40dp"
-        android:textSize="16sp"
-        android:height="40dp"
         android:layout_width="40dp"
-        android:layout_height="40dp"/>
+        android:layout_height="40dp"
+        android:width="40dp"
+        android:height="40dp"
+        android:background="@android:color/transparent"
+        android:text="H2"
+        android:textColor="#444444"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <Button
-        android:text="H3"
         android:id="@+id/action_h3"
-        android:textStyle="bold"
-        android:textColor="#444444"
-        android:background="@android:color/transparent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:width="40dp"
-        android:textSize="16sp"
         android:height="40dp"
-        android:layout_width="40dp"
-        android:layout_height="40dp"/>
+        android:background="@android:color/transparent"
+        android:text="H3"
+        android:textColor="#444444"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <ImageButton
-        android:maxHeight="20dp"
-        android:maxWidth="20dp"
+        android:id="@+id/action_bold"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/icon_bold"
-        android:id="@+id/action_bold" />
-
-    <ImageButton
         android:maxHeight="20dp"
         android:maxWidth="20dp"
+        android:src="@drawable/icon_bold" />
+
+    <ImageButton
+        android:id="@+id/action_Italic"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/icon_italic"
-        android:id="@+id/action_Italic" />
-
-    <ImageButton
         android:maxHeight="20dp"
         android:maxWidth="20dp"
+        android:src="@drawable/icon_italic" />
+
+    <ImageButton
+        android:id="@+id/action_indent"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/icon_indent"
-        android:id="@+id/action_indent" />
-
-    <ImageButton
         android:maxHeight="20dp"
         android:maxWidth="20dp"
+        android:src="@drawable/icon_indent" />
+
+    <ImageButton
+        android:id="@+id/action_outdent"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/icon_outdent"
-        android:id="@+id/action_outdent" />
-
+        android:maxHeight="20dp"
+        android:maxWidth="20dp"
+        android:src="@drawable/icon_outdent" />
 
 
     <ImageButton
+        android:id="@+id/action_bulleted"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
         android:maxHeight="20dp"
         android:maxWidth="20dp"
-        android:layout_width="40dp"
-        android:background="@android:color/transparent"
-        android:layout_height="40dp"
-        android:src="@drawable/icon_bullet_list"
-        android:id="@+id/action_bulleted" />
+        android:src="@drawable/icon_bullet_list" />
 
     <ImageButton
-        android:maxHeight="20dp"
-        android:maxWidth="20dp"
-        android:background="@android:color/transparent"
+        android:id="@+id/action_unordered_numbered"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/icon_numbered_list"
-        android:id="@+id/action_unordered_numbered" />
+        android:background="@android:color/transparent"
+        android:maxHeight="20dp"
+        android:maxWidth="20dp"
+        android:src="@drawable/icon_numbered_list" />
 
     <ImageButton
-        android:maxHeight="20dp"
-        android:maxWidth="20dp"
-        android:background="@android:color/transparent"
+        android:id="@+id/action_hr"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/icon_hr"
-        android:id="@+id/action_hr" />
+        android:background="@android:color/transparent"
+        android:maxHeight="20dp"
+        android:maxWidth="20dp"
+        android:src="@drawable/icon_hr" />
 
     <ImageButton
-        android:maxHeight="20dp"
-        android:maxWidth="20dp"
-        android:background="@android:color/transparent"
+        android:id="@+id/action_insert_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/icon_image"
-        android:id="@+id/action_insert_image" />
+        android:background="@android:color/transparent"
+        android:maxHeight="20dp"
+        android:maxWidth="20dp"
+        android:src="@drawable/icon_image" />
 
 
     <ImageButton
-        android:maxHeight="20dp"
-        android:maxWidth="20dp"
+        android:id="@+id/action_insert_link"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/icon_link"
-        android:id="@+id/action_insert_link" />
+        android:maxHeight="20dp"
+        android:maxWidth="20dp"
+        android:src="@drawable/icon_link" />
 
     <ImageButton
+        android:id="@+id/action_map"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
         android:maxHeight="20dp"
         android:maxWidth="20dp"
-        android:layout_width="40dp"
-        android:background="@android:color/transparent"
-        android:layout_height="40dp"
-        android:src="@drawable/icon_marker"
-        android:id="@+id/action_map" />
+        android:src="@drawable/icon_marker" />
 
     <ImageButton
+        android:id="@+id/action_erase"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
         android:maxHeight="20dp"
         android:maxWidth="20dp"
-        android:layout_width="40dp"
-        android:background="@android:color/transparent"
-        android:layout_height="40dp"
-        android:src="@drawable/icon_erase"
-        android:id="@+id/action_erase" />
+        android:src="@drawable/icon_erase" />
 </LinearLayout>
