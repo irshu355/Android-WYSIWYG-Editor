@@ -221,11 +221,11 @@ public class Editor extends EditorCore {
     }
 
     public void openImagePicker() {
-        getImageExtensions().OpenImageGallery();
+        getImageExtensions().openImageGallery();
     }
 
     public void insertImage(Bitmap bitmap) {
-        getImageExtensions().InsertImage(bitmap, -1);
+        getImageExtensions().insertImage(bitmap, -1);
     }
 
     public void onImageUploadComplete(String url, String imageId) {

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package com.github.irshulx.Components;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -46,70 +47,101 @@ import java.util.UUID;
  */
 public class ImageExtensions {
     private EditorCore editorCore;
-    private int editorImageLayout=R.layout.tmpl_image_view;
-    public ImageExtensions(EditorCore editorCore){
+    private int editorImageLayout = R.layout.tmpl_image_view;
+
+    public ImageExtensions(EditorCore editorCore) {
         this.editorCore = editorCore;
     }
 
-    public void setEditorImageLayout(int drawable){
-        this.editorImageLayout= drawable;
+    public void setEditorImageLayout(int drawable) {
+        this.editorImageLayout = drawable;
     }
 
-    public void executeDownloadImageTask(String url, int index){
+    public void executeDownloadImageTask(String url, int index) {
         new DownloadImageTask(index).execute(url);
     }
 
 
-    public void OpenImageGallery() {
+    public void openImageGallery() {
         Intent intent = new Intent();
 // Show only images, no videos or anything else
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-    // Always show the chooser (if there are multiple options available)
+        // Always show the chooser (if there are multiple options available)
         ((Activity) editorCore.getContext()).startActivityForResult(Intent.createChooser(intent, "Select an image"), editorCore.PICK_IMAGE_REQUEST);
     }
 
-    public void InsertImage(Bitmap image,int index) {
-       // Render(getStateFromString());
+    public void insertImage(Bitmap image, int index) {
+        // Render(getStateFromString());
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        final TextView lblStatus= (TextView) childLayout.findViewById(R.id.lblStatus);
+        final TextView lblStatus = (TextView) childLayout.findViewById(R.id.lblStatus);
         imageView.setImageBitmap(image);
-        final String uuid= GenerateUUID();
+        final String uuid = GenerateUUID();
         BindEvents(childLayout);
-        if(index==-1) {
-             index = editorCore.determineIndex(EditorType.img);
+        if (index == -1) {
+            index = editorCore.determineIndex(EditorType.img);
         }
+        showNextInputHint(index);
         editorCore.getParentView().addView(childLayout, index);
+
         //      _Views.add(childLayout);
-        if(editorCore.isLastRow(childLayout)) {
+        if (editorCore.isLastRow(childLayout)) {
             editorCore.getInputExtensions().insertEditText(index + 1, null, null);
         }
-        EditorControl control= editorCore.createTag(EditorType.img);
-        control.Path=uuid; // set the imageId,so we can recognize later after upload
+        EditorControl control = editorCore.createTag(EditorType.img);
+        control.path = uuid; // set the imageId,so we can recognize later after upload
         childLayout.setTag(control);
         childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
         lblStatus.setVisibility(View.VISIBLE);
-        editorCore.getEditorListener().onUpload(image,uuid);
+        editorCore.getEditorListener().onUpload(image, uuid);
     }
-    public String GenerateUUID(){
+
+    private void showNextInputHint(int index) {
+        View view = editorCore.getParentView().getChildAt(index);
+        EditorType type = editorCore.getControlType(view);
+        if (type != EditorType.INPUT)
+            return;
+        TextView tv = (TextView) view;
+        tv.setHint(editorCore.placeHolder);
+    }
+
+    private void hideInputHint(int index) {
+        View view = editorCore.getParentView().getChildAt(index);
+        EditorType type = editorCore.getControlType(view);
+        if (type != EditorType.INPUT)
+            return;
+
+        String hint = editorCore.placeHolder;
+        if (index > 0) {
+            View prevView = editorCore.getParentView().getChildAt(index - 1);
+            EditorType prevType = editorCore.getControlType(prevView);
+            if (prevType == EditorType.INPUT)
+                hint = null;
+        }
+
+        TextView tv = (TextView) view;
+        tv.setHint(hint);
+    }
+
+    public String GenerateUUID() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         String sdt = df.format(new Date(System.currentTimeMillis()));
-        UUID x= UUID.randomUUID();
-        String[] y= x.toString().split("-");
-        return y[y.length-1]+sdt;
+        UUID x = UUID.randomUUID();
+        String[] y = x.toString().split("-");
+        return y[y.length - 1] + sdt;
     }
 
     /*
       /used by the renderer to render the image from the Node
     */
-    public  void loadImage(String _path, String desc){
+    public void loadImage(String _path, String desc) {
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        CustomEditText text = (CustomEditText)childLayout.findViewById(R.id.desc);
-        if(TextUtils.isEmpty(desc)){
+        CustomEditText text = (CustomEditText) childLayout.findViewById(R.id.desc);
+        if (TextUtils.isEmpty(desc)) {
             text.setVisibility(View.GONE);
-        }else {
+        } else {
             text.setText(desc);
             text.setEnabled(false);
         }
@@ -118,23 +150,23 @@ public class ImageExtensions {
     }
 
 
-    public View findImageById(String imageId){
-        for(int i=0;i<editorCore.getParentChildCount();i++){
+    public View findImageById(String imageId) {
+        for (int i = 0; i < editorCore.getParentChildCount(); i++) {
             View view = editorCore.getParentView().getChildAt(i);
             EditorControl control = editorCore.getControlTag(view);
-            if(!TextUtils.isEmpty(control.Path)&&control.Path.equals(imageId))
+            if (!TextUtils.isEmpty(control.path) && control.path.equals(imageId))
                 return view;
         }
         return null;
     }
 
     public void onPostUpload(String url, String imageId) {
-        View view=findImageById(imageId);
+        View view = findImageById(imageId);
         final TextView lblStatus = (TextView) view.findViewById(R.id.lblStatus);
-        lblStatus.setText(!TextUtils.isEmpty(url)?"Upload complete":"Upload failed");
-        if(!TextUtils.isEmpty(url)) {
+        lblStatus.setText(!TextUtils.isEmpty(url) ? "Upload complete" : "Upload failed");
+        if (!TextUtils.isEmpty(url)) {
             EditorControl control = editorCore.createTag(EditorType.img);
-            control.Path = url;
+            control.path = url;
             view.setTag(control);
             TimerTask timerTask = new TimerTask() {
                 @Override
@@ -156,11 +188,13 @@ public class ImageExtensions {
     /*
       /used to fetch an image from internet and return a Bitmap equivalent
     */
-   private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         private int InsertIndex;
+
         public DownloadImageTask(int index) {
-            this.InsertIndex=index;
+            this.InsertIndex = index;
         }
+
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
@@ -173,21 +207,22 @@ public class ImageExtensions {
             }
             return mIcon11;
         }
+
         protected void onPostExecute(Bitmap result) {
-            InsertImage(result,this.InsertIndex);
+            insertImage(result, this.InsertIndex);
         }
     }
 
 
-
-    private void BindEvents(final View layout){
-        final ImageView imageView= (ImageView) layout.findViewById(R.id.imageView);
-        final View btn_remove=layout.findViewById(R.id.btn_remove);
+    private void BindEvents(final View layout) {
+        final ImageView imageView = (ImageView) layout.findViewById(R.id.imageView);
+        final View btn_remove = layout.findViewById(R.id.btn_remove);
 
         btn_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int index = editorCore.getParentView().indexOfChild(layout);
+                hideInputHint(index);
                 editorCore.getParentView().removeView(layout);
                 editorCore.getInputExtensions().setFocusToPrevious(index);
             }
@@ -195,6 +230,7 @@ public class ImageExtensions {
 
         imageView.setOnTouchListener(new View.OnTouchListener() {
             private Rect rect;
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -212,17 +248,17 @@ public class ImageExtensions {
                 return false;
             }
         });
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    btn_remove.setVisibility(View.VISIBLE);
-                }
-            });
-            imageView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    btn_remove.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
-                }
-            });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_remove.setVisibility(View.VISIBLE);
+            }
+        });
+        imageView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                btn_remove.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 }

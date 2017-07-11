@@ -28,6 +28,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
@@ -192,8 +193,9 @@ public class InputExtensions {
             @Override
             public void afterTextChanged(Editable s) {
                 String text = Html.toHtml(editText.getText());
-                if (s.length() == 0)
-                    editText.setHint(editText.getTag().toString());
+                Object tag = editText.getTag(R.id.control_tag);
+                if (s.length() == 0 && tag != null)
+                    editText.setHint(tag.toString());
                 if (s.length() > 0) {
                 /*
                 * if user had pressed enter, replace it with br
@@ -212,16 +214,15 @@ public class InputExtensions {
                      */
                             if (index == 0) {
                                 editText.setHint(null);
-                                editText.setTag(hint);
+                                editText.setTag(R.id.control_tag, hint);
                             }
                             int position = index + 1;
-                            String nextHint = isLastText(index) ? null : hint;
                             String newText = null;
                             int lastIndex = s.length() - 1;
                             int nextIndex = i + 1;
                             if (nextIndex < lastIndex)
                                 newText = s.subSequence(nextIndex, lastIndex).toString();
-                            insertEditText(position, nextHint, newText);
+                            insertEditText(position, hint, newText);
                         }
                     }
                 }
@@ -236,7 +237,7 @@ public class InputExtensions {
     private boolean isLastText(int index) {
         if (index == 0)
             return false;
-        View view = editorCore.getParentView().getChildAt(index);
+        View view = editorCore.getParentView().getChildAt(index - 1);
         EditorType type = editorCore.getControlType(view);
         return type == EditorType.INPUT;
     }
@@ -250,8 +251,9 @@ public class InputExtensions {
 
 
     public TextView insertEditText(int position, String hint, String text) {
+        String nextHint = isLastText(position) ? null : editorCore.placeHolder;
         if (editorCore.getRenderType() == RenderType.Editor) {
-            final CustomEditText view = getNewEditTextInst(hint, text);
+            final CustomEditText view = getNewEditTextInst(nextHint, text);
             editorCore.getParentView().addView(view, position);
             editorCore.setActiveView(view);
             final android.os.Handler handler = new android.os.Handler();

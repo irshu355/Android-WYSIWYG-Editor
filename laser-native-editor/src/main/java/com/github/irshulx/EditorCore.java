@@ -453,8 +453,8 @@ public class EditorCore extends LinearLayout {
                     break;
                 case img:
                     EditorControl imgTag = (EditorControl) view.getTag();
-                    if (!TextUtils.isEmpty(imgTag.Path)) {
-                        node.content.add(imgTag.Path);
+                    if (!TextUtils.isEmpty(imgTag.path)) {
+                        node.content.add(imgTag.path);
                         Editable desc = ((EditText) view.findViewById(R.id.desc)).getText();
                         node.content.add(desc.length() > 0 ? desc.toString() : "");
                         list.add(node);
