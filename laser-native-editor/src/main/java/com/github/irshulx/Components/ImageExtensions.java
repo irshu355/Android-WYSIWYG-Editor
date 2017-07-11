@@ -77,7 +77,7 @@ public class ImageExtensions {
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
         final TextView lblStatus = (TextView) childLayout.findViewById(R.id.lblStatus);
         imageView.setImageBitmap(image);
-        final String uuid = GenerateUUID();
+        final String uuid = generateUUID();
         BindEvents(childLayout);
         if (index == -1) {
             index = editorCore.determineIndex(EditorType.img);
@@ -119,13 +119,11 @@ public class ImageExtensions {
             if (prevType == EditorType.INPUT)
                 hint = null;
         }
-        Log.d("hideInputHint", "hideInputHint : " + index + " hint : " + hint);
-
         TextView tv = (TextView) view;
         tv.setHint(hint);
     }
 
-    public String GenerateUUID() {
+    public String generateUUID() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         String sdt = df.format(new Date(System.currentTimeMillis()));
         UUID x = UUID.randomUUID();
