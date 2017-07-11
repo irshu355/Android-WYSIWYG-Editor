@@ -60,10 +60,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:layout_height="match_parent"
-                android:paddingBottom="100dp"
-                >
-
-            </com.github.irshulx.Editor>
+                android:paddingBottom="100dp" />
         </ScrollView>
     </RelativeLayout>
 

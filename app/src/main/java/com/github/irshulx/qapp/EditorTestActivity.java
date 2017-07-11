@@ -31,85 +31,85 @@ public class EditorTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_test);
-        editor = (Editor) findViewById(R.id.editor);
         setUpEditor();
     }
 
     private void setUpEditor() {
+        editor = (Editor) findViewById(R.id.editor);
         findViewById(R.id.action_h1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.H1);
+                editor.updateTextStyle(EditorTextStyle.H1);
             }
         });
 
         findViewById(R.id.action_h2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.H2);
+                editor.updateTextStyle(EditorTextStyle.H2);
             }
         });
 
         findViewById(R.id.action_h3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.H3);
+                editor.updateTextStyle(EditorTextStyle.H3);
             }
         });
 
         findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.BOLD);
+                editor.updateTextStyle(EditorTextStyle.BOLD);
             }
         });
 
         findViewById(R.id.action_Italic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.ITALIC);
+                editor.updateTextStyle(EditorTextStyle.ITALIC);
             }
         });
 
         findViewById(R.id.action_indent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.INDENT);
+                editor.updateTextStyle(EditorTextStyle.INDENT);
             }
         });
 
         findViewById(R.id.action_outdent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.UpdateTextStyle(EditorTextStyle.OUTDENT);
+                editor.updateTextStyle(EditorTextStyle.OUTDENT);
             }
         });
 
         findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.InsertList(false);
+                editor.insertList(false);
             }
         });
 
         findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.InsertList(true);
+                editor.insertList(true);
             }
         });
 
         findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.InsertDivider();
+                editor.insertDivider();
             }
         });
 
         findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.OpenImagePicker();
+                editor.openImagePicker();
             }
         });
 
@@ -123,7 +123,7 @@ public class EditorTestActivity extends AppCompatActivity {
         findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.InsertMap();
+                editor.insertMap();
             }
         });
 
@@ -155,7 +155,7 @@ public class EditorTestActivity extends AppCompatActivity {
                // editor.onImageUploadFailed(uuid);
             }
         });
-        editor.Render();  // this method must be called to start the editor
+        editor.render();  // this method must be called to start the editor
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -205,7 +205,7 @@ public class EditorTestActivity extends AppCompatActivity {
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\">Example about using summernote with meteor.</p>"+
                 "<ul style=\"color: rgb(51, 51, 51);\"><li style=\"font-size: 14px; color: rgb(104, 116, 127);\"><a href=\"https://github.com/hackerwins/summernote-meteor-example\" target=\"_blank\">summernote-meteor-example</a></li></ul>"+
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\"><br></p>";
-        editor.Render();
+        editor.render();
 
     }
 
@@ -216,7 +216,7 @@ public class EditorTestActivity extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 // Log.d(TAG, String.valueOf(bitmap));
-                editor.InsertImage(bitmap);
+                editor.insertImage(bitmap);
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -228,7 +228,7 @@ public class EditorTestActivity extends AppCompatActivity {
            // editor.RestoreState();
         }
         else if(requestCode== editor.MAP_MARKER_REQUEST){
-            editor.InsertMap(data.getStringExtra("cords"));
+            editor.insertMap(data.getStringExtra("cords"));
         }
     }
 
