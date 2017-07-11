@@ -137,7 +137,7 @@ public class InputExtensions {
     }
 
 
-    private TextView GetNewTextView(String text) {
+    private TextView getNewTextView(String text) {
         final TextView textView = new TextView(new ContextThemeWrapper(this.editorCore.getContext(), R.style.WysiwygEditText));
         addEditableStyling(textView);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -151,7 +151,7 @@ public class InputExtensions {
         return textView;
     }
 
-    public CustomEditText GetNewEditTextInst(String hint, String text) {
+    public CustomEditText getNewEditTextInst(final String hint, String text) {
         final CustomEditText editText = new CustomEditText(new ContextThemeWrapper(this.editorCore.getContext(), R.style.WysiwygEditText));
         addEditableStyling(editText);
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -192,6 +192,8 @@ public class InputExtensions {
             @Override
             public void afterTextChanged(Editable s) {
                 String text = Html.toHtml(editText.getText());
+                if (s.length() == 0)
+                    editText.setHint(editText.getTag().toString());
                 if (s.length() > 0) {
                 /*
                 * if user had pressed enter, replace it with br
@@ -210,15 +212,16 @@ public class InputExtensions {
                      */
                             if (index == 0) {
                                 editText.setHint(null);
+                                editText.setTag(hint);
                             }
                             int position = index + 1;
-                            String hint = null;
+                            String nextHint = isLastText(index) ? null : hint;
                             String newText = null;
                             int lastIndex = s.length() - 1;
                             int nextIndex = i + 1;
                             if (nextIndex < lastIndex)
                                 newText = s.subSequence(nextIndex, lastIndex).toString();
-                            insertEditText(position, hint, newText);
+                            insertEditText(position, nextHint, newText);
                         }
                     }
                 }
@@ -228,6 +231,14 @@ public class InputExtensions {
             }
         });
         return editText;
+    }
+
+    private boolean isLastText(int index) {
+        if (index == 0)
+            return false;
+        View view = editorCore.getParentView().getChildAt(index);
+        EditorType type = editorCore.getControlType(view);
+        return type == EditorType.INPUT;
     }
 
     private void addEditableStyling(TextView editText) {
@@ -240,7 +251,7 @@ public class InputExtensions {
 
     public TextView insertEditText(int position, String hint, String text) {
         if (editorCore.getRenderType() == RenderType.Editor) {
-            final CustomEditText view = GetNewEditTextInst(hint, text);
+            final CustomEditText view = getNewEditTextInst(hint, text);
             editorCore.getParentView().addView(view, position);
             editorCore.setActiveView(view);
             final android.os.Handler handler = new android.os.Handler();
@@ -253,7 +264,7 @@ public class InputExtensions {
             editorCore.setActiveView(view);
             return view;
         } else {
-            final TextView view = GetNewTextView(text);
+            final TextView view = getNewTextView(text);
             view.setTag(editorCore.createTag(EditorType.INPUT));
             editorCore.getParentView().addView(view);
             return view;

@@ -18,7 +18,10 @@ package com.github.irshulx;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.View;
 
+import com.github.irshulx.Components.CustomEditText;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.RenderType;
@@ -74,7 +77,7 @@ public class Editor extends EditorCore {
 
     public void render() {
         if (getRenderType() == RenderType.Editor) {
-            getInputExtensions().insertEditText(0, this.PlaceHolder, null);
+            getInputExtensions().insertEditText(0, this.placeHolder, null);
         }
     }
 
@@ -86,9 +89,18 @@ public class Editor extends EditorCore {
     public void clearAllContents() {
         super.clearAllContents();
         if (getRenderType() == RenderType.Editor) {
-            getInputExtensions().insertEditText(0, this.PlaceHolder, null);
+            getInputExtensions().insertEditText(0, this.placeHolder, null);
         }
     }
+//
+//    @Override
+//    public int removeParent(View view) {
+//        int indexOfDeleteItem = super.removeParent(view);
+//        if (indexOfDeleteItem < 0)
+//            render();
+//        return indexOfDeleteItem;
+//    }
+
     //region Miscellanious getters and setters
 
     /*
@@ -235,7 +247,7 @@ public class Editor extends EditorCore {
     }
 
     public void insertList(boolean isOrdered) {
-        this.getListItemExtensions().Insertlist(isOrdered);
+        this.getListItemExtensions().insertlist(isOrdered);
     }
 
 
@@ -257,16 +269,11 @@ public class Editor extends EditorCore {
         getMapExtensions().insertMap(Cords, null, true);
     }
 
-
-    /**
-     * add the express setup for the editor with toolbar
-     *
-     * @deprecated
-     */
-    @Deprecated
-    public void expressSetup() {
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event, CustomEditText editText) {
+        boolean onKey = super.onKey(v, keyCode, event, editText);
+        if (getParentChildCount() == 0)
+            render();
+        return onKey;
     }
-    //endregion
-
-
 }

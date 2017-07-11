@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
@@ -45,14 +46,14 @@ public class EditorCore extends LinearLayout {
     /*
     * EditText initializors
     */
-    public String PlaceHolder = null;
+    public String placeHolder = null;
     /*
     * Divider initializors
     */
     private final String SHAREDPREFERENCE = "QA";
     private Context __context;
     private Activity __activity;
-    private LinearLayout __parentView;
+    protected LinearLayout __parentView;
     private RenderType __renderType;
     private Resources __resources;
     private View __activeView;
@@ -212,7 +213,7 @@ public class EditorCore extends LinearLayout {
         TypedArray a = null;
         try {
             a = getContext().obtainStyledAttributes(attributeSet, R.styleable.editor);
-            this.PlaceHolder = a.getString(R.styleable.editor_placeholder);
+            this.placeHolder = a.getString(R.styleable.editor_placeholder);
             String renderType = a.getString(R.styleable.editor_render_type);
             if (TextUtils.isEmpty(renderType)) {
                 this.__renderType = com.github.irshulx.models.RenderType.Editor;
@@ -288,11 +289,15 @@ public class EditorCore extends LinearLayout {
     }
 
     public EditorType getControlType(View _view) {
+        if (_view == null)
+            return null;
         EditorControl _control = (EditorControl) _view.getTag();
         return _control.Type;
     }
 
     public EditorControl getControlTag(View view) {
+        if (view == null)
+            return null;
         EditorControl control = (EditorControl) view.getTag();
         return control;
     }
@@ -357,12 +362,13 @@ public class EditorCore extends LinearLayout {
     }
 
 
-    public void removeParent(View view) {
+    public int removeParent(View view) {
         int indexOfDeleteItem = __parentView.indexOfChild(view);
         View nextItem = null;
         //remove hr if its on top of the delete field
         this.__parentView.removeView(view);
-        if (__dividerExtensions.deleteHr(indexOfDeleteItem - 1))
+        Log.d("indexOfDeleteItem", "indexOfDeleteItem : " + indexOfDeleteItem);
+        if (__dividerExtensions.deleteHr(Math.max(0, indexOfDeleteItem - 1)))
             indexOfDeleteItem -= 1;
         for (int i = 0; i < indexOfDeleteItem; i++) {
             if (getControlType(__parentView.getChildAt(i)) == EditorType.INPUT) {
@@ -377,6 +383,7 @@ public class EditorCore extends LinearLayout {
             }
             this.__activeView = nextItem;
         }
+        return indexOfDeleteItem;
     }
 
 
@@ -486,7 +493,7 @@ public class EditorCore extends LinearLayout {
             switch (item.type) {
                 case INPUT:
                     String text = item.content.get(0);
-                    TextView view = __inputExtensions.insertEditText(0, "", text);
+                    TextView view = __inputExtensions.insertEditText(0, this.placeHolder, text);
                     if (item.contentStyles != null) {
                         for (EditorTextStyle style : item.contentStyles) {
                             __inputExtensions.UpdateTextStyle(style, view);
@@ -553,6 +560,9 @@ public class EditorCore extends LinearLayout {
         }
         if (__inputExtensions.isEditTextEmpty(editText)) {
             deleteFocusedPrevious(editText);
+            int controlCount = getParentChildCount();
+            if (controlCount == 1)
+                return checkLastControl();
             return false;
         }
         int length = editText.getText().length();
@@ -576,6 +586,20 @@ public class EditorCore extends LinearLayout {
                 nextFocus.setText(nextFocus.getText().toString() + editText.getText().toString());
             }
         }
+        return false;
+    }
+
+    private boolean checkLastControl() {
+        EditorControl control = getControlTag(getParentView().getChildAt(0));
+        if (control == null)
+            return false;
+        switch (control.Type) {
+            case ul:
+            case ol:
+                __parentView.removeAllViews();
+                break;
+        }
+
         return false;
     }
 

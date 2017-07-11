@@ -54,7 +54,7 @@ public class PreviewFragment extends Fragment {
         renderer.setListItemLayout(R.layout.tmpl_list_item);
         String content= mSerialized;
         EditorContent Deserialized= renderer.getContentDeserialized(content);
-        renderer.Render(Deserialized);
+        renderer.render(Deserialized);
         return  view;
     }
     public void onButtonPressed(Uri uri) {

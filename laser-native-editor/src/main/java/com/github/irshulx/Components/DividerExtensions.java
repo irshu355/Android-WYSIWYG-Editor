@@ -62,7 +62,9 @@ public class DividerExtensions {
 
     public boolean deleteHr(int indexOfDeleteItem) {
         View view = editorCore.getParentView().getChildAt(indexOfDeleteItem);
-        if (editorCore.getControlType(view) == EditorType.hr) {
+//        if(view == null)
+//            return true;
+        if (view == null ||editorCore.getControlType(view) == EditorType.hr) {
             editorCore.getParentView().removeView(view);
             return true;
         }
