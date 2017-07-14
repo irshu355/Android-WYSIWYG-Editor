@@ -20,7 +20,7 @@ What's New in 2.0.0
  Contributions
 ------------
 
-- Please clone from the `master` branch. If you have any updates, please issue a PR to `dev` branch. I will then verify and merge it to master.
+- You can clone from the `master` branch. Once ready to merge , please open a PR to `dev` branch.
 
 Download
 ------------
