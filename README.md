@@ -16,6 +16,11 @@ What's New in 2.0.0
  - **Automatic image upload functionality has been removed**. You will have to do the upload on your own, just pass the uri to the editor.
  - **Custom fonts**. You can now apply custom fonts for the editor ( with option for seperate fonts for header and content)
  - **Subtitle option for images**
+ 
+ Contributions
+------------
+
+- Please clone from the `master` branch. If you have any updates, please issue a PR to `dev` branch. I will then verify and merge it to master.
 
 Download
 ------------
