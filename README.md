@@ -20,7 +20,7 @@ What's New in 2.0.0
  Contributions
 ------------
 
-- You can clone from the `master` branch. Once ready to merge , please open a PR to `dev` branch.
+- You can clone from the `master` branch. Once ready to merge , please open a pull request to `dev` branch. Be sure to merge the latest from "upstream" before making a pull request! I can then review and merge it back to master
 
 Download
 ------------
