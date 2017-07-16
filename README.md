@@ -16,19 +16,24 @@ What's New in 2.0.0
  - **Automatic image upload functionality has been removed**. You will have to do the upload on your own, just pass the uri to the editor.
  - **Custom fonts**. You can now apply custom fonts for the editor ( with option for seperate fonts for header and content)
  - **Subtitle option for images**
+ 
+ Contributions
+------------
+
+You can clone from the `master` branch. Once ready to merge , please open a pull request to `dev` branch. Be sure to merge the latest from "upstream" before making a pull request! I can then review and merge it back to master
 
 Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:2.0.1'
+    compile 'com.github.irshulx:laser-native-editor:2.0.2'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>2.0.1</version>
+      <version>2.0.2</version>
       <type>pom</type>
     </dependency>
 
