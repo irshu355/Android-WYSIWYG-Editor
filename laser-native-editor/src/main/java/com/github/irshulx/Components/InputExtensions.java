@@ -96,6 +96,10 @@ public class InputExtensions {
         return this.NORMALTEXTSIZE;
     }
 
+    public void setNormalTextSize(int size){
+        this.NORMALTEXTSIZE = size;
+    }
+
     public String getFontFace() {
         return editorCore.getContext().getResources().getString(fontFace);
     }

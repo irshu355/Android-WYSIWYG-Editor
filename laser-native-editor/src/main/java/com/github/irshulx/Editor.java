@@ -112,6 +112,10 @@ public class Editor extends EditorCore {
         return getInputExtensions().getH1TextSize();
     }
 
+    /**
+     * size in sp
+     * @param size
+     */
     public void setH1TextSize(int size) {
         getInputExtensions().setH1TextSize(size);
     }
@@ -120,6 +124,10 @@ public class Editor extends EditorCore {
         return getInputExtensions().getH2TextSize();
     }
 
+    /**
+     * size in sp
+     * @param size
+     */
     public void setH2TextSize(int size) {
         getInputExtensions().setH2TextSize(size);
     }
@@ -128,8 +136,20 @@ public class Editor extends EditorCore {
         return getInputExtensions().getH3TextSize();
     }
 
+    /**
+     * size in sp
+     * @param size
+     */
     public void setH3TextSize(int size) {
         getInputExtensions().setH3TextSize(size);
+    }
+
+    /**
+     * size in sp
+     * @param size
+     */
+    public void setNormalTextSize(int size){
+        getInputExtensions().setNormalTextSize(size);
     }
 
     /**
@@ -225,7 +245,7 @@ public class Editor extends EditorCore {
     }
 
     public void insertImage(Bitmap bitmap) {
-        getImageExtensions().insertImage(bitmap, -1);
+        getImageExtensions().insertImage(bitmap, -1,null);
     }
 
     public void onImageUploadComplete(String url, String imageId) {
@@ -235,8 +255,6 @@ public class Editor extends EditorCore {
     public void onImageUploadFailed(String imageId) {
         getImageExtensions().onPostUpload(null, imageId);
     }
-
-
     /*
      *
      *List Item extension

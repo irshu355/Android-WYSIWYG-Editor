@@ -28,7 +28,7 @@ public class HTMLExtensions {
     public void parseHtml(String htmlString) {
         Document doc = Jsoup.parse(htmlString);
         for (Element element : doc.body().children()) {
-            if (!matchesTag(element.tagName()))
+            if (!matchesTag(element.tagName().toLowerCase()))
                 continue;
             buildNode(element);
         }
@@ -36,13 +36,12 @@ public class HTMLExtensions {
 
     private void buildNode(Element element) {
         String text;
-        TextView editText;
         HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
         int count = editorCore.getParentView().getChildCount();
-        if ("<br>".equals(element.html().replaceAll("\\s+", "")) || "<br/>".equals(element.html().replaceAll("\\s+", ""))) {
+        if ("<br>" .equals(element.html().replaceAll("\\s+", "")) || "<br/>" .equals(element.html().replaceAll("\\s+", ""))) {
             editorCore.getInputExtensions().insertEditText(count, null, null);
             return;
-        } else if ("<hr>".equals(element.html().replaceAll("\\s+", "")) || "<hr/>".equals(element.html().replaceAll("\\s+", ""))) {
+        } else if ("<hr>" .equals(element.html().replaceAll("\\s+", "")) || "<hr/>" .equals(element.html().replaceAll("\\s+", ""))) {
             editorCore.getDividerExtensions().insertDivider();
             return;
         }
@@ -54,7 +53,7 @@ public class HTMLExtensions {
                 break;
             case p:
                 text = element.html();
-                editText = editorCore.getInputExtensions().insertEditText(count, null, text);
+                editorCore.getInputExtensions().insertEditText(count, null, text);
                 break;
             case ul:
             case ol:
@@ -63,13 +62,25 @@ public class HTMLExtensions {
             case img:
                 RenderImage(element);
                 break;
+            case div:
+                renderDiv(element);
+        }
+    }
+
+    private void renderDiv(Element element) {
+        String tag = element.attr("data-tag");
+        if (tag.equals("img")) {
+            RenderImage(element);
         }
     }
 
     private void RenderImage(Element element) {
-        String src = element.attr("src");
+        Element img = element.child(0);
+        Element descTag = element.child(1);
+        String src = img.attr("src");
+        String desc = descTag.html();
         int Index = editorCore.getParentChildCount();
-        editorCore.getImageExtensions().executeDownloadImageTask(src, Index);
+        editorCore.getImageExtensions().executeDownloadImageTask(src, Index, desc);
     }
 
     private void RenderList(boolean isOrdered, Element element) {
@@ -123,7 +134,7 @@ public class HTMLExtensions {
                 template = "<hr data-tag=\"hr\"/>";
                 break;
             case img:
-                template = "<div data-tag=\"img\"><img src=\"{{$content}}\" /><br/></div>";
+                template = "<div data-tag=\"img\"><img src=\"{{$content}}\" /><span text-align:'center'>{{$desc}}</span></div>";
                 break;
             case map:
                 template = "<div data-tag=\"map\"><img src=\"{{$content}}\" /><span text-align:'center'>{{$desc}}</span></div>";
@@ -214,7 +225,7 @@ public class HTMLExtensions {
                     htmlBlock.append(html);
                     break;
                 case img:
-                    htmlBlock.append(getTemplateHtml(item.type).replace("{{$content}}", item.content.get(0)));
+                    htmlBlock.append(getTemplateHtml(item.type).replace("{{$content}}", item.content.get(0)).replace("{{$desc}}", item.content.get(1)));
                     break;
                 case hr:
                     htmlBlock.append(getTemplateHtml(item.type));

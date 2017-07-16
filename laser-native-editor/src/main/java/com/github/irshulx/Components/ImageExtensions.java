@@ -33,6 +33,7 @@ import com.github.irshulx.EditorCore;
 import com.github.irshulx.R;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.RenderType;
 import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
@@ -57,8 +58,8 @@ public class ImageExtensions {
         this.editorImageLayout = drawable;
     }
 
-    public void executeDownloadImageTask(String url, int index) {
-        new DownloadImageTask(index).execute(url);
+    public void executeDownloadImageTask(String url, int index, String desc) {
+        new DownloadImageTask(index).execute(url, desc);
     }
 
 
@@ -71,14 +72,14 @@ public class ImageExtensions {
         ((Activity) editorCore.getContext()).startActivityForResult(Intent.createChooser(intent, "Select an image"), editorCore.PICK_IMAGE_REQUEST);
     }
 
-    public void insertImage(Bitmap image, int index) {
+    public void insertImage(Bitmap image, int index, String subTitle) {
         // Render(getStateFromString());
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
         final TextView lblStatus = (TextView) childLayout.findViewById(R.id.lblStatus);
+        CustomEditText desc = (CustomEditText)childLayout.findViewById(R.id.desc);
         imageView.setImageBitmap(image);
         final String uuid = generateUUID();
-        BindEvents(childLayout);
         if (index == -1) {
             index = editorCore.determineIndex(EditorType.img);
         }
@@ -92,9 +93,17 @@ public class ImageExtensions {
         EditorControl control = editorCore.createTag(EditorType.img);
         control.path = uuid; // set the imageId,so we can recognize later after upload
         childLayout.setTag(control);
-        childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
-        lblStatus.setVisibility(View.VISIBLE);
-        editorCore.getEditorListener().onUpload(image, uuid);
+        if(!TextUtils.isEmpty(subTitle))
+            desc.setText(subTitle);
+        if(editorCore.getRenderType()== RenderType.Editor) {
+            lblStatus.setVisibility(View.VISIBLE);
+            BindEvents(childLayout);
+            childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
+            editorCore.getEditorListener().onUpload(image, uuid);
+        }else {
+            desc.setEnabled(false);
+            lblStatus.setVisibility(View.GONE);
+        }
     }
 
     private void showNextInputHint(int index) {
@@ -189,13 +198,13 @@ public class ImageExtensions {
     */
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         private int InsertIndex;
-
+        private String subTitle;
         public DownloadImageTask(int index) {
             this.InsertIndex = index;
         }
-
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
+            this.subTitle = urls[1];
             Bitmap mIcon11 = null;
             try {
                 InputStream in = new java.net.URL(urldisplay).openStream();
@@ -206,9 +215,8 @@ public class ImageExtensions {
             }
             return mIcon11;
         }
-
         protected void onPostExecute(Bitmap result) {
-            insertImage(result, this.InsertIndex);
+            insertImage(result, this.InsertIndex,subTitle);
         }
     }
 
