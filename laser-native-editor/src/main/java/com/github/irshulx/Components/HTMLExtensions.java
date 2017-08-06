@@ -134,7 +134,7 @@ public class HTMLExtensions {
                 template = "<hr data-tag=\"hr\"/>";
                 break;
             case img:
-                template = "<div data-tag=\"img\"><img src=\"{{$content}}\" /><span text-align:'center'>{{$desc}}</span></div>";
+                template = "<div data-tag=\"img\"><img src=\"{{$content}}\" /><span class=\"editor-image-subtitle\">{{$desc}}</span></div>";
                 break;
             case map:
                 template = "<div data-tag=\"map\"><img src=\"{{$content}}\" /><span text-align:'center'>{{$desc}}</span></div>";
