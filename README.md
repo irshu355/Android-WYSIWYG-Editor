@@ -33,7 +33,7 @@ or maven:
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>2.0.3</version>
+      <version>2.1.0</version>
       <type>pom</type>
     </dependency>
 
