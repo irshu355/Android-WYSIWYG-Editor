@@ -89,6 +89,7 @@ public class HTMLExtensions {
             String text = getHtmlSpan(li);
             TableLayout layout = editorCore.getListItemExtensions().insertList(editorCore.getParentChildCount(), isOrdered, text);
             for (int i = 1; i < element.children().size(); i++) {
+                li = element.child(i);
                 text = getHtmlSpan(li);
                 editorCore.getListItemExtensions().AddListItem(layout, isOrdered, text);
             }
