@@ -52,7 +52,6 @@ public class EditorCore extends LinearLayout {
     */
     private final String SHAREDPREFERENCE = "QA";
     private Context __context;
-    private Activity __activity;
     protected LinearLayout __parentView;
     private RenderType __renderType;
     private Resources __resources;
@@ -72,7 +71,6 @@ public class EditorCore extends LinearLayout {
     public EditorCore(Context _context, AttributeSet attrs) {
         super(_context, attrs);
         this.__context = _context;
-        this.__activity = (Activity) _context;
         this.setOrientation(VERTICAL);
         initialize(_context, attrs);
     }
@@ -105,7 +103,7 @@ public class EditorCore extends LinearLayout {
      * @return
      */
     public Activity getActivity() {
-        return this.__activity;
+        return (Activity) this.__context;
     }
 
     /**
