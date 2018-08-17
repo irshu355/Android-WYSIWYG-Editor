@@ -1,4 +1,4 @@
-package com.github.irshulx.qapp;
+package com.example.mkallingal.qapp;
 
 import org.junit.Test;
 

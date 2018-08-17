@@ -1,4 +1,4 @@
-package com.github.irshulx.qapp;
+package com.example.mkallingal.qapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -6,11 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.github.irshulx.qapp.Utilities.RenderType;
 import com.github.irshulx.qapp.Utilities.RendererPagerAdapter;
-import com.google.gson.Gson;
-import com.github.irshulx.Editor;
-import com.github.irshulx.models.EditorContent;
 
 public class RenderTestActivity extends AppCompatActivity {
 
