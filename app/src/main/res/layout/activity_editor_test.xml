@@ -54,13 +54,17 @@
             <com.github.irshulx.Editor
                 android:layout_width="match_parent"
                 android:id="@+id/editor"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                app:auto_focus="false"
                 app:render_type="Editor"
                 app:placeholder="Start writing here..."
                 android:paddingTop="10dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:layout_height="match_parent"
-                android:paddingBottom="100dp" />
+                android:paddingBottom="100dp">
+            </com.github.irshulx.Editor>
         </ScrollView>
     </RelativeLayout>
 

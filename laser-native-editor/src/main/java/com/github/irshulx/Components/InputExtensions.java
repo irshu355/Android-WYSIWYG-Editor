@@ -517,6 +517,10 @@ public class InputExtensions {
     }
 
     public void setFocus(CustomEditText view) {
+        if(editorCore.isStateFresh() && !editorCore.autoFocus ){
+            editorCore.setStateFresh(false);
+            return;
+        }
         view.requestFocus();
         InputMethodManager mgr = (InputMethodManager) editorCore.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);

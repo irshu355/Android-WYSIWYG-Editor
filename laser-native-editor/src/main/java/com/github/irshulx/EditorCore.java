@@ -47,6 +47,7 @@ public class EditorCore extends LinearLayout {
     * EditText initializors
     */
     public String placeHolder = null;
+    public boolean autoFocus = true;
     /*
     * Divider initializors
     */
@@ -67,17 +68,20 @@ public class EditorCore extends LinearLayout {
     private DividerExtensions __dividerExtensions;
     private HTMLExtensions __htmlExtensions;
     private MapExtensions __mapExtensions;
+    private boolean stateFresh;
 
     public EditorCore(Context _context, AttributeSet attrs) {
         super(_context, attrs);
         this.__context = _context;
         this.setOrientation(VERTICAL);
         initialize(_context, attrs);
+
     }
 
     private void initialize(Context context, AttributeSet attrs) {
         loadStateFromAttrs(attrs);
         __utilities = new Utilities();
+        this.stateFresh = true;
         this.__resources = context.getResources();
         __gson = new Gson();
         __inputExtensions = new InputExtensions(this);
@@ -212,6 +216,7 @@ public class EditorCore extends LinearLayout {
         try {
             a = getContext().obtainStyledAttributes(attributeSet, R.styleable.editor);
             this.placeHolder = a.getString(R.styleable.editor_placeholder);
+            this.autoFocus = a.getBoolean(R.styleable.editor_auto_focus, true);
             String renderType = a.getString(R.styleable.editor_render_type);
             if (TextUtils.isEmpty(renderType)) {
                 this.__renderType = com.github.irshulx.models.RenderType.Editor;
@@ -599,6 +604,14 @@ public class EditorCore extends LinearLayout {
         }
 
         return false;
+    }
+
+    public boolean isStateFresh() {
+        return stateFresh;
+    }
+
+    public void setStateFresh(boolean stateFresh) {
+        this.stateFresh = stateFresh;
     }
 
     public class Utilities {

@@ -61,9 +61,9 @@ dependencies {
     implementation "com.android.support:design:$supportLibVersion"
     implementation "com.android.support:cardview-v7:$supportLibVersion"
     implementation "com.android.support:support-v4:$supportLibVersion"
-//    implementation project(':laser-native-editor')
+    implementation project(':laser-native-editor')
     //  compile 'com.github.irshulx:laser-native-editor:2.0.0'
-     implementation 'com.github.irshulx:laser-native-editor:2.2.8'
+    // implementation 'com.github.irshulx:laser-native-editor:2.2.8'
     configurations.all {
         resolutionStrategy.eachDependency { DependencyResolveDetails details ->
             def requested = details.requested

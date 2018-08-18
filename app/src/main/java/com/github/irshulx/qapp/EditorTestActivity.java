@@ -154,6 +154,10 @@ public class EditorTestActivity extends AppCompatActivity {
             @Override
             public void onUpload(Bitmap image, String uuid) {
                 Toast.makeText(EditorTestActivity.this, uuid, Toast.LENGTH_LONG).show();
+                /**
+                 * TODO do your upload here from the bitmap received and all onImageUploadComplete(String url); to insert the result url to
+                 * let the editor know the upload has completed
+                 */
                 editor.onImageUploadComplete("http://www.videogamesblogger.com/wp-content/uploads/2015/08/metal-gear-solid-5-the-phantom-pain-cheats-640x325.jpg", uuid);
                 // editor.onImageUploadFailed(uuid);
             }
