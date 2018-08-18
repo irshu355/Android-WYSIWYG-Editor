@@ -25,7 +25,7 @@ please refer to https://github.com/irshuLx/Android-WYSIWYG-Editor/issues/43
  
  
 
-## [2.0.0] 
+## [2.0.0 - 03 July 2017] 
 ### Added
  - **A better editor**
  - **Automatic image upload functionality has been removed**. You will have to do the upload on your own, just pass the uri to the editor.
