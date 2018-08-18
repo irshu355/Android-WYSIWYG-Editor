@@ -26,7 +26,7 @@ Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:2.2.8'
+    compile 'com.github.irshulx:laser-native-editor:2.2.9'
 
 or maven:
 
