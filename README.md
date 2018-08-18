@@ -11,7 +11,7 @@ An iframe free text editor that uses native components in the content tree.
 
 ## Changelog
 
-## [2.0.9 - 19 August 2019] 
+## [2.2.9 - 19 August 2019] 
 ### Added
  - **Decide whether to autofocus on start**
  
@@ -50,7 +50,7 @@ or maven:
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>2.2.8</version>
+      <version>2.2.9</version>
       <type>pom</type>
     </dependency>
 
