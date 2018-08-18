@@ -9,13 +9,30 @@ An iframe free text editor that uses native components in the content tree.
 [<img src="https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/play-icon.jpg">](https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg)
 
 
-What's New in 2.0.0
-------------
+## Changelog
 
+## [2.0.9 - 19 August 2019] 
+### Added
+ - **Decide whether to autofocus on start**
+ 
+
+    `
+android:focusable="false"
+                android:focusableInTouchMode="true"
+                app:auto_focus="false"
+`
+please refer to https://github.com/irshuLx/Android-WYSIWYG-Editor/issues/43
+ 
+ 
+
+## [2.0.0] 
+### Added
  - **A better editor**
  - **Automatic image upload functionality has been removed**. You will have to do the upload on your own, just pass the uri to the editor.
  - **Custom fonts**. You can now apply custom fonts for the editor ( with option for seperate fonts for header and content)
  - **Subtitle option for images**
+
+
  
  Contributions
 ------------
