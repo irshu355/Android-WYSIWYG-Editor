@@ -51,7 +51,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.nio.charset.Charset;
 import java.util.Map;
+
+import javax.microedition.khronos.egl.EGLDisplay;
 
 /**
  * Created by mkallingal on 4/30/2016.
@@ -130,33 +133,33 @@ public class InputExtensions {
         this.editorCore = editorCore;
     }
 
-    CharSequence GetSanitizedHtml(String text) {
-        Spanned __ = Html.fromHtml(text);
+    CharSequence GetSanitizedHtml(CharSequence text) {
+        Spanned __ = Html.fromHtml(text.toString());
         CharSequence toReplace = noTrailingwhiteLines(__);
         return toReplace;
     }
 
-    public void setText(TextView textView, String text) {
+    public void setText(TextView textView, CharSequence text) {
         CharSequence toReplace = GetSanitizedHtml(text);
         textView.setText(toReplace);
     }
 
 
-    private TextView getNewTextView(String text) {
+    private TextView getNewTextView(CharSequence text) {
         final TextView textView = new TextView(new ContextThemeWrapper(this.editorCore.getContext(), R.style.WysiwygEditText));
         addEditableStyling(textView);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, 0, (int) editorCore.getContext().getResources().getDimension(R.dimen.edittext_margin_bottom));
         textView.setLayoutParams(params);
         if (!TextUtils.isEmpty(text)) {
-            Spanned __ = Html.fromHtml(text);
+            Spanned __ = Html.fromHtml(text.toString());
             CharSequence toReplace = noTrailingwhiteLines(__);
             textView.setText(toReplace);
         }
         return textView;
     }
 
-    public CustomEditText getNewEditTextInst(final String hint, String text) {
+    public CustomEditText getNewEditTextInst(final String hint, CharSequence text) {
         final CustomEditText editText = new CustomEditText(new ContextThemeWrapper(this.editorCore.getContext(), R.style.WysiwygEditText));
         addEditableStyling(editText);
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -226,12 +229,20 @@ public class InputExtensions {
                                 editText.setTag(R.id.control_tag, hint);
                             }
                             int position = index + 1;
-                            String newText = null;
+                            CharSequence newText = null;
+                            SpannableStringBuilder editable = new SpannableStringBuilder();
                             int lastIndex = s.length();
                             int nextIndex = i + 1;
-                            if (nextIndex < lastIndex)
-                                newText = s.subSequence(nextIndex, lastIndex).toString();
-                            insertEditText(position, hint, newText);
+                            if (nextIndex < lastIndex) {
+                                newText = s.subSequence(nextIndex, lastIndex);
+                                for(int j = 0; j<newText.length();j++){
+                                    editable.append(newText.charAt(j));
+                                    if(newText.charAt(j)== '\n'){
+                                        editable.append('\n');
+                                    }
+                                }
+                            }
+                            insertEditText(position, hint, editable);
                             break;
                         }
                     }
@@ -260,7 +271,7 @@ public class InputExtensions {
     }
 
 
-    public TextView insertEditText(int position, String hint, String text) {
+    public TextView insertEditText(int position, String hint, CharSequence text) {
         String nextHint = isLastText(position) ? null : editorCore.placeHolder;
         if (editorCore.getRenderType() == RenderType.Editor) {
             final CustomEditText view = getNewEditTextInst(nextHint, text);

@@ -163,6 +163,7 @@ public class EditorTestActivity extends AppCompatActivity {
                 // editor.onImageUploadFailed(uuid);
             }
         });
+        //render();
         editor.render();  // this method must be called to start the editor
         Editable editable = new SpannableStringBuilder("\nPass a string here\n");
         editor.appendText(editable);
@@ -222,7 +223,7 @@ public class EditorTestActivity extends AppCompatActivity {
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\">Example about using summernote with meteor.</p>" +
                 "<ul style=\"color: rgb(51, 51, 51);\"><li style=\"font-size: 14px; color: rgb(104, 116, 127);\"><a href=\"https://github.com/hackerwins/summernote-meteor-example\" target=\"_blank\">summernote-meteor-example</a></li></ul>" +
                 "<p style=\"font-size: 14px; color: rgb(104, 116, 127);\"><br></p>";
-        editor.render();
+        editor.render(x);
 
     }
 

@@ -38,6 +38,8 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by mkallingal on 4/30/2016.
@@ -627,6 +629,13 @@ public class EditorCore extends LinearLayout {
 
         public void toastItOut(String message) {
             Toast.makeText(__context, message, Toast.LENGTH_SHORT).show();
+        }
+
+        public boolean containsString(String text){
+             String HTML_PATTERN = "<(\"[^\"]*\"|'[^']*'|[^'\">])*>";
+             Pattern pattern = Pattern.compile(HTML_PATTERN);
+                Matcher matcher = pattern.matcher(text);
+                return matcher.matches();
         }
     }
 }

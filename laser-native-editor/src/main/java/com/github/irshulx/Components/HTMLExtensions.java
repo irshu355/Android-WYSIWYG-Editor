@@ -60,7 +60,7 @@ public class HTMLExtensions {
                 RenderList(tag == HtmlTag.ol, element);
                 break;
             case img:
-                RenderImage(element);
+                RenderImageFromHtml(element);
                 break;
             case div:
                 renderDiv(element);
@@ -79,6 +79,13 @@ public class HTMLExtensions {
         Element descTag = element.child(1);
         String src = img.attr("src");
         String desc = descTag.html();
+        int Index = editorCore.getParentChildCount();
+        editorCore.getImageExtensions().executeDownloadImageTask(src, Index, desc);
+    }
+
+    private void RenderImageFromHtml(Element element) {
+        String src = element.attr("src");
+        String desc = element.html();
         int Index = editorCore.getParentChildCount();
         editorCore.getImageExtensions().executeDownloadImageTask(src, Index, desc);
     }
