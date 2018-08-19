@@ -17,6 +17,7 @@ package com.github.irshulx;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.text.Editable;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
@@ -175,6 +176,10 @@ public class Editor extends EditorCore {
         getInputExtensions().insertLink(link);
     }
 
+    public void appendText(Editable text) {
+        getInputExtensions().appendText(text);
+    }
+
 
     /**
      * setup the fontfaces for editor content
@@ -294,4 +299,5 @@ public class Editor extends EditorCore {
             render();
         return onKey;
     }
+
 }

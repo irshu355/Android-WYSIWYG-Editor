@@ -196,14 +196,15 @@ public class InputExtensions {
 
             @Override
             public void afterTextChanged(Editable s) {
+
                 String text = Html.toHtml(editText.getText());
                 Object tag = editText.getTag(R.id.control_tag);
                 if (s.length() == 0 && tag != null)
                     editText.setHint(tag.toString());
                 if (s.length() > 0) {
-                /*
-                * if user had pressed enter, replace it with br
-                */
+                    /*
+                     * if user had pressed enter, replace it with br
+                     */
                     for (int i = 0; i < s.length(); i++) {
                         if (s.charAt(i) == '\n') {
                             CharSequence subChars = s.subSequence(0, i);
@@ -211,22 +212,27 @@ public class InputExtensions {
                             text = Html.toHtml(ssb);
                             if (text.length() > 0)
                                 setText(editText, text);
-                            else
+
+
+                            if(i+1==s.length()) {
                                 s.clear();
+                            }
+
                             int index = editorCore.getParentView().indexOfChild(editText);
-                    /* if the index was 0, set the placeholder to empty, behaviour happens when the user just press enter
-                     */
+                            /* if the index was 0, set the placeholder to empty, behaviour happens when the user just press enter
+                             */
                             if (index == 0) {
                                 editText.setHint(null);
                                 editText.setTag(R.id.control_tag, hint);
                             }
                             int position = index + 1;
                             String newText = null;
-                            int lastIndex = s.length() - 1;
+                            int lastIndex = s.length();
                             int nextIndex = i + 1;
                             if (nextIndex < lastIndex)
                                 newText = s.subSequence(nextIndex, lastIndex).toString();
                             insertEditText(position, hint, newText);
+                            break;
                         }
                     }
                 }
@@ -451,6 +457,15 @@ public class InputExtensions {
         alertDialog.show();
     }
 
+    public void appendText(Editable text){
+        EditorType editorType = editorCore.getControlType(editorCore.getActiveView());
+        EditText editText = (EditText) editorCore.getActiveView();
+        if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
+            CharSequence current = editText.getText();
+            TextUtils.concat(current, text);
+        }
+    }
+
     public void insertLink(String uri) {
         EditorType editorType = editorCore.getControlType(editorCore.getActiveView());
         EditText editText = (EditText) editorCore.getActiveView();
@@ -475,6 +490,15 @@ public class InputExtensions {
             return text;
         while (text.charAt(text.length() - 1) == '\n') {
             text = text.subSequence(0, text.length() - 1);
+        }
+        return text;
+    }
+
+    public CharSequence noLeadingwhiteLines(CharSequence text) {
+        if (text.length() == 0)
+            return text;
+        while (text.charAt(0) == '\n') {
+            text = text.subSequence(1, text.length());
         }
         return text;
     }

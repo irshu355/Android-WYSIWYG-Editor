@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -163,6 +164,15 @@ public class EditorTestActivity extends AppCompatActivity {
             }
         });
         editor.render();  // this method must be called to start the editor
+        Editable editable = new SpannableStringBuilder("\nPass a string here\n");
+        editor.appendText(editable);
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Editable editable = new SpannableStringBuilder("hi\n");
+               // editor.appendText(editable);
+            }
+        },10000);
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
