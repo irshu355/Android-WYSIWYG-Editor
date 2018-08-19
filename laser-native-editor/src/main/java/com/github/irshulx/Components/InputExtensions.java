@@ -52,6 +52,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.microedition.khronos.egl.EGLDisplay;
@@ -99,7 +101,7 @@ public class InputExtensions {
         return this.NORMALTEXTSIZE;
     }
 
-    public void setNormalTextSize(int size){
+    public void setNormalTextSize(int size) {
         this.NORMALTEXTSIZE = size;
     }
 
@@ -217,7 +219,7 @@ public class InputExtensions {
                                 setText(editText, text);
 
 
-                            if(i+1==s.length()) {
+                            if (i + 1 == s.length()) {
                                 s.clear();
                             }
 
@@ -235,9 +237,9 @@ public class InputExtensions {
                             int nextIndex = i + 1;
                             if (nextIndex < lastIndex) {
                                 newText = s.subSequence(nextIndex, lastIndex);
-                                for(int j = 0; j<newText.length();j++){
+                                for (int j = 0; j < newText.length(); j++) {
                                     editable.append(newText.charAt(j));
-                                    if(newText.charAt(j)== '\n'){
+                                    if (newText.charAt(j) == '\n') {
                                         editable.append('\n');
                                     }
                                 }
@@ -468,12 +470,43 @@ public class InputExtensions {
         alertDialog.show();
     }
 
-    public void appendText(Editable text){
-        EditorType editorType = editorCore.getControlType(editorCore.getActiveView());
-        EditText editText = (EditText) editorCore.getActiveView();
-        if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
-            CharSequence current = editText.getText();
-            TextUtils.concat(current, text);
+    public void appendText(Editable text) {
+
+
+        List<CharSequence> seq = new ArrayList<>();
+
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == '\n') {
+                EditorType editorType = editorCore.getControlType(editorCore.getActiveView());
+                EditText editText = (EditText) editorCore.getActiveView();
+                if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
+                    int index = editorCore.getParentView().indexOfChild(editText);
+
+
+
+                    if (builder.length() > 0) {
+                        index+=1;
+                        insertEditText(index, "", builder);
+                        builder.clear();
+                    }
+                    index+=1;
+                    insertEditText(index, "", new SpannableStringBuilder().append('\n'));
+                }
+            } else {
+                builder.append(text.charAt(i));
+            }
+        }
+
+
+        if (builder.length() > 0) {
+            EditorType editorType = editorCore.getControlType(editorCore.getActiveView());
+            EditText editText = (EditText) editorCore.getActiveView();
+            if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
+                int index = editorCore.getParentView().indexOfChild(editText);
+                insertEditText(index + 1, "", builder);
+                builder.clear();
+            }
         }
     }
 
@@ -552,7 +585,7 @@ public class InputExtensions {
     }
 
     public void setFocus(CustomEditText view) {
-        if(editorCore.isStateFresh() && !editorCore.autoFocus ){
+        if (editorCore.isStateFresh() && !editorCore.autoFocus) {
             editorCore.setStateFresh(false);
             return;
         }
