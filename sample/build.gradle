@@ -17,7 +17,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.github.irshulx.wysiwyg"
+        applicationId "com.github.irshulx.wysiwyg_editor"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 5
