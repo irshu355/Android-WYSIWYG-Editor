@@ -261,6 +261,8 @@ Please be reminded, nested HTML **ARE NOT** supported at the moment except for `
  - `<h1>`,`<h2>`,`<h3>`
  - `<img>`
  - `<ul>`,`<ol>`
+ - `<hr/>`
+ - `<br/>`
  
 API
 -------------------
