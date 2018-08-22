@@ -1,4 +1,4 @@
-package com.github.irshulx.qapp;
+package com.github.irshulx.wysiwyg;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;

@@ -1,13 +1,13 @@
-package com.github.irshulx.qapp.Utilities;
+package com.github.irshulx.wysiwyg.Utilities;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.github.irshulx.qapp.HTMLRenderedFragment;
-import com.github.irshulx.qapp.PreviewFragment;
-import com.github.irshulx.qapp.SerializedFragment;
+import com.github.irshulx.wysiwyg.HTMLRenderedFragment;
+import com.github.irshulx.wysiwyg.PreviewFragment;
+import com.github.irshulx.wysiwyg.SerializedFragment;
 
 /**
  * Created by mkallingal on 6/12/2016.

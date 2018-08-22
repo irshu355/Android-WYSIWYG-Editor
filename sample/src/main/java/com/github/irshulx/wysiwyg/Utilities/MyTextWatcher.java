@@ -1,4 +1,4 @@
-package com.github.irshulx.qapp.Utilities;
+package com.github.irshulx.wysiwyg.Utilities;
 
 import android.text.Editable;
 import android.text.TextWatcher;

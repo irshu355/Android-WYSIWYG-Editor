@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.irshulx.qapp">
+    package="com.github.irshulx.wysiwyg">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,7 +22,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.github.irshulx.wysiwyg.MyApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -48,7 +48,7 @@
             android:name="com.github.irshulx.MapsActivity"
             android:label="Map" />
         <activity
-            android:name=".EditorTestActivity"
+            android:name="com.github.irshulx.wysiwyg.EditorTestActivity"
             android:label="@string/title_activity_editor_test"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RenderTestActivity"
+            android:name="com.github.irshulx.wysiwyg.RenderTestActivity"
             android:label="@string/title_activity_render"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
