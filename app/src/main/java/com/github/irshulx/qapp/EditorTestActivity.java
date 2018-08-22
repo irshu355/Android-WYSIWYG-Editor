@@ -165,15 +165,8 @@ public class EditorTestActivity extends AppCompatActivity {
         });
         //render();
         editor.render();  // this method must be called to start the editor
-        Editable editable = new SpannableStringBuilder("\nPass a string here\n");
-        editor.appendText(editable);
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Editable editable = new SpannableStringBuilder("hi\n");
-               // editor.appendText(editable);
-            }
-        },10000);
+        //editor.render("<p>Hello man, whats up!</p>");
+
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

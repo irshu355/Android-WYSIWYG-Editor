@@ -273,9 +273,37 @@ public class InputExtensions {
     }
 
 
+    private void getText(int index) {
+        View view = editorCore.getParentView().getChildAt(index);
+        EditorType type = editorCore.getControlType(view);
+        if (type != EditorType.INPUT)
+            return;
+        TextView tv = (TextView) view;
+        tv.setHint(editorCore.placeHolder);
+    }
+
+
     public TextView insertEditText(int position, String hint, CharSequence text) {
         String nextHint = isLastText(position) ? null : editorCore.placeHolder;
         if (editorCore.getRenderType() == RenderType.Editor) {
+
+
+
+
+
+            if (position == 1) {
+                View view = editorCore.getParentView().getChildAt(0);
+                EditorType type = editorCore.getControlType(view);
+                if (type == EditorType.INPUT) {
+                    TextView textView = (TextView) view;
+                    if (TextUtils.isEmpty(textView.getText())) {
+                        textView.setHint(null);
+                    }
+                }
+            }
+
+
+
             final CustomEditText view = getNewEditTextInst(nextHint, text);
             editorCore.getParentView().addView(view, position);
             editorCore.setActiveView(view);
@@ -472,42 +500,6 @@ public class InputExtensions {
 
     public void appendText(Editable text) {
 
-
-        List<CharSequence> seq = new ArrayList<>();
-
-        SpannableStringBuilder builder = new SpannableStringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) == '\n') {
-                EditorType editorType = editorCore.getControlType(editorCore.getActiveView());
-                EditText editText = (EditText) editorCore.getActiveView();
-                if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
-                    int index = editorCore.getParentView().indexOfChild(editText);
-
-
-
-                    if (builder.length() > 0) {
-                        index+=1;
-                        insertEditText(index, "", builder);
-                        builder.clear();
-                    }
-                    index+=1;
-                    insertEditText(index, "", new SpannableStringBuilder().append('\n'));
-                }
-            } else {
-                builder.append(text.charAt(i));
-            }
-        }
-
-
-        if (builder.length() > 0) {
-            EditorType editorType = editorCore.getControlType(editorCore.getActiveView());
-            EditText editText = (EditText) editorCore.getActiveView();
-            if (editorType == EditorType.INPUT || editorType == EditorType.UL_LI) {
-                int index = editorCore.getParentView().indexOfChild(editText);
-                insertEditText(index + 1, "", builder);
-                builder.clear();
-            }
-        }
     }
 
     public void insertLink(String uri) {

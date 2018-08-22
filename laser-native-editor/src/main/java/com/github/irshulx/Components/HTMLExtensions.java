@@ -38,6 +38,7 @@ public class HTMLExtensions {
         String text;
         HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
         int count = editorCore.getParentView().getChildCount();
+        String x = element.html().replaceAll("\\s+", "");
         if ("<br>" .equals(element.html().replaceAll("\\s+", "")) || "<br/>" .equals(element.html().replaceAll("\\s+", ""))) {
             editorCore.getInputExtensions().insertEditText(count, null, null);
             return;
