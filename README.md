@@ -1,3 +1,4 @@
+
 [ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-8-red.svg)
 
 Android-WYSIWYG-Editor
@@ -250,8 +251,17 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
         }
     }
 
+You can also programmatically append text into the editor using HTML like so:
 
+    editor.render("<p>Hello man, whats up!</p>");
+    editor.render("<div>This is another paragraph!</div>");
+Please be reminded, nested HTML **ARE NOT** supported at the moment except for `<ul>` and `<ol>`, for eg: `<p><h2>Hello world</h2></p>` **won't work**, as `<h2>` is nested inside `<p>`. As of the moment, the following HTML tags are supported:
 
+ - `<p>`,`<div>`
+ - `<h1>`,`<h2>`,`<h3>`
+ - `<img>`
+ - `<ul>`,`<ol>`
+ 
 API
 -------------------
 
