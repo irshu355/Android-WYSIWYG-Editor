@@ -6,7 +6,7 @@ Android-WYSIWYG-Editor
 
 An iframe free text editor that uses native components in the content tree.
 
-[<img src="https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/play-icon.jpg">](https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg)
+[<img src="https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/google-play-badge.png">](https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg_editor)
 
 
 ## Changelog
