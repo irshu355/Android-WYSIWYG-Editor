@@ -1,1 +1,1 @@
-include ':app', ':laser-native-editor'
+include ':sample', ':laser-native-editor'
