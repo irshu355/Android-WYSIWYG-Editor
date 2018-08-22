@@ -387,12 +387,6 @@ Contributions are much appreciated, feel free to fork and customize for your nee
 
 If you come across any bugs or needs, please mention it on issues, i will address it and resolve it the latest possible.
 
-.___                          .___                              __                         __   
-|   | ____     ____  ____   __| _/____       __  _  __ ____   _/  |________ __ __  _______/  |_ 
-|   |/    \  _/ ___\/  _ \ / __ |/ __ \      \ \/ \/ // __ \  \   __\_  __ \  |  \/  ___/\   __\
-|   |   |  \ \  \__(  <_> ) /_/ \  ___/       \     /\  ___/   |  |  |  | \/  |  /\___ \  |  |  
-|___|___|  /  \___  >____/\____ |\___  > /\    \/\_/  \___  >  |__|  |__|  |____//____  > |__|  
-         \/       \/           \/    \/  )/               \/                          \/      
 
 ## License
 
