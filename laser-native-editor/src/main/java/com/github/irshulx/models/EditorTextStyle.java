@@ -3,8 +3,8 @@ package com.github.irshulx.models;
 public enum EditorTextStyle {
     BOLD,
     ITALIC,
-    UnderLined,
-    Overlined,
+    ___UnderLined,
+    ___Overlined,
     H1,
     H2,
     H3,

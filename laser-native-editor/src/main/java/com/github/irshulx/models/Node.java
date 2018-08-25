@@ -7,4 +7,6 @@ public class Node {
     public EditorType type;
     public ArrayList<String> content;
     public List<EditorTextStyle> contentStyles;
+    public TextSettings textSettings;
+    public ArrayList<Node> childs;
 }

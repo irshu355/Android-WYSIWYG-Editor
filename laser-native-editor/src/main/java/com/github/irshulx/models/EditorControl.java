@@ -10,5 +10,6 @@ public class EditorControl {
     public EditorType Type;
     public String path;
     public String Cords;
+    public TextSettings textSettings;
     public List<EditorTextStyle> _ControlStyles;
 }

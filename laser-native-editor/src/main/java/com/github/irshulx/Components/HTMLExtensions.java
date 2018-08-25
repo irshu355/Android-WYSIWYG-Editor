@@ -3,6 +3,7 @@ package com.github.irshulx.Components;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.github.irshulx.Editor;
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorTextStyle;
@@ -14,6 +15,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import static com.github.irshulx.models.TextSetting.TEXT_COLOR;
 
 /**
  * Created by mkallingal on 5/25/2016.
@@ -156,18 +162,30 @@ public class HTMLExtensions {
                 break;
             case OL_LI:
             case UL_LI:
-                template = "<li>{{$content}}</li>";
+                String dataTag = child==EditorType.OL_LI?"data-tag=\"list-item-ol\"":"data-tag=\"list-item-ul\"";
+                template = "<li "+ dataTag +"><{{$tag}} {{$style}}>{{$content}}</{{$tag}}></li>";
                 break;
         }
         return template;
     }
 
+    private String createStyleTag(Map<Enum, String> styles){
+        String tmpl = " style=\"{{builder}}\"";
+        StringBuilder builder = new StringBuilder();
+        for(Map.Entry<Enum, String> style: styles.entrySet()){
+            builder.append(style.getValue()).append(";");
+        }
+        tmpl = tmpl.replace("{{builder}}",builder);
+        return tmpl;
+    }
+
     private String getInputHtml(Node item) {
         boolean isParagraph = true;
-        String tmpl = getTemplateHtml(EditorType.INPUT);
+        String tmpl = getTemplateHtml(item.type);
         //  CharSequence content= android.text.Html.fromHtml(item.content.get(0)).toString();
         //  CharSequence trimmed= editorCore.getInputExtensions().noTrailingwhiteLines(content);
         String trimmed = Jsoup.parse(item.content.get(0)).body().select("p").html();
+        Map<Enum, String> styles = new HashMap<>();
         if (item.contentStyles.size() > 0) {
             for (EditorTextStyle style : item.contentStyles) {
                 switch (style) {
@@ -181,10 +199,10 @@ public class HTMLExtensions {
                         tmpl = tmpl.replace("{{$content}}", "<i>{{$content}}</i>");
                         break;
                     case INDENT:
-                        tmpl = tmpl.replace("{{$style}}", "style=\"margin-left:25px\"");
+                        styles.put(style,"margin-left:25px");
                         break;
                     case OUTDENT:
-                        tmpl = tmpl.replace("{{$style}}", "style=\"margin-left:0px\"");
+                        styles.put(style,"margin-left:0");
                         break;
                     case H1:
                         tmpl = tmpl.replace("{{$tag}}", "h1");
@@ -204,16 +222,18 @@ public class HTMLExtensions {
                         break;
                 }
             }
-            if (isParagraph) {
-                tmpl = tmpl.replace("{{$tag}}", "p");
-            }
-            tmpl = tmpl.replace("{{$content}}", trimmed);
-            tmpl = tmpl.replace("{{$style}}", "");
-            return tmpl;
         }
-        tmpl = tmpl.replace("{{$tag}}", "p");
+
+        styles.put(TEXT_COLOR,"color:" + item.textSettings.getTextColor());
+
+        if(item.type==EditorType.OL_LI || item.type == EditorType.UL_LI){
+            tmpl = tmpl.replace("{{$tag}}", "span");
+        }
+        else if (isParagraph) {
+            tmpl = tmpl.replace("{{$tag}}", "p");
+        }
         tmpl = tmpl.replace("{{$content}}", trimmed);
-        tmpl = tmpl.replace(" {{$style}}", "");
+        tmpl = tmpl.replace(" {{$style}}", createStyleTag(styles));
         return tmpl;
     }
 
@@ -258,14 +278,12 @@ public class HTMLExtensions {
 
 
     private String getListAsHtml(Node item) {
-        int count = item.content.size();
+        int count = item.childs.size();
         String tmpl_parent = getTemplateHtml(item.type);
         StringBuilder childBlock = new StringBuilder();
         for (int i = 0; i < count; i++) {
-            String tmpl_li = getTemplateHtml(item.type == EditorType.ul ? EditorType.UL_LI : EditorType.OL_LI);
-            String trimmed = Jsoup.parse(item.content.get(i)).body().select("p").html();
-            tmpl_li = tmpl_li.replace("{{$content}}", trimmed);
-            childBlock.append(tmpl_li);
+            String html = getInputHtml(item.childs.get(i));
+            childBlock.append(html);
         }
         tmpl_parent = tmpl_parent.replace("{{$content}}", childBlock.toString());
         return tmpl_parent;

@@ -24,7 +24,10 @@ import com.github.irshulx.models.EditorTextStyle;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+
+import top.defaults.colorpicker.ColorPickerPopup;
 
 public class EditorTestActivity extends AppCompatActivity {
     Editor editor;
@@ -108,6 +111,36 @@ public class EditorTestActivity extends AppCompatActivity {
             }
         });
 
+
+        findViewById(R.id.action_color).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ColorPickerPopup.Builder(EditorTestActivity.this)
+                        .initialColor(Color.RED) // Set initial color
+                        .enableAlpha(true) // Enable alpha slider or not
+                        .okTitle("Choose")
+                        .cancelTitle("Cancel")
+                        .showIndicator(true)
+                        .showValue(true)
+                        .build()
+                        .show(findViewById(android.R.id.content), new ColorPickerPopup.ColorPickerObserver() {
+                            @Override
+                            public void onColorPicked(int color) {
+                                Toast.makeText(EditorTestActivity.this, "picked"+colorHex(color),Toast.LENGTH_LONG).show();
+                                editor.updateTextColor(colorHex(color));
+                            }
+
+                            @Override
+                            public void onColor(int color, boolean fromUser) {
+
+                            }
+                        });
+
+
+
+            }
+        });
+
         findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,6 +177,8 @@ public class EditorTestActivity extends AppCompatActivity {
         editor.setDividerLayout(R.layout.tmpl_divider_layout);
         editor.setEditorImageLayout(R.layout.tmpl_image_view);
         editor.setListItemLayout(R.layout.tmpl_list_item);
+        //editor.setNormalTextSize(10);
+       // editor.setEditorTextColor("#FF3333");
         //editor.StartEditor();
         editor.setEditorListener(new EditorListener() {
             @Override
@@ -178,6 +213,13 @@ public class EditorTestActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private String colorHex(int color) {
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+        return String.format(Locale.getDefault(), "#%02X%02X%02X",  r, g, b);
     }
 
     public static void setGhost(Button button) {

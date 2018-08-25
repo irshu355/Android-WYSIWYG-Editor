@@ -18,6 +18,7 @@ package com.github.irshulx.Components;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.text.Editable;
@@ -41,6 +42,7 @@ import com.github.irshulx.R;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
 import com.github.irshulx.models.RenderType;
+import com.github.irshulx.models.TextSettings;
 
 import static com.github.irshulx.Components.InputExtensions.CONTENT;
 
@@ -90,8 +92,12 @@ public class ListItemExtensions {
         }
         if (editorCore.getRenderType() == RenderType.Editor) {
             editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, editorCore.getInputExtensions().getNormalTextSize());
-            editText.setTag(editorCore.createTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI));
-            childLayout.setTag(editorCore.createTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI));
+            editText.setTextColor(Color.parseColor(editorCore.getInputExtensions().getDefaultTextColor()));
+
+            EditorControl tag = editorCore.createTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI);
+            tag.textSettings = new TextSettings(editorCore.getInputExtensions().getDefaultTextColor());
+            editText.setTag(tag);
+            childLayout.setTag(tag);
             editText.setTypeface(editorCore.getInputExtensions().getTypeface(CONTENT, Typeface.NORMAL));
             editorCore.setActiveView(editText);
             editorCore.getInputExtensions().setText(editText, text);
@@ -153,7 +159,6 @@ public class ListItemExtensions {
                                 } else {
                                     editText.getText().clear();
                                 }
-
 
                                 int index = _table.indexOfChild(_row);
                                 //  insertEditText(index + 1, "");

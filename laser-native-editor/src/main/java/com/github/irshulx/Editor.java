@@ -17,6 +17,7 @@ package com.github.irshulx;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.annotation.ColorRes;
 import android.text.Editable;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -153,6 +154,15 @@ public class Editor extends EditorCore {
         getInputExtensions().setNormalTextSize(size);
     }
 
+
+    /**
+     * set dafault text color in hex
+     * @param color
+     */
+    public void setEditorTextColor(String color) {
+        getInputExtensions().setDefaultTextColor(color);
+    }
+
     /**
      * Set the fontface for the editor
      *
@@ -166,6 +176,10 @@ public class Editor extends EditorCore {
 
     public void updateTextStyle(EditorTextStyle style) {
         getInputExtensions().UpdateTextStyle(style, null);
+    }
+
+    public void updateTextColor(String color){
+        getInputExtensions().updateTextColor(color, null);
     }
 
     public void insertLink() {

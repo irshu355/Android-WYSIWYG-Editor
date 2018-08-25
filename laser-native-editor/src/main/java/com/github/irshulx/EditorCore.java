@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.text.Editable;
 import android.text.Html;
@@ -45,6 +46,7 @@ import java.util.regex.Pattern;
  * Created by mkallingal on 4/30/2016.
  */
 public class EditorCore extends LinearLayout {
+    public static final String TAG = "EDITOR";
     /*
     * EditText initializors
     */
@@ -432,6 +434,14 @@ public class EditorCore extends LinearLayout {
         return serialized;
     }
 
+    private Node getNodeInstance(View view){
+        Node node = new Node();
+        EditorType type = getControlType(view);
+        node.type = type;
+        node.content = new ArrayList<>();
+        return node;
+    }
+
     public EditorContent getContent() {
 
         if (this.__renderType == RenderType.Renderer) {
@@ -443,17 +453,15 @@ public class EditorCore extends LinearLayout {
         EditorContent editorState = new EditorContent();
         List<Node> list = new ArrayList<>();
         for (int i = 0; i < childCount; i++) {
-            Node node = new Node();
-            View view = __parentView.getChildAt(i);
-            EditorType type = getControlType(view);
-            node.type = type;
-            node.content = new ArrayList<>();
-            switch (type) {
+            View view =__parentView.getChildAt(i);
+            Node node = getNodeInstance(view);
+            switch (node.type) {
                 case INPUT:
                     EditText _text = (EditText) view;
                     EditorControl tag = (EditorControl) view.getTag();
                     node.contentStyles = tag._ControlStyles;
                     node.content.add(Html.toHtml(_text.getText()));
+                    node.textSettings = tag.textSettings;
                     list.add(node);
                     break;
                 case img:
@@ -471,12 +479,19 @@ public class EditorCore extends LinearLayout {
                     break;
                 case ul:
                 case ol:
+                    node.childs = new ArrayList<>();
                     TableLayout table = (TableLayout) view;
                     int _rowCount = table.getChildCount();
                     for (int j = 0; j < _rowCount; j++) {
                         View row = table.getChildAt(j);
-                        EditText li = (EditText) row.findViewById(R.id.txtText);
-                        node.content.add(Html.toHtml(li.getText()));
+                        Node node1 = getNodeInstance(row);
+                        EditText li = row.findViewById(R.id.txtText);
+                        EditorControl liTag = (EditorControl) li.getTag();
+                        node1.contentStyles = liTag._ControlStyles;
+                        node1.content.add(Html.toHtml(li.getText()));
+                        node1.textSettings = liTag.textSettings;
+                        node1.content.add(Html.toHtml(li.getText()));
+                        node.childs.add(node1);
                     }
                     list.add(node);
                     break;
@@ -503,6 +518,10 @@ public class EditorCore extends LinearLayout {
                         for (EditorTextStyle style : item.contentStyles) {
                             __inputExtensions.UpdateTextStyle(style, view);
                         }
+
+                        if(!TextUtils.isEmpty(item.textSettings.getTextColor())) {
+                            view.setTextColor(Color.parseColor(item.textSettings.getTextColor()));
+                        }
                     }
                     break;
                 case hr:
@@ -516,11 +535,35 @@ public class EditorCore extends LinearLayout {
                 case ul:
                 case ol:
                     TableLayout _layout = null;
-                    for (int i = 0; i < item.content.size(); i++) {
+                    View listItemView = null;
+                    for (int i = 0; i < item.childs.size(); i++) {
                         if (i == 0) {
-                            _layout = __listItemExtensions.insertList(_state.nodes.indexOf(item), item.type == EditorType.ol, item.content.get(i));
+                            _layout = __listItemExtensions.insertList(_state.nodes.indexOf(item), item.type == EditorType.ol, item.childs.get(0).content.get(0));
                         } else {
-                            __listItemExtensions.AddListItem(_layout, item.type == EditorType.ol, item.content.get(i));
+                            listItemView = __listItemExtensions.AddListItem(_layout, item.type == EditorType.ol, item.childs.get(i).content.get(0));
+                        }
+
+                        if(i==0){
+                            listItemView = _layout;
+                        }
+
+                        TextView tv;
+
+                        if(getRenderType() == RenderType.Renderer) {
+                            tv = listItemView.findViewById(R.id.lblText);
+                        }else {
+                           tv = listItemView.findViewById(R.id.txtText);
+                        }
+
+
+                        if (item.childs.get(i).contentStyles != null) {
+                            for (EditorTextStyle style : item.childs.get(i).contentStyles) {
+                                    tv.setTag(createTag(EditorType.UL_LI));
+                                    __inputExtensions.UpdateTextStyle(style, tv);
+                            }
+                        }
+                        if(!TextUtils.isEmpty(item.childs.get(i).textSettings.getTextColor())) {
+                            tv.setTextColor(Color.parseColor(item.childs.get(i).textSettings.getTextColor()));
                         }
                     }
                     break;

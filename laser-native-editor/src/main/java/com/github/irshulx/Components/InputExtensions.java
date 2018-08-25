@@ -17,6 +17,7 @@ package com.github.irshulx.Components;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -46,6 +47,9 @@ import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
 import com.github.irshulx.models.Op;
 import com.github.irshulx.models.RenderType;
+import com.github.irshulx.models.TextSettings;
+
+import junit.framework.Assert;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -64,6 +68,7 @@ import javax.microedition.khronos.egl.EGLDisplay;
 public class InputExtensions {
     public static final int HEADING = 0;
     public static final int CONTENT = 1;
+    private String DEFAULT_TEXT_COLOR = "#000000";
     private int H1TEXTSIZE = 23;
     private int H2TEXTSIZE = 20;
     private int H3TEXTSIZE = 18;
@@ -104,6 +109,16 @@ public class InputExtensions {
     public void setNormalTextSize(int size) {
         this.NORMALTEXTSIZE = size;
     }
+
+
+    public void setDefaultTextColor(String color) {
+        this.DEFAULT_TEXT_COLOR = color;
+    }
+
+    public String getDefaultTextColor() {
+        return this.DEFAULT_TEXT_COLOR;
+    }
+
 
     public String getFontFace() {
         return editorCore.getContext().getResources().getString(fontFace);
@@ -171,7 +186,14 @@ public class InputExtensions {
         if (text != null) {
             setText(editText, text);
         }
-        editText.setTag(editorCore.createTag(EditorType.INPUT));
+
+        /**
+         * create tag for the editor
+         */
+
+        EditorControl editorTag = editorCore.createTag(EditorType.INPUT);
+        editorTag.textSettings = new TextSettings(this.DEFAULT_TEXT_COLOR);
+        editText.setTag(editorTag);
         editText.setBackgroundDrawable(ContextCompat.getDrawable(this.editorCore.getContext(), R.drawable.invisible_edit_text));
         editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -269,6 +291,7 @@ public class InputExtensions {
         editText.setTypeface(getTypeface(CONTENT, Typeface.NORMAL));
         editText.setFocusableInTouchMode(true);
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMALTEXTSIZE);
+        editText.setTextColor(Color.parseColor(this.DEFAULT_TEXT_COLOR));
 
     }
 
@@ -288,9 +311,6 @@ public class InputExtensions {
         if (editorCore.getRenderType() == RenderType.Editor) {
 
 
-
-
-
             if (position == 1) {
                 View view = editorCore.getParentView().getChildAt(0);
                 EditorType type = editorCore.getControlType(view);
@@ -301,7 +321,6 @@ public class InputExtensions {
                     }
                 }
             }
-
 
 
             final CustomEditText view = getNewEditTextInst(nextHint, text);
@@ -642,4 +661,20 @@ public class InputExtensions {
         }
     }
 
+    public void updateTextColor(String color, TextView editText) {
+        try {
+            if (editText == null) {
+                editText = (EditText) editorCore.getActiveView();
+            }
+            EditorControl tag = editorCore.getControlTag(editText);
+            if(tag.textSettings==null)
+                tag.textSettings = new TextSettings(color);
+            else
+                tag.textSettings.setTextColor(color);
+            editText.setTag(tag);
+            editText.setTextColor(Color.parseColor(color));
+        } catch (Exception ex) {
+            Log.e(editorCore.TAG, ex.getMessage());
+        }
+    }
 }
