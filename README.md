@@ -1,12 +1,13 @@
-[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-8-red.svg)
+
+[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-21-red.svg)
 
 Android-WYSIWYG-Editor
 ===================
 
 
-An iframe free text editor that uses native components in the content tree.
+An iframe free text editor that uses native components in the content tree. Motivation was to create a clean native feel WYSIWYG editor like medium.com has.
 
-[<img src="https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/play-icon.jpg">](https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg)
+[<img src="https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/google-play-badge.png">](https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg_editor)
 
 
 ## Changelog
@@ -43,14 +44,14 @@ Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:2.2.9'
+    compile 'com.github.irshulx:laser-native-editor:2.2.10'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>2.2.9</version>
+      <version>2.2.10</version>
       <type>pom</type>
     </dependency>
 
@@ -250,8 +251,19 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
         }
     }
 
+You can also programmatically append text into the editor using HTML like so:
 
+    editor.render("<p>Hello man, whats up!</p>");
+    editor.render("<div>This is another paragraph!</div>");
+Please be reminded, nested HTML **ARE NOT** supported at the moment except for `<ul>` and `<ol>`, for eg: `<p><h2>Hello world</h2></p>` **won't work**, as `<h2>` is nested inside `<p>`. As of the moment, the following HTML tags are supported:
 
+ - `<p>`,`<div>`
+ - `<h1>`,`<h2>`,`<h3>`
+ - `<img>`
+ - `<ul>`,`<ol>`
+ - `<hr/>`
+ - `<br/>`
+ 
 API
 -------------------
 
@@ -374,6 +386,7 @@ Future Plans
 Contributions are much appreciated, feel free to fork and customize for your needs.
 
 If you come across any bugs or needs, please mention it on issues, i will address it and resolve it the latest possible.
+
 
 ## License
 
