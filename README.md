@@ -18,7 +18,7 @@ An iframe free text editor that uses native components in the content tree. Moti
  
  ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/colored-text.jpeg)
  
-- Formatting of list items now supported (eg: i,b,h1,h2,h3...)
+- Text formatting for list now supported
 
 ## [2.2.9 - 19 August 2018] 
 
