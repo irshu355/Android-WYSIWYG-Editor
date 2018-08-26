@@ -16,7 +16,7 @@ An iframe free text editor that uses native components in the content tree. Moti
 
  - **Colored texts are now supported**, u can globally set the colour as `editor.setEditorTextColor("#FF3333");` or dynamically switch the color of the active line as `editor.updateTextColor("#FF3333");`
  
- ![](https://raw.githubusercontent.com/irshuLx/Android-WYSIWYG-Editor/master/screens/Unknown.jpg)
+ ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/colored-text.jpeg)
  
 - Formatting of list items now supported (eg: i,b,h1,h2,h3...)
 
