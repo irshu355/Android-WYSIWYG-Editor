@@ -190,6 +190,13 @@ For a complete overview of the implementation, please take a look at [EditorTest
                 editor.insertList(false);
             }
         });
+        
+           findViewById(R.id.action_color).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextColor("#FF3333");
+            }
+        });
 
         findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
             @Override
