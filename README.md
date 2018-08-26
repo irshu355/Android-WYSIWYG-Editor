@@ -12,6 +12,13 @@ An iframe free text editor that uses native components in the content tree. Moti
 
 ## Changelog
 
+## [2.3.0 - 26 August 2018]
+
+### Added
+
+ - Colored texts are now supported, u can globally set the colour as `editor.setEditorTextColor("#FF3333");` or dynamically switch the color of the active line as `editor.updateTextColor("#FF3333");`
+- Formatting of list items now supported (eg: i,b,h1,h2,h3...)
+
 ## [2.2.9 - 19 August 2018] 
 ### Added
  - **Decide whether to autofocus on start**
