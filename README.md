@@ -94,7 +94,7 @@ The editor is built, so that every part of the design have been exposed and is a
 | Control     | Usage |
 | :------- | :-----: |
 | `H1`,  `H2` and `H3` | Insert Headings |
-| `Bold`, `Italic`, `Intent` & `Outdent`    | Format the text   |
+| `Bold`, `Italic`,`Color`, `Intent` & `Outdent`    | Format the text   |
 | `Image Picker`| Insert Images to the editor from storage or a URL    |
 | `Hyperlinks` | Add Links to the editor
 |`Location Selector` | Use the embedded map editor to tag and insert locations to the editor |
