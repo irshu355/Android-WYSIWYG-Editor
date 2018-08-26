@@ -304,6 +304,8 @@ API
  - `setFontFace(int resource);` Sets the FontFace for the editor.
 
  - `setLineSpacing(float value);` Sets the linespace for the editor.
+ 
+ - `editor.setEditorTextColor("#FF3333");` Sets the global text color of the editor (default is #000000).
 
  - `openImagePicker();` Opens up the image picker. Once the user has selected the image, it's automatically inserted to the editor. But you must configure a remote URL ,where you want the image to be uploaded. If the Remote URL is not specifed, the image is not persisted.
 
