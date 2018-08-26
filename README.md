@@ -107,7 +107,7 @@ The editor is built, so that every part of the design have been exposed and is a
 Usage
 -------------------
 
-For a complete overview of the implementation, please take a look at [EditorTestActivity.java](https://github.com/irshuLx/Android-WYSIWYG-Editor/blob/master/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java)
+For a complete overview of the implementation, please take a look at [EditorTestActivity.java](https://github.com/irshuLx/Android-WYSIWYG-Editor/blob/master/sample/src/main/java/com/github/irshulx/wysiwyg/EditorTestActivity.java)
 
 **Layout XML**
 
