@@ -197,8 +197,8 @@ public class EditorTestActivity extends AppCompatActivity {
                 // editor.onImageUploadFailed(uuid);
             }
         });
-        //render();
-        editor.render();  // this method must be called to start the editor
+        render();
+        //editor.render();  // this method must be called to start the editor
         //editor.render("<p>Hello man, whats up!</p>");
 
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {

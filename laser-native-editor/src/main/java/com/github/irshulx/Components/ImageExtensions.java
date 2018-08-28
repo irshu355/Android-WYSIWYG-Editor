@@ -72,7 +72,10 @@ public class ImageExtensions {
         ((Activity) editorCore.getContext()).startActivityForResult(Intent.createChooser(intent, "Select an image"), editorCore.PICK_IMAGE_REQUEST);
     }
 
-    public void insertImage(Bitmap image, int index, String subTitle) {
+    public void insertImage(Bitmap image, String url, int index, String subTitle) {
+        boolean hasUploaded = false;
+        if(!TextUtils.isEmpty(url)) hasUploaded = true;
+
         // Render(getStateFromString());
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
@@ -91,15 +94,17 @@ public class ImageExtensions {
             editorCore.getInputExtensions().insertEditText(index + 1, null, null);
         }
         EditorControl control = editorCore.createTag(EditorType.img);
-        control.path = uuid; // set the imageId,so we can recognize later after upload
+        control.path = hasUploaded ? url : uuid; // set the imageId,so we can recognize later after upload
         childLayout.setTag(control);
         if(!TextUtils.isEmpty(subTitle))
             desc.setText(subTitle);
         if(editorCore.getRenderType()== RenderType.Editor) {
-            lblStatus.setVisibility(View.VISIBLE);
             BindEvents(childLayout);
-            childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
-            editorCore.getEditorListener().onUpload(image, uuid);
+            if(!hasUploaded){
+                lblStatus.setVisibility(View.VISIBLE);
+                childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
+                editorCore.getEditorListener().onUpload(image, uuid);
+            }
         }else {
             desc.setEnabled(false);
             lblStatus.setVisibility(View.GONE);
@@ -199,15 +204,16 @@ public class ImageExtensions {
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         private int InsertIndex;
         private String subTitle;
+        private String url;
         public DownloadImageTask(int index) {
             this.InsertIndex = index;
         }
         protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
+            this.url = urls[0];
             this.subTitle = urls[1];
             Bitmap mIcon11 = null;
             try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
+                InputStream in = new java.net.URL(url).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
@@ -216,7 +222,7 @@ public class ImageExtensions {
             return mIcon11;
         }
         protected void onPostExecute(Bitmap result) {
-            insertImage(result, this.InsertIndex,subTitle);
+            insertImage(result, url, this.InsertIndex,subTitle);
         }
     }
 
