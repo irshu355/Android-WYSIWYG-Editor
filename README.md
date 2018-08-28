@@ -10,7 +10,7 @@ An iframe free text editor that uses native components in the content tree. Moti
 [<img src="https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/google-play-badge.png">](https://play.google.com/store/apps/details?id=com.github.irshulx.wysiwyg_editor)
 
 
-> I will be removing the image picker option on the next update. You will be able to insert image into the editor using the `editor.insertImage(String url, String desc); `
+> I will be removing the image picker option on the upcoming release 3.0.0. You will then be able to insert image into the editor using `editor.insertImage(String url, String desc); `
 
 
 ## Changelog
