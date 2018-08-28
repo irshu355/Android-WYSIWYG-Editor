@@ -1,5 +1,5 @@
 
-[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-21-red.svg)
+[ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-18-red.svg)
 
 Android-WYSIWYG-Editor
 ===================
@@ -12,8 +12,16 @@ An iframe free text editor that uses native components in the content tree. Moti
 
 ## Changelog
 
+## [2.3.0 - 26 August 2018]
+
+ - **Colored texts are now supported**, u can globally set the colour as `editor.setEditorTextColor("#FF3333");` or dynamically switch the color of the active line as `editor.updateTextColor("#FF3333");`
+ 
+ ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/colored-text.jpeg)
+ 
+- Text formatting for list now supported
+
 ## [2.2.9 - 19 August 2018] 
-### Added
+
  - **Decide whether to autofocus on start**
  
 
@@ -27,7 +35,7 @@ please refer to https://github.com/irshuLx/Android-WYSIWYG-Editor/issues/43
  
 
 ## [2.0.0 - 03 July 2017] 
-### Added
+
  - **A better editor**
  - **Automatic image upload functionality has been removed**. You will have to do the upload on your own, just pass the uri to the editor.
  - **Custom fonts**. You can now apply custom fonts for the editor ( with option for seperate fonts for header and content)
@@ -86,7 +94,7 @@ The editor is built, so that every part of the design have been exposed and is a
 | Control     | Usage |
 | :------- | :-----: |
 | `H1`,  `H2` and `H3` | Insert Headings |
-| `Bold`, `Italic`, `Intent` & `Outdent`    | Format the text   |
+| `Bold`, `Italic`,`Color`, `Intent` & `Outdent`    | Format the text   |
 | `Image Picker`| Insert Images to the editor from storage or a URL    |
 | `Hyperlinks` | Add Links to the editor
 |`Location Selector` | Use the embedded map editor to tag and insert locations to the editor |
@@ -99,7 +107,7 @@ The editor is built, so that every part of the design have been exposed and is a
 Usage
 -------------------
 
-For a complete overview of the implementation, please take a look at [EditorTestActivity.java](https://github.com/irshuLx/Android-WYSIWYG-Editor/blob/master/app/src/main/java/com/github/irshulx/qapp/EditorTestActivity.java)
+For a complete overview of the implementation, please take a look at [EditorTestActivity.java](https://github.com/irshuLx/Android-WYSIWYG-Editor/blob/master/sample/src/main/java/com/github/irshulx/wysiwyg/EditorTestActivity.java)
 
 **Layout XML**
 
@@ -180,6 +188,13 @@ For a complete overview of the implementation, please take a look at [EditorTest
             @Override
             public void onClick(View v) {
                 editor.insertList(false);
+            }
+        });
+        
+           findViewById(R.id.action_color).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextColor("#FF3333");
             }
         });
 
@@ -289,6 +304,8 @@ API
  - `setFontFace(int resource);` Sets the FontFace for the editor.
 
  - `setLineSpacing(float value);` Sets the linespace for the editor.
+ 
+ - `editor.setEditorTextColor("#FF3333");` Sets the global text color of the editor (default is #000000).
 
  - `openImagePicker();` Opens up the image picker. Once the user has selected the image, it's automatically inserted to the editor. But you must configure a remote URL ,where you want the image to be uploaded. If the Remote URL is not specifed, the image is not persisted.
 
