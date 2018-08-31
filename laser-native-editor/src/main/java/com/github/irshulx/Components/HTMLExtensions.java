@@ -1,5 +1,6 @@
 package com.github.irshulx.Components;
 
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -16,9 +17,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import static com.github.irshulx.models.TextSetting.TEXT_COLOR;
 
 /**
@@ -45,10 +48,10 @@ public class HTMLExtensions {
         HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
         int count = editorCore.getParentView().getChildCount();
         String x = element.html().replaceAll("\\s+", "");
-        if ("<br>" .equals(element.html().replaceAll("\\s+", "")) || "<br/>" .equals(element.html().replaceAll("\\s+", ""))) {
+        if ("<br>".equals(element.html().replaceAll("\\s+", "")) || "<br/>".equals(element.html().replaceAll("\\s+", ""))) {
             editorCore.getInputExtensions().insertEditText(count, null, null);
             return;
-        } else if ("<hr>" .equals(element.html().replaceAll("\\s+", "")) || "<hr/>" .equals(element.html().replaceAll("\\s+", ""))) {
+        } else if ("<hr>".equals(element.html().replaceAll("\\s+", "")) || "<hr/>".equals(element.html().replaceAll("\\s+", ""))) {
             editorCore.getDividerExtensions().insertDivider();
             return;
         }
@@ -60,7 +63,8 @@ public class HTMLExtensions {
                 break;
             case p:
                 text = element.html();
-                editorCore.getInputExtensions().insertEditText(count, null, text);
+                TextView textView = editorCore.getInputExtensions().insertEditText(count, null, text);
+                editorCore.getInputExtensions().applyStyles(textView,element);
                 break;
             case ul:
             case ol:
@@ -105,7 +109,8 @@ public class HTMLExtensions {
             for (int i = 1; i < element.children().size(); i++) {
                 li = element.child(i);
                 text = getHtmlSpan(li);
-                editorCore.getListItemExtensions().AddListItem(layout, isOrdered, text);
+                View view = editorCore.getListItemExtensions().AddListItem(layout, isOrdered, text);
+                editorCore.getListItemExtensions().applyStyles(view, li);
             }
         }
     }
@@ -116,6 +121,31 @@ public class HTMLExtensions {
         TextView editText = editorCore.getInputExtensions().insertEditText(count, null, text);
         EditorTextStyle style = tag == HtmlTag.h1 ? EditorTextStyle.H1 : tag == HtmlTag.h2 ? EditorTextStyle.H2 : EditorTextStyle.H3;
         editorCore.getInputExtensions().UpdateTextStyle(style, editText);
+        editorCore.getInputExtensions().applyStyles(editText,element);
+    }
+
+
+    public Map<String, String> getStyleMap(Element element){
+        Map<String, String> keymaps = new HashMap<>();
+        if (element.hasAttr("style")) {
+            String styleStr = element.attr("style"); // => margin-top:10px;color:#fcc;border-bottom:1px solid #ccc; background-color: #333; text-align:center
+            String[] keys = styleStr.split(":");
+            String[] split;
+            if (keys.length > 1) {
+                for (int i = 0; i < keys.length; i++) {
+                    if (i % 2 != 0) {
+                        split = keys[i].split(";");
+                        if (split.length == 1) break;
+                        keymaps.put(split[1].trim(), keys[i + 1].split(";")[0].trim());
+                    } else {
+                        split = keys[i].split(";");
+                        if(i+1 == keys.length) break;
+                        keymaps.put(keys[i].split(";")[split.length - 1].trim(), keys[i + 1].split(";")[0].trim());
+                    }
+                }
+            }
+        }
+        return keymaps;
     }
 
     private String getHtmlSpan(Element element) {
@@ -162,20 +192,20 @@ public class HTMLExtensions {
                 break;
             case OL_LI:
             case UL_LI:
-                String dataTag = child==EditorType.OL_LI?"data-tag=\"list-item-ol\"":"data-tag=\"list-item-ul\"";
-                template = "<li "+ dataTag +"><{{$tag}} {{$style}}>{{$content}}</{{$tag}}></li>";
+                String dataTag = child == EditorType.OL_LI ? "data-tag=\"list-item-ol\"" : "data-tag=\"list-item-ul\"";
+                template = "<li " + dataTag + "><{{$tag}} {{$style}}>{{$content}}</{{$tag}}></li>";
                 break;
         }
         return template;
     }
 
-    private String createStyleTag(Map<Enum, String> styles){
+    private String createStyleTag(Map<Enum, String> styles) {
         String tmpl = " style=\"{{builder}}\"";
         StringBuilder builder = new StringBuilder();
-        for(Map.Entry<Enum, String> style: styles.entrySet()){
+        for (Map.Entry<Enum, String> style : styles.entrySet()) {
             builder.append(style.getValue()).append(";");
         }
-        tmpl = tmpl.replace("{{builder}}",builder);
+        tmpl = tmpl.replace("{{builder}}", builder);
         return tmpl;
     }
 
@@ -199,10 +229,10 @@ public class HTMLExtensions {
                         tmpl = tmpl.replace("{{$content}}", "<i>{{$content}}</i>");
                         break;
                     case INDENT:
-                        styles.put(style,"margin-left:25px");
+                        styles.put(style, "margin-left:25px");
                         break;
                     case OUTDENT:
-                        styles.put(style,"margin-left:0");
+                        styles.put(style, "margin-left:0");
                         break;
                     case H1:
                         tmpl = tmpl.replace("{{$tag}}", "h1");
@@ -224,12 +254,11 @@ public class HTMLExtensions {
             }
         }
 
-        styles.put(TEXT_COLOR,"color:" + item.textSettings.getTextColor());
+        styles.put(TEXT_COLOR, "color:" + item.textSettings.getTextColor());
 
-        if(item.type==EditorType.OL_LI || item.type == EditorType.UL_LI){
+        if (item.type == EditorType.OL_LI || item.type == EditorType.UL_LI) {
             tmpl = tmpl.replace("{{$tag}}", "span");
-        }
-        else if (isParagraph) {
+        } else if (isParagraph) {
             tmpl = tmpl.replace("{{$tag}}", "p");
         }
         tmpl = tmpl.replace("{{$content}}", trimmed);

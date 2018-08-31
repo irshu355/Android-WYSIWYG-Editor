@@ -53,12 +53,16 @@ import junit.framework.Assert;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.microedition.khronos.egl.EGLDisplay;
 
@@ -661,8 +665,29 @@ public class InputExtensions {
         }
     }
 
+
+    private String colorHex(int color) {
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+        return String.format(Locale.getDefault(), "#%02X%02X%02X",  r, g, b);
+    }
+
+
     public void updateTextColor(String color, TextView editText) {
         try {
+
+            if(color.contains("rgb")){
+                Pattern c = Pattern.compile("rgb *\\( *([0-9]+), *([0-9]+), *([0-9]+) *\\)");
+                Matcher m = c.matcher(color);
+                if(m. matches()) {
+                    int r = Integer.parseInt(m.group(1));
+                    int g = Integer.parseInt(m.group(2));
+                    int b = Integer.parseInt(m.group(3));
+                    color = String.format(Locale.getDefault(), "#%02X%02X%02X", r, g, b);
+                }
+            }
+
             if (editText == null) {
                 editText = (EditText) editorCore.getActiveView();
             }
@@ -675,6 +700,13 @@ public class InputExtensions {
             editText.setTextColor(Color.parseColor(color));
         } catch (Exception ex) {
             Log.e(editorCore.TAG, ex.getMessage());
+        }
+    }
+
+    public void applyStyles(TextView editText, Element element) {
+        Map<String, String> styles = editorCore.getHtmlExtensions().getStyleMap(element);
+        if(styles.containsKey("color")){
+            updateTextColor(styles.get("color"),editText);
         }
     }
 }

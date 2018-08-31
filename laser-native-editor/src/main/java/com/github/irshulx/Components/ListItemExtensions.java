@@ -44,6 +44,10 @@ import com.github.irshulx.models.EditorType;
 import com.github.irshulx.models.RenderType;
 import com.github.irshulx.models.TextSettings;
 
+import org.jsoup.nodes.Element;
+
+import java.util.Map;
+
 import static com.github.irshulx.Components.InputExtensions.CONTENT;
 
 /**
@@ -267,53 +271,53 @@ public class ListItemExtensions {
 
         } else if (currentFocus == EditorType.UL_LI && isOrdered) {
 
-                                    /*
-                    * user clicked on ordered list item. since it's an unordered list, you need to loop through each and convert each
-                    * item into an ordered list.
-                    * */
+            /*
+             * user clicked on ordered list item. since it's an unordered list, you need to loop through each and convert each
+             * item into an ordered list.
+             * */
             TableRow _row = (TableRow) activeView.getParent();
             TableLayout _table = (TableLayout) _row.getParent();
             convertListToOrdered(_table);
-                                 /*
-                    * user clicked on ordered list item. since it's an unordered list, you need to loop through each and convert each
-                    * item into an ordered list.
-                    * */
+            /*
+             * user clicked on ordered list item. since it's an unordered list, you need to loop through each and convert each
+             * item into an ordered list.
+             * */
         } else if (currentFocus == EditorType.OL_LI && isOrdered) {
-                /*
-                *
-                * this means the item was an ordered list, you need to convert the item into a normal EditText
-                *
-                * */
+            /*
+             *
+             * this means the item was an ordered list, you need to convert the item into a normal EditText
+             *
+             * */
             TableRow _row = (TableRow) activeView.getParent();
             TableLayout _table = (TableLayout) _row.getParent();
             ConvertListToNormalText(_table, _table.indexOfChild(_row));
-                /*
-                *
-                * this means the item was an ordered list, you need to convert the item into a normal EditText
-                *
-                * */
+            /*
+             *
+             * this means the item was an ordered list, you need to convert the item into a normal EditText
+             *
+             * */
         } else if (currentFocus == EditorType.OL_LI && !isOrdered) {
-                 /*
-                *
-                * this means the item was an ordered list, you need to convert the item into an unordered list
-                *
-                * */
+            /*
+             *
+             * this means the item was an ordered list, you need to convert the item into an unordered list
+             *
+             * */
 
             TableRow _row = (TableRow) activeView.getParent();
             TableLayout _table = (TableLayout) _row.getParent();
             convertListToUnordered(_table);
-                  /*
-                *
-                * this means the item was an ordered list, you need to convert the item into an unordered list
-                *
-                * */
+            /*
+             *
+             * this means the item was an ordered list, you need to convert the item into an unordered list
+             *
+             * */
         } else if (isOrdered) {
-                 /*
-                *
-                * it's a normal edit text, convert it into an ordered list. but first check index-1, if it's ordered, should follow the order no.
-                * if it's unordered, convert all of em to ordered.
-                *
-                * */
+            /*
+             *
+             * it's a normal edit text, convert it into an ordered list. but first check index-1, if it's ordered, should follow the order no.
+             * if it's unordered, convert all of em to ordered.
+             *
+             * */
             int index_of_activeView = editorCore.getParentView().indexOfChild(editorCore.getActiveView());
             int Index = editorCore.determineIndex(EditorType.OL_LI);
             //check if the active view has content
@@ -342,11 +346,11 @@ public class ListItemExtensions {
 
 
         } else {
-                 /*
-                *
-                * it's a normal edit text, convert it into an un-ordered list
-                *
-                * */
+            /*
+             *
+             * it's a normal edit text, convert it into an un-ordered list
+             *
+             * */
 
             int Index = editorCore.determineIndex(EditorType.UL_LI);
             //check if the active view has content
@@ -450,5 +454,15 @@ public class ListItemExtensions {
             return editText;
         }
         return null;
+    }
+
+    public void applyStyles(View view, Element element) {
+        TextView textView;
+        if (editorCore.getRenderType() == RenderType.Editor) {
+            textView = view.findViewById(R.id.txtText);
+        } else {
+            textView = view.findViewById(R.id.lblText);
+        }
+        editorCore.getInputExtensions().applyStyles(textView, element);
     }
 }
