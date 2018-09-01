@@ -630,9 +630,11 @@ public class EditorCore extends LinearLayout {
                 if (index == 0)
                     return false;
                 nextFocus = __inputExtensions.getEditTextPrevious(index);
-                deleteFocusedPrevious(editText);
+
                 if (nextFocus != null) {
+                    deleteFocusedPrevious(editText);
                     nextFocus.setText(nextFocus.getText().toString() + editText.getText().toString());
+                    nextFocus.setSelection(nextFocus.getText().length());
                 }
             }
         }
