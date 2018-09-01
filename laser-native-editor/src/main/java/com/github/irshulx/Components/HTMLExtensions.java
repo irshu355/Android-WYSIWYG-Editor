@@ -64,7 +64,7 @@ public class HTMLExtensions {
             case p:
                 text = element.html();
                 TextView textView = editorCore.getInputExtensions().insertEditText(count, null, text);
-                editorCore.getInputExtensions().applyStyles(textView,element);
+                editorCore.getInputExtensions().applyStyles(textView, element);
                 break;
             case ul:
             case ol:
@@ -121,27 +121,28 @@ public class HTMLExtensions {
         TextView editText = editorCore.getInputExtensions().insertEditText(count, null, text);
         EditorTextStyle style = tag == HtmlTag.h1 ? EditorTextStyle.H1 : tag == HtmlTag.h2 ? EditorTextStyle.H2 : EditorTextStyle.H3;
         editorCore.getInputExtensions().UpdateTextStyle(style, editText);
-        editorCore.getInputExtensions().applyStyles(editText,element);
+        editorCore.getInputExtensions().applyStyles(editText, element);
     }
 
 
-    public Map<String, String> getStyleMap(Element element){
+    public Map<String, String> getStyleMap(Element element) {
         Map<String, String> keymaps = new HashMap<>();
-        if (element.hasAttr("style")) {
-            String styleStr = element.attr("style"); // => margin-top:10px;color:#fcc;border-bottom:1px solid #ccc; background-color: #333; text-align:center
-            String[] keys = styleStr.split(":");
-            String[] split;
-            if (keys.length > 1) {
-                for (int i = 0; i < keys.length; i++) {
-                    if (i % 2 != 0) {
-                        split = keys[i].split(";");
-                        if (split.length == 1) break;
-                        keymaps.put(split[1].trim(), keys[i + 1].split(";")[0].trim());
-                    } else {
-                        split = keys[i].split(";");
-                        if(i+1 == keys.length) break;
-                        keymaps.put(keys[i].split(";")[split.length - 1].trim(), keys[i + 1].split(";")[0].trim());
-                    }
+        if (!element.hasAttr("style")) {
+            return keymaps;
+        }
+        String styleStr = element.attr("style"); // => margin-top:10px;color:#fcc;border-bottom:1px solid #ccc; background-color: #333; text-align:center
+        String[] keys = styleStr.split(":");
+        String[] split;
+        if (keys.length > 1) {
+            for (int i = 0; i < keys.length; i++) {
+                if (i % 2 != 0) {
+                    split = keys[i].split(";");
+                    if (split.length == 1) break;
+                    keymaps.put(split[1].trim(), keys[i + 1].split(";")[0].trim());
+                } else {
+                    split = keys[i].split(";");
+                    if (i + 1 == keys.length) break;
+                    keymaps.put(keys[i].split(";")[split.length - 1].trim(), keys[i + 1].split(";")[0].trim());
                 }
             }
         }

@@ -20,8 +20,8 @@ android {
         applicationId "com.github.irshulx.wysiwyg_editor"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 6
-        versionName "2.0.5"
+        versionCode 7
+        versionName "2.0.6"
     }
     buildTypes {
         release {
