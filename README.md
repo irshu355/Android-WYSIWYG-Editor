@@ -389,6 +389,12 @@ You could also set the layouts via the API:
 
  -  `editor.setDividerLayout(R.layout.tmpl_divider_layout);`
 
+If you have minifyEnabled, add the following proguard rules:
+
+      -keep class com.google.gson.** { *; }  
+      -dontwarn com.squareup.picasso.**  
+      -dontwarn com.squareup.okhttp.**  
+      -keep public class org.jsoup.** { public *; }
 
 Future Plans
 -------------------
@@ -419,3 +425,4 @@ If you come across any bugs or needs, please mention it on issues, i will addres
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
