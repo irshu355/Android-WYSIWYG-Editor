@@ -389,7 +389,7 @@ You could also set the layouts via the API:
 
  -  `editor.setDividerLayout(R.layout.tmpl_divider_layout);`
 
-If you have minifyEnabled, add the following proguard rules:
+If you have minifyEnabled, below are the proguard rules:
 
       -keep class com.google.gson.** { *; }  
       -dontwarn com.squareup.picasso.**  
