@@ -270,7 +270,7 @@ You can also programmatically append text into the editor using HTML like so:
 
     editor.render("<p>Hello man, whats up!</p>");
     editor.render("<div>This is another paragraph!</div>");
-Please be reminded, nested HTML **ARE NOT** supported at the moment except for `<ul>` and `<ol>`, for eg: `<p><h2>Hello world</h2></p>` **won't work**, as `<h2>` is nested inside `<p>`. As of the moment, the following HTML tags are supported:
+Please be reminded, nested HTML **ARE NOT** supported at the moment except for `<ul>` and `<ol>`, for eg: `<p><h2>Hello world</h2></p>` **won't work** since `<h2>` is nested inside `<p>`. Following HTML tags are supported:
 
  - `<p>`,`<div>`
  - `<h1>`,`<h2>`,`<h3>`
