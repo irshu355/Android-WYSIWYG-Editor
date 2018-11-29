@@ -23,6 +23,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.text.TextUtils;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -72,7 +73,7 @@ public class ImageExtensions {
         ((Activity) editorCore.getContext()).startActivityForResult(Intent.createChooser(intent, "Select an image"), editorCore.PICK_IMAGE_REQUEST);
     }
 
-    public void insertImage(Bitmap image, String url, int index, String subTitle) {
+    public void insertImage(Bitmap image, String url, int index, String subTitle, boolean appendTextline) {
         boolean hasUploaded = false;
         if(!TextUtils.isEmpty(url)) hasUploaded = true;
 
@@ -81,7 +82,11 @@ public class ImageExtensions {
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
         final TextView lblStatus = (TextView) childLayout.findViewById(R.id.lblStatus);
         CustomEditText desc = (CustomEditText)childLayout.findViewById(R.id.desc);
-        imageView.setImageBitmap(image);
+        if(!TextUtils.isEmpty(url)){
+            Picasso.with(editorCore.getContext()).load(url).into(imageView);
+        }else {
+            imageView.setImageBitmap(image);
+        }
         final String uuid = generateUUID();
         if (index == -1) {
             index = editorCore.determineIndex(EditorType.img);
@@ -90,12 +95,14 @@ public class ImageExtensions {
         editorCore.getParentView().addView(childLayout, index);
 
         //      _Views.add(childLayout);
-        if (editorCore.isLastRow(childLayout)) {
-            editorCore.getInputExtensions().insertEditText(index + 1, null, null);
-        }
+
         EditorControl control = editorCore.createTag(EditorType.img);
         control.path = hasUploaded ? url : uuid; // set the imageId,so we can recognize later after upload
         childLayout.setTag(control);
+
+        if (editorCore.isLastRow(childLayout) && appendTextline) {
+            editorCore.getInputExtensions().insertEditText(index + 1, null, null);
+        }
         if(!TextUtils.isEmpty(subTitle))
             desc.setText(subTitle);
         if(editorCore.getRenderType()== RenderType.Editor) {
@@ -118,6 +125,7 @@ public class ImageExtensions {
             return;
         TextView tv = (TextView) view;
         tv.setHint(editorCore.placeHolder);
+        Linkify.addLinks(tv,Linkify.ALL);
     }
 
     private void hideInputHint(int index) {
@@ -150,8 +158,13 @@ public class ImageExtensions {
     */
     public void loadImage(String _path, String desc) {
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
-        ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        CustomEditText text = (CustomEditText) childLayout.findViewById(R.id.desc);
+        ImageView imageView = childLayout.findViewById(R.id.imageView);
+        CustomEditText text = childLayout.findViewById(R.id.desc);
+
+        EditorControl control = editorCore.createTag(EditorType.img);
+        control.path = _path;
+        childLayout.setTag(control);
+
         if (TextUtils.isEmpty(desc)) {
             text.setVisibility(View.GONE);
         } else {
@@ -222,7 +235,7 @@ public class ImageExtensions {
             return mIcon11;
         }
         protected void onPostExecute(Bitmap result) {
-            insertImage(result, url, this.InsertIndex,subTitle);
+            insertImage(result, url, this.InsertIndex,subTitle, true);
         }
     }
 

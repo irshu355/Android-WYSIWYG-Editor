@@ -29,6 +29,8 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -176,6 +178,7 @@ public class InputExtensions {
             Spanned __ = Html.fromHtml(text.toString());
             CharSequence toReplace = noTrailingwhiteLines(__);
             textView.setText(toReplace);
+            Linkify.addLinks(textView,Linkify.ALL);
         }
         return textView;
     }

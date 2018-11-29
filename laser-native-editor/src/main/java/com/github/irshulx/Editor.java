@@ -264,7 +264,7 @@ public class Editor extends EditorCore {
     }
 
     public void insertImage(Bitmap bitmap) {
-        getImageExtensions().insertImage(bitmap,null, -1,null);
+        getImageExtensions().insertImage(bitmap,null, -1,null, true);
     }
 
     public void onImageUploadComplete(String url, String imageId) {

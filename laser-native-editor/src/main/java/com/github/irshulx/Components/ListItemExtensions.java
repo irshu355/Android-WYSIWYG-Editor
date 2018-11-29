@@ -26,6 +26,7 @@ import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.util.Linkify;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
@@ -185,7 +186,7 @@ public class ListItemExtensions {
                 }
             }, 0);
         } else {
-            final TextView textView = (TextView) childLayout.findViewById(R.id.lblText);
+            final TextView textView = childLayout.findViewById(R.id.lblText);
             textView.setTypeface(editorCore.getInputExtensions().getTypeface(CONTENT, Typeface.NORMAL));
 
             /*
@@ -196,6 +197,7 @@ public class ListItemExtensions {
             }
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, editorCore.getInputExtensions().getNormalTextSize());
             textView.setVisibility(View.VISIBLE);
+            Linkify.addLinks(textView,Linkify.ALL);
             editText.setVisibility(View.GONE);
         }
         layout.addView(childLayout);

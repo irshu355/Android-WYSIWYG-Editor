@@ -16,7 +16,9 @@ import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -258,7 +260,7 @@ public class EditorCore extends LinearLayout {
                 return currentIndex;
             }
         } else if (tag == EditorType.UL_LI || tag == EditorType.OL_LI) {
-            EditText _text = (EditText) _view.findViewById(R.id.txtText);
+            EditText _text = _view.findViewById(R.id.txtText);
             if (_text.getText().length() > 0) {
 
             }
@@ -298,6 +300,13 @@ public class EditorCore extends LinearLayout {
     public EditorType getControlType(View _view) {
         if (_view == null)
             return null;
+
+        if(_view instanceof RelativeLayout){
+            ImageView imageView = _view.findViewById(R.id.imageView);
+            if(imageView != null){
+                Log.e(TAG, "imageview this is");
+            }
+        }
         EditorControl _control = (EditorControl) _view.getTag();
         return _control.Type;
     }
@@ -513,7 +522,7 @@ public class EditorCore extends LinearLayout {
             switch (item.type) {
                 case INPUT:
                     String text = item.content.get(0);
-                    TextView view = __inputExtensions.insertEditText(0, this.placeHolder, text);
+                    TextView view = __inputExtensions.insertEditText(getChildCount(), this.placeHolder, text);
                     if (item.contentStyles != null) {
                         for (EditorTextStyle style : item.contentStyles) {
                             __inputExtensions.UpdateTextStyle(style, view);
@@ -530,7 +539,11 @@ public class EditorCore extends LinearLayout {
                 case img:
                     String path = item.content.get(0);
                     String desc = item.content.get(1);
-                    __imageExtensions.loadImage(path, desc);
+                    if(getRenderType() == RenderType.Renderer) {
+                        __imageExtensions.loadImage(path, desc);
+                    }else{
+                        __imageExtensions.insertImage(null,path,getChildCount(),desc, false);
+                    }
                     break;
                 case ul:
                 case ol:
