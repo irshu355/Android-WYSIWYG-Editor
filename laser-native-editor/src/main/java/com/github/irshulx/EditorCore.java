@@ -301,12 +301,6 @@ public class EditorCore extends LinearLayout {
         if (_view == null)
             return null;
 
-        if(_view instanceof RelativeLayout){
-            ImageView imageView = _view.findViewById(R.id.imageView);
-            if(imageView != null){
-                Log.e(TAG, "imageview this is");
-            }
-        }
         EditorControl _control = (EditorControl) _view.getTag();
         return _control.Type;
     }

@@ -146,14 +146,14 @@
         android:maxWidth="20dp"
         android:src="@drawable/icon_marker" />
 
-    <ImageButton
-        android:id="@+id/action_html"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@android:color/transparent"
-        android:maxHeight="20dp"
-        android:maxWidth="20dp"
-        android:src="@drawable/terminal" />
+    <!--<ImageButton-->
+        <!--android:id="@+id/action_html"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:maxHeight="20dp"-->
+        <!--android:maxWidth="20dp"-->
+        <!--android:src="@drawable/terminal" />-->
 
     <ImageButton
         android:id="@+id/action_erase"
