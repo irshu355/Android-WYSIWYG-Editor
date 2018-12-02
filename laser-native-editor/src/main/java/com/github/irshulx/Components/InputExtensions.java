@@ -47,6 +47,7 @@ import com.github.irshulx.Utilities.FontCache;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.Node;
 import com.github.irshulx.models.Op;
 import com.github.irshulx.models.RenderType;
 import com.github.irshulx.models.TextSettings;
@@ -710,6 +711,18 @@ public class InputExtensions {
         Map<String, String> styles = editorCore.getHtmlExtensions().getStyleMap(element);
         if(styles.containsKey("color")){
             updateTextColor(styles.get("color"),editText);
+        }
+    }
+
+    public void applyTextSettings(Node node, TextView view){
+        if (node.contentStyles != null) {
+            for (EditorTextStyle style : node.contentStyles) {
+                UpdateTextStyle(style, view);
+            }
+
+            if(!TextUtils.isEmpty(node.textSettings.getTextColor())) {
+                updateTextColor(node.textSettings.getTextColor(), view);
+            }
         }
     }
 }

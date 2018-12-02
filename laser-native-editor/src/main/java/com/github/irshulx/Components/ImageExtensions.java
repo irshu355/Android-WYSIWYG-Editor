@@ -33,8 +33,11 @@ import android.widget.TextView;
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.R;
 import com.github.irshulx.models.EditorControl;
+import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.Node;
 import com.github.irshulx.models.RenderType;
+import com.github.irshulx.models.TextSettings;
 import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
@@ -73,15 +76,15 @@ public class ImageExtensions {
         ((Activity) editorCore.getContext()).startActivityForResult(Intent.createChooser(intent, "Select an image"), editorCore.PICK_IMAGE_REQUEST);
     }
 
-    public void insertImage(Bitmap image, String url, int index, String subTitle, boolean appendTextline) {
+    public View insertImage(Bitmap image, String url, int index, String subTitle, boolean appendTextline) {
         boolean hasUploaded = false;
         if(!TextUtils.isEmpty(url)) hasUploaded = true;
 
         // Render(getStateFromString());
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
-        ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        final TextView lblStatus = (TextView) childLayout.findViewById(R.id.lblStatus);
-        CustomEditText desc = (CustomEditText)childLayout.findViewById(R.id.desc);
+        ImageView imageView =  childLayout.findViewById(R.id.imageView);
+        final TextView lblStatus =  childLayout.findViewById(R.id.lblStatus);
+        final CustomEditText desc = childLayout.findViewById(R.id.desc);
         if(!TextUtils.isEmpty(url)){
             Picasso.with(editorCore.getContext()).load(url).into(imageView);
         }else {
@@ -96,9 +99,21 @@ public class ImageExtensions {
 
         //      _Views.add(childLayout);
 
-        EditorControl control = editorCore.createTag(EditorType.img);
-        control.path = hasUploaded ? url : uuid; // set the imageId,so we can recognize later after upload
-        childLayout.setTag(control);
+        // set the imageId,so we can recognize later after upload
+        childLayout.setTag(createImageTag(hasUploaded ? url : uuid));
+        desc.setTag(createSubTitleTag());
+
+
+        desc.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    desc.clearFocus();
+                } else {
+                    editorCore.setActiveView(desc);
+                }
+            }
+        });
 
         if (editorCore.isLastRow(childLayout) && appendTextline) {
             editorCore.getInputExtensions().insertEditText(index + 1, null, null);
@@ -116,6 +131,8 @@ public class ImageExtensions {
             desc.setEnabled(false);
             lblStatus.setVisibility(View.GONE);
         }
+
+        return childLayout;
     }
 
     private void showNextInputHint(int index) {
@@ -153,23 +170,36 @@ public class ImageExtensions {
         return y[y.length - 1] + sdt;
     }
 
+    public EditorControl createSubTitleTag(){
+        EditorControl subTag = editorCore.createTag(EditorType.IMG_SUB);
+        subTag.textSettings = new TextSettings("#5E5E5E");
+        return subTag;
+    }
+
+    public EditorControl createImageTag(String path) {
+        EditorControl control = editorCore.createTag(EditorType.img);
+        control.path = path;
+        return control;
+    }
     /*
       /used by the renderer to render the image from the Node
     */
-    public void loadImage(String _path, String desc) {
+    public void loadImage(String _path, Node node) {
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = childLayout.findViewById(R.id.imageView);
         CustomEditText text = childLayout.findViewById(R.id.desc);
 
-        EditorControl control = editorCore.createTag(EditorType.img);
-        control.path = _path;
-        childLayout.setTag(control);
+        childLayout.setTag(createImageTag(_path));
+        text.setTag(createSubTitleTag());
+
+        String desc = node.content.get(0);
 
         if (TextUtils.isEmpty(desc)) {
             text.setVisibility(View.GONE);
         } else {
             text.setText(desc);
             text.setEnabled(false);
+            editorCore.getInputExtensions().applyTextSettings(node, text);
         }
         Picasso.with(this.editorCore.getContext()).load(_path).into(imageView);
         editorCore.getParentView().addView(childLayout);

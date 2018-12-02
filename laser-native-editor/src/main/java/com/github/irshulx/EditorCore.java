@@ -471,9 +471,21 @@ public class EditorCore extends LinearLayout {
                     EditorControl imgTag = (EditorControl) view.getTag();
                     if (!TextUtils.isEmpty(imgTag.path)) {
                         node.content.add(imgTag.path);
-                        Editable desc = ((EditText) view.findViewById(R.id.desc)).getText();
-                        node.content.add(desc.length() > 0 ? desc.toString() : "");
+
+                        /**
+                         * for subtitle
+                         */
+                        EditText textView =  view.findViewById(R.id.desc);
+                        Node subTitleNode = getNodeInstance(textView);
+                        EditorControl descTag = (EditorControl) textView.getTag();
+                        subTitleNode.contentStyles = descTag._ControlStyles;
+                        subTitleNode.textSettings = descTag.textSettings;
+                        Editable desc = textView.getText();
+                        subTitleNode.content.add(desc.length() > 0 ? desc.toString() : "");
+                        node.childs = new ArrayList<>();
+                        node.childs.add(subTitleNode);
                         list.add(node);
+
                     }
                     //field type, content[]
                     break;
@@ -517,26 +529,19 @@ public class EditorCore extends LinearLayout {
                 case INPUT:
                     String text = item.content.get(0);
                     TextView view = __inputExtensions.insertEditText(getChildCount(), this.placeHolder, text);
-                    if (item.contentStyles != null) {
-                        for (EditorTextStyle style : item.contentStyles) {
-                            __inputExtensions.UpdateTextStyle(style, view);
-                        }
-
-                        if(!TextUtils.isEmpty(item.textSettings.getTextColor())) {
-                            view.setTextColor(Color.parseColor(item.textSettings.getTextColor()));
-                        }
-                    }
+                    getInputExtensions().applyTextSettings(item, view);
                     break;
                 case hr:
                     __dividerExtensions.insertDivider();
                     break;
                 case img:
                     String path = item.content.get(0);
-                    String desc = item.content.get(1);
                     if(getRenderType() == RenderType.Renderer) {
-                        __imageExtensions.loadImage(path, desc);
+                        __imageExtensions.loadImage(path, item.childs.get(0));
                     }else{
-                        __imageExtensions.insertImage(null,path,getChildCount(),desc, false);
+                        View layout =__imageExtensions.insertImage(null,path,getChildCount(),item.childs.get(0).content.get(0), false);
+                        getInputExtensions().applyTextSettings(item.childs.get(0), (TextView) layout.findViewById(R.id.desc));
+
                     }
                     break;
                 case ul:
