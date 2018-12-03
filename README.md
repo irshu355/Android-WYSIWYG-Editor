@@ -409,6 +409,8 @@ Since the endusers are typing the content, it's always considered good idea to b
       public void run() {  
      String text = editor.getContentAsSerialized(); SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
      preferences.putString(String.format("backup-{0}",  new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date())), text); preferences.apply(); }}, 0, backupInterval);
+     }
+     });
 
 Future Plans
 -------------------
