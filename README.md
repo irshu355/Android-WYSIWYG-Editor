@@ -1,4 +1,5 @@
 
+
 [ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-18-red.svg)
 
 Android-WYSIWYG-Editor
@@ -395,6 +396,19 @@ If you have minifyEnabled, below are the proguard rules:
       -dontwarn com.squareup.picasso.**  
       -dontwarn com.squareup.okhttp.**  
       -keep public class org.jsoup.** { public *; }
+
+
+Best Practices
+-------------------
+
+Since the endusers are typing the content, it's always considered good idea to backup the content every specific interval  to be safe.
+
+        timer = new Timer();  
+    timer.scheduleAtFixedRate(new TimerTask() {  
+      @Override  
+      public void run() {  
+     String text = editor.getContentAsSerialized(); SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+     preferences.putString(String.format("backup-{0}",  new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date())), text); preferences.apply(); }}, 0, backupInterval);
 
 Future Plans
 -------------------
