@@ -403,14 +403,15 @@ Best Practices
 
 Since the endusers are typing the content, it's always considered good idea to backup the content every specific interval  to be safe.
 
-        timer = new Timer();  
+    timer = new Timer();  
     timer.scheduleAtFixedRate(new TimerTask() {  
       @Override  
       public void run() {  
-     String text = editor.getContentAsSerialized(); SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-     preferences.putString(String.format("backup-{0}",  new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date())), text); preferences.apply(); }}, 0, backupInterval);
-     }
-     });
+         String text = editor.getContentAsSerialized(); SharedPreferences.Editor preferences =         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+         preferences.putString(String.format("backup-{0}",  new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date())),   text);
+         preferences.apply();
+      }
+    }, 0, backupInterval);
 
 Future Plans
 -------------------
