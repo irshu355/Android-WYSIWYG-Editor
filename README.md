@@ -407,9 +407,9 @@ Since the endusers are **hard typing the content**, it's always considered **goo
     timer.scheduleAtFixedRate(new TimerTask() {  
       @Override  
       public void run() {  
-         String text = editor.getContentAsSerialized(); SharedPreferences.Editor preferences =         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-         preferences.putString(String.format("backup-{0}",  new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date())),   text);
-         preferences.apply();
+         String text = editor.getContentAsSerialized();
+         sharedPreferences.putString(String.format("backup-{0}",  new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date())),   text);
+         sharedPreferences.apply();
       }
     }, 0, backupInterval);
 
