@@ -390,7 +390,7 @@ You could also set the layouts via the API:
 
  -  `editor.setDividerLayout(R.layout.tmpl_divider_layout);`
 
-If you have minifyEnabled, below are the proguard rules:
+If you have **minifyEnabled**, below are the proguard rules:
 
       -keep class com.google.gson.** { *; }  
       -dontwarn com.squareup.picasso.**  
@@ -401,7 +401,7 @@ If you have minifyEnabled, below are the proguard rules:
 Best Practices
 -------------------
 
-Since the endusers are typing the content, it's always considered good idea to backup the content every specific interval  to be safe.
+Since the endusers are **hard typing the content**, it's always considered **good idea** to **backup the content every specific interval**  to be safe.
 
     timer = new Timer();  
     timer.scheduleAtFixedRate(new TimerTask() {  
