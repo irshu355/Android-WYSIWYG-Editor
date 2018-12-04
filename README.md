@@ -13,6 +13,11 @@ An iframe free text editor that uses native components in the content tree. Moti
 
 ## Changelog
 
+## [2.3.2 - 1 December 2018]
+
+ - Links on editor will now respond to click
+ - Fix for editor rendering wrong order from serialised string/html
+
 ## [2.3.0 - 26 August 2018]
 
  - **Colored texts are now supported**, u can globally set the colour as `editor.setEditorTextColor("#FF3333");` or switch the color of the focused line as `editor.updateTextColor("#FF3333");`
