@@ -1,4 +1,5 @@
 
+
 [ ![Download](https://api.bintray.com/packages/irshu/maven/laser-native-editor/images/download.svg) ](https://bintray.com/irshu/maven/laser-native-editor/_latestVersion)&nbsp;![enter image description here](https://img.shields.io/badge/issues-18-red.svg)
 
 Android-WYSIWYG-Editor
@@ -377,9 +378,9 @@ You can create your own layouts with the same Id's with the required Id's and pu
 
 | Layout     | Description | Required Id's |
 | :------- | :-----: |:-----: |
-| [R.layout.tmpl_image_view](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_image_view.xml) | Used to insert an image to the editor  | `@+id/progress`, `@+id/lblStatus`,`@+id/imageView`,`@+id/btn_remove`
-| [R.layout.tmpl_list_item](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_list_item.xml) | Used to insert an ordered/unordered list  | `@+id/lblOrder`, `@+id/txtText`,`@+id/lblText`
-| [R.layout.tmpl_divider_layout](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml) | Used to insert a line divider  | -
+| [R.layout.tmpl_image_view](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_image_view.xml) | To insert an image to the editor  | `@+id/progress`, `@+id/lblStatus`,`@+id/imageView`,`@+id/btn_remove`
+| [R.layout.tmpl_list_item](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_list_item.xml) | To insert an ordered/unordered list  | `@+id/lblOrder`, `@+id/txtText`,`@+id/lblText`
+| [R.layout.tmpl_divider_layout](https://github.com/irshuLx/laser-native-editor/blob/master/laser-native-editor/src/main/res/layout/tmpl_divider_layout.xml) | To insert a line divider  | -
 
 You could also set the layouts via the API:
 
@@ -389,12 +390,28 @@ You could also set the layouts via the API:
 
  -  `editor.setDividerLayout(R.layout.tmpl_divider_layout);`
 
-If you have minifyEnabled, below are the proguard rules:
+If you have **minifyEnabled**, below are the proguard rules:
 
       -keep class com.google.gson.** { *; }  
       -dontwarn com.squareup.picasso.**  
       -dontwarn com.squareup.okhttp.**  
       -keep public class org.jsoup.** { public *; }
+
+
+Best Practices
+-------------------
+
+Since the endusers are **hard typing the content**, it's always considered **good idea** to **backup the content every specific interval**  to be safe.
+
+    timer = new Timer();  
+    timer.scheduleAtFixedRate(new TimerTask() {  
+      @Override  
+      public void run() {  
+         String text = editor.getContentAsSerialized();
+         sharedPreferences.putString(String.format("backup-{0}",  new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date())),   text);
+         sharedPreferences.apply();
+      }
+    }, 0, backupInterval);
 
 Future Plans
 -------------------
