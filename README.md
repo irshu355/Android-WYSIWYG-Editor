@@ -18,35 +18,7 @@ An iframe free text editor that uses native components in the content tree. Moti
  - Links on editor will now respond to click
  - Fix for editor rendering wrong order from serialised string/html
 
-## [2.3.0 - 26 August 2018]
-
- - **Colored texts are now supported**, u can globally set the colour as `editor.setEditorTextColor("#FF3333");` or switch the color of the focused line as `editor.updateTextColor("#FF3333");`
- 
- ![](https://github.com/irshuLx/Android-WYSIWYG-Editor/raw/master/screens/colored-text.jpeg)
- 
-- Text formatting for list now supported
-
-## [2.2.9 - 19 August 2018] 
-
- - **Decide whether to autofocus on start**
- 
-
-    `
-android:focusable="false"
-                android:focusableInTouchMode="true"
-                app:auto_focus="false"
-`
-please refer to https://github.com/irshuLx/Android-WYSIWYG-Editor/issues/43
- 
- 
-
-## [2.0.0 - 03 July 2017] 
-
- - **A better editor**
- - **Automatic image upload functionality has been removed**. You will have to do the upload on your own, just pass the uri to the editor.
- - **Custom fonts**. You can now apply custom fonts for the editor ( with option for seperate fonts for header and content)
- - **Subtitle option for images**
-
+Please find all the latest releases/changelogs on https://github.com/irshuLx/Android-WYSIWYG-Editor/releases
 
  
  Contributions
