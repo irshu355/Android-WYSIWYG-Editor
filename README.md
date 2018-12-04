@@ -13,7 +13,7 @@ An iframe free text editor that uses native components in the content tree. Moti
 
 ## Changelog
 
-## [2.3.2 - 1 December 2018]
+## [2.3.2 - 01 December 2018]
 
  - Links on editor will now respond to click
  - Fix for editor rendering wrong order from serialised string/html
