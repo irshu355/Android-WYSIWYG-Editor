@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.github.irshulx.Editor;
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorTextStyle;
@@ -17,9 +16,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.github.irshulx.models.TextSetting.TEXT_COLOR;
@@ -47,14 +44,15 @@ public class HTMLExtensions {
         String text;
         HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
         int count = editorCore.getParentView().getChildCount();
-        String x = element.html().replaceAll("\\s+", "");
+
         if ("<br>".equals(element.html().replaceAll("\\s+", "")) || "<br/>".equals(element.html().replaceAll("\\s+", ""))) {
             editorCore.getInputExtensions().insertEditText(count, null, null);
             return;
-        } else if ("<hr>".equals(element.html().replaceAll("\\s+", "")) || "<hr/>".equals(element.html().replaceAll("\\s+", ""))) {
-            editorCore.getDividerExtensions().insertDivider();
+        } else if ("hr".equals(tag.name()) || "<hr>".equals(element.html().replaceAll("\\s+", "")) || "<hr/>".equals(element.html().replaceAll("\\s+", ""))) {
+            editorCore.getDividerExtensions().insertDivider(count);
             return;
         }
+
         switch (tag) {
             case h1:
             case h2:
@@ -75,6 +73,7 @@ public class HTMLExtensions {
                 break;
             case div:
                 renderDiv(element);
+                break;
         }
     }
 
@@ -89,16 +88,13 @@ public class HTMLExtensions {
         Element img = element.child(0);
         Element descTag = element.child(1);
         String src = img.attr("src");
-        String desc = descTag.html();
-        int Index = editorCore.getParentChildCount();
-        editorCore.getImageExtensions().executeDownloadImageTask(src, Index, desc);
+        editorCore.getImageExtensions().loadImage(src, descTag);
     }
 
     private void RenderImageFromHtml(Element element) {
         String src = element.attr("src");
-        String desc = element.html();
-        int Index = editorCore.getParentChildCount();
-        editorCore.getImageExtensions().executeDownloadImageTask(src, Index, desc);
+        Element descTag = element.child(1);
+        editorCore.getImageExtensions().loadImage(src, descTag);
     }
 
     private void RenderList(boolean isOrdered, Element element) {
@@ -109,7 +105,7 @@ public class HTMLExtensions {
             for (int i = 1; i < element.children().size(); i++) {
                 li = element.child(i);
                 text = getHtmlSpan(li);
-                View view = editorCore.getListItemExtensions().AddListItem(layout, isOrdered, text);
+                View view = editorCore.getListItemExtensions().addListItem(layout, isOrdered, text);
                 editorCore.getListItemExtensions().applyStyles(view, li);
             }
         }
@@ -180,10 +176,13 @@ public class HTMLExtensions {
                 template = "<hr data-tag=\"hr\"/>";
                 break;
             case img:
-                template = "<div data-tag=\"img\"><img src=\"{{$content}}\" /><span class=\"editor-image-subtitle\">{{$desc}}</span></div>";
+                template = "<div data-tag=\"img\"><img src=\"{{$url}}\" />{{$img-sub}}</div>";
+                break;
+            case IMG_SUB:
+                template = "<{{$tag}} data-tag=\"img-sub\" {{$style}} class=\"editor-image-subtitle\">{{$content}}</{{$tag}}>";
                 break;
             case map:
-                template = "<div data-tag=\"map\"><img src=\"{{$content}}\" /><span text-align:'center'>{{$desc}}</span></div>";
+                template = "<div data-tag=\"map\"><img src=\"{{$content}}\" /><span text-align:'center' {{$style}}>{{$desc}}</span></div>";
                 break;
             case ol:
                 template = "<ol data-tag=\"ol\">{{$content}}</ol>";
@@ -284,7 +283,11 @@ public class HTMLExtensions {
                     htmlBlock.append(html);
                     break;
                 case img:
-                    htmlBlock.append(getTemplateHtml(item.type).replace("{{$content}}", item.content.get(0)).replace("{{$desc}}", item.content.get(1)));
+                    String subHtml = getInputHtml(item.childs.get(0));
+                    html = getTemplateHtml(item.type);
+                    html = html.replace("{{$url}}", item.content.get(0));
+                    html = html.replace("{{$img-sub}}", subHtml);
+                    htmlBlock.append(html);
                     break;
                 case hr:
                     htmlBlock.append(getTemplateHtml(item.type));

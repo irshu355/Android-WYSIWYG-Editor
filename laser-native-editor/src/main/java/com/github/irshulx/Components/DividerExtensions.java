@@ -39,24 +39,19 @@ public class DividerExtensions {
         this.dividerLayout = layout;
     }
 
-    public void insertDivider() {
+    public void insertDivider(int index) {
         View view = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.dividerLayout, null);
         view.setTag(editorCore.createTag(EditorType.hr));
-        int index = editorCore.determineIndex(EditorType.hr);
+        if(index == -1) {
+             index = editorCore.determineIndex(EditorType.hr);
+        }
         if (index == 0) {
             Toast.makeText(editorCore.getContext(), "divider cannot be inserted on line zero", Toast.LENGTH_SHORT).show();
             return;
         }
         editorCore.getParentView().addView(view, index);
-        if (editorCore.isLastRow(view) && editorCore.getRenderType() == RenderType.Editor) {
-            //check if ul is active
+        if (editorCore.isLastRow(view) && editorCore.getRenderType() == RenderType.Editor && !editorCore.isSerialRenderInProgress()) {
             editorCore.getInputExtensions().insertEditText(index + 1, null, null);
-        } else if (editorCore.getRenderType() == RenderType.Editor) {
-//            editorCore.getParentView().removeViewAt(index+1);
-//            /**
-//             * set focus to the next nearby edittext
-//             */
-//            setFocusToNearbyEditText(index+1);
         }
     }
 

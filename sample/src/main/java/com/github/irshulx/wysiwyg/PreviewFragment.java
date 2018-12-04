@@ -70,10 +70,10 @@ public class PreviewFragment extends Fragment {
 
     public Map<Integer,String> getHeadingTypeface() {
         Map<Integer, String> typefaceMap = new HashMap<>();
-        typefaceMap.put(Typeface.NORMAL,"fonts/Audiowide-Regular.ttf");
-        typefaceMap.put(Typeface.BOLD,"fonts/Audiowide-Regular.ttf");
-        typefaceMap.put(Typeface.ITALIC,"fonts/Audiowide-Regular.ttf");
-        typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/Audiowide-Regular.ttf");
+        typefaceMap.put(Typeface.NORMAL, "fonts/GreycliffCF-Bold.ttf");
+        typefaceMap.put(Typeface.BOLD, "fonts/GreycliffCF-Heavy.ttf");
+        typefaceMap.put(Typeface.ITALIC, "fonts/GreycliffCF-Heavy.ttf");
+        typefaceMap.put(Typeface.BOLD_ITALIC, "fonts/GreycliffCF-Bold.ttf");
         return typefaceMap;
     }
 

@@ -46,7 +46,7 @@ public class CustomEditText extends TextInputEditText {
         public boolean sendKeyEvent(KeyEvent event) {
            if(event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
                 return super.sendKeyEvent(event);
-            }else if(event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
+            }else if(event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                return super.sendKeyEvent(event);
            }
             return false;

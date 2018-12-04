@@ -1,7 +1,6 @@
 package com.github.irshulx.models;
 
 public enum EditorType{
-    none,
     hr,
     ul,
     ol,
@@ -10,5 +9,6 @@ public enum EditorType{
     img,
     IMG_SUB,
     INPUT,
-    map
+    map,
+    macro
 }

@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Timer;
 
 import top.defaults.colorpicker.ColorPickerPopup;
 
@@ -37,7 +38,7 @@ public class EditorTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_test);
-        editor = (Editor) findViewById(R.id.editor);
+        editor =  findViewById(R.id.editor);
         setUpEditor();
     }
 
@@ -127,7 +128,7 @@ public class EditorTestActivity extends AppCompatActivity {
                         .show(findViewById(android.R.id.content), new ColorPickerPopup.ColorPickerObserver() {
                             @Override
                             public void onColorPicked(int color) {
-                                Toast.makeText(EditorTestActivity.this, "picked"+colorHex(color),Toast.LENGTH_LONG).show();
+                                Toast.makeText(EditorTestActivity.this, "picked" + colorHex(color), Toast.LENGTH_LONG).show();
                                 editor.updateTextColor(colorHex(color));
                             }
 
@@ -136,7 +137,6 @@ public class EditorTestActivity extends AppCompatActivity {
 
                             }
                         });
-
 
 
             }
@@ -179,7 +179,7 @@ public class EditorTestActivity extends AppCompatActivity {
         editor.setEditorImageLayout(R.layout.tmpl_image_view);
         editor.setListItemLayout(R.layout.tmpl_list_item);
         //editor.setNormalTextSize(10);
-       // editor.setEditorTextColor("#FF3333");
+        // editor.setEditorTextColor("#FF3333");
         //editor.StartEditor();
         editor.setEditorListener(new EditorListener() {
             @Override
@@ -199,10 +199,14 @@ public class EditorTestActivity extends AppCompatActivity {
             }
         });
 
+
+        /**
+         * rendering serialized content
+         */
         //String serialized = "{\"nodes\":[{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003etextline 1 a great time and I will branch office is closed on Sundays\\u003c/p\\u003e\\n\"],\"contentStyles\":[\"H1\"],\"textSettings\":{\"textColor\":\"#c00000\"},\"type\":\"INPUT\"},{\"content\":[],\"type\":\"hr\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003ethe only one that you have received the stream free and open minded person to discuss a business opportunity to discuss my background.\\u003c/p\\u003e\\n\"],\"contentStyles\":[],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"},{\"childs\":[{\"content\":[\"it is a great weekend and we will have the same to me that the same a great time\"],\"contentStyles\":[\"BOLD\"],\"textSettings\":{\"textColor\":\"#FF0000\"},\"type\":\"IMG_SUB\"}],\"content\":[\"http://www.videogamesblogger.com/wp-content/uploads/2015/08/metal-gear-solid-5-the-phantom-pain-cheats-640x325.jpg\"],\"type\":\"img\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eI have a place where I have a great time and I will branch manager state to boast a new job in a few weeks and we can host or domain to get to know.\\u003c/p\\u003e\\n\"],\"contentStyles\":[],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"},{\"childs\":[{\"content\":[\"the stream of water in a few weeks and we can host in the stream free and no ippo\"],\"contentStyles\":[],\"textSettings\":{\"textColor\":\"#5E5E5E\"},\"type\":\"IMG_SUB\"}],\"content\":[\"http://www.videogamesblogger.com/wp-content/uploads/2015/08/metal-gear-solid-5-the-phantom-pain-cheats-640x325.jpg\"],\"type\":\"img\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eit is that I can get it done today will online at location and I am not a big difference to me so that we are headed \\u003ca href\\u003d\\\"www.google.com\\\"\\u003ewww.google.com\\u003c/a\\u003e it was the only way I.\\u003c/p\\u003e\\n\"],\"contentStyles\":[],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eit is not a good day to get the latest version to blame it to the product the.\\u003c/p\\u003e\\n\"],\"contentStyles\":[\"BOLDITALIC\"],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eit is that I can send me your email to you and I am not able a great time and consideration I have to do the needful.\\u003c/p\\u003e\\n\"],\"contentStyles\":[\"INDENT\"],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eI will be a while ago to a great weekend a great time with the same.\\u003c/p\\u003e\\n\"],\"contentStyles\":[],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"}]}";
-        String serialized = "{\"nodes\":[{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eit is not available beyond that statue in a few days and then we could\\u003c/p\\u003e\\n\"],\"contentStyles\":[\"H1\"],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"},{\"content\":[],\"type\":\"hr\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eit is a free trial to get a great weekend a good day to you u can do that for.\\u003c/p\\u003e\\n\"],\"contentStyles\":[],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eit is that I have to do the needful as early in life is not available beyond my imagination to be a good.\\u003c/p\\u003e\\n\"],\"contentStyles\":[],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"}]}";
-        EditorContent des = editor.getContentDeserialized(serialized);
-        editor.render(des);
+//        String serialized = "{\"nodes\":[{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eit is not available beyond that statue in a few days and then we could\\u003c/p\\u003e\\n\"],\"contentStyles\":[\"H1\"],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"},{\"content\":[],\"type\":\"hr\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eit is a free trial to get a great weekend a good day to you u can do that for.\\u003c/p\\u003e\\n\"],\"contentStyles\":[],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"},{\"content\":[\"\\u003cp dir\\u003d\\\"ltr\\\"\\u003eit is that I have to do the needful as early in life is not available beyond my imagination to be a good.\\u003c/p\\u003e\\n\"],\"contentStyles\":[],\"textSettings\":{\"textColor\":\"#000000\"},\"type\":\"INPUT\"}]}";
+//        EditorContent des = editor.getContentDeserialized(serialized);
+//        editor.render(des);
 
 
 //        Intent intent = new Intent(getApplicationContext(), RenderTestActivity.class);
@@ -210,10 +214,14 @@ public class EditorTestActivity extends AppCompatActivity {
 //        startActivity(intent);
 
 
+        /**
+         * Rendering html
+         */
         //render();
         //editor.render();  // this method must be called to start the editor
+        String text = "<h1 data-tag=\"input\" style=\"color:#000000;\">it is not available beyond that statue in a few days and then we could</h1><hr data-tag=\"hr\"/><p data-tag=\"input\" style=\"color:#000000;\">it is a free trial to get a great weekend a good day to you u can do that for.</p><p data-tag=\"input\" style=\"color:#000000;\">it is that I have to do the needful as early in life is not available beyond my imagination to be a good.</p><div data-tag=\"img\"><img src=\"http://www.videogamesblogger.com/wp-content/uploads/2015/08/metal-gear-solid-5-the-phantom-pain-cheats-640x325.jpg\" /><p data-tag=\"img-sub\" style=\"color:#006AFF;\" class=\"editor-image-subtitle\"><b>it is not available in the next week or two and I have a place where I</b></p></div><p data-tag=\"input\" style=\"color:#000000;\">it is not available in the next week to see you tomorrow morning to see you then.</p><hr data-tag=\"hr\"/><p data-tag=\"input\" style=\"color:#000000;\">it is not available in the next day delivery to you soon with it and.</p>";
         //editor.render("<p>Hello man, whats up!</p>");
-
+        editor.render(text);
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,13 +234,31 @@ public class EditorTestActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        /**
+         * Since the endusers are typing the content, it's always considered good idea to backup the content every specific interval
+         * to be safe.
+         *
+         private final long backupInterval = 10 * 1000;
+         Timer timer = new Timer();
+         timer.scheduleAtFixedRate(new TimerTask() {
+        @Override public void run() {
+        String text = editor.getContentAsSerialized();
+        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+        preferences.putString(String.format("backup-{0}",  new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date())), text);
+        preferences.apply();
+        }
+        }, 0, backupInterval);
+
+         */
     }
 
     private String colorHex(int color) {
         int r = Color.red(color);
         int g = Color.green(color);
         int b = Color.blue(color);
-        return String.format(Locale.getDefault(), "#%02X%02X%02X",  r, g, b);
+        return String.format(Locale.getDefault(), "#%02X%02X%02X", r, g, b);
     }
 
     public static void setGhost(Button button) {

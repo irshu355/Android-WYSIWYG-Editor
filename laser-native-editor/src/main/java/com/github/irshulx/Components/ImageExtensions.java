@@ -40,6 +40,8 @@ import com.github.irshulx.models.RenderType;
 import com.github.irshulx.models.TextSettings;
 import com.squareup.picasso.Picasso;
 
+import org.jsoup.nodes.Element;
+
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -61,11 +63,6 @@ public class ImageExtensions {
     public void setEditorImageLayout(int drawable) {
         this.editorImageLayout = drawable;
     }
-
-    public void executeDownloadImageTask(String url, int index, String desc) {
-        new DownloadImageTask(index).execute(url, desc);
-    }
-
 
     public void openImageGallery() {
         Intent intent = new Intent();
@@ -119,7 +116,7 @@ public class ImageExtensions {
             editorCore.getInputExtensions().insertEditText(index + 1, null, null);
         }
         if(!TextUtils.isEmpty(subTitle))
-            desc.setText(subTitle);
+            editorCore.getInputExtensions().setText(desc, subTitle);
         if(editorCore.getRenderType()== RenderType.Editor) {
             BindEvents(childLayout);
             if(!hasUploaded){
@@ -197,12 +194,35 @@ public class ImageExtensions {
         if (TextUtils.isEmpty(desc)) {
             text.setVisibility(View.GONE);
         } else {
-            text.setText(desc);
+            editorCore.getInputExtensions().setText(text, desc);
             text.setEnabled(false);
             editorCore.getInputExtensions().applyTextSettings(node, text);
         }
         Picasso.with(this.editorCore.getContext()).load(_path).into(imageView);
         editorCore.getParentView().addView(childLayout);
+    }
+
+    public void loadImage(String _path, Element node) {
+
+        final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
+        ImageView imageView = childLayout.findViewById(R.id.imageView);
+        CustomEditText text = childLayout.findViewById(R.id.desc);
+
+        childLayout.setTag(createImageTag(_path));
+        text.setTag(createSubTitleTag());
+
+        String desc = node.html();
+
+        if (TextUtils.isEmpty(desc)) {
+            text.setVisibility(View.GONE);
+        } else {
+            editorCore.getInputExtensions().setText(text, desc);
+            text.setEnabled(false);
+           // editorCore.getInputExtensions().applyTextSettings(node, text);
+        }
+        Picasso.with(this.editorCore.getContext()).load(_path).into(imageView);
+        editorCore.getParentView().addView(childLayout);
+        editorCore.getInputExtensions().applyStyles(text, node);
     }
 
 
@@ -241,33 +261,6 @@ public class ImageExtensions {
         view.findViewById(R.id.progress).setVisibility(View.GONE);
     }
 
-    /*
-      /used to fetch an image from internet and return a Bitmap equivalent
-    */
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        private int InsertIndex;
-        private String subTitle;
-        private String url;
-        public DownloadImageTask(int index) {
-            this.InsertIndex = index;
-        }
-        protected Bitmap doInBackground(String... urls) {
-            this.url = urls[0];
-            this.subTitle = urls[1];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(url).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-        protected void onPostExecute(Bitmap result) {
-            insertImage(result, url, this.InsertIndex,subTitle, true);
-        }
-    }
 
 
     private void BindEvents(final View layout) {

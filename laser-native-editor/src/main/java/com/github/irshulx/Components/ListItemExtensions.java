@@ -40,14 +40,15 @@ import android.widget.TextView;
 
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.R;
+import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorControl;
+import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.Node;
 import com.github.irshulx.models.RenderType;
 import com.github.irshulx.models.TextSettings;
 
 import org.jsoup.nodes.Element;
-
-import java.util.Map;
 
 import static com.github.irshulx.Components.InputExtensions.CONTENT;
 
@@ -59,6 +60,7 @@ public class ListItemExtensions {
     public static final int POSITION_START = 0;
     public static final int POSITION_END = 1;
     private int listItemTemplate = R.layout.tmpl_list_item;
+    private float lineSpacing = -1;
 
     public ListItemExtensions(EditorCore editorCore) {
         this.editorCore = editorCore;
@@ -70,14 +72,14 @@ public class ListItemExtensions {
 
     public TableLayout insertList(int Index, boolean isOrdered, String text) {
 
-        TableLayout table = CreateTable();
+        TableLayout table = createTable();
         editorCore.getParentView().addView(table, Index);
         table.setTag(editorCore.createTag(isOrdered ? EditorType.ol : EditorType.ul));
-        AddListItem(table, isOrdered, text);
+        addListItem(table, isOrdered, text);
         return table;
     }
 
-    public TableLayout CreateTable() {
+    public TableLayout createTable() {
         TableLayout table = new TableLayout(editorCore.getContext());
         table.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         table.setPadding(30, 10, 10, 10);
@@ -85,9 +87,9 @@ public class ListItemExtensions {
     }
 
 
-    public View AddListItem(TableLayout layout, boolean isOrdered, String text) {
+    public View addListItem(TableLayout layout, boolean isOrdered, String text) {
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.listItemTemplate, null);
-        final CustomEditText editText = (CustomEditText) childLayout.findViewById(R.id.txtText);
+        final CustomEditText editText = childLayout.findViewById(R.id.txtText);
         final TextView _order = (TextView) childLayout.findViewById(R.id.lblOrder);
         _order.setTypeface(Typeface.create(editorCore.getInputExtensions().getFontFace(), Typeface.BOLD));
         editText.setTypeface(Typeface.create(editorCore.getInputExtensions().getFontFace(), Typeface.NORMAL));
@@ -98,7 +100,7 @@ public class ListItemExtensions {
         if (editorCore.getRenderType() == RenderType.Editor) {
             editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, editorCore.getInputExtensions().getNormalTextSize());
             editText.setTextColor(Color.parseColor(editorCore.getInputExtensions().getDefaultTextColor()));
-
+            if(this.lineSpacing != -1) editorCore.getInputExtensions().setLineSpacing(editText, this.lineSpacing);
             EditorControl tag = editorCore.createTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI);
             tag.textSettings = new TextSettings(editorCore.getInputExtensions().getDefaultTextColor());
             editText.setTag(tag);
@@ -167,7 +169,7 @@ public class ListItemExtensions {
 
                                 int index = _table.indexOfChild(_row);
                                 //  insertEditText(index + 1, "");
-                                AddListItem(_table, type == EditorType.ol, "");
+                                addListItem(_table, type == EditorType.ol, "");
                             }
 
                         }
@@ -196,6 +198,7 @@ public class ListItemExtensions {
                 editorCore.getInputExtensions().setText(textView, text);
             }
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, editorCore.getInputExtensions().getNormalTextSize());
+            if(this.lineSpacing != -1) editorCore.getInputExtensions().setLineSpacing(textView, this.lineSpacing);
             textView.setVisibility(View.VISIBLE);
             Linkify.addLinks(textView,Linkify.ALL);
             editText.setVisibility(View.GONE);
@@ -204,7 +207,7 @@ public class ListItemExtensions {
         return childLayout;
     }
 
-    public void ConvertListToNormalText(TableLayout _table, int startIndex) {
+    public void convertListToNormalText(TableLayout _table, int startIndex) {
         int tableChildCount = _table.getChildCount();
         for (int i = startIndex; i < tableChildCount; i++) {
             View _childRow = _table.getChildAt(i);
@@ -265,7 +268,7 @@ public class ListItemExtensions {
                  */
             TableRow _row = (TableRow) activeView.getParent();
             TableLayout _table = (TableLayout) _row.getParent();
-            ConvertListToNormalText(_table, _table.indexOfChild(_row));
+            convertListToNormalText(_table, _table.indexOfChild(_row));
                     /* this means, current focus is on n unordered list item, since user clicked
                  on unordered list icon, loop through the parents childs and convert each list item into normal edittext
                  *
@@ -292,7 +295,7 @@ public class ListItemExtensions {
              * */
             TableRow _row = (TableRow) activeView.getParent();
             TableLayout _table = (TableLayout) _row.getParent();
-            ConvertListToNormalText(_table, _table.indexOfChild(_row));
+            convertListToNormalText(_table, _table.indexOfChild(_row));
             /*
              *
              * this means the item was an ordered list, you need to convert the item into a normal EditText
@@ -335,7 +338,7 @@ public class ListItemExtensions {
                         insertList(Index, isOrdered, text);
                     } else if (editorCore.getControlType(editorCore.getParentView().getChildAt(index_of_activeView - 1)) == EditorType.ol) {
                         TableLayout _table = (TableLayout) editorCore.getParentView().getChildAt(index_of_activeView - 1);
-                        AddListItem(_table, isOrdered, text);
+                        addListItem(_table, isOrdered, text);
                     } else {
                         insertList(Index, isOrdered, text);
                     }
@@ -466,5 +469,44 @@ public class ListItemExtensions {
             textView = view.findViewById(R.id.lblText);
         }
         editorCore.getInputExtensions().applyStyles(textView, element);
+    }
+
+    public void onRenderfromEditorState(EditorContent _state, Node item) {
+        TableLayout _layout = null;
+        View listItemView = null;
+        for (int i = 0; i < item.childs.size(); i++) {
+            if (i == 0) {
+                _layout = insertList(_state.nodes.indexOf(item), item.type == EditorType.ol, item.childs.get(0).content.get(0));
+            } else {
+                listItemView = addListItem(_layout, item.type == EditorType.ol, item.childs.get(i).content.get(0));
+            }
+
+            if(i==0){
+                listItemView = _layout;
+            }
+
+            TextView tv;
+
+            if(editorCore.getRenderType() == RenderType.Renderer) {
+                tv = listItemView.findViewById(R.id.lblText);
+            }else {
+                tv = listItemView.findViewById(R.id.txtText);
+            }
+
+
+            if (item.childs.get(i).contentStyles != null) {
+                for (EditorTextStyle style : item.childs.get(i).contentStyles) {
+                    tv.setTag(editorCore.createTag(EditorType.UL_LI));
+                    editorCore.getInputExtensions().UpdateTextStyle(style, tv);
+                }
+            }
+            if(!TextUtils.isEmpty(item.childs.get(i).textSettings.getTextColor())) {
+                tv.setTextColor(Color.parseColor(item.childs.get(i).textSettings.getTextColor()));
+            }
+        }
+    }
+
+    public void setLineSpacing(float lineSpacing) {
+        this.lineSpacing = lineSpacing;
     }
 }

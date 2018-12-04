@@ -246,7 +246,7 @@ public class Editor extends EditorCore {
     }
 
     public void insertDivider() {
-        getDividerExtensions().insertDivider();
+        getDividerExtensions().insertDivider(-1);
     }
 
         /*
@@ -314,4 +314,11 @@ public class Editor extends EditorCore {
         return onKey;
     }
 
+    public void setLineSpacing(float lineSpacing) {
+        this.getInputExtensions().setLineSpacing(lineSpacing);
+    }
+
+    public void setListItemLineSpacing(float lineSpacing){
+        this.getListItemExtensions().setLineSpacing(lineSpacing);
+    }
 }
