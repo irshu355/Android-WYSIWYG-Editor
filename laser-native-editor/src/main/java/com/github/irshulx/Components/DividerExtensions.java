@@ -19,19 +19,54 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.irshulx.EditorComponent;
 import com.github.irshulx.R;
 import com.github.irshulx.EditorCore;
+import com.github.irshulx.models.EditorContent;
+import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.Node;
 import com.github.irshulx.models.RenderType;
+
+import org.jsoup.nodes.Element;
 
 /**
  * Created by mkallingal on 5/1/2016.
  */
-public class DividerExtensions {
+public class DividerExtensions extends EditorComponent {
     private int dividerLayout = R.layout.tmpl_divider_layout;
     EditorCore editorCore;
 
+    @Override
+    public Node getContent(View view) {
+        Node node = this.getNodeInstance(view);
+        return node;
+    }
+
+    @Override
+    public String getContentAsHTML(Node node, EditorContent content) {
+       return componentsWrapper.getHtmlExtensions().getTemplateHtml(EditorType.hr);
+    }
+
+    @Override
+    public void renderEditorFromState(Node node, EditorContent content) {
+        insertDivider(content.nodes.indexOf(node));
+    }
+
+    @Override
+    public Node buildNodeFromHTML(Element element) {
+        int count = editorCore.getChildCount();
+        insertDivider(count);
+        return null;
+    }
+
+    @Override
+    public void init(ComponentsWrapper componentsWrapper) {
+        this.componentsWrapper = componentsWrapper;
+    }
+
     public DividerExtensions(EditorCore editorCore) {
+        super(editorCore);
         this.editorCore = editorCore;
     }
 
@@ -51,7 +86,7 @@ public class DividerExtensions {
         }
         editorCore.getParentView().addView(view, index);
         if (editorCore.isLastRow(view) && editorCore.getRenderType() == RenderType.Editor && !editorCore.isSerialRenderInProgress()) {
-            editorCore.getInputExtensions().insertEditText(index + 1, null, null);
+           componentsWrapper.getInputExtensions().insertEditText(index + 1, null, null);
         }
     }
 

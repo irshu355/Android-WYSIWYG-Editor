@@ -14,4 +14,5 @@ public class EditorControl {
     public TextSettings textSettings;
     public List<EditorTextStyle> editorTextStyles;
     public Map<String, Object> macroSettings;
+    public String macroName;
 }

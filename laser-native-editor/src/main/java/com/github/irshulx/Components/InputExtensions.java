@@ -40,12 +40,16 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.irshulx.EditorComponent;
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.R;
 import com.github.irshulx.Utilities.FontCache;
+import com.github.irshulx.Utilities.Utilities;
+import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.HtmlTag;
 import com.github.irshulx.models.Node;
 import com.github.irshulx.models.Op;
 import com.github.irshulx.models.RenderType;
@@ -56,15 +60,18 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.github.irshulx.models.TextSetting.TEXT_COLOR;
+
 /**
  * Created by mkallingal on 4/30/2016.
  */
-public class InputExtensions {
+public class InputExtensions extends EditorComponent {
     public static final int HEADING = 0;
     public static final int CONTENT = 1;
     private String DEFAULT_TEXT_COLOR = "#000000";
@@ -146,7 +153,56 @@ public class InputExtensions {
     }
 
 
+    @Override
+    public Node getContent(View view) {
+        Node node = this.getNodeInstance(view);
+        EditText _text = (EditText) view;
+        EditorControl tag = (EditorControl) view.getTag();
+        node.contentStyles = tag.editorTextStyles;
+        node.content.add(Html.toHtml(_text.getText()));
+        node.textSettings = tag.textSettings;
+        return node;
+    }
+
+    @Override
+    public String getContentAsHTML(Node node, EditorContent content) {
+        String html = getInputHtml(node);
+        return html;
+    }
+
+    @Override
+    public void renderEditorFromState(Node node, EditorContent content) {
+        String text = node.content.get(0);
+        TextView view = insertEditText(editorCore.getChildCount(), editorCore.getPlaceHolder(), text);
+        applyTextSettings(node, view);
+    }
+
+    @Override
+    public Node buildNodeFromHTML(Element element) {
+        HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
+        switch (tag){
+            case h1:
+            case h2:
+            case h3:
+                RenderHeader(tag, element);
+                break;
+            case p:
+               String text = element.html();
+                int count = editorCore.getParentView().getChildCount();
+                TextView textView = insertEditText(count, null, text);
+                applyStyles(textView, element);
+                break;
+        }
+        return null;
+    }
+
+    @Override
+    public void init(ComponentsWrapper componentsWrapper) {
+        this.componentsWrapper = componentsWrapper;
+    }
+
     public InputExtensions(EditorCore editorCore) {
+        super(editorCore);
         this.editorCore = editorCore;
     }
 
@@ -183,7 +239,7 @@ public class InputExtensions {
 
     public void setLineSpacing(TextView textView, float lineHeight) {
         int fontHeight = textView.getPaint().getFontMetricsInt(null);
-        textView.setLineSpacing(editorCore.getUtilitiles().dpToPixel(lineHeight)-fontHeight, 1);
+        textView.setLineSpacing(Utilities.dpToPixel(editorCore.getContext(), lineHeight)-fontHeight, 1);
     }
 
     public CustomEditText getNewEditTextInst(final String hint, CharSequence text) {
@@ -315,12 +371,12 @@ public class InputExtensions {
         if (type != EditorType.INPUT)
             return;
         TextView tv = (TextView) view;
-        tv.setHint(editorCore.placeHolder);
+        tv.setHint(editorCore.getPlaceHolder());
     }
 
 
     public TextView insertEditText(int position, String hint, CharSequence text) {
-        String nextHint = isLastText(position) ? null : editorCore.placeHolder;
+        String nextHint = isLastText(position) ? null : editorCore.getPlaceHolder();
         if (editorCore.getRenderType() == RenderType.Editor) {
 
 
@@ -611,7 +667,7 @@ public class InputExtensions {
     }
 
     public void setFocus(CustomEditText view) {
-        if (editorCore.isStateFresh() && !editorCore.autoFocus) {
+        if (editorCore.isStateFresh() && !editorCore.getAutoFucus()) {
             editorCore.setStateFresh(false);
             return;
         }
@@ -697,6 +753,73 @@ public class InputExtensions {
         }
     }
 
+    public String getInputHtml(Node item) {
+        boolean isParagraph = true;
+        String tmpl = componentsWrapper.getHtmlExtensions().getTemplateHtml(item.type);
+        //  CharSequence content= android.text.Html.fromHtml(item.content.get(0)).toString();
+        //  CharSequence trimmed= editorCore.getInputExtensions().noTrailingwhiteLines(content);
+        String trimmed = Jsoup.parse(item.content.get(0)).body().select("p").html();
+        Map<Enum, String> styles = new HashMap<>();
+        if (item.contentStyles.size() > 0) {
+            for (EditorTextStyle style : item.contentStyles) {
+                switch (style) {
+                    case BOLD:
+                        tmpl = tmpl.replace("{{$content}}", "<b>{{$content}}</b>");
+                        break;
+                    case BOLDITALIC:
+                        tmpl = tmpl.replace("{{$content}}", "<b><i>{{$content}}</i></b>");
+                        break;
+                    case ITALIC:
+                        tmpl = tmpl.replace("{{$content}}", "<i>{{$content}}</i>");
+                        break;
+                    case INDENT:
+                        styles.put(style, "margin-left:25px");
+                        break;
+                    case OUTDENT:
+                        styles.put(style, "margin-left:0");
+                        break;
+                    case H1:
+                        tmpl = tmpl.replace("{{$tag}}", "h1");
+                        isParagraph = false;
+                        break;
+                    case H2:
+                        tmpl = tmpl.replace("{{$tag}}", "h2");
+                        isParagraph = false;
+                        break;
+                    case H3:
+                        tmpl = tmpl.replace("{{$tag}}", "h3");
+                        isParagraph = false;
+                        break;
+                    case NORMAL:
+                        tmpl = tmpl.replace("{{$tag}}", "p");
+                        isParagraph = true;
+                        break;
+                }
+            }
+        }
+
+        styles.put(TEXT_COLOR, "color:" + item.textSettings.getTextColor());
+
+        if (item.type == EditorType.OL_LI || item.type == EditorType.UL_LI) {
+            tmpl = tmpl.replace("{{$tag}}", "span");
+        } else if (isParagraph) {
+            tmpl = tmpl.replace("{{$tag}}", "p");
+        }
+        tmpl = tmpl.replace("{{$content}}", trimmed);
+        tmpl = tmpl.replace(" {{$style}}", createStyleTag(styles));
+        return tmpl;
+    }
+
+    private String createStyleTag(Map<Enum, String> styles) {
+        String tmpl = " style=\"{{builder}}\"";
+        StringBuilder builder = new StringBuilder();
+        for (Map.Entry<Enum, String> style : styles.entrySet()) {
+            builder.append(style.getValue()).append(";");
+        }
+        tmpl = tmpl.replace("{{builder}}", builder);
+        return tmpl;
+    }
+
     public void applyTextSettings(Node node, TextView view){
         if (node.contentStyles != null) {
             for (EditorTextStyle style : node.contentStyles) {
@@ -707,6 +830,15 @@ public class InputExtensions {
                 updateTextColor(node.textSettings.getTextColor(), view);
             }
         }
+    }
+
+    public void RenderHeader(HtmlTag tag, Element element) {
+        int count = editorCore.getParentView().getChildCount();
+        String text = componentsWrapper.getHtmlExtensions().getHtmlSpan(element);
+        TextView editText = insertEditText(count, null, text);
+        EditorTextStyle style = tag == HtmlTag.h1 ? EditorTextStyle.H1 : tag == HtmlTag.h2 ? EditorTextStyle.H2 : EditorTextStyle.H3;
+        UpdateTextStyle(style, editText);
+        applyStyles(editText, element);
     }
 
     public void setLineSpacing(float lineSpacing) {

@@ -16,11 +16,13 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.irshulx.Editor;
 import com.github.irshulx.EditorListener;
 import com.github.irshulx.models.EditorContent;
+import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorTextStyle;
 
 import java.io.IOException;
@@ -197,6 +199,12 @@ public class EditorTestActivity extends AppCompatActivity {
                 editor.onImageUploadComplete("http://www.videogamesblogger.com/wp-content/uploads/2015/08/metal-gear-solid-5-the-phantom-pain-cheats-640x325.jpg", uuid);
                 // editor.onImageUploadFailed(uuid);
             }
+
+            @Override
+            public View onRenderMacro(String name, Map<String, Object> settings, int index) {
+                return null;
+            }
+
         });
 
 
@@ -222,6 +230,7 @@ public class EditorTestActivity extends AppCompatActivity {
         String text = "<h1 data-tag=\"input\" style=\"color:#000000;\">it is not available beyond that statue in a few days and then we could</h1><hr data-tag=\"hr\"/><p data-tag=\"input\" style=\"color:#000000;\">it is a free trial to get a great weekend a good day to you u can do that for.</p><p data-tag=\"input\" style=\"color:#000000;\">it is that I have to do the needful as early in life is not available beyond my imagination to be a good.</p><div data-tag=\"img\"><img src=\"http://www.videogamesblogger.com/wp-content/uploads/2015/08/metal-gear-solid-5-the-phantom-pain-cheats-640x325.jpg\" /><p data-tag=\"img-sub\" style=\"color:#006AFF;\" class=\"editor-image-subtitle\"><b>it is not available in the next week or two and I have a place where I</b></p></div><p data-tag=\"input\" style=\"color:#000000;\">it is not available in the next week to see you tomorrow morning to see you then.</p><hr data-tag=\"hr\"/><p data-tag=\"input\" style=\"color:#000000;\">it is not available in the next day delivery to you soon with it and.</p>";
         //editor.render("<p>Hello man, whats up!</p>");
         editor.render(text);
+        insertMacro();
         findViewById(R.id.btnRender).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -252,6 +261,14 @@ public class EditorTestActivity extends AppCompatActivity {
         }, 0, backupInterval);
 
          */
+    }
+
+    private void insertMacro() {
+        View view = getLayoutInflater().inflate(R.layout.layout_authored_by, null);
+        Map<String, Object> map = new HashMap<>();
+        map.put("author-name", "Alex Wong");
+        map.put("date","12 July 2018");
+        editor.insertMacro("author-tag",view, map);
     }
 
     private String colorHex(int color) {

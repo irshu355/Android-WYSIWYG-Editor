@@ -38,31 +38,87 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.github.irshulx.EditorComponent;
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.R;
 import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.HtmlTag;
 import com.github.irshulx.models.Node;
 import com.github.irshulx.models.RenderType;
 import com.github.irshulx.models.TextSettings;
 
 import org.jsoup.nodes.Element;
 
+import java.util.ArrayList;
+
 import static com.github.irshulx.Components.InputExtensions.CONTENT;
 
 /**
  * Created by mkallingal on 5/1/2016.
  */
-public class ListItemExtensions {
+public class ListItemExtensions extends EditorComponent {
     EditorCore editorCore;
     public static final int POSITION_START = 0;
     public static final int POSITION_END = 1;
     private int listItemTemplate = R.layout.tmpl_list_item;
     private float lineSpacing = -1;
 
+    @Override
+    public Node getContent(View view) {
+        Node node = getNodeInstance(view);
+        node.childs = new ArrayList<>();
+        TableLayout table = (TableLayout) view;
+        int _rowCount = table.getChildCount();
+        for (int j = 0; j < _rowCount; j++) {
+            View row = table.getChildAt(j);
+            Node node1 = getNodeInstance(row);
+            EditText li = row.findViewById(R.id.txtText);
+            EditorControl liTag = (EditorControl) li.getTag();
+            node1.contentStyles = liTag.editorTextStyles;
+            node1.content.add(Html.toHtml(li.getText()));
+            node1.textSettings = liTag.textSettings;
+            node1.content.add(Html.toHtml(li.getText()));
+            node.childs.add(node1);
+        }
+        return node;
+    }
+
+    @Override
+    public String getContentAsHTML(Node node, EditorContent content) {
+
+        int count = node.childs.size();
+        String tmpl_parent = componentsWrapper.getHtmlExtensions().getTemplateHtml(node.type);
+        StringBuilder childBlock = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            String html = componentsWrapper.getInputExtensions().getInputHtml(node.childs.get(i));
+            childBlock.append(html);
+        }
+        tmpl_parent = tmpl_parent.replace("{{$content}}", childBlock.toString());
+        return tmpl_parent;
+    }
+
+    @Override
+    public void renderEditorFromState(Node node, EditorContent content) {
+        onRenderfromEditorState(content, node);
+    }
+
+    @Override
+    public Node buildNodeFromHTML(Element element) {
+        HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
+        RenderList(tag == HtmlTag.ol, element);
+        return null;
+    }
+
+    @Override
+    public void init(ComponentsWrapper componentsWrapper) {
+        this.componentsWrapper = componentsWrapper;
+    }
+
     public ListItemExtensions(EditorCore editorCore) {
+        super(editorCore);
         this.editorCore = editorCore;
     }
 
@@ -91,23 +147,23 @@ public class ListItemExtensions {
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.listItemTemplate, null);
         final CustomEditText editText = childLayout.findViewById(R.id.txtText);
         final TextView _order = (TextView) childLayout.findViewById(R.id.lblOrder);
-        _order.setTypeface(Typeface.create(editorCore.getInputExtensions().getFontFace(), Typeface.BOLD));
-        editText.setTypeface(Typeface.create(editorCore.getInputExtensions().getFontFace(), Typeface.NORMAL));
+        _order.setTypeface(Typeface.create(componentsWrapper.getInputExtensions().getFontFace(), Typeface.BOLD));
+        editText.setTypeface(Typeface.create(componentsWrapper.getInputExtensions().getFontFace(), Typeface.NORMAL));
         if (isOrdered) {
             int count = layout.getChildCount();
             _order.setText(String.valueOf(count + 1) + ".");
         }
         if (editorCore.getRenderType() == RenderType.Editor) {
-            editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, editorCore.getInputExtensions().getNormalTextSize());
-            editText.setTextColor(Color.parseColor(editorCore.getInputExtensions().getDefaultTextColor()));
-            if(this.lineSpacing != -1) editorCore.getInputExtensions().setLineSpacing(editText, this.lineSpacing);
+            editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, componentsWrapper.getInputExtensions().getNormalTextSize());
+            editText.setTextColor(Color.parseColor(componentsWrapper.getInputExtensions().getDefaultTextColor()));
+            if(this.lineSpacing != -1) componentsWrapper.getInputExtensions().setLineSpacing(editText, this.lineSpacing);
             EditorControl tag = editorCore.createTag(isOrdered ? EditorType.OL_LI : EditorType.UL_LI);
-            tag.textSettings = new TextSettings(editorCore.getInputExtensions().getDefaultTextColor());
+            tag.textSettings = new TextSettings(componentsWrapper.getInputExtensions().getDefaultTextColor());
             editText.setTag(tag);
             childLayout.setTag(tag);
-            editText.setTypeface(editorCore.getInputExtensions().getTypeface(CONTENT, Typeface.NORMAL));
+            editText.setTypeface(componentsWrapper.getInputExtensions().getTypeface(CONTENT, Typeface.NORMAL));
             editorCore.setActiveView(editText);
-            editorCore.getInputExtensions().setText(editText, text);
+            componentsWrapper.getInputExtensions().setText(editText, text);
             editText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -156,10 +212,10 @@ public class ListItemExtensions {
                             if (s.length() == 0 || s.toString().equals("\n")) {
                                 int index = editorCore.getParentView().indexOfChild(_table);
                                 _table.removeView(_row);
-                                editorCore.getInputExtensions().insertEditText(index + 1, "", "");
+                                componentsWrapper.getInputExtensions().insertEditText(index + 1, "", "");
                             } else {
                                 Spanned __ = Html.fromHtml(text);
-                                CharSequence toReplace = editorCore.getInputExtensions().noTrailingwhiteLines(__);
+                                CharSequence toReplace = componentsWrapper.getInputExtensions().noTrailingwhiteLines(__);
 
                                 if (toReplace.length() > 0) {
                                     editText.setText(toReplace);
@@ -189,16 +245,16 @@ public class ListItemExtensions {
             }, 0);
         } else {
             final TextView textView = childLayout.findViewById(R.id.lblText);
-            textView.setTypeface(editorCore.getInputExtensions().getTypeface(CONTENT, Typeface.NORMAL));
+            textView.setTypeface(componentsWrapper.getInputExtensions().getTypeface(CONTENT, Typeface.NORMAL));
 
             /*
             It's a renderer, so instead of EditText,render TextView
              */
             if (!TextUtils.isEmpty(text)) {
-                editorCore.getInputExtensions().setText(textView, text);
+                componentsWrapper.getInputExtensions().setText(textView, text);
             }
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, editorCore.getInputExtensions().getNormalTextSize());
-            if(this.lineSpacing != -1) editorCore.getInputExtensions().setLineSpacing(textView, this.lineSpacing);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, componentsWrapper.getInputExtensions().getNormalTextSize());
+            if(this.lineSpacing != -1) componentsWrapper.getInputExtensions().setLineSpacing(textView, this.lineSpacing);
             textView.setVisibility(View.VISIBLE);
             Linkify.addLinks(textView,Linkify.ALL);
             editText.setVisibility(View.GONE);
@@ -214,7 +270,7 @@ public class ListItemExtensions {
             _table.removeView(_childRow);
             String text = getTextFromListItem(_childRow);
             int Index = editorCore.getParentView().indexOfChild(_table);
-            editorCore.getInputExtensions().insertEditText(Index + 1, "", text);
+            componentsWrapper.getInputExtensions().insertEditText(Index + 1, "", text);
             i -= 1;
             tableChildCount -= 1;
         }
@@ -468,8 +524,9 @@ public class ListItemExtensions {
         } else {
             textView = view.findViewById(R.id.lblText);
         }
-        editorCore.getInputExtensions().applyStyles(textView, element);
+        componentsWrapper.getInputExtensions().applyStyles(textView, element);
     }
+
 
     public void onRenderfromEditorState(EditorContent _state, Node item) {
         TableLayout _layout = null;
@@ -497,11 +554,25 @@ public class ListItemExtensions {
             if (item.childs.get(i).contentStyles != null) {
                 for (EditorTextStyle style : item.childs.get(i).contentStyles) {
                     tv.setTag(editorCore.createTag(EditorType.UL_LI));
-                    editorCore.getInputExtensions().UpdateTextStyle(style, tv);
+                    componentsWrapper.getInputExtensions().UpdateTextStyle(style, tv);
                 }
             }
             if(!TextUtils.isEmpty(item.childs.get(i).textSettings.getTextColor())) {
                 tv.setTextColor(Color.parseColor(item.childs.get(i).textSettings.getTextColor()));
+            }
+        }
+    }
+
+    public void RenderList(boolean isOrdered, Element element) {
+        if (element.children().size() > 0) {
+            Element li = element.child(0);
+            String text = componentsWrapper.getHtmlExtensions().getHtmlSpan(li);
+            TableLayout layout = editorCore.getListItemExtensions().insertList(editorCore.getParentChildCount(), isOrdered, text);
+            for (int i = 1; i < element.children().size(); i++) {
+                li = element.child(i);
+                text = componentsWrapper.getHtmlExtensions().getHtmlSpan(li);
+                View view = editorCore.getListItemExtensions().addListItem(layout, isOrdered, text);
+                editorCore.getListItemExtensions().applyStyles(view, li);
             }
         }
     }

@@ -22,16 +22,21 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.AsyncTask;
+import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.irshulx.EditorComponent;
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.R;
+import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorType;
@@ -45,6 +50,7 @@ import org.jsoup.nodes.Element;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -52,11 +58,68 @@ import java.util.UUID;
 /**
  * Created by mkallingal on 5/1/2016.
  */
-public class ImageExtensions {
+public class ImageExtensions extends EditorComponent {
     private EditorCore editorCore;
     private int editorImageLayout = R.layout.tmpl_image_view;
 
+    @Override
+    public Node getContent(View view) {
+        Node node = getNodeInstance(view);
+        EditorControl imgTag = (EditorControl) view.getTag();
+        if (!TextUtils.isEmpty(imgTag.path)) {
+            node.content.add(imgTag.path);
+
+            /**
+             * for subtitle
+             */
+            EditText textView =  view.findViewById(R.id.desc);
+            Node subTitleNode = getNodeInstance(textView);
+            EditorControl descTag = (EditorControl) textView.getTag();
+            subTitleNode.contentStyles = descTag.editorTextStyles;
+            subTitleNode.textSettings = descTag.textSettings;
+            Editable desc = textView.getText();
+            subTitleNode.content.add(Html.toHtml(desc));
+            node.childs = new ArrayList<>();
+            node.childs.add(subTitleNode);
+        }
+        return  node;
+    }
+
+    @Override
+    public String getContentAsHTML(Node node, EditorContent content) {
+        String subHtml = componentsWrapper.getInputExtensions().getInputHtml(node.childs.get(0));
+        String html = componentsWrapper.getHtmlExtensions().getTemplateHtml(node.type);
+        html = html.replace("{{$url}}", node.content.get(0));
+        html = html.replace("{{$img-sub}}", subHtml);
+        return html;
+    }
+
+    @Override
+    public void renderEditorFromState(Node node, EditorContent content) {
+        String path = node.content.get(0);
+        if(editorCore.getRenderType() == RenderType.Renderer) {
+            loadImage(path, node.childs.get(0));
+        }else{
+            View layout = insertImage(null,path,editorCore.getChildCount(),node.childs.get(0).content.get(0), false);
+            componentsWrapper. getInputExtensions().applyTextSettings(node.childs.get(0), (TextView) layout.findViewById(R.id.desc));
+        }
+    }
+
+    @Override
+    public Node buildNodeFromHTML(Element element) {
+        String src = element.attr("src");
+        Element descTag = element.child(1);
+        loadImage(src, descTag);
+        return null;
+    }
+
+    @Override
+    public void init(ComponentsWrapper componentsWrapper) {
+        this.componentsWrapper = componentsWrapper;
+    }
+
     public ImageExtensions(EditorCore editorCore) {
+        super(editorCore);
         this.editorCore = editorCore;
     }
 
@@ -113,10 +176,10 @@ public class ImageExtensions {
         });
 
         if (editorCore.isLastRow(childLayout) && appendTextline) {
-            editorCore.getInputExtensions().insertEditText(index + 1, null, null);
+            componentsWrapper.getInputExtensions().insertEditText(index + 1, null, null);
         }
         if(!TextUtils.isEmpty(subTitle))
-            editorCore.getInputExtensions().setText(desc, subTitle);
+            componentsWrapper.getInputExtensions().setText(desc, subTitle);
         if(editorCore.getRenderType()== RenderType.Editor) {
             BindEvents(childLayout);
             if(!hasUploaded){
@@ -138,7 +201,7 @@ public class ImageExtensions {
         if (type != EditorType.INPUT)
             return;
         TextView tv = (TextView) view;
-        tv.setHint(editorCore.placeHolder);
+        tv.setHint(editorCore.getPlaceHolder());
         Linkify.addLinks(tv,Linkify.ALL);
     }
 
@@ -148,7 +211,7 @@ public class ImageExtensions {
         if (type != EditorType.INPUT)
             return;
 
-        String hint = editorCore.placeHolder;
+        String hint = editorCore.getPlaceHolder();
         if (index > 0) {
             View prevView = editorCore.getParentView().getChildAt(index - 1);
             EditorType prevType = editorCore.getControlType(prevView);
@@ -194,9 +257,9 @@ public class ImageExtensions {
         if (TextUtils.isEmpty(desc)) {
             text.setVisibility(View.GONE);
         } else {
-            editorCore.getInputExtensions().setText(text, desc);
+            componentsWrapper.getInputExtensions().setText(text, desc);
             text.setEnabled(false);
-            editorCore.getInputExtensions().applyTextSettings(node, text);
+            componentsWrapper.getInputExtensions().applyTextSettings(node, text);
         }
         Picasso.with(this.editorCore.getContext()).load(_path).into(imageView);
         editorCore.getParentView().addView(childLayout);
@@ -216,13 +279,13 @@ public class ImageExtensions {
         if (TextUtils.isEmpty(desc)) {
             text.setVisibility(View.GONE);
         } else {
-            editorCore.getInputExtensions().setText(text, desc);
+            componentsWrapper.getInputExtensions().setText(text, desc);
             text.setEnabled(false);
            // editorCore.getInputExtensions().applyTextSettings(node, text);
         }
         Picasso.with(this.editorCore.getContext()).load(_path).into(imageView);
         editorCore.getParentView().addView(childLayout);
-        editorCore.getInputExtensions().applyStyles(text, node);
+        componentsWrapper.getInputExtensions().applyStyles(text, node);
     }
 
 
@@ -273,7 +336,7 @@ public class ImageExtensions {
                 int index = editorCore.getParentView().indexOfChild(layout);
                 editorCore.getParentView().removeView(layout);
                 hideInputHint(index);
-                editorCore.getInputExtensions().setFocusToPrevious(index);
+                componentsWrapper.getInputExtensions().setFocusToPrevious(index);
             }
         });
 

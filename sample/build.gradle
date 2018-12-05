@@ -63,6 +63,7 @@ dependencies {
     implementation "com.android.support:support-v4:$supportLibVersion"
     implementation project(':laser-native-editor')
     implementation 'com.github.duanhong169:colorpicker:1.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     //  compile 'com.github.irshulx:laser-native-editor:2.0.0'
     // implementation 'com.github.irshulx:laser-native-editor:2.2.8'
     configurations.all {

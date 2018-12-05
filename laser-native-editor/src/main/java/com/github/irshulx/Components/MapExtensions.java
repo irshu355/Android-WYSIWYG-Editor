@@ -18,24 +18,64 @@ package com.github.irshulx.Components;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.Editable;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.github.irshulx.EditorComponent;
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.MapsActivity;
 import com.github.irshulx.R;
+import com.github.irshulx.Utilities.Utilities;
+import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.Node;
 import com.github.irshulx.models.RenderType;
 import com.squareup.picasso.Picasso;
+
+import org.jsoup.nodes.Element;
 
 /**
  * Created by mkallingal on 5/1/2016.
  */
-public class MapExtensions {
+public class MapExtensions extends EditorComponent {
     EditorCore editorCore;
     private int mapExtensionTemplate=R.layout.tmpl_image_view;
+
+    @Override
+    public Node getContent(View view) {
+        Node node = getNodeInstance(view);
+        EditorControl mapTag = (EditorControl) view.getTag();
+        Editable desc = ((CustomEditText) view.findViewById(R.id.desc)).getText();
+        node.content.add(mapTag.Cords);
+        node.content.add(desc.length() > 0 ? desc.toString() : "");
+        return node;
+    }
+
+    @Override
+    public String getContentAsHTML(Node node, EditorContent content) {
+      return componentsWrapper.getHtmlExtensions().getTemplateHtml(node.type).replace("{{$content}}",
+                editorCore.getMapExtensions().getCordsAsUri(node.content.get(0))).replace("{{$desc}}", node.content.get(1));
+    }
+
+    @Override
+    public void renderEditorFromState(Node node, EditorContent content) {
+        insertMap(node.content.get(0), node.content.get(1), true);
+    }
+
+    @Override
+    public Node buildNodeFromHTML(Element element) {
+        return null;
+    }
+
+    @Override
+    public void init(ComponentsWrapper componentsWrapper) {
+        this.componentsWrapper = componentsWrapper;
+    }
+
     public MapExtensions(EditorCore editorCore){
+        super(editorCore);
         this.editorCore = editorCore;
     }
 
@@ -58,7 +98,7 @@ public class MapExtensions {
         String[] x= cords.split(",");
         String lat = x[0];
         String lng = x[1];
-        int[]size= editorCore.getUtilitiles().getScreenDimension();
+        int[]size= Utilities.getScreenDimension(editorCore.getContext());
         int width=size[0];
 //        ImageView imageView = new ImageView(context);
 //        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 400);
@@ -108,7 +148,7 @@ public class MapExtensions {
         int Index= editorCore.determineIndex(EditorType.map);
         editorCore.getParentView().addView(childLayout, Index);
         if(insertEditText){
-          editorCore.getInputExtensions().insertEditText(Index + 1, null, null);
+          componentsWrapper.getInputExtensions().insertEditText(Index + 1, null, null);
         }
     }
 
