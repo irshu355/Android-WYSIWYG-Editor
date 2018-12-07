@@ -32,29 +32,6 @@ public class HTMLExtensions {
     }
 
 
-    public void renderDiv(Element element) {
-        String tag = element.attr("data-tag");
-        if (tag.equals("img")) {
-            RenderImage(element);
-        }
-    }
-
-    private void RenderImage(Element element) {
-        Element img = element.child(0);
-        Element descTag = element.child(1);
-        String src = img.attr("src");
-        editorCore.getImageExtensions().loadImage(src, descTag);
-    }
-
-    public void RenderImageFromHtml(Element element) {
-        String src = element.attr("src");
-        Element descTag = element.child(1);
-        editorCore.getImageExtensions().loadImage(src, descTag);
-    }
-
-
-
-
     public Map<String, String> getStyleMap(Element element) {
         Map<String, String> keymaps = new HashMap<>();
         if (!element.hasAttr("style")) {

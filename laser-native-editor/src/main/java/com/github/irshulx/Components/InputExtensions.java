@@ -691,7 +691,7 @@ public class InputExtensions extends EditorComponent {
                 continue;
             }
             if (editorType == EditorType.ol || editorType == EditorType.ul) {
-                editorCore.getListItemExtensions().setFocusToList(view, ListItemExtensions.POSITION_START);
+                componentsWrapper.getListItemExtensions().setFocusToList(view, ListItemExtensions.POSITION_START);
                 editorCore.setActiveView(view);
             }
         }
@@ -709,7 +709,7 @@ public class InputExtensions extends EditorComponent {
                 break;
             }
             if (editorType == EditorType.ol || editorType == EditorType.ul) {
-                editorCore.getListItemExtensions().setFocusToList(view, ListItemExtensions.POSITION_START);
+                componentsWrapper.getListItemExtensions().setFocusToList(view, ListItemExtensions.POSITION_START);
                 editorCore.setActiveView(view);
             }
         }
@@ -747,7 +747,7 @@ public class InputExtensions extends EditorComponent {
     }
 
     public void applyStyles(TextView editText, Element element) {
-        Map<String, String> styles = editorCore.getHtmlExtensions().getStyleMap(element);
+        Map<String, String> styles = componentsWrapper.getHtmlExtensions().getStyleMap(element);
         if(styles.containsKey("color")){
             updateTextColor(styles.get("color"),editText);
         }

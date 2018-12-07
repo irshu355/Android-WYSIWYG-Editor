@@ -325,6 +325,6 @@ public class Editor extends EditorCore {
     }
 
     public void insertMacro(String name, View view, Map<String,Object> settings) {
-        this.getMacroExtensions().insertMacro(name, view, settings);
+        this.getMacroExtensions().insertMacro(name, view, settings, -1);
     }
 }

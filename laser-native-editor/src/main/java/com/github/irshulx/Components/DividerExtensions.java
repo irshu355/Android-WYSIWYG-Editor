@@ -65,6 +65,7 @@ public class DividerExtensions extends EditorComponent {
         this.componentsWrapper = componentsWrapper;
     }
 
+
     public DividerExtensions(EditorCore editorCore) {
         super(editorCore);
         this.editorCore = editorCore;

@@ -40,6 +40,7 @@ import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorTextStyle;
 import com.github.irshulx.models.EditorType;
+import com.github.irshulx.models.HtmlTag;
 import com.github.irshulx.models.Node;
 import com.github.irshulx.models.RenderType;
 import com.github.irshulx.models.TextSettings;
@@ -107,9 +108,20 @@ public class ImageExtensions extends EditorComponent {
 
     @Override
     public Node buildNodeFromHTML(Element element) {
-        String src = element.attr("src");
-        Element descTag = element.child(1);
-        loadImage(src, descTag);
+        HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
+        if(tag == HtmlTag.div){
+            String dataTag = element.attr("data-tag");
+            if (dataTag.equals("img")) {
+                Element img = element.child(0);
+                Element descTag = element.child(1);
+                String src = img.attr("src");
+                loadImage(src, descTag);
+            }
+        }else {
+            String src = element.attr("src");
+            Element descTag = element.child(1);
+            loadImage(src, descTag);
+        }
         return null;
     }
 

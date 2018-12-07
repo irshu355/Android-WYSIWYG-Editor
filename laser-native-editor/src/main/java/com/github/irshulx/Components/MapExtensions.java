@@ -56,7 +56,7 @@ public class MapExtensions extends EditorComponent {
     @Override
     public String getContentAsHTML(Node node, EditorContent content) {
       return componentsWrapper.getHtmlExtensions().getTemplateHtml(node.type).replace("{{$content}}",
-                editorCore.getMapExtensions().getCordsAsUri(node.content.get(0))).replace("{{$desc}}", node.content.get(1));
+              componentsWrapper.getMapExtensions().getCordsAsUri(node.content.get(0))).replace("{{$desc}}", node.content.get(1));
     }
 
     @Override

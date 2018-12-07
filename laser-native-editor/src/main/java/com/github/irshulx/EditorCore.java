@@ -74,11 +74,11 @@ public class EditorCore extends LinearLayout {
         super(_context, attrs);
         editorSettings = EditorSettings.init(_context, this);
         this.setOrientation(VERTICAL);
-        initialize(_context, attrs);
+        initialize(attrs);
 
     }
 
-    private void initialize(Context context, AttributeSet attrs) {
+    private void initialize(AttributeSet attrs) {
         loadStateFromAttrs(attrs);
         inputExtensions = new InputExtensions(this);
         imageExtensions = new ImageExtensions(this);
@@ -189,23 +189,23 @@ public class EditorCore extends LinearLayout {
         return this.inputExtensions;
     }
 
-    public ImageExtensions getImageExtensions() {
+    protected ImageExtensions getImageExtensions() {
         return this.imageExtensions;
     }
 
-    public MapExtensions getMapExtensions() {
+    protected MapExtensions getMapExtensions() {
         return this.mapExtensions;
     }
 
-    public HTMLExtensions getHtmlExtensions() {
+    protected HTMLExtensions getHtmlExtensions() {
         return this.htmlExtensions;
     }
 
-    public ListItemExtensions getListItemExtensions() {
+    protected ListItemExtensions getListItemExtensions() {
         return this.listItemExtensions;
     }
 
-    public DividerExtensions getDividerExtensions() {
+    protected DividerExtensions getDividerExtensions() {
         return this.dividerExtensions;
     }
     protected MacroExtensions getMacroExtensions() {
@@ -218,6 +218,220 @@ public class EditorCore extends LinearLayout {
  */
 
     //endregion
+
+
+    /*
+    Used by Editor
+     */
+    protected String getContentAsSerialized() {
+        EditorContent state = getContent();
+        return serializeContent(state);
+    }
+
+    protected String getContentAsSerialized(EditorContent state) {
+        return serializeContent(state);
+    }
+
+    protected EditorContent getContentDeserialized(String EditorContentSerialized) {
+        EditorContent Deserialized = this.editorSettings.gson.fromJson(EditorContentSerialized, EditorContent.class);
+        return Deserialized;
+    }
+
+    protected String serializeContent(EditorContent _state) {
+        String serialized = this.editorSettings.gson.toJson(_state);
+        return serialized;
+    }
+
+
+    protected EditorContent getContent() {
+
+        if (this.editorSettings.renderType == RenderType.Renderer) {
+            Utilities.toastItOut(this.getContext(),"This option only available in editor mode");
+            return null;
+        }
+
+        int childCount =this.editorSettings.parentView.getChildCount();
+        EditorContent editorState = new EditorContent();
+        List<Node> list = new ArrayList<>();
+        for (int i = 0; i < childCount; i++) {
+            View view = this.editorSettings.parentView.getChildAt(i);
+            Node node = getNodeInstance(view);
+            switch (node.type) {
+                case INPUT:
+                    node = getInputExtensions().getContent(view);
+                    list.add(node);
+                    break;
+                case img:
+                    node = getImageExtensions().getContent(view);
+                    list.add(node);
+                    //field type, content[]
+                    break;
+                case hr:
+                    node = getDividerExtensions().getContent(view);
+                    list.add(node);
+                    break;
+                case ul:
+                case ol:
+                    node =getListItemExtensions().getContent(view);
+                    list.add(node);
+                    break;
+                case map:
+                    node = getMapExtensions().getContent(view);
+                    list.add(node);
+                    break;
+                case macro:
+                    node = getMacroExtensions().getContent(view);
+                    list.add(node);
+                    break;
+            }
+        }
+        editorState.nodes = list;
+        return editorState;
+    }
+
+
+    protected void renderEditor(EditorContent _state) {
+        this.editorSettings.parentView.removeAllViews();
+        this.editorSettings.serialRenderInProgress  = true;
+        for (Node item : _state.nodes) {
+            switch (item.type) {
+                case INPUT:
+                    inputExtensions.renderEditorFromState(item, _state);
+                    break;
+                case hr:
+                    dividerExtensions.renderEditorFromState(item, _state);
+                    break;
+                case img:
+                    imageExtensions.renderEditorFromState(item, _state);
+                    break;
+                case ul:
+                case ol:
+                    getListItemExtensions().renderEditorFromState(item, _state);
+                    break;
+                case map:
+                    mapExtensions.renderEditorFromState(item, _state);
+                    break;
+                case macro:
+                    macroExtensions.renderEditorFromState(item, _state);
+                    break;
+            }
+        }
+        this.editorSettings.serialRenderInProgress = false;
+    }
+
+    protected void parseHtml(String htmlString) {
+        Document doc = Jsoup.parse(htmlString);
+        for (Element element : doc.body().children()) {
+            if (!HTMLExtensions.matchesTag(element.tagName().toLowerCase())){
+                String tag = element.attr("data-tag");
+                if(!tag.equals("macro")){
+                    continue;
+                }
+            }
+            buildNodeFromHTML(element);
+        }
+    }
+
+    private void buildNodeFromHTML(Element element) {
+        String text;
+
+        String macroTag = element.attr("data-tag");
+        if(macroTag.equals("macro")){
+            macroExtensions.buildNodeFromHTML(element);
+            return;
+        }
+
+        HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
+        int count = getParentView().getChildCount();
+
+        if ("<br>".equals(element.html().replaceAll("\\s+", "")) || "<br/>".equals(element.html().replaceAll("\\s+", ""))) {
+            inputExtensions.insertEditText(count, null, null);
+            return;
+        } else if ("hr".equals(tag.name()) || "<hr>".equals(element.html().replaceAll("\\s+", "")) || "<hr/>".equals(element.html().replaceAll("\\s+", ""))) {
+            getDividerExtensions().buildNodeFromHTML(element);
+            return;
+        }
+
+        switch (tag) {
+            case h1:
+            case h2:
+            case h3:
+            case p:
+                inputExtensions.buildNodeFromHTML(element);
+                break;
+            case ul:
+            case ol:
+                listItemExtensions.buildNodeFromHTML(element);
+                break;
+            case img:
+                imageExtensions.buildNodeFromHTML(element);
+                break;
+            case div:
+                String dataTag = element.attr("data-tag");
+                if (dataTag.equals("img")) {
+                    imageExtensions.buildNodeFromHTML(element);
+                }
+                break;
+
+        }
+    }
+
+    protected String getHTMLContent() {
+        EditorContent content = getContent();
+        return getHTMLContent(content);
+    }
+
+    protected String getHTMLContent(EditorContent content) {
+        StringBuilder htmlBlock = new StringBuilder();
+        String html;
+        for (Node item : content.nodes) {
+            switch (item.type) {
+                case INPUT:
+                    html = inputExtensions.getContentAsHTML(item, content);
+                    htmlBlock.append(html);
+                    break;
+                case img:
+                    String imgHtml = getImageExtensions().getContentAsHTML(item, content);
+                    htmlBlock.append(imgHtml);
+                    break;
+                case hr:
+                    htmlBlock.append(dividerExtensions.getContentAsHTML(item, content));
+                    break;
+                case map:
+                    String htmlMap = mapExtensions.getContentAsHTML(item,content);
+                    htmlBlock.append(htmlMap);
+                    break;
+                case ul:
+                case ol:
+                    htmlBlock.append(listItemExtensions.getContentAsHTML(item, content));
+                    break;
+                case macro:
+                    htmlBlock.append(macroExtensions.getContentAsHTML(item, content));
+                    break;
+            }
+        }
+        return htmlBlock.toString();
+    }
+
+    protected String getHTMLContent(String editorContentAsSerialized) {
+        EditorContent content = getContentDeserialized(editorContentAsSerialized);
+        return getHTMLContent(content);
+    }
+
+
+    protected void renderEditorFromHtml(String content) {
+        this.editorSettings.serialRenderInProgress = true;
+        parseHtml(content);
+        this.editorSettings.serialRenderInProgress = false;
+    }
+
+    protected void clearAllContents() {
+        this.editorSettings.parentView.removeAllViews();
+
+    }
+
+
+
 
     private void loadStateFromAttrs(AttributeSet attributeSet) {
         if (attributeSet == null) {
@@ -411,37 +625,19 @@ public class EditorCore extends LinearLayout {
         return deserialized;
     }
 
-    public String getValue(String Key, String defaultVal) {
+    private String getValue(String Key, String defaultVal) {
         SharedPreferences _Preferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         return _Preferences.getString(Key, defaultVal);
 
     }
 
-    public void putValue(String Key, String Value) {
+    protected void putValue(String Key, String Value) {
         SharedPreferences _Preferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         SharedPreferences.Editor editor = _Preferences.edit();
         editor.putString(Key, Value);
         editor.apply();
     }
 
-    public String getContentAsSerialized() {
-        EditorContent state = getContent();
-        return serializeContent(state);
-    }
-
-    public String getContentAsSerialized(EditorContent state) {
-        return serializeContent(state);
-    }
-
-    public EditorContent getContentDeserialized(String EditorContentSerialized) {
-        EditorContent Deserialized = this.editorSettings.gson.fromJson(EditorContentSerialized, EditorContent.class);
-        return Deserialized;
-    }
-
-    public String serializeContent(EditorContent _state) {
-        String serialized = this.editorSettings.gson.toJson(_state);
-        return serialized;
-    }
 
     private Node getNodeInstance(View view){
         Node node = new Node();
@@ -451,160 +647,6 @@ public class EditorCore extends LinearLayout {
         return node;
     }
 
-    public EditorContent getContent() {
-
-        if (this.editorSettings.renderType == RenderType.Renderer) {
-            Utilities.toastItOut(this.getContext(),"This option only available in editor mode");
-            return null;
-        }
-
-        int childCount =this.editorSettings.parentView.getChildCount();
-        EditorContent editorState = new EditorContent();
-        List<Node> list = new ArrayList<>();
-        for (int i = 0; i < childCount; i++) {
-            View view = this.editorSettings.parentView.getChildAt(i);
-            Node node = getNodeInstance(view);
-            switch (node.type) {
-                case INPUT:
-                    node = getInputExtensions().getContent(view);
-                    list.add(node);
-                    break;
-                case img:
-                    node = getImageExtensions().getContent(view);
-                    list.add(node);
-                    //field type, content[]
-                    break;
-                case hr:
-                    node = getDividerExtensions().getContent(view);
-                    list.add(node);
-                    break;
-                case ul:
-                case ol:
-                   node =getListItemExtensions().getContent(view);
-                   list.add(node);
-                    break;
-                case map:
-                    node = getMapExtensions().getContent(view);
-                    list.add(node);
-                    break;
-                case macro:
-                    node = getMacroExtensions().getContent(view);
-                    list.add(node);
-                    break;
-            }
-        }
-        editorState.nodes = list;
-        return editorState;
-    }
-
-    public void renderEditor(EditorContent _state) {
-        this.editorSettings.parentView.removeAllViews();
-        this.editorSettings.serialRenderInProgress  = true;
-        for (Node item : _state.nodes) {
-            switch (item.type) {
-                case INPUT:
-                    inputExtensions.renderEditorFromState(item, _state);
-                    break;
-                case hr:
-                    dividerExtensions.renderEditorFromState(item, _state);
-                    break;
-                case img:
-                    imageExtensions.renderEditorFromState(item, _state);
-                    break;
-                case ul:
-                case ol:
-                    getListItemExtensions().renderEditorFromState(item, _state);
-                    break;
-                case map:
-                    mapExtensions.renderEditorFromState(item, _state);
-                    break;
-                case macro:
-                    break;
-            }
-        }
-        this.editorSettings.serialRenderInProgress = false;
-    }
-
-    public void parseHtml(String htmlString) {
-        Document doc = Jsoup.parse(htmlString);
-        for (Element element : doc.body().children()) {
-            if (!HTMLExtensions.matchesTag(element.tagName().toLowerCase()))
-                continue;
-            buildNodeFromHTML(element);
-        }
-    }
-
-    private void buildNodeFromHTML(Element element) {
-        String text;
-        HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
-        int count = getParentView().getChildCount();
-
-        if ("<br>".equals(element.html().replaceAll("\\s+", "")) || "<br/>".equals(element.html().replaceAll("\\s+", ""))) {
-            inputExtensions.insertEditText(count, null, null);
-            return;
-        } else if ("hr".equals(tag.name()) || "<hr>".equals(element.html().replaceAll("\\s+", "")) || "<hr/>".equals(element.html().replaceAll("\\s+", ""))) {
-            getDividerExtensions().buildNodeFromHTML(element);
-            return;
-        }
-
-        switch (tag) {
-            case h1:
-            case h2:
-            case h3:
-            case p:
-                inputExtensions.buildNodeFromHTML(element);
-                break;
-            case ul:
-            case ol:
-                listItemExtensions.buildNodeFromHTML(element);
-                break;
-            case img:
-                htmlExtensions.RenderImageFromHtml(element);
-                break;
-            case div:
-               htmlExtensions.renderDiv(element);
-                break;
-        }
-    }
-
-    public String getHTMLContent() {
-        EditorContent content = getContent();
-        return getHTMLContent(content);
-    }
-
-    public String getHTMLContent(EditorContent content) {
-        StringBuilder htmlBlock = new StringBuilder();
-        String html;
-        for (Node item : content.nodes) {
-            switch (item.type) {
-                case INPUT:
-                    html = inputExtensions.getContentAsHTML(item, content);
-                    htmlBlock.append(html);
-                    break;
-                case img:
-                    String imgHtml = getImageExtensions().getContentAsHTML(item, content);
-                    htmlBlock.append(imgHtml);
-                    break;
-                case hr:
-                    htmlBlock.append(dividerExtensions.getContentAsHTML(item, content));
-                    break;
-                case map:
-                    String htmlMap = mapExtensions.getContentAsHTML(item,content);
-                    htmlBlock.append(htmlMap);
-                    break;
-                case ul:
-                case ol:
-                    htmlBlock.append(listItemExtensions.getContentAsHTML(item, content));
-                    break;
-            }
-        }
-        return htmlBlock.toString();
-    }
-
-    public String getHTMLContent(String editorContentAsSerialized) {
-        EditorContent content = getContentDeserialized(editorContentAsSerialized);
-        return getHTMLContent(content);
-    }
 
 
 
@@ -614,17 +656,6 @@ public class EditorCore extends LinearLayout {
         return length - 1 == index;
     }
 
-
-    public void renderEditorFromHtml(String content) {
-        this.editorSettings.serialRenderInProgress = true;
-        parseHtml(content);
-        this.editorSettings.serialRenderInProgress = false;
-    }
-
-    public void clearAllContents() {
-        this.editorSettings.parentView.removeAllViews();
-
-    }
 
 
     public boolean onKey(View v, int keyCode, KeyEvent event, CustomEditText editText) {

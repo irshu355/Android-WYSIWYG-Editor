@@ -117,6 +117,7 @@ public class ListItemExtensions extends EditorComponent {
         this.componentsWrapper = componentsWrapper;
     }
 
+
     public ListItemExtensions(EditorCore editorCore) {
         super(editorCore);
         this.editorCore = editorCore;
@@ -567,12 +568,12 @@ public class ListItemExtensions extends EditorComponent {
         if (element.children().size() > 0) {
             Element li = element.child(0);
             String text = componentsWrapper.getHtmlExtensions().getHtmlSpan(li);
-            TableLayout layout = editorCore.getListItemExtensions().insertList(editorCore.getParentChildCount(), isOrdered, text);
+            TableLayout layout = componentsWrapper.getListItemExtensions().insertList(editorCore.getParentChildCount(), isOrdered, text);
             for (int i = 1; i < element.children().size(); i++) {
                 li = element.child(i);
                 text = componentsWrapper.getHtmlExtensions().getHtmlSpan(li);
-                View view = editorCore.getListItemExtensions().addListItem(layout, isOrdered, text);
-                editorCore.getListItemExtensions().applyStyles(view, li);
+                View view = componentsWrapper.getListItemExtensions().addListItem(layout, isOrdered, text);
+                componentsWrapper.getListItemExtensions().applyStyles(view, li);
             }
         }
     }
