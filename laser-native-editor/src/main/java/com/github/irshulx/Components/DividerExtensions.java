@@ -101,4 +101,12 @@ public class DividerExtensions extends EditorComponent {
         }
         return false;
     }
+
+    public void removeAllDividersBetweenDeletedAndFocusNext(int indexOfDeleteItem, int nextFocusIndex) {
+        for(int i = nextFocusIndex; i <indexOfDeleteItem;i++){
+            if (editorCore.getControlType(editorCore.getParentView().getChildAt(i)) == EditorType.hr){
+                editorCore.getParentView().removeViewAt(i);
+            }
+        }
+    }
 }

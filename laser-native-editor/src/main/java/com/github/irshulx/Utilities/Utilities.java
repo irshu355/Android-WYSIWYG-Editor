@@ -32,9 +32,13 @@ public class Utilities {
         return matcher.matches();
     }
 
-    public static int dpToPixel(Context context, float dp) {
+    public static int dpToPx(Context context, float dp) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         float px = dp * (metrics.densityDpi / 160f);
         return (int) px;
+    }
+
+    public static int pxToDp(Context context, float px){
+        return (int) (px / context.getResources().getDisplayMetrics().density);
     }
 }

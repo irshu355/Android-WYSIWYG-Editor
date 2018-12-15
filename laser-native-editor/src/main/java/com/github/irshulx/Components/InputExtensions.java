@@ -239,7 +239,7 @@ public class InputExtensions extends EditorComponent {
 
     public void setLineSpacing(TextView textView, float lineHeight) {
         int fontHeight = textView.getPaint().getFontMetricsInt(null);
-        textView.setLineSpacing(Utilities.dpToPixel(editorCore.getContext(), lineHeight)-fontHeight, 1);
+        textView.setLineSpacing(Utilities.dpToPx(editorCore.getContext(), lineHeight)-fontHeight, 1);
     }
 
     public CustomEditText getNewEditTextInst(final String hint, CharSequence text) {
@@ -378,7 +378,6 @@ public class InputExtensions extends EditorComponent {
     public TextView insertEditText(int position, String hint, CharSequence text) {
         String nextHint = isLastText(position) ? null : editorCore.getPlaceHolder();
         if (editorCore.getRenderType() == RenderType.Editor) {
-
 
             /**
              * when user press enter from first line without keyin anything, need to remove the placeholder from that line 0...
@@ -713,6 +712,10 @@ public class InputExtensions extends EditorComponent {
                 editorCore.setActiveView(view);
             }
         }
+    }
+
+    public boolean isInputTextAtPosition(int position){
+        return editorCore.getControlType(editorCore.getParentView().getChildAt(position)) == EditorType.INPUT;
     }
 
 

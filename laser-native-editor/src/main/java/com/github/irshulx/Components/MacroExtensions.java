@@ -1,11 +1,20 @@
 package com.github.irshulx.Components;
 
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.github.irshulx.EditorCore;
 import com.github.irshulx.EditorComponent;
+import com.github.irshulx.R;
+import com.github.irshulx.Utilities.Utilities;
 import com.github.irshulx.models.EditorContent;
 import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
@@ -27,14 +36,50 @@ public class MacroExtensions extends EditorComponent {
     }
 
     public void insertMacro(String name, View view, Map<String,Object> settings, int index){
+
+        final FrameLayout frameLayout = new FrameLayout(editorCore.getContext());
+        frameLayout.addView(view);
+
+        final  FrameLayout overlay = new FrameLayout(frameLayout.getContext());
+        overlay.setVisibility(View.GONE);
+        overlay.setPadding(0,0,20,0);
+        overlay.setBackgroundColor(Color.argb(50, 0, 0, 0));
+        ImageView imageView = new ImageView(overlay.getContext());
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(Utilities.dpToPx(frameLayout.getContext(),40),Utilities.dpToPx(frameLayout.getContext(),40));
+        params.gravity = Gravity.RIGHT|Gravity.CENTER_VERTICAL;
+        imageView.setLayoutParams(params);
+        imageView.setImageResource(R.drawable.ic_close_white_36dp);
+        overlay.addView(imageView);
+        frameLayout.addView(overlay);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editorCore.getParentView().removeView(frameLayout);
+            }
+        });
+
         EditorControl control = editorCore.createTag(EditorType.macro);
         control.macroSettings = settings;
         control.macroName = name;
         if(index == -1) {
-             index = editorCore.determineIndex(EditorType.macro);
+            index = editorCore.determineIndex(EditorType.macro);
         }
-        view.setTag(control);
-        editorCore.getParentView().addView(view, index);
+        frameLayout.setTag(control);
+
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(overlay.getVisibility()==View.VISIBLE){
+                    overlay.setVisibility(View.GONE);
+                }else{
+                    overlay.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
+        editorCore.getParentView().addView(frameLayout, index);
     }
 
     @Override

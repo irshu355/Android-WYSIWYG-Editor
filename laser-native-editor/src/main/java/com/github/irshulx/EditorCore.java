@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.Html;
@@ -15,6 +16,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -54,7 +56,7 @@ import java.util.regex.Pattern;
 /**
  * Created by mkallingal on 4/30/2016.
  */
-public class EditorCore extends LinearLayout {
+public class EditorCore extends LinearLayout implements View.OnTouchListener {
     public static final String TAG = "EDITOR";
     private EditorListener listener;
     public final int MAP_MARKER_REQUEST = 20;
@@ -102,8 +104,61 @@ public class EditorCore extends LinearLayout {
         imageExtensions.init(componentsWrapper);
         listItemExtensions.init(componentsWrapper);
         mapExtensions.init(componentsWrapper);
+        setOnTouchListener(this);
 
     }
+
+    private void onViewTouched(View view, MotionEvent motionEvent){
+        int position = -1;
+        for(int i = 0; i< getChildCount() ; i++){
+            boolean withinBound = isViewInBounds(getChildAt(i), motionEvent.getX(), motionEvent.getY());
+            if(withinBound){
+                position = i;
+            }
+        }
+
+        if(position !=-1){
+            View tappedView = getChildAt(position);
+            //now find where was clicked, top or bottom,
+            int top = tappedView.getTop();
+            int bottom = tappedView.getBottom();
+            int tapped = (int) motionEvent.getY();
+
+            int topDiff = Math.abs((tapped - top));
+            int bottomDiff = Math.abs((bottom - tapped));
+
+            if(bottomDiff > topDiff){
+                //clicked on top
+                //check if previous is edittext, if so do nothing, or else insert an edittext
+                if(!inputExtensions.isInputTextAtPosition(position-1)) {
+                    inputExtensions.insertEditText(position, null, null);
+                }else{
+                    Log.d(TAG, "not adding another edittext since already an edittext on the top");
+                }
+            }else{
+                //clicked on bottom
+                //check if next is edittext,do nothing, or else inser an edittext right after this view
+                if(!inputExtensions.isInputTextAtPosition(position+1)) {
+                    inputExtensions.insertEditText(position + 1, null, null);
+                }else{
+                    Log.d(TAG, "not adding another edittext since already an edittext below");
+                }
+            }
+
+        }
+    }
+
+    private boolean isViewInBounds(View view, float x, float y){
+
+        Rect outRect = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+
+        if(outRect.contains((int)x, (int)y))
+        {
+            return true;
+        }
+        return false;
+    }
+
 
     //region Getters_and_Setters
 
@@ -569,9 +624,7 @@ public class EditorCore extends LinearLayout {
         /**
          * If its an image or map, do not delete edittext, as there is nothing to focus on after image
          */
-        if (control.Type == EditorType.img || control.Type == EditorType.map) {
-            return;
-        }
+
         /*
          *
          * If the person was on edittext,  had removed the whole text, we need to move into the previous line
@@ -595,17 +648,21 @@ public class EditorCore extends LinearLayout {
     public int removeParent(View view) {
         int indexOfDeleteItem = this.editorSettings.parentView.indexOfChild(view);
         View nextItem = null;
+        int nextFocusIndex = -1;
         //remove hr if its on top of the delete field
         this.editorSettings.parentView.removeView(view);
         Log.d("indexOfDeleteItem", "indexOfDeleteItem : " + indexOfDeleteItem);
-        if (dividerExtensions.deleteHr(Math.max(0, indexOfDeleteItem - 1)))
-            indexOfDeleteItem -= 1;
         for (int i = 0; i < indexOfDeleteItem; i++) {
             if (getControlType(this.editorSettings.parentView.getChildAt(i)) == EditorType.INPUT) {
                 nextItem = this.editorSettings.parentView.getChildAt(i);
+                nextFocusIndex = i;
                 continue;
             }
         }
+
+        dividerExtensions.removeAllDividersBetweenDeletedAndFocusNext(indexOfDeleteItem, nextFocusIndex);
+
+
         if (nextItem != null) {
             CustomEditText text = (CustomEditText) nextItem;
             if (text.requestFocus()) {
@@ -734,5 +791,12 @@ public class EditorCore extends LinearLayout {
 
     public boolean getAutoFucus() {
         return editorSettings.autoFocus;
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        onViewTouched(view, motionEvent);
+        Toast.makeText(getContext(), "tapped", Toast.LENGTH_LONG).show();
+        return false;
     }
 }
