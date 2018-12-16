@@ -217,8 +217,10 @@ For a complete overview of the implementation, please take a look at [EditorTest
                 editor.clearAllContents();
             }
         });
+        
+        editor.render();
+        
     }
-    editor.render(); 
 
 
 
