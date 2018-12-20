@@ -361,10 +361,10 @@ When a **custom html tag** is found on the HTML text that's fed to the editor,  
 	        View layout = getLayoutInflater().inflate(R.layout.layout_authored_by, null);  
 	        TextView lblName = layout.findViewById(R.id.lbl_author_name);
 	        lblName.setText(props.get("author-name"));
-		    return layout;  
+		return layout;  
 	     }
     });
-If you wanted to insert a macro use:
+To insert a macro, use:
 
     private void insertAuthorMacro() {  
       View layout = getLayoutInflater().inflate(R.layout.layout_authored_by, null);  
@@ -374,7 +374,7 @@ If you wanted to insert a macro use:
       editor.insertMacro("author-tag",layout, props);  
     }
 
-When content is extracted from the editor using `editor.getContentAsHTML();` you will receive:
+When content is extracted using `editor.getContentAsHTML();` the html string will contain:
 
     "<author-tag author-name=\"Vladimir Putin\" date=\"12 July 2018\"></author-tag>"
 
