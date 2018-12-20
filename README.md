@@ -376,8 +376,7 @@ If you wanted to insert a macro use:
 
 When content is extracted from the editor using `editor.getContentAsHTML();` you will receive:
 
-    <author-tag author-name="Vladimir Putin" date="12 July 2018">
-    </author-tag>
+    "<author-tag author-name=\"Vladimir Putin\" date=\"12 July 2018\"></author-tag>"
 
 ## Custom Fonts ##
 
