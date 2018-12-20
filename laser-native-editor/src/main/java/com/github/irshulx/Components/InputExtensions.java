@@ -15,6 +15,7 @@
  */
 package com.github.irshulx.Components;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -842,6 +843,13 @@ public class InputExtensions extends EditorComponent {
         EditorTextStyle style = tag == HtmlTag.h1 ? EditorTextStyle.H1 : tag == HtmlTag.h2 ? EditorTextStyle.H2 : EditorTextStyle.H3;
         UpdateTextStyle(style, editText);
         applyStyles(editText, element);
+    }
+
+    public void removeFocus(CustomEditText editText) {
+        editText.clearFocus();
+        InputMethodManager imm = (InputMethodManager) editorCore.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+        editorCore.getParentView().removeView(editText);
     }
 
     public void setLineSpacing(float lineSpacing) {

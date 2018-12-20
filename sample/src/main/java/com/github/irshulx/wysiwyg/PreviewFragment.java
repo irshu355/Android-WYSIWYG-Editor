@@ -1,13 +1,17 @@
 package com.github.irshulx.wysiwyg;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.github.irshulx.Editor;
+import com.github.irshulx.EditorListener;
 import com.github.irshulx.models.EditorContent;
 
 import java.util.HashMap;
@@ -54,6 +58,23 @@ public class PreviewFragment extends Fragment {
         renderer.setListItemLayout(R.layout.tmpl_list_item);
         String content= mSerialized;
         EditorContent Deserialized= renderer.getContentDeserialized(content);
+        renderer.setEditorListener(new EditorListener() {
+            @Override
+            public void onTextChanged(EditText editText, Editable text) {
+
+            }
+
+            @Override
+            public void onUpload(Bitmap image, String uuid) {
+
+            }
+
+            @Override
+            public View onRenderMacro(String name, Map<String, Object> settings, int index) {
+                View view = getLayoutInflater().inflate(R.layout.layout_authored_by, null);
+                return view;
+            }
+        });
         renderer.render(Deserialized);
         return  view;
     }

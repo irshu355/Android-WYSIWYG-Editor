@@ -16,6 +16,7 @@
 package com.github.irshulx.Components;
 
 import android.app.Activity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -78,23 +79,43 @@ public class DividerExtensions extends EditorComponent {
     public void insertDivider(int index) {
         View view = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.dividerLayout, null);
         view.setTag(editorCore.createTag(EditorType.hr));
-        if(index == -1) {
-             index = editorCore.determineIndex(EditorType.hr);
+        if (index == -1) {
+            index = editorCore.determineIndex(EditorType.hr);
         }
         if (index == 0) {
             Toast.makeText(editorCore.getContext(), "divider cannot be inserted on line zero", Toast.LENGTH_SHORT).show();
             return;
         }
         editorCore.getParentView().addView(view, index);
-        if (editorCore.isLastRow(view) && editorCore.getRenderType() == RenderType.Editor && !editorCore.isSerialRenderInProgress()) {
-           componentsWrapper.getInputExtensions().insertEditText(index + 1, null, null);
+
+        if (editorCore.getRenderType() == RenderType.Editor) {
+
+            if (editorCore.getControlType(editorCore.getParentView().getChildAt(index + 1 )) == EditorType.INPUT) {
+                CustomEditText customEditText = (CustomEditText) editorCore.getChildAt(index + 1 );
+                componentsWrapper.getInputExtensions().removeFocus(customEditText);
+            }
+            view.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        int paddingTop = view.getPaddingTop();
+                        int paddingBottom = view.getPaddingBottom();
+                        int height = view.getHeight();
+                        if (event.getY() < paddingTop) {
+                            editorCore.___onViewTouched(0, editorCore.getParentView().indexOfChild(view));
+                        } else if (event.getY() > height - paddingBottom) {
+                            editorCore.___onViewTouched(1, editorCore.getParentView().indexOfChild(view));
+                        }
+                        return false;
+                    }
+                    return true;
+                }
+            });
         }
     }
 
     public boolean deleteHr(int indexOfDeleteItem) {
         View view = editorCore.getParentView().getChildAt(indexOfDeleteItem);
-//        if(view == null)
-//            return true;
         if (view == null ||editorCore.getControlType(view) == EditorType.hr) {
             editorCore.getParentView().removeView(view);
             return true;

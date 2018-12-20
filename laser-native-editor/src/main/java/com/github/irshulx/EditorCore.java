@@ -77,7 +77,13 @@ public class EditorCore extends LinearLayout implements View.OnTouchListener {
         editorSettings = EditorSettings.init(_context, this);
         this.setOrientation(VERTICAL);
         initialize(attrs);
+        onPostInit();
+    }
 
+    private void onPostInit() {
+        if(getRenderType() == RenderType.Editor) {
+            setOnTouchListener(this);
+        }
     }
 
     private void initialize(AttributeSet attrs) {
@@ -104,11 +110,26 @@ public class EditorCore extends LinearLayout implements View.OnTouchListener {
         imageExtensions.init(componentsWrapper);
         listItemExtensions.init(componentsWrapper);
         mapExtensions.init(componentsWrapper);
-        setOnTouchListener(this);
-
     }
 
-    private void onViewTouched(View view, MotionEvent motionEvent){
+
+    public void ___onViewTouched(int hotspot, int viewPosition){
+        if(hotspot == 0){
+            if(!inputExtensions.isInputTextAtPosition(viewPosition-1)) {
+                inputExtensions.insertEditText(viewPosition, null, null);
+            }else{
+                Log.d(TAG, "not adding another edittext since already an edittext on the top");
+            }
+        }else if(hotspot ==1){
+            if(!inputExtensions.isInputTextAtPosition(viewPosition+1)) {
+                inputExtensions.insertEditText(viewPosition + 1, null, null);
+            }else{
+                Log.d(TAG, "not adding another edittext since already an edittext below");
+            }
+        }
+    }
+
+    public void ___onViewTouched(View view, MotionEvent motionEvent){
         int position = -1;
         for(int i = 0; i< getChildCount() ; i++){
             boolean withinBound = isViewInBounds(getChildAt(i), motionEvent.getX(), motionEvent.getY());
@@ -117,34 +138,38 @@ public class EditorCore extends LinearLayout implements View.OnTouchListener {
             }
         }
 
-        if(position !=-1){
-            View tappedView = getChildAt(position);
-            //now find where was clicked, top or bottom,
-            int top = tappedView.getTop();
-            int bottom = tappedView.getBottom();
-            int tapped = (int) motionEvent.getY();
+//        if(position !=-1){
+//            View tappedView = getChildAt(position);
+//            //now find where was clicked, top or bottom,
+//            int top = tappedView.getTop();
+//            int bottom = tappedView.getBottom();
+//            int tapped = (int) motionEvent.getY();
+//
+//            int topDiff = Math.abs((tapped - top));
+//            int bottomDiff = Math.abs((bottom - tapped));
+//
+//            if(bottomDiff > topDiff){
+//                //clicked on top
+//                //check if previous is edittext, if so do nothing, or else insert an edittext
+//                if(!inputExtensions.isInputTextAtPosition(position-1)) {
+//                    inputExtensions.insertEditText(position, null, null);
+//                }else{
+//                    Log.d(TAG, "not adding another edittext since already an edittext on the top");
+//                }
+//            }else{
+//                //clicked on bottom
+//                //check if next is edittext,do nothing, or else inser an edittext right after this view
+//                if(!inputExtensions.isInputTextAtPosition(position+1)) {
+//                    inputExtensions.insertEditText(position + 1, null, null);
+//                }else{
+//                    Log.d(TAG, "not adding another edittext since already an edittext below");
+//                }
+//            }
+//
+//        }
 
-            int topDiff = Math.abs((tapped - top));
-            int bottomDiff = Math.abs((bottom - tapped));
-
-            if(bottomDiff > topDiff){
-                //clicked on top
-                //check if previous is edittext, if so do nothing, or else insert an edittext
-                if(!inputExtensions.isInputTextAtPosition(position-1)) {
-                    inputExtensions.insertEditText(position, null, null);
-                }else{
-                    Log.d(TAG, "not adding another edittext since already an edittext on the top");
-                }
-            }else{
-                //clicked on bottom
-                //check if next is edittext,do nothing, or else inser an edittext right after this view
-                if(!inputExtensions.isInputTextAtPosition(position+1)) {
-                    inputExtensions.insertEditText(position + 1, null, null);
-                }else{
-                    Log.d(TAG, "not adding another edittext since already an edittext below");
-                }
-            }
-
+        if(position == -1){
+            inputExtensions.insertEditText(getChildCount(), null, null);
         }
     }
 
@@ -795,7 +820,7 @@ public class EditorCore extends LinearLayout implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        onViewTouched(view, motionEvent);
+        ___onViewTouched(view, motionEvent);
         Toast.makeText(getContext(), "tapped", Toast.LENGTH_LONG).show();
         return false;
     }

@@ -339,7 +339,7 @@ public class ImageExtensions extends EditorComponent {
 
 
     private void BindEvents(final View layout) {
-        final ImageView imageView = (ImageView) layout.findViewById(R.id.imageView);
+        final ImageView imageView = layout.findViewById(R.id.imageView);
         final View btn_remove = layout.findViewById(R.id.btn_remove);
 
         btn_remove.setOnClickListener(new View.OnClickListener() {
@@ -352,26 +352,28 @@ public class ImageExtensions extends EditorComponent {
             }
         });
 
-        imageView.setOnTouchListener(new View.OnTouchListener() {
-            private Rect rect;
-
+        layout.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    imageView.setColorFilter(Color.argb(50, 0, 0, 0));
-                    rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
-                }
+            public boolean onTouch(View view, MotionEvent event) {
+
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    imageView.setColorFilter(Color.argb(0, 0, 0, 0));
-                }
-                if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                    if (!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())) {
-                        imageView.setColorFilter(Color.argb(0, 0, 0, 0));
+                    int paddingTop = view.getPaddingTop();
+                    int paddingBottom = view.getPaddingBottom();
+                    int height = view.getHeight();
+                    if (event.getY() < paddingTop) {
+                        editorCore.___onViewTouched(0, editorCore.getParentView().indexOfChild(layout));
                     }
+                    else if (event.getY() > height - paddingBottom) {
+                        editorCore.___onViewTouched(1,  editorCore.getParentView().indexOfChild(layout));
+                    } else {
+
+                    }
+                    return false;
                 }
-                return false;
+                return true;//hmmmm....
             }
         });
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
