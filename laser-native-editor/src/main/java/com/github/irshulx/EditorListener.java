@@ -14,5 +14,5 @@ import java.util.Map;
 public interface EditorListener{
     void onTextChanged(EditText editText, Editable text);
     void onUpload(Bitmap image, String uuid);
-    View onRenderMacro(String name, Map<String, Object> settings, int index);
+    View onRenderMacro(String name, Map<String, Object> props, int index);
 }

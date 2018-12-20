@@ -198,11 +198,11 @@ public class EditorTestActivity extends AppCompatActivity {
                 // editor.onImageUploadFailed(uuid);
             }
 
-            @Override
-            public View onRenderMacro(String name, Map<String, Object> settings, int index) {
-                View view = getLayoutInflater().inflate(R.layout.layout_authored_by, null);
-                return view;
-            }
+                @Override
+                public View onRenderMacro(String name, Map<String, Object> props, int index) {
+                    View view = getLayoutInflater().inflate(R.layout.layout_authored_by, null);
+                    return view;
+                }
 
         });
 
@@ -236,6 +236,7 @@ public class EditorTestActivity extends AppCompatActivity {
                 Retrieve the content as serialized, you could also say getContentAsHTML();
                 */
                 String text = editor.getContentAsSerialized();
+                editor.getContentAsHTML();
                 Intent intent = new Intent(getApplicationContext(), RenderTestActivity.class);
                 intent.putExtra("content", text);
                 startActivity(intent);

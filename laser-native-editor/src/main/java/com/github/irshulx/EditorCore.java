@@ -169,7 +169,15 @@ public class EditorCore extends LinearLayout implements View.OnTouchListener {
 //        }
 
         if(position == -1){
-            inputExtensions.insertEditText(getChildCount(), null, null);
+             boolean doInsert = true;
+             if(getControlType(getChildAt(getChildCount() - 1)) == EditorType.INPUT){
+                 CustomEditText editText = (CustomEditText) getChildAt(getChildCount() - 1);
+                 if(TextUtils.isEmpty(editText.getText())){
+                     doInsert = false;
+                 }
+             }
+             if(doInsert)
+                inputExtensions.insertEditText(getChildCount(), null, null);
         }
     }
 
@@ -821,7 +829,6 @@ public class EditorCore extends LinearLayout implements View.OnTouchListener {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         ___onViewTouched(view, motionEvent);
-        Toast.makeText(getContext(), "tapped", Toast.LENGTH_LONG).show();
         return false;
     }
 }
