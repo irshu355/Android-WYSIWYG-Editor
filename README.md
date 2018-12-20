@@ -13,6 +13,15 @@ An iframe free text editor that uses native components in the content tree. Moti
 
 ## Changelog
 
+## [3.0.0 - 20 December 2018]
+
+ - Introducing Macro's. 
+ 
+Macro's are equivalent to components in react/vue.js. 
+It lets you add a custom block into the editor where you get to control what gets rendered into the editor. Read more about this below on Macro's section.
+
+
+
 ## [2.3.2 - 01 December 2018]
 
  - Links on editor will now respond to click
@@ -321,6 +330,54 @@ If you are using image uploads, use the below to add the uploaded image to edito
                    // editor.onImageUploadFailed(uuid);
                 }
             });
+
+## Macro's ##
+
+A macro is equivalent to a component in react/vue.js. 
+
+for eg: 
+In vue, you define a component `author-tag` as:
+
+
+     Vue.component('author-tag', {  
+         props: ['author-name', 'date'],
+         template: '<div>
+                      <span class="name" {{author-name}}></span>
+                      <span class="date" {{date}}></span>
+                   </div>'  
+        });
+
+You can then use this component as a custom HTML element in your markup:
+
+    <author-tag author-name="Vladimir Putin" date="12 July 2018">
+    </author-tag>
+
+When a **custom html tag** is found on the HTML text that's fed to the editor,  `View onRenderMacro(String name, Map<String, Object> props, int index);` will be invoked. All you need to do is to inflate your custom view created to handle `author-tag` and return that view to the editor: 
+
+    editor.setEditorListener(new EditorListener() {
+	    ...
+	    @Override  
+	    public View onRenderMacro(String name, Map<String, Object> props, int index) {  
+	        View layout = getLayoutInflater().inflate(R.layout.layout_authored_by, null);  
+	        TextView lblName = layout.findViewById(R.id.lbl_author_name);
+	        lblName.setText(props.get("author-name"));
+		    return layout;  
+	     }
+    });
+If you wanted to insert a macro use:
+
+    private void insertAuthorMacro() {  
+      View layout = getLayoutInflater().inflate(R.layout.layout_authored_by, null);  
+      Map<String, Object> props = new HashMap<>();  
+      props.put("author-name", "Vladimir Putin");  
+      props.put("date","12 July 2018");  
+      editor.insertMacro("author-tag",layout, props);  
+    }
+
+When content is extracted from the editor using `editor.getContentAsHTML();` you will receive:
+
+    <author-tag author-name="Vladimir Putin" date="12 July 2018">
+    </author-tag>
 
 ## Custom Fonts ##
 
