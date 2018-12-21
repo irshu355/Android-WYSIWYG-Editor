@@ -432,7 +432,7 @@ public class EditorCore extends LinearLayout implements View.OnTouchListener {
         HtmlTag tag = HtmlTag.valueOf(element.tagName().toLowerCase());
         int count = getParentView().getChildCount();
 
-        if ("<br>".equals(element.html().replaceAll("\\s+", "")) || "<br/>".equals(element.html().replaceAll("\\s+", ""))) {
+        if ("br".equals(tag.name()) ||"<br>".equals(element.html().replaceAll("\\s+", "")) || "<br/>".equals(element.html().replaceAll("\\s+", ""))) {
             inputExtensions.insertEditText(count, null, null);
             return;
         } else if ("hr".equals(tag.name()) || "<hr>".equals(element.html().replaceAll("\\s+", "")) || "<hr/>".equals(element.html().replaceAll("\\s+", ""))) {
