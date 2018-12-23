@@ -32,8 +32,6 @@ import com.github.irshulx.models.EditorControl;
 import com.github.irshulx.models.EditorType;
 import com.github.irshulx.models.Node;
 import com.github.irshulx.models.RenderType;
-import com.squareup.picasso.Picasso;
-
 import org.jsoup.nodes.Element;
 
 /**
@@ -108,13 +106,13 @@ public class MapExtensions extends EditorComponent {
 //        Picasso.with(this.context).load(builder.toString()).into(imageView);
 
         final View childLayout = ((Activity) this.editorCore.getContext()).getLayoutInflater().inflate(this.mapExtensionTemplate, null);
-        ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
-        Picasso.with(this.editorCore.getContext()).load(getMapStaticImgUri(String.valueOf(lat)+","+String.valueOf(lng),width)).into(imageView);
+        ImageView imageView = childLayout.findViewById(R.id.imageView);
+        componentsWrapper.getImageExtensions().loadImageUsingLib(getMapStaticImgUri(String.valueOf(lat)+","+String.valueOf(lng),width), imageView);
 
         /**
          * description, if render mode, set the description and disable it
          */
-        CustomEditText editText = (CustomEditText) childLayout.findViewById(R.id.desc);
+        CustomEditText editText = childLayout.findViewById(R.id.desc);
         if(editorCore.getRenderType()== RenderType.Renderer){
             editText.setText(desc);
             editText.setEnabled(false);
