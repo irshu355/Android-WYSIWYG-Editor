@@ -24,7 +24,6 @@ import android.widget.ImageView;
 
 import com.github.irshulx.EditorComponent;
 import com.github.irshulx.EditorCore;
-import com.github.irshulx.MapsActivity;
 import com.github.irshulx.R;
 import com.github.irshulx.Utilities.Utilities;
 import com.github.irshulx.models.EditorContent;
@@ -151,8 +150,8 @@ public class MapExtensions extends EditorComponent {
     }
 
     public void loadMapActivity(){
-                Intent intent=new Intent(this.editorCore.getContext(), MapsActivity.class);
-                ((Activity) this.editorCore.getContext()).startActivityForResult(intent, editorCore.MAP_MARKER_REQUEST);
+               // Intent intent=new Intent(this.editorCore.getContext(), MapsActivity.class);
+               // ((Activity) this.editorCore.getContext()).startActivityForResult(intent, 123);
     }
 
     public CharSequence getCordsAsUri(String s) {

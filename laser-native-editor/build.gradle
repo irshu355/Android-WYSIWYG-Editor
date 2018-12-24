@@ -57,9 +57,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    implementation 'com.google.android.gms:play-services-maps:10.0.1'
-    implementation 'com.google.android.gms:play-services-location:10.0.1'
-    implementation 'com.google.android.gms:play-services-places:10.0.1'
     implementation 'org.jetbrains:annotations:13.0'
 }
 

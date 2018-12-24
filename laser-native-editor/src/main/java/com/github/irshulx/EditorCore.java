@@ -59,7 +59,7 @@ import java.util.regex.Pattern;
 public class EditorCore extends LinearLayout implements View.OnTouchListener {
     public static final String TAG = "EDITOR";
     private EditorListener listener;
-    public final int MAP_MARKER_REQUEST = 20;
+    private final int MAP_MARKER_REQUEST = 20;
     public final int PICK_IMAGE_REQUEST = 1;
     private InputExtensions inputExtensions;
     private ImageExtensions imageExtensions;

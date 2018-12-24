@@ -156,12 +156,6 @@ public class EditorTestActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.insertMap();
-            }
-        });
 
         findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -332,8 +326,6 @@ public class EditorTestActivity extends AppCompatActivity {
             //Write your code if there's no result
             Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
             // editor.RestoreState();
-        } else if (requestCode == editor.MAP_MARKER_REQUEST) {
-            editor.insertMap(data.getStringExtra("cords"));
         }
     }
 
