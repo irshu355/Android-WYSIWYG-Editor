@@ -296,14 +296,17 @@ public class Editor extends EditorCore {
          *
          */
 
+    @Deprecated
     public void setMapViewLayout(int layout) {
         this.getMapExtensions().setMapViewTemplate(layout);
     }
 
+    @Deprecated
     public void insertMap() {
         getMapExtensions().loadMapActivity();
     }
 
+    @Deprecated
     public void insertMap(String Cords) {
         getMapExtensions().insertMap(Cords, null, true);
     }
