@@ -39,14 +39,14 @@ Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:3.0.0'
+    compile 'com.github.irshulx:laser-native-editor:3.0.1'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>3.0.0</version>
+      <version>3.0.1</version>
       <type>pom</type>
     </dependency>
 
@@ -349,7 +349,7 @@ In vue, you define a component `author-tag` as:
 
 You can then use this component as a custom HTML element in your markup:
 
-    <author-tag author-name="Vladimir Putin" date="12 July 2018">
+    <author-tag author-name="Thomas Isaac" date="12 July 2018">
     </author-tag>
 
 When a **custom html tag** is found on the HTML text that's fed to the editor,  `View onRenderMacro(String name, Map<String, Object> props, int index);` will be invoked. All you need to do is to inflate your custom view created to handle `author-tag` and return that view to the editor: 
@@ -369,14 +369,14 @@ To insert a macro, use:
     private void insertAuthorMacro() {  
       View layout = getLayoutInflater().inflate(R.layout.layout_authored_by, null);  
       Map<String, Object> props = new HashMap<>();  
-      props.put("author-name", "Vladimir Putin");  
+      props.put("author-name", "Thomas Isaac");  
       props.put("date","12 July 2018");  
       editor.insertMacro("author-tag",layout, props);  
     }
 
 When content is extracted using `editor.getContentAsHTML();` the html string will contain:
 
-    "<author-tag author-name=\"Vladimir Putin\" date=\"12 July 2018\"></author-tag>"
+    "<author-tag author-name=\"Thomas Isaac\" date=\"12 July 2018\"></author-tag>"
 
 ## Custom Fonts ##
 
