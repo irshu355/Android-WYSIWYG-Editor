@@ -23,6 +23,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.Html;
@@ -38,7 +39,9 @@ import android.widget.TextView;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.github.irshulx.EditorComponent;
 import com.github.irshulx.EditorCore;
@@ -66,6 +69,13 @@ public class ImageExtensions extends EditorComponent {
     private EditorCore editorCore;
     private int editorImageLayout = R.layout.tmpl_image_view;
     public RequestListener requestListener;
+    public RequestOptions requestOptions;
+    public DrawableTransitionOptions transition;
+
+    @DrawableRes
+    public int placeholder = -1;
+    @DrawableRes
+    public int errorBackground = -1;
 
     @Override
     public Node getContent(View view) {
@@ -149,10 +159,8 @@ public class ImageExtensions extends EditorComponent {
 
     public void openImageGallery() {
         Intent intent = new Intent();
-// Show only images, no videos or anything else
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        // Always show the chooser (if there are multiple options available)
         ((Activity) editorCore.getContext()).startActivityForResult(Intent.createChooser(intent, "Select an image"), editorCore.PICK_IMAGE_REQUEST);
     }
 
@@ -292,15 +300,17 @@ public class ImageExtensions extends EditorComponent {
 
         childLayout.setTag(createImageTag(_path));
         text.setTag(createSubTitleTag());
-
-        if (TextUtils.isEmpty(desc)) {
-            text.setVisibility(View.GONE);
-        } else {
+        if(!TextUtils.isEmpty(desc)) {
             componentsWrapper.getInputExtensions().setText(text, desc);
-            text.setEnabled(false);
         }
+        text.setEnabled(editorCore.getRenderType() == RenderType.Editor);
         loadImageUsingLib(_path, imageView);
         editorCore.getParentView().addView(childLayout);
+
+        if(editorCore.getRenderType()== RenderType.Editor) {
+            BindEvents(childLayout);
+        }
+
         return childLayout;
     }
 
@@ -319,11 +329,33 @@ public class ImageExtensions extends EditorComponent {
                 }
             };
         }
+
+
+        if(placeholder == -1){
+            placeholder = R.drawable.image_placeholder;
+        }
+
+        if(errorBackground == -1){
+            errorBackground = R.drawable.error_background;
+        }
+
+        if(requestOptions == null) {
+            requestOptions = new RequestOptions();
+        }
+
+        requestOptions.placeholder(placeholder);
+        requestOptions.error(errorBackground);
+
+        if(transition == null){
+            transition = DrawableTransitionOptions.withCrossFade().crossFade(1000);
+        }
         GlideApp.with(imageView.getContext())
                 .load(path)
-                .centerCrop()
+                .transition(transition)
+                .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)   //No disk cache
                 .listener(requestListener)
+                .apply(requestOptions)
                 .into(imageView);
     }
 

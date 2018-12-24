@@ -188,6 +188,7 @@ public class InputExtensions extends EditorComponent {
                 RenderHeader(tag, element);
                 break;
             case p:
+            case div:
                String text = element.html();
                 int count = editorCore.getParentView().getChildCount();
                 TextView textView = insertEditText(count, null, text);

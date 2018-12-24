@@ -458,6 +458,8 @@ public class EditorCore extends LinearLayout implements View.OnTouchListener {
                 String dataTag = element.attr("data-tag");
                 if (dataTag.equals("img")) {
                     imageExtensions.buildNodeFromHTML(element);
+                }else{
+                    inputExtensions.buildNodeFromHTML(element);
                 }
                 break;
 
