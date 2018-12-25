@@ -15,16 +15,14 @@ An iframe free text editor that uses native components in the content tree. Moti
 
 ## [3.0.0 - 20 December 2018]
 
- - Introducing Macro's. 
- 
-Macro's are equivalent to components in react/vue.js. 
+ - **Introducing Macro's**.Macro's are equivalent to components in react/vue.js. 
 It lets you add a custom block into the editor where you get to control what gets rendered into the editor. Read more about this below on Macro's section.
 
 - Removed Maps support. This is because we were using static map (which is basically an image snapshot of the selected cords). This can be inserted by yourself using insertImage method. Google has introduced new restrictions on maps and places usage with mandatory billing accounts. In future, we will add the support with another community driven map extension. At the moment, it's not a necessary component for the editor.
 
 - Replaced image loader library **Picasso** with **Glide**, so to make use of it's rich customization api.
  
- - An improved editor navigation.
+- An improved editor navigation.
 
 
 ## [2.3.2 - 01 December 2018]
@@ -44,14 +42,14 @@ Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:3.0.1'
+    compile 'com.github.irshulx:laser-native-editor:3.0.2'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>3.0.1</version>
+      <version>3.0.2</version>
       <type>pom</type>
     </dependency>
 
