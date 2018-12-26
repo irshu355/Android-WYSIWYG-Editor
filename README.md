@@ -213,13 +213,7 @@ For a complete overview of the implementation, please take a look at [EditorTest
                 editor.insertLink();
             }
         });
-
-        findViewById(R.id.action_map).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.insertMap();
-            }
-        });
+	
 
         findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,7 +228,7 @@ For a complete overview of the implementation, please take a look at [EditorTest
 
 
 
-If you are using **Image Pickers** or **Map Marker Pickers**, Add the following into your **Activity**:
+If you are using **Image Pickers**,  Add the following into your **Activity**:
 
 
          @Override
@@ -250,9 +244,6 @@ If you are using **Image Pickers** or **Map Marker Pickers**, Add the following 
         }
         else if (resultCode == Activity.RESULT_CANCELED) {
            // editor.RestoreState();
-        }
-        else if(requestCode== editor.MAP_MARKER_REQUEST){
-            editor.insertMap(data.getStringExtra("cords"));
         }
     }
 
@@ -310,11 +301,6 @@ API
  - `insertDivider();` Insert a line divider
 
  - `setDividerLayout(int layout);` Override the default layout for dividers
-
- - `insertMap():` Fires up the google map location picker activity. Once the user has selected the location, the library will automatically insert the marker with the location into editor.
-
- - `insertMap(String Cords);` Insert the marker into the editor. The cordinates must be of string form,  `"LAT,LNG"`
- - `setMapViewLayout(int layout);` Override the default layout for maps in the editor
 
 If you are using image uploads, use the below to add the uploaded image to editor:
 
