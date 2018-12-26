@@ -286,7 +286,9 @@ API
 
  - `setLineSpacing(float value);` Sets the linespace for the editor.
  
- - `editor.setEditorTextColor("#FF3333");` Sets the global text color of the editor (default is #000000).
+ - `setEditorTextColor("#FF3333");` Sets the global text color of the editor (default is #000000).
+ 
+ - `updateTextColor("#FF3333");` Changes the text color of the focused text.
 
  - `openImagePicker();` Opens up the image picker. Once the user has selected the image, it's automatically inserted to the editor. But you must configure a remote URL ,where you want the image to be uploaded. If the Remote URL is not specifed, the image is not persisted.
 
@@ -297,6 +299,8 @@ API
  - `insertList(boolean isOrdered);`Insert an Ordered or Unordered List.
 
  - `setListItemLayout(int layout);` Override the default layout for list items.
+ 
+ - `insertMacro(String name,View view, Map<String, Object> props);` Insert macro(custom component).
 
  - `insertDivider();` Insert a line divider
 
