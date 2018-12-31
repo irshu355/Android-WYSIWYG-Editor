@@ -11,5 +11,6 @@ public enum EditorTextStyle {
     NORMAL,
     BOLDITALIC,
     INDENT,
-    OUTDENT
+    OUTDENT,
+    BLOCKQUOTE
 }

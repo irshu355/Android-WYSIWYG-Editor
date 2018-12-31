@@ -445,6 +445,7 @@ public class EditorCore extends LinearLayout implements View.OnTouchListener {
             case h2:
             case h3:
             case p:
+            case blockquote:
                 inputExtensions.buildNodeFromHTML(element);
                 break;
             case ul:
