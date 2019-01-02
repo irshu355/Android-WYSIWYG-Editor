@@ -90,8 +90,7 @@ The editor is built, so that every part of the design have been exposed and is a
 | `Hyperlinks` | Add Links to the editor
 |`Location Selector` | Use the embedded map editor to tag and insert locations to the editor |
 |`Numbered` and `Bulleted` Lists | Let's you created Unorderd and Ordered lists |
-|`Line Divider` | Add a divider among paragraphs or Headings
-|`Clear Content` | Remove all contents from the editor
+|`Line Divider` | Add a divider
 
 
 
