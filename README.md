@@ -13,10 +13,12 @@ An iframe free text editor that uses native components in the content tree. Moti
 
 ## Changelog
 
-## [3.0.0 - 20 December 2018]
+## [3.0.0 - 3.0.3 20 December 2018]
 
  - **Introducing Macro's** - Macro's are equivalent to components in react/vue.js. 
 It lets you add a custom block into the editor where you get to control what gets rendered into the editor. Read more about this below on Macro's section.
+
+- Add blockquote support
 
 - Replaced image loader library **Picasso** with **Glide**, so to make use of it's rich customization api.
  
@@ -40,14 +42,14 @@ Download
 ------------
 gradle:
 
-    compile 'com.github.irshulx:laser-native-editor:3.0.2'
+    compile 'com.github.irshulx:laser-native-editor:3.0.3'
 
 or maven:
 
     <dependency>
       <groupId>com.github.irshulx</groupId>
       <artifactId>laser-native-editor</artifactId>
-      <version>3.0.2</version>
+      <version>3.0.3</version>
       <type>pom</type>
     </dependency>
 
@@ -82,13 +84,13 @@ The editor is built, so that every part of the design have been exposed and is a
 | Control     | Usage |
 | :------- | :-----: |
 | `H1`,  `H2` and `H3` | Insert Headings |
+| `Blockquote` | Insert a blockquote |
 | `Bold`, `Italic`,`Color`, `Intent` & `Outdent`    | Format the text   |
 | `Image Picker`| Insert Images to the editor from storage or a URL    |
 | `Hyperlinks` | Add Links to the editor
 |`Location Selector` | Use the embedded map editor to tag and insert locations to the editor |
 |`Numbered` and `Bulleted` Lists | Let's you created Unorderd and Ordered lists |
-|`Line Divider` | Add a divider among paragraphs or Headings
-|`Clear Content` | Remove all contents from the editor
+|`Line Divider` | Add a divider
 
 
 
@@ -221,6 +223,13 @@ For a complete overview of the implementation, please take a look at [EditorTest
                 editor.clearAllContents();
             }
         });
+	
+	findViewById(R.id.action_blockquote).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.updateTextStyle(EditorTextStyle.BLOCKQUOTE);
+            }
+        });
         
         editor.render();
         
@@ -255,6 +264,7 @@ Please be reminded, nested HTML **ARE NOT** supported at the moment except for `
 
  - `<p>`,`<div>`
  - `<h1>`,`<h2>`,`<h3>`
+ - `<blockquote>`
  - `<img>`
  - `<ul>`,`<ol>`
  - `<hr/>`
@@ -278,7 +288,7 @@ API
  - `getContentAsHTML();` returns the editor content in HTML format.
 
  - `updateTextStyle(EditorTextStyle style);` Update the text style for
-   the currently active block. Possible values are `H1,H2,H3,BOLD,ITALIC,INDENT and OUTDENT` .
+   the currently active block. Possible values are `H1,H2,H3,BOLD,ITALIC,BLOCKQUOTE,INDENT and OUTDENT` .
 
  - `setH1TextSize(int size), setH2TextSize(int size) and setH3TextSize(int size);` Override the existing text sizes. There are getter methods as well to retrieve the existing text sizes for each.
 
@@ -443,8 +453,6 @@ Future Plans
 -------------------
 
 
- - Insert quotes.
- 
  - Add videos support
  
  - Address the issues and feature requests from fellow devs.
@@ -453,12 +461,10 @@ Contributions are much appreciated, feel free to fork and customize for your nee
 
 If you come across any bugs or needs, please mention it on issues, i will address it and resolve it the latest possible.
 
-Third Party Libs Used
+Libraries Used
 -------------------
 
- - Glide
- - Gson
- - Jsoup
+ - Glide, Gson, Jsoup
  
  
  
