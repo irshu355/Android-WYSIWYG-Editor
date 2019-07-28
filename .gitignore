@@ -2,6 +2,9 @@
 *.apk
 *.ap_
 
+*.ser
+*.iml
+
 # Files for the Dalvik VM
 *.dex
 
@@ -40,8 +43,15 @@ captures/
 .idea/tasks.xml
 .idea/gradle.xml
 .idea/dictionaries
+.idea/caches
 .idea/libraries/*.xml
 .DS_Store
 /build
+.idea/caches/build_file_checksums.ser
 /captures
 .externalNativeBuild
+*.html
+*.css
+*.js
+*.yml
+*.keystore

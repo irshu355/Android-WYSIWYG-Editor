@@ -16,8 +16,12 @@
 package com.github.irshulx.Components;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.irshulx.EditorComponent;
@@ -46,7 +50,7 @@ public class DividerExtensions extends EditorComponent {
 
     @Override
     public String getContentAsHTML(Node node, EditorContent content) {
-       return componentsWrapper.getHtmlExtensions().getTemplateHtml(EditorType.hr);
+        return componentsWrapper.getHtmlExtensions().getTemplateHtml(EditorType.hr);
     }
 
     @Override
@@ -111,6 +115,19 @@ public class DividerExtensions extends EditorComponent {
                     return true;
                 }
             });
+
+            View focus = editorCore.getActivity().getCurrentFocus();
+            if (focus != null) {
+                InputMethodManager imm = (InputMethodManager)editorCore.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+                if(focus instanceof CustomEditText){
+                    CustomEditText editText = (CustomEditText)focus;
+                    editText.clearFocus();
+                    editorCore.getParentView().requestFocus();
+                }
+            }
+
         }
     }
 
