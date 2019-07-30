@@ -15,7 +15,6 @@ android {
         }
     }
     compileSdkVersion 27
-    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.github.irshulx.wysiwyg_editor"
         minSdkVersion 15
@@ -61,7 +60,8 @@ dependencies {
     implementation "com.android.support:design:$supportLibVersion"
     implementation "com.android.support:cardview-v7:$supportLibVersion"
     implementation "com.android.support:support-v4:$supportLibVersion"
-    implementation project(':laser-native-editor')
+//    implementation project(':laser-native-editor')
+    implementation 'com.github.irshulx:laser-native-editor:3.0.4'
     implementation 'com.github.duanhong169:colorpicker:1.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     //  compile 'com.github.irshulx:laser-native-editor:2.0.0'
