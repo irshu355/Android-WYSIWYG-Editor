@@ -13,7 +13,12 @@ An iframe free text editor that uses native components in the content tree. Moti
 
 ## Changelog
 
-## [3.0.0 - 3.0.3 20 December 2018]
+## [3.0.4 - 30 July 2019]
+
+ - Updates glide to 4.9.0
+
+
+## [3.0.3 - 20 December 2018]
 
  - **Introducing Macro's** - Macro's are equivalent to components in react/vue.js. 
 It lets you add a custom block into the editor where you get to control what gets rendered into the editor. Read more about this below on Macro's section.
