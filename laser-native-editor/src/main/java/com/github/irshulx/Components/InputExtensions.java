@@ -674,7 +674,7 @@ public class InputExtensions extends EditorComponent {
         }
         if (mode == HEADING && !headingTypeface.containsKey(style)) {
             throw new IllegalArgumentException("the provided fonts for heading is missing the varient for this style. Please checkout the documentation on adding custom fonts.");
-        } else if (mode == CONTENT && !headingTypeface.containsKey(style)) {
+        } else if (mode == CONTENT && !contentTypeface.containsKey(style)) {
             throw new IllegalArgumentException("the provided fonts for content is missing the varient for this style. Please checkout the documentation on adding custom fonts.");
         }
         if (mode == HEADING) {
