@@ -283,7 +283,7 @@ If you are using image uploads, use the below to add the uploaded image to edito
                     // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
                 }
                 @Override
-                public void onImageCancelClicked(Bitmap image, String uuid) {
+                public void onImageCancelClicked(String uuid) {
                     // Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
                 }
                 @Override

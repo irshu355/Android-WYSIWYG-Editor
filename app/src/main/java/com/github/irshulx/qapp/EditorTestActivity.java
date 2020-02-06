@@ -150,8 +150,8 @@ public class EditorTestActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onImageCancelClicked(Bitmap image, String uuid) {
-                //Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
+            public void onImageCancelClicked(String uuid) {
+                Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
             }
 
             @Override
