@@ -202,7 +202,7 @@ For a complete overview of the implementation, please take a look at [EditorTest
             }
         });
     }
-    editor.render(); 
+    editor.render();
 
 
 
@@ -283,8 +283,12 @@ If you are using image uploads, use the below to add the uploaded image to edito
                     // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
                 }
                 @Override
+                public void onImageCancelClicked(Bitmap image, String uuid) {
+                    // Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
+                }
+                @Override
                 public void onUpload(Bitmap image, String uuid) {
-                   
+
                    //do your upload image operations here, once done, call onImageUploadComplete and pass the url and uuid as reference.
                     editor.onImageUploadComplete("http://www.videogamesblogger.com/wp-content/uploads/2015/08/metal-gear-solid-5-the-phantom-pain-cheats-640x325.jpg",uuid);
                    // editor.onImageUploadFailed(uuid);
@@ -317,7 +321,7 @@ You can set your own fonts for the editor.
         typefaceMap.put(Typeface.BOLD_ITALIC,"fonts/Lato-BoldItalic.ttf");
         return typefaceMap;
     }
-        
+
 
 
 ## Overridable layouts ##
@@ -344,9 +348,9 @@ Future Plans
 
 
  - Insert quotes.
- 
+
  - Improve and add more callbacks.
- 
+
  - Address the issues and feature requests from fellow devs.
 
 Contributions are much appreciated, feel free to fork and customize for your needs.
@@ -355,13 +359,13 @@ If you come across any bugs or needs, please mention it on issues, i will addres
 
 ##License
 
-    
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-    
+
     http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
