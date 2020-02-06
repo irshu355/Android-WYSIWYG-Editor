@@ -94,6 +94,7 @@ public class ImageExtensions {
         childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
         lblStatus.setVisibility(View.VISIBLE);
         editorCore.getEditorListener().onUpload(image,uuid);
+        editorCore.getEditorListener().onImageCancelClicked(image, uuid);
     }
     public String GenerateUUID(){
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
