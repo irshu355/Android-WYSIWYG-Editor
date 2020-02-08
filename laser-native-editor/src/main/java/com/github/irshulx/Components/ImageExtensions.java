@@ -72,14 +72,13 @@ public class ImageExtensions {
         ((Activity) editorCore.getContext()).startActivityForResult(Intent.createChooser(intent, "Select an image"), editorCore.PICK_IMAGE_REQUEST);
     }
 
-    public void InsertImage(Bitmap image,int index) {
+    public void InsertImage(final Bitmap image,int index) {
        // render(getStateFromString());
         final View childLayout = ((Activity) editorCore.getContext()).getLayoutInflater().inflate(this.editorImageLayout, null);
         ImageView imageView = (ImageView) childLayout.findViewById(R.id.imageView);
         final TextView lblStatus= (TextView) childLayout.findViewById(R.id.lblStatus);
         imageView.setImageBitmap(image);
         final String uuid= GenerateUUID();
-        BindEvents(childLayout);
         if(index==-1) {
              index = editorCore.determineIndex(EditorType.img);
         }
@@ -93,6 +92,7 @@ public class ImageExtensions {
         childLayout.setTag(control);
         childLayout.findViewById(R.id.progress).setVisibility(View.VISIBLE);
         lblStatus.setVisibility(View.VISIBLE);
+        BindEvents(childLayout);
         editorCore.getEditorListener().onUpload(image,uuid);
     }
     public String GenerateUUID(){
@@ -193,6 +193,7 @@ public class ImageExtensions {
                 int index = editorCore.getParentView().indexOfChild(layout);
                 editorCore.getParentView().removeView(layout);
                 editorCore.getInputExtensions().setFocusToPrevious(index);
+                editorCore.getEditorListener().onImageCancelClicked(((EditorControl)layout.getTag()).Path);;
             }
         });
 

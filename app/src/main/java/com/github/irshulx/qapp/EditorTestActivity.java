@@ -148,6 +148,12 @@ public class EditorTestActivity extends AppCompatActivity {
             public void onTextChanged(EditText editText, Editable text) {
                 // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onImageCancelClicked(String uuid) {
+                Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
+            }
+
             @Override
             public void onUpload(Bitmap image, String uuid) {
                 Toast.makeText(EditorTestActivity.this,uuid,Toast.LENGTH_LONG).show();
